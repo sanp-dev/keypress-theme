@@ -1,28 +1,30 @@
-# Quic Decode
+# DEMO BLOG - Modern Web Publishing Platform
 
-> Latest Tech News, AI Updates, Android Tips, Web Development Tutorials, Coding Guides, App Development and Digital Technology.
+> A modern, fully functional web publishing platform built with Astro and Cloudflare Pages.
 
-- Site: https://www.quicdecode.com
+- Site: https://demo-blog.quicdecode.com
 - Language: en
-- License: All Rights Reserved
+- License: Project Source-Available License (Sandhata Prajapati)
 
-## Important URLs
+## Active Categories & Sections
 
-- [Home](https://www.quicdecode.com/)
-- [Tech News](https://www.quicdecode.com/category/tech-news/)
-- [AI](https://www.quicdecode.com/category/ai/)
-- [Android](https://www.quicdecode.com/category/android/)
-- [Web Development](https://www.quicdecode.com/category/web-development/)
-- [Programming](https://www.quicdecode.com/category/programming/)
-- [Sitemap Index](https://www.quicdecode.com/sitemap-index.xml)
-- [Sitemap Posts](https://www.quicdecode.com/sitemap-posts.xml)
-- [RSS](https://www.quicdecode.com/rss.xml)
+- [Home](https://demo-blog.quicdecode.com/)
+- [Health](https://demo-blog.quicdecode.com/category/health/)
+- [Education](https://demo-blog.quicdecode.com/category/education/)
+- [Quizzes](https://demo-blog.quicdecode.com/category/quiz/)
+- [Current Affairs](https://demo-blog.quicdecode.com/category/current-affairs/)
+- [Webstories](https://demo-blog.quicdecode.com/webstories/)
+- [Sitemap Index](https://demo-blog.quicdecode.com/sitemap-index.xml)
+- [Sitemap Posts](https://demo-blog.quicdecode.com/sitemap-posts.xml)
+- [RSS Feed](https://demo-blog.quicdecode.com/rss.xml)
 
-## Policies
+## Legal Policies
 
-- [Robots](https://www.quicdecode.com/robots.txt)
-- [Privacy Policy](https://www.quicdecode.com/privacy-policy/)
+- [Privacy Policy](https://demo-blog.quicdecode.com/privacy-policy/)
+- [Terms and Conditions](https://demo-blog.quicdecode.com/terms-and-conditions/)
+- [Disclaimer](https://demo-blog.quicdecode.com/disclaimer/)
 
-## Contact
+## Contact & Developer
 
+- Author: Sandhata Prajapati
 - Email: contact@quicdecode.com

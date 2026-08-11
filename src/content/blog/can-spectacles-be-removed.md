@@ -21,7 +21,7 @@ ai_summary: "Can Spectacles Be Removed for Myopia or Hypermetropia? The answer d
 </ul>
 <p><span style="font-size: medium;">These conditions occur due to irregularities in the eye’s shape, lens, or cornea, leading to improper focusing of light on the retina.</span></p>
 
-<p style="padding:12px;background:#f8fafc;border-left:4px solid #1a73e8;border-radius:4px;font-weight:600;margin:16px 0;">Also Read: <a href="/post/current-affairs-25-march-to-1-april/" style="color:#1a73e8;text-decoration:underline;">Current Affairs 25 Mar to 1 Apr 2026 War Updates and India</a></p>
+<p style="padding:12px;background:#f8fafc;border-left:4px solid #1a73e8;border-radius:4px;font-weight:600;margin:16px 0;">Also Read: <a href="/post/current-affairs-25-march-to-1-april/">Current Affairs 25 Mar to 1 Apr 2026 War Updates and India</a></p>
 
 
 
@@ -35,7 +35,7 @@ ai_summary: "Can Spectacles Be Removed for Myopia or Hypermetropia? The answer d
 </ul>
 <p><span style="font-size: medium;"><strong>Limitations:</strong> Dietary changes cannot reshape the eye or correct focusing errors.</span></p>
 
-<p style="padding:12px;background:#f8fafc;border-left:4px solid #1a73e8;border-radius:4px;font-weight:600;margin:16px 0;">Also Read: <a href="/post/current-affairs-updates-1-to-10-april/" style="color:#1a73e8;text-decoration:underline;">Current Affairs Updates (1–10 April 2026) – 25 Key Points with Dates</a></p>
+<p style="padding:12px;background:#f8fafc;border-left:4px solid #1a73e8;border-radius:4px;font-weight:600;margin:16px 0;">Also Read: <a href="/post/current-affairs-updates-1-to-10-april/">Current Affairs Updates (1–10 April 2026) – 25 Key Points with Dates</a></p>
 
 
 
@@ -49,7 +49,7 @@ ai_summary: "Can Spectacles Be Removed for Myopia or Hypermetropia? The answer d
 <h3><span style="font-size: medium;">3. Orthokeratology (Ortho-K)</span></h3>
 <p><span style="font-size: medium;">This involves wearing specially designed rigid contact lenses overnight to reshape the cornea temporarily.</span></p>
 
-<p style="padding:12px;background:#f8fafc;border-left:4px solid #1a73e8;border-radius:4px;font-weight:600;margin:16px 0;">Also Read: <a href="/post/destructive-surgeries-of-eyeball/" style="color:#1a73e8;text-decoration:underline;">Destructive Surgeries of the Eyeball</a></p>
+<p style="padding:12px;background:#f8fafc;border-left:4px solid #1a73e8;border-radius:4px;font-weight:600;margin:16px 0;">Also Read: <a href="/post/chia-seed-water-benefits-empty-stomach/">Destructive Surgeries of the Eyeball</a></p>
 
 
 <ul>

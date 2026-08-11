@@ -12,7 +12,7 @@ ai_summary: "Current Affairs Updates (1–10 April 2026) – 25 Key Points with 
 ---
 <p>This expanded and highly detailed current affairs update incorporates the exact dates of major events from 1 April to 10 April 2026. Knowing the precise dates is crucial for serious government exam aspirants as objective questions frequently test chronological awareness. Review these 25 carefully vetted points to analyze deeper and prepare effectively.</p>
 
-<p style="padding:12px;background:#f8fafc;border-left:4px solid #1a73e8;border-radius:4px;font-weight:600;margin:16px 0;">Also Read: <a href="/post/current-affairs-feb-2-3/" style="color:#1a73e8;text-decoration:underline;">Daily Current Affairs (Feb 2-3, 2026): New Ramsar Sites, Budget and Grammy Winners</a></p>
+<p style="padding:12px;background:#f8fafc;border-left:4px solid #1a73e8;border-radius:4px;font-weight:600;margin:16px 0;">Also Read: <a href="/post/current-affairs-feb-2-3/">Daily Current Affairs (Feb 2-3, 2026): New Ramsar Sites, Budget and Grammy Winners</a></p>
 
 
 
@@ -112,7 +112,7 @@ ai_summary: "Current Affairs Updates (1–10 April 2026) – 25 Key Points with 
 <h2>Preparation Strategy for Aspirants</h2>
 <p>To master these updates, memorize the dates alongside the events using the chronological Quick Revision Table above. Exam bodies like the SSC and State PCS often create confusing options by changing just the date (e.g., April 4 vs. April 5 for the RBI announcement). Make a habit of noting down the date of the event in the margins of your notes.</p>
 
-<p style="padding:12px;background:#f8fafc;border-left:4px solid #1a73e8;border-radius:4px;font-weight:600;margin:16px 0;">Also Read: <a href="/post/feb-4-6-current-affairs-recap-10/" style="color:#1a73e8;text-decoration:underline;">Feb 4-6 Current affairs Recap: 10 Critical News Updates You Missed (Olympics and RBI)</a></p>
+<p style="padding:12px;background:#f8fafc;border-left:4px solid #1a73e8;border-radius:4px;font-weight:600;margin:16px 0;">Also Read: <a href="/post/current-affairs-10-14-march/">Feb 4-6 Current affairs Recap: 10 Critical News Updates You Missed (Olympics and RBI)</a></p>
 
 
 

@@ -53,7 +53,7 @@ ai_summary: "Top 30 Current Affairs (10–14 March 2026): India and World"
 </ul>
 <p>This move ensured that Indian passengers could travel safely despite regional tensions.</p>
 
-<p style="padding:12px;background:#f8fafc;border-left:4px solid #1a73e8;border-radius:4px;font-weight:600;margin:16px 0;">Also Read: <a href="/post/top-current-affairs-3-to-6-march-2026-india/" style="color:#1a73e8;text-decoration:underline;">Top Current Affairs 3–6 March 2026: India and World Updates with MCQs</a></p>
+<p style="padding:12px;background:#f8fafc;border-left:4px solid #1a73e8;border-radius:4px;font-weight:600;margin:16px 0;">Also Read: <a href="/post/current-affairs-15-16-march/">Top Current Affairs 3–6 March 2026: India and World Updates with MCQs</a></p>
 
 
 

@@ -21,7 +21,7 @@ To appreciate why these shoe categories perform so differently, you must first e
 
 Manufacturers design each shoe to solve specific trail challenges: trail runners aim to minimize energy expenditure per stride, while hiking shoes focus on protecting the foot against sharp rocks, scree, and heavy backpack loads.
 
-<p style="padding:12px;border-radius:4px;font-weight:700;margin:15px 0;">Also Read: <a href="https://demo-blog.quicdecode.com/post/how-to-start-running-step-by-step-beginner-guide/" style="color:#1a73e8;text-decoration:underline;">How to Start Running: A Step-by-Step Beginner Guide</a></p>
+<p style="padding:12px;border-radius:4px;font-weight:700;margin:15px 0;">Also Read: <a href="/post/50-mcqs-on-general-ability-part-1/">How to Start Running: A Step-by-Step Beginner Guide</a></p>
 
 ### Trail Running Shoes: Design Intent & Agility
 Trail runners are agile athletic shoes built to absorb repeat forward impacts on unpaved surfaces. They feature highly breathable mesh or engineered knit uppers, flexible EVA or TPU foam midsoles, and sticky rubber outsoles with aggressive lugs.
@@ -71,7 +71,7 @@ The physical sensations you feel while walking down a rocky trail stem directly 
 
 A common rule among experienced backpackers states that *"one pound on your feet equals five pounds on your back."* Let's explore how weight and stiffness impact your body on extended trail days.
 
-<p style="padding:12px;border-radius:4px;font-weight:700;margin:15px 0;">Also Read: <a href="https://demo-blog.quicdecode.com/post/5-daily-habits-change-your-life-in-30-days/" style="color:#1a73e8;text-decoration:underline;">5 Daily Habits That Can Change Your Life in 30 Days</a></p>
+<p style="padding:12px;border-radius:4px;font-weight:700;margin:15px 0;">Also Read: <a href="/post/tapeworm-extends-ant-life-transforms-worker-ants-into-queens/">5 Daily Habits That Can Change Your Life in 30 Days</a></p>
 
 ### Weight & Leg Fatigue: The 1 lb Footwear Rule
 Biomechanical studies repeatedly confirm that carrying extra mass on your extremities requires far more metabolic energy than carrying that same weight inside a backpack near your center of gravity. Saving 1 pound on shoe weight saves thousands of foot-pounds of energy over a 10-mile day.

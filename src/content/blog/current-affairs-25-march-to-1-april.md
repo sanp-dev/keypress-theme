@@ -45,7 +45,7 @@ ai_summary: "Current Affairs 25 Mar to 1 Apr 2026 War Updates and India's Action
 <h2>28 March 2026</h2>
 <p>Heavy missile exchanges continued. Iran used higher payload missiles possibly from western bases. Israel activated nationwide siren alerts and civil defense shelters. Airspace over parts of Middle East was restricted affecting global aviation.</p>
 
-<p style="padding:12px;background:#f8fafc;border-left:4px solid #1a73e8;border-radius:4px;font-weight:600;margin:16px 0;">Also Read: <a href="/post/iran-israel-war-update-march-24/" style="color:#1a73e8;text-decoration:underline;">Iran Israel War Update March 24, Missile Attack and Analysis</a></p>
+<p style="padding:12px;background:#f8fafc;border-left:4px solid #1a73e8;border-radius:4px;font-weight:600;margin:16px 0;">Also Read: <a href="/post/current-affairs-10-14-march/">Iran Israel War Update March 24, Missile Attack and Analysis</a></p>
 
 
 <ul>

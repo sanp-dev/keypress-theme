@@ -14,7 +14,7 @@ ai_summary: "Boost your clinical knowledge! Practice 50 advanced MCQs on eye ana
 <h2>Advanced Optometry MCQs</h2>
 <p>Welcome to the second part of our comprehensive optometry and ophthalmology quiz series! Building upon fundamental concepts, this advanced set of 50 multiple-choice questions dives deeper into the clinical aspects of eye anatomy and physiological processes.</p>
 
-<p style="padding:12px;background:#f8fafc;border-left:4px solid #1a73e8;border-radius:4px;font-weight:600;margin:16px 0;">Also Read: <a href="/post/modern-indian-history-part-3-top-35-mcqs-for-government-exam-preparation/" style="color:#1a73e8;text-decoration:underline;">Modern Indian History Part 3: Top 35 Important MCQs for Competitive Exams</a></p>
+<p style="padding:12px;background:#f8fafc;border-left:4px solid #1a73e8;border-radius:4px;font-weight:600;margin:16px 0;">Also Read: <a href="/post/50-best-mcqs-on-optometry-topics/">Modern Indian History Part 3: Top 35 Important MCQs for Competitive Exams</a></p>
 
 
 

@@ -37,7 +37,7 @@ The term **gut-brain axis** refers to the complex, bidirectional communication n
 
 Researchers frequently refer to the gut as the "second brain" because of its extraordinary neurological complexity. Unlike any other peripheral organ, your gut can perform complex reflexes, coordinate smooth muscle contractions, and manage digestive processes completely independently of the brain. If the neural connection between the brain and the gut is cut, the digestive system continues to break down food and move it along without interruption.
 
-<p style="padding:12px;border-radius:4px;font-weight:700;margin:15px 0;">Also Read: <a href="https://demo-blog.quicdecode.com/post/how-to-stop-overthinking/" style="color:#1a73e8;text-decoration:underline;">How to Stop Overthinking: 7 Effective Strategies That Work Fast</a></p>
+<p style="padding:12px;border-radius:4px;font-weight:700;margin:15px 0;">Also Read: <a href="/post/can-spectacles-be-removed/">How to Stop Overthinking: 7 Effective Strategies That Work Fast</a></p>
 
 ### The Role of the Enteric Nervous System
 
@@ -156,7 +156,7 @@ While the science is expanding rapidly, it is important to remain realistic abou
 
 > **Smart Tip:** If you notice your stomach flares up every time your stress levels spike, treat it as a signal to slow down. Anxiety-induced digestive issues are biological, not "all in your head."
 
-<p style="padding:12px;border-radius:4px;font-weight:700;margin:15px 0;">Also Read: <a href="https://demo-blog.quicdecode.com/post/why-do-you-feel-sleepy-after-eating/" style="color:#1a73e8;text-decoration:underline;">Why Do We Feel Sleepy After Eating? 4 Easy Fixes</a></p>
+<p style="padding:12px;border-radius:4px;font-weight:700;margin:15px 0;">Also Read: <a href="/post/chia-seed-water-benefits-empty-stomach/">Why Do We Feel Sleepy After Eating? 4 Easy Fixes</a></p>
 
 ## Gut-Brain Connection and Depression
 
@@ -322,7 +322,7 @@ Polyphenols are powerful plant compounds with antioxidant properties. Microbes i
 
 ### Omega-3 Fatty Acids and Overall Dietary Quality
 
-Omega-3 fatty acids—found in fatty fish like salmon, sardines, and mackerel, as well as [chia seeds](https://demo-blog.quicdecode.com/post/eating-chia-seeds-daily-guide/) and walnuts—help reduce systemic inflammation, support blood-brain barrier integrity, and encourage the growth of anti-inflammatory gut bacteria.
+Omega-3 fatty acids—found in fatty fish like salmon, sardines, and mackerel, as well as [chia seeds](/post/eating-chia-seeds-daily-guide/) and walnuts—help reduce systemic inflammation, support blood-brain barrier integrity, and encourage the growth of anti-inflammatory gut bacteria.
 
 ### What About Ultra-Processed Foods?
 

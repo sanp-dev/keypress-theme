@@ -33,7 +33,7 @@ During your first few days, your body might go through a short adjustment period
 
 > 💡 **Smart Tip:** If you currently eat a low-fiber diet, do not start with a full serving on day one. Start with just half a tablespoon daily for the first four days to let your digestive system adjust smoothly without gas or bloating.
 
-<p style="padding:12px;border-radius:4px;font-weight:700;margin:15px 0;">Also Read: <a href="https://demo-blog.quicdecode.com/post/chia-seed-water-benefits-empty-stomach/" style="color:#1a73e8;text-decoration:underline;">5 Amazing Benefits of Chia Seed Water Daily</a></p>
+<p style="padding:12px;border-radius:4px;font-weight:700;margin:15px 0;">Also Read: <a href="/post/chia-seed-water-benefits-empty-stomach/">5 Amazing Benefits of Chia Seed Water Daily</a></p>
 
 ### Top 10 Health Benefits of Chia Seeds
 
@@ -69,7 +69,7 @@ If you jump straight to eating 3 or 4 tablespoons a day, your body will let you 
 
 > 👨‍⚕️ **Expert Advice:** During my second week, I foolishly added three heaped tablespoons into a quick glass of water because I had a long day ahead and wanted extra energy. Within two hours, my stomach felt as stiff as a drum and extremely bloated. I had to drink three big glasses of plain warm water over the next two hours just to relieve the discomfort. Stick to the 1-2 tablespoon rule!
 
-<p style="padding:12px;border-radius:4px;font-weight:700;margin:15px 0;">Also Read: <a href="https://demo-blog.quicdecode.com/post/eating-chia-seeds-daily-guide/" style="color:#1a73e8;text-decoration:underline;">Eating Chia Seeds Daily: What Really Happens to Your Body</a></p>
+<p style="padding:12px;border-radius:4px;font-weight:700;margin:15px 0;">Also Read: <a href="/post/eating-chia-seeds-daily-guide/">Eating Chia Seeds Daily: What Really Happens to Your Body</a></p>
 
 ## Can Chia Seeds Actually Lower Belly Fat?
 

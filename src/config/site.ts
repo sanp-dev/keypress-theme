@@ -43,7 +43,7 @@ export const SITE_CONFIG: SiteConfig = {
   themeColor: "#1a73e8",                              // PWA / browser theme color
 
   // ─── Google AdSense Integration ───────────────────────────────────────────
-  googleAdsenseId: "ca-pub-0000000000000000",         // Google AdSense client ID (placeholder)
+  googleAdsenseId: "",         // Google AdSense client ID (placeholder)
   adsenseLazyLoad: false,                             // Set true to lazy-load AdSense
 
   // ─── Cookie Consent Configuration ─────────────────────────────────────────
@@ -70,13 +70,13 @@ export const SITE_CONFIG: SiteConfig = {
 
 export const ADS_SLOTS = {
   // ─── Responsive Auto Slots ──────────────────────────────────────────────
-  horizontal:  "1234567890", // QD HORIZONTAL AD   → Home top / Post top / Category
-  square:      "1234567891", // QD SQUARE AD        → Home bottom / Post bottom
-  vertical:    "1234567892", // QD VERTICAL AD      → Post Left Sidebar (160×600)
-  vertical2:   "1234567893", // QD VERTICAL AD 2    → Post Right Sidebar (160×600)
+  horizontal: "1234567890", // QD HORIZONTAL AD   → Home top / Post top / Category
+  square: "1234567891", // QD SQUARE AD        → Home bottom / Post bottom
+  vertical: "1234567892", // QD VERTICAL AD      → Post Left Sidebar (160×600)
+  vertical2: "1234567893", // QD VERTICAL AD 2    → Post Right Sidebar (160×600)
 
   // ─── Specialised Slots ───────────────────────────────────────────────────
-  top:         "1234567894", // qd-top              → Fixed 728×90 Leaderboard (reserved)
-  inArticle1:  "1234567895", // QD IN-ARTICLE #1    → In-article fluid (after 3rd para)
-  inArticle2:  "1234567896", // QD IN-ARTICLE #2    → In-article fluid (after 8th para)
+  top: "1234567894", // qd-top              → Fixed 728×90 Leaderboard (reserved)
+  inArticle1: "1234567895", // QD IN-ARTICLE #1    → In-article fluid (after 3rd para)
+  inArticle2: "1234567896", // QD IN-ARTICLE #2    → In-article fluid (after 8th para)
 };

@@ -21,7 +21,7 @@ When your digestive tract is balanced and running smoothly, you feel energetic, 
 
 **Smart Tip:** Pay close attention to how you feel 30 to 60 minutes after eating. Keeping a simple daily food and mood journal for just one week can help you identify specific meals that trigger fatigue, irritability, or brain fog.
 
-<p style="padding:12px;border-radius:4px;font-weight:700;margin:15px 0;">Also Read: <a href="https://demo-blog.quicdecode.com/post/morning-anxiety-cortisol-spike/" style="color:#1a73e8;text-decoration:underline;">Why Morning Anxiety Happens: Stop Cortisol Spikes</a></p>
+<p style="padding:12px;border-radius:4px;font-weight:700;margin:15px 0;">Also Read: <a href="/post/can-spectacles-be-removed/">Why Morning Anxiety Happens: Stop Cortisol Spikes</a></p>
 
 ## The Science: How Your Gut and Brain Communicate
 
@@ -47,7 +47,7 @@ A disrupted internal microbiome rarely stays quiet. While it can certainly cause
 
 **Smart Tip:** If you suffer from frequent afternoon brain fog, look at your lunch. High-carb, sugary lunches feed bad bacteria rapidly, causing a quick spike in blood sugar followed by a sharp drop in mental clarity.
 
-<p style="padding:12px;border-radius:4px;font-weight:700;margin:15px 0;">Also Read: <a href="https://demo-blog.quicdecode.com/post/food-coma-sleepy-after-lunch-tips/" style="color:#1a73e8;text-decoration:underline;">Beat Food Coma: Why You Feel Sleepy After Lunch</a></p>
+<p style="padding:12px;border-radius:4px;font-weight:700;margin:15px 0;">Also Read: <a href="/post/food-coma-sleepy-after-lunch-tips/">Beat Food Coma: Why You Feel Sleepy After Lunch</a></p>
 
 ## 5 Proven Daily Steps to Heal Your Gut and Brighten Your Mood
 

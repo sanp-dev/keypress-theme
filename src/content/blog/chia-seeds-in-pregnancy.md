@@ -99,7 +99,7 @@ Chia seeds are packed with antioxidants like quercetin and kaempferol. These nut
 
 > **Smart Tip:** Pair chia seeds with vitamin C-rich fruits like strawberries or oranges to boost your body's absorption of plant-based iron.
 
-<p style="padding:12px;border-radius:4px;font-weight:700;margin:15px 0;">Also Read: <a href="https://demo-blog.quicdecode.com/post/soaked-almonds-empty-stomach-benefits/" style="color:#1a73e8;text-decoration:underline;">What Really Happens When You Eat Soaked Almonds On An Empty Stomach Every Morning</a></p>
+<p style="padding:12px;border-radius:4px;font-weight:700;margin:15px 0;">Also Read: <a href="/post/can-spectacles-be-removed/">What Really Happens When You Eat Soaked Almonds On An Empty Stomach Every Morning</a></p>
 
 ## 4. Chia Seeds in the First Trimester
 
@@ -181,13 +181,13 @@ It is generally best to consume chia seeds with or just before your primary meal
 
 > **Smart Tip:** Avoid consuming dry or unsoaked chia seeds right before sleeping to ensure your stomach has plenty of time to process the high dietary fiber smoothly.
 
-<p style="padding:12px;border-radius:4px;font-weight:700;margin:15px 0;">Also Read: <a href="https://demo-blog.quicdecode.com/post/5-daily-habits-change-your-life-in-30-days/" style="color:#1a73e8;text-decoration:underline;">5 Daily Habits That Can Change Your Life in 30 Days</a></p>
+<p style="padding:12px;border-radius:4px;font-weight:700;margin:15px 0;">Also Read: <a href="/post/chia-seed-water-benefits-empty-stomach/">5 Daily Habits That Can Change Your Life in 30 Days</a></p>
 
 ## 8. How to Consume Chia Seeds During Pregnancy
 
 ### Chia Water
 
-Soak one tablespoon of chia seeds in a large glass of plain water for 15 to 20 minutes. Add a dash of fresh lemon juice or honey for a quick, hydrating [chia seed water](https://demo-blog.quicdecode.com/post/chia-seed-water-benefits-empty-stomach/) beverage.
+Soak one tablespoon of chia seeds in a large glass of plain water for 15 to 20 minutes. Add a dash of fresh lemon juice or honey for a quick, hydrating [chia seed water](/post/chia-seed-water-benefits-empty-stomach/) beverage.
 
 ### Chia Pudding
 
@@ -223,7 +223,7 @@ The optimal daily intake for most pregnant women is 1 to 2 tablespoons (roughly 
 
 ### Can You Eat Chia Seeds Every Day?
 
-Yes, you can safely [eat chia seeds every single day](https://demo-blog.quicdecode.com/post/eating-chia-seeds-daily-guide/), provided you consume enough fluid. Consistency is the best way to maintain regular bowel movements and steady nutrient levels.
+Yes, you can safely [eat chia seeds every single day](/post/eating-chia-seeds-daily-guide/), provided you consume enough fluid. Consistency is the best way to maintain regular bowel movements and steady nutrient levels.
 
 > **Smart Tip:** If you are new to high-fiber foods, begin with half a tablespoon daily for the first week, then gradually increase to one or two tablespoons as your body adjusts.
 

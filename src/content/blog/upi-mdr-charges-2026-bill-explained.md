@@ -22,7 +22,7 @@ Let’s address the elephant in the room immediately to put your mind at ease: *
 
 The passing of the Payment and Settlement Systems (Amendment) Bill, 2026 does not mean that a fee will be deducted from your bank account every time you scan a QR code. Instead, the bill removes an old legal restriction, giving the central government the *power* and *authority* to allow banks and payment service providers to charge a fee (MDR) in the future, should they choose to notify it. It is a legal doorway being opened, not a toll booth being instantly erected.
 
-<p style="padding:12px;border-radius:4px;font-weight:700;margin:15px 0;">Also Read: <a href="https://demo-blog.quicdecode.com/post/top-30-current-affairs-feb-6-to-16/" style="color:#1a73e8;text-decoration:underline;">Feb 6-16 Current Affairs: U-19 Win, GCC FTA, UCC and Top 30 Updates</a></p>
+<p style="padding:12px;border-radius:4px;font-weight:700;margin:15px 0;">Also Read: <a href="/post/50-mcqs-on-general-ability-part-1/">Feb 6-16 Current Affairs: U-19 Win, GCC FTA, UCC and Top 30 Updates</a></p>
 
 ## What Exactly is MDR (Merchant Discount Rate)?
 
@@ -74,7 +74,7 @@ When payment service providers do not make money from their core product, they h
 
 Recently, senior officials and banking experts, including those from the RBI, have hinted that public infrastructure needs funding. The "user pays" model—where the businesses that benefit from the convenience of instant settlements pay a tiny fraction for the service—is considered the most viable long-term solution worldwide.
 
-<p style="padding:12px;border-radius:4px;font-weight:700;margin:15px 0;">Also Read: <a href="https://demo-blog.quicdecode.com/post/offline-is-back-ditching-screens/" style="color:#1a73e8;text-decoration:underline;">Offline Is Back | Why People Are Ditching Screens in 2026</a></p>
+<p style="padding:12px;border-radius:4px;font-weight:700;margin:15px 0;">Also Read: <a href="/post/tapeworm-extends-ant-life-transforms-worker-ants-into-queens/">Offline Is Back | Why People Are Ditching Screens in 2026</a></p>
 
 ## How Will the New Rules Impact You?
 

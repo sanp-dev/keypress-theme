@@ -19,7 +19,7 @@ ai_summary: "Daily Current Affairs (Feb 2-3, 2026): New Ramsar Sites, Budget and
 <h3>2. Environment: India Adds Two New Ramsar Sites</h3>
 <p>Ahead of World Wetlands Day (February 2), the Union Environment Ministry announced the addition of two new wetlands to the list of Ramsar sites of international importance. The new sites are the <strong>Patna Bird Sanctuary</strong> in Etah district, Uttar Pradesh, and the <strong>Chhari-Dhand Wetland Reserve</strong> in the Kutch district of Gujarat. This inclusion highlights India's continued focus on conserving biodiversity and critical marshland ecosystems.</p>
 
-<p style="padding:12px;background:#f8fafc;border-left:4px solid #1a73e8;border-radius:4px;font-weight:600;margin:16px 0;">Also Read: <a href="/post/top-current-affairs-3-to-6-march-2026-india/" style="color:#1a73e8;text-decoration:underline;">Top Current Affairs 3–6 March 2026: India and World Updates with MCQs</a></p>
+<p style="padding:12px;background:#f8fafc;border-left:4px solid #1a73e8;border-radius:4px;font-weight:600;margin:16px 0;">Also Read: <a href="/post/current-affairs-10-14-march/">Top Current Affairs 3–6 March 2026: India and World Updates with MCQs</a></p>
 
 
 
@@ -32,7 +32,7 @@ ai_summary: "Daily Current Affairs (Feb 2-3, 2026): New Ramsar Sites, Budget and
 <h3>5. International Relations: US Reopens Mission in Venezuela</h3>
 <p>In a major diplomatic thaw, the United States has officially reopened its diplomatic mission in Venezuela after a seven-year hiatus. The arrival of the US Ambassador in Caracas signals a potential reset in bilateral ties between Washington and the oil-rich Latin American nation, which could have ripple effects on global energy markets and regional geopolitics.</p>
 
-<p style="padding:12px;background:#f8fafc;border-left:4px solid #1a73e8;border-radius:4px;font-weight:600;margin:16px 0;">Also Read: <a href="/post/weekly-current-affairs-jan-26-to-feb-1/" style="color:#1a73e8;text-decoration:underline;">Top 30 Weekly Current Affairs (Jan 26 - Feb 1, 2026): Budget, Awards and Sports Recap</a></p>
+<p style="padding:12px;background:#f8fafc;border-left:4px solid #1a73e8;border-radius:4px;font-weight:600;margin:16px 0;">Also Read: <a href="/post/current-affairs-15-16-march/">Top 30 Weekly Current Affairs (Jan 26 - Feb 1, 2026): Budget, Awards and Sports Recap</a></p>
 
 
 

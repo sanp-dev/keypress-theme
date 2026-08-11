@@ -14,7 +14,7 @@ ai_summary: "​Current Affairs Feb 22-24, 2026: Top 20 MCQs for Govt Exams"
 
 <p>This post summarizes the most critical current affairs updates from February 22 to February 24, 2026. These points are curated specifically for aspirants of UPSC, UPSSSC, DSSSB, RRB, SSC, Banking, and other competitive government exams.</p>
 
-<p style="padding:12px;background:#f8fafc;border-left:4px solid #1a73e8;border-radius:4px;font-weight:600;margin:16px 0;">Also Read: <a href="/post/current-affairs-feb-2-3/" style="color:#1a73e8;text-decoration:underline;">Daily Current Affairs (Feb 2-3, 2026): New Ramsar Sites, Budget and Grammy Winners</a></p>
+<p style="padding:12px;background:#f8fafc;border-left:4px solid #1a73e8;border-radius:4px;font-weight:600;margin:16px 0;">Also Read: <a href="/post/current-affairs-feb-2-3/">Daily Current Affairs (Feb 2-3, 2026): New Ramsar Sites, Budget and Grammy Winners</a></p>
 
 
 <hr />

@@ -48,7 +48,7 @@ ai_summary: "Current Affairs 15–16 March 2026: India and World Updates"
 <h3>4. India Faces Possible Gas Supply Concerns</h3>
 <p>Due to disruptions in Middle Eastern energy routes, India may face natural gas supply challenges.</p>
 
-<p style="padding:12px;background:#f8fafc;border-left:4px solid #1a73e8;border-radius:4px;font-weight:600;margin:16px 0;">Also Read: <a href="/post/current-affairs-feb-2-3/" style="color:#1a73e8;text-decoration:underline;">Daily Current Affairs (Feb 2-3, 2026): New Ramsar Sites, Budget and Grammy Winners</a></p>
+<p style="padding:12px;background:#f8fafc;border-left:4px solid #1a73e8;border-radius:4px;font-weight:600;margin:16px 0;">Also Read: <a href="/post/current-affairs-feb-2-3/">Daily Current Affairs (Feb 2-3, 2026): New Ramsar Sites, Budget and Grammy Winners</a></p>
 
 
 
@@ -110,7 +110,7 @@ ai_summary: "Current Affairs 15–16 March 2026: India and World Updates"
 <h3>10. BCCI NAMAN Awards Ceremony</h3>
 <p>The Board of Control for Cricket in India announced that several Indian cricket teams would be honored at the NAMAN Awards ceremony.</p>
 
-<p style="padding:12px;background:#f8fafc;border-left:4px solid #1a73e8;border-radius:4px;font-weight:600;margin:16px 0;">Also Read: <a href="/post/daily-current-affairs-25-february-2026-with-mcqs/" style="color:#1a73e8;text-decoration:underline;">Daily Current Affairs 25 February 2026 for Competitive Exam</a></p>
+<p style="padding:12px;background:#f8fafc;border-left:4px solid #1a73e8;border-radius:4px;font-weight:600;margin:16px 0;">Also Read: <a href="/post/daily-current-affairs-25-february-2026-with-mcqs/">Daily Current Affairs 25 February 2026 for Competitive Exam</a></p>
 
 
 

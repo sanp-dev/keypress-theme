@@ -44,7 +44,7 @@ It is not a disease, nor is it a sign that something is broken inside you. It is
 
 > **🩺 Expert Advice:** If you experience mild afternoon drowsiness, it is completely normal. However, if your post-lunch fatigue is so extreme that you literally cannot keep your eyes open despite sleeping 7 to 8 hours every night, it is a good idea to check your blood glucose levels with a basic blood test.
 
-<p style="padding:12px;border-radius:4px;font-weight:700;margin:15px 0;">Also Read: <a href="https://demo-blog.quicdecode.com/post/5-daily-habits-change-your-life-in-30-days/" style="color:#1a73e8;text-decoration:underline;">5 Daily Habits That Can Change Your Life in 30 Days</a></p>
+<p style="padding:12px;border-radius:4px;font-weight:700;margin:15px 0;">Also Read: <a href="/post/can-spectacles-be-removed/">5 Daily Habits That Can Change Your Life in 30 Days</a></p>
 
 ## SECTION 3: Why Do We Feel Sleepy After Eating? (The Science Made Simple)
 
@@ -109,7 +109,7 @@ When you sleep for more than 30 minutes during the daytime, your brain enters de
 
 > **💡 Smart Tip:** If you choose to take a quick afternoon power nap, do not lie flat in bed under heavy blankets. Sit on a comfortable couch or reclining chair in an inclined position. Set an alarm for exactly 20 minutes so your brain stays in the light stage of sleep.
 
-<p style="padding:12px;border-radius:4px;font-weight:700;margin:15px 0;">Also Read: <a href="https://demo-blog.quicdecode.com/post/soaked-almonds-empty-stomach-benefits/" style="color:#1a73e8;text-decoration:underline;">What Really Happens When You Eat Soaked Almonds On An Empty Stomach Every Morning</a></p>
+<p style="padding:12px;border-radius:4px;font-weight:700;margin:15px 0;">Also Read: <a href="/post/chia-seed-water-benefits-empty-stomach/">What Really Happens When You Eat Soaked Almonds On An Empty Stomach Every Morning</a></p>
 
 ## SECTION 6: 5 Simple Tips to Overcome Post-Lunch Laziness
 
@@ -126,7 +126,7 @@ Don't collapse into your chair or bed immediately after putting your fork down. 
 
 The composition of your meal dictates your energy levels for the rest of the day. A carb-heavy lunch is a direct ticket to a food coma.
 
-- **Why it works:** Proteins and [dietary fiber](https://demo-blog.quicdecode.com/post/eating-chia-seeds-daily-guide/) take longer to digest, providing a slow, steady release of energy rather than a massive glucose spike and crash.
+- **Why it works:** Proteins and [dietary fiber](/post/eating-chia-seeds-daily-guide/) take longer to digest, providing a slow, steady release of energy rather than a massive glucose spike and crash.
 - **How to structure your plate:**
 
 - **1/2 of your plate:** Non-starchy vegetables and green salads (rich in fiber).
@@ -135,7 +135,7 @@ The composition of your meal dictates your energy levels for the rest of the day
 
 ### 💧 Tip 3: Hydrate 30 Minutes Before Meals
 
-Mild dehydration often disguises itself as brain fog and fatigue. When your body lacks adequate [hydration](https://demo-blog.quicdecode.com/post/chia-seed-water-benefits-empty-stomach/), your blood volume drops slightly, making your heart work harder and making you feel tired.
+Mild dehydration often disguises itself as brain fog and fatigue. When your body lacks adequate [hydration](/post/chia-seed-water-benefits-empty-stomach/), your blood volume drops slightly, making your heart work harder and making you feel tired.
 
 - **Why it works:** Drinking water before your meal improves metabolic efficiency and prevents overeating caused by confusing thirst signals with hunger.
 - **How to do it:** Drink a full glass of room-temperature water roughly 20 to 30 minutes before sitting down for lunch. Avoid gulping down massive amounts of ice-cold water *during* your meal, as it can dilute digestive enzymes and cause stomach discomfort.

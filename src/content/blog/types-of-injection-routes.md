@@ -122,7 +122,7 @@ ai_summary: "Injection routes refer to the various ways medications are administ
 
 <p><b>Example Drugs:</b></p>
 
-<p style="padding:12px;background:#f8fafc;border-left:4px solid #1a73e8;border-radius:4px;font-weight:600;margin:16px 0;">Also Read: <a href="/post/intravenous-infusion-types-and-uses/" style="color:#1a73e8;text-decoration:underline;">Intravenous Infusion: Types and Uses, Basic Information for Medical Students</a></p>
+<p style="padding:12px;background:#f8fafc;border-left:4px solid #1a73e8;border-radius:4px;font-weight:600;margin:16px 0;">Also Read: <a href="/post/50-mcqs-on-general-ability-part-1/">Intravenous Infusion: Types and Uses, Basic Information for Medical Students</a></p>
 
 
 

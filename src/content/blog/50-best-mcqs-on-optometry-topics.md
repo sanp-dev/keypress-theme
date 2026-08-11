@@ -13,7 +13,7 @@ ai_summary: "Are you looking to boost your optometryl knowledge? Dive into our m
 
 <h2>Enhance Optometry Knowledge</h2><p>Are you looking to boost your optometryl knowledge? Dive into our meticulously curated set of 50+ quiz questions designed to challenge and expand your understanding across various topics. These questions cover a wide range of subjects including anatomy, physiology, retinoscopy, Contact lenses and other important topics.</p>
 
-<p style="padding:12px;background:#f8fafc;border-left:4px solid #1a73e8;border-radius:4px;font-weight:600;margin:16px 0;">Also Read: <a href="/post/computer-networking-and-internet-quiz/" style="color:#1a73e8;text-decoration:underline;">Computer Networking and Internet Quiz Part-2: 30 Essential MCQs for Competitive Exams</a></p>
+<p style="padding:12px;background:#f8fafc;border-left:4px solid #1a73e8;border-radius:4px;font-weight:600;margin:16px 0;">Also Read: <a href="/post/50-essential-eye-anatomy-and-optometry-mcqs/">Computer Networking and Internet Quiz Part-2: 30 Essential MCQs for Competitive Exams</a></p>
 
 <p>Whether you’re preparing for competitive exams or just looking to test your knowledge, this quiz is perfect for you. Each question is paired with detailed explanations to enhance your learning experience, ensuring you not only know the correct answers but also understand the reasoning behind them.></p><!--more-->
 

@@ -16,7 +16,7 @@ ai_summary: "Boost your exam preparation with these 50 essential Ancient Indian 
 
 <p>This practice set covers the most important eras and events that are frequently asked in exams, based on standard historical texts. In this quiz, you will find questions ranging from:</p>
 
-<p style="padding:12px;background:#f8fafc;border-left:4px solid #1a73e8;border-radius:4px;font-weight:600;margin:16px 0;">Also Read: <a href="/post/mpesb-2025-paramedical-general-section-solved-paper/" style="color:#1a73e8;text-decoration:underline;">​MPESB 2025 Paramedical General Section: 25 Solved MCQs Questions</a></p>
+<p style="padding:12px;background:#f8fafc;border-left:4px solid #1a73e8;border-radius:4px;font-weight:600;margin:16px 0;">Also Read: <a href="/post/50-best-mcqs-on-optometry-topics/">​MPESB 2025 Paramedical General Section: 25 Solved MCQs Questions</a></p>
 
 
 <ul><li><b>The Indus Valley Civilization:</b> Discover facts about Harappa, Mohenjo-daro, and their unique town planning.</li>

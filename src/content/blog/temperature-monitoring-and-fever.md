@@ -100,7 +100,7 @@ ai_summary: "Fever, an elevation of body temperature beyond the normal range, is
 
 <p><b>Remittent Fever:</b></p>
 
-<p style="padding:12px;background:#f8fafc;border-left:4px solid #1a73e8;border-radius:4px;font-weight:600;margin:16px 0;">Also Read: <a href="/post/ancient-indian-history-mcq-practice-set-for-gov-exam/" style="color:#1a73e8;text-decoration:underline;">Top 50 Ancient Indian History MCQs with Explanations | Exam Practice</a></p>
+<p style="padding:12px;background:#f8fafc;border-left:4px solid #1a73e8;border-radius:4px;font-weight:600;margin:16px 0;">Also Read: <a href="/post/ancient-indian-history-mcq-practice-set-for-gov-exam/">Top 50 Ancient Indian History MCQs with Explanations | Exam Practice</a></p>
 
 
 <ul>
@@ -182,7 +182,7 @@ ai_summary: "Fever, an elevation of body temperature beyond the normal range, is
 <p><b>General Measures:</b> Hydration, rest, temperature monitoring.</p>
 <p><b>Antipyretics:</b></p>
 
-<p style="padding:12px;background:#f8fafc;border-left:4px solid #1a73e8;border-radius:4px;font-weight:600;margin:16px 0;">Also Read: <a href="/post/cell-biology-mcqs-structural-functional-unit/" style="color:#1a73e8;text-decoration:underline;">15+ Essential Cell Biology MCQs with Answers: Test Your Fundamental Knowledge</a></p>
+<p style="padding:12px;background:#f8fafc;border-left:4px solid #1a73e8;border-radius:4px;font-weight:600;margin:16px 0;">Also Read: <a href="/post/cell-biology-mcqs-structural-functional-unit/">15+ Essential Cell Biology MCQs with Answers: Test Your Fundamental Knowledge</a></p>
 
 
 <ul>

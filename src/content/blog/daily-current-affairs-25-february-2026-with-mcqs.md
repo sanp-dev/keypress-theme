@@ -18,7 +18,7 @@ ai_summary: "Daily Current Affairs 25 February 2026 for Competitive Exam"
 <h3>2. Union Cabinet Approves Renaming of Kerala to ‘Keralam’</h3>
 <p>The Union Cabinet cleared the proposal to rename Kerala as “Keralam,” aligning the official English name with Malayalam usage. The constitutional procedure under Article 3 will follow before the change becomes official.</p>
 
-<p style="padding:12px;background:#f8fafc;border-left:4px solid #1a73e8;border-radius:4px;font-weight:600;margin:16px 0;">Also Read: <a href="/post/top-current-affairs-3-to-6-march-2026-india/" style="color:#1a73e8;text-decoration:underline;">Top Current Affairs 3–6 March 2026: India and World Updates with MCQs</a></p>
+<p style="padding:12px;background:#f8fafc;border-left:4px solid #1a73e8;border-radius:4px;font-weight:600;margin:16px 0;">Also Read: <a href="/post/current-affairs-10-14-march/">Top Current Affairs 3–6 March 2026: India and World Updates with MCQs</a></p>
 
 
 
@@ -28,7 +28,7 @@ ai_summary: "Daily Current Affairs 25 February 2026 for Competitive Exam"
 <h3>4. Srinagar Airport Civil Enclave Project Approved</h3>
 <p>The Cabinet Committee on Economic Affairs (CCEA) sanctioned ₹1,677 crore for the development of a modern civil enclave at Srinagar International Airport to improve aviation infrastructure and connectivity in Jammu and Kashmir.</p>
 
-<p style="padding:12px;background:#f8fafc;border-left:4px solid #1a73e8;border-radius:4px;font-weight:600;margin:16px 0;">Also Read: <a href="/post/weekly-current-affairs-jan-26-to-feb-1/" style="color:#1a73e8;text-decoration:underline;">Top 30 Weekly Current Affairs (Jan 26 - Feb 1, 2026): Budget, Awards and Sports Recap</a></p>
+<p style="padding:12px;background:#f8fafc;border-left:4px solid #1a73e8;border-radius:4px;font-weight:600;margin:16px 0;">Also Read: <a href="/post/current-affairs-15-16-march/">Top 30 Weekly Current Affairs (Jan 26 - Feb 1, 2026): Budget, Awards and Sports Recap</a></p>
 
 
 
@@ -38,7 +38,7 @@ ai_summary: "Daily Current Affairs 25 February 2026 for Competitive Exam"
 <h3>6. NCERT Textbook Debate on Judiciary Corruption</h3>
 <p>The inclusion of references to corruption at various levels of the judiciary in a Class 8 NCERT Social Science textbook sparked public and political debate.</p>
 
-<p style="padding:12px;background:#f8fafc;border-left:4px solid #1a73e8;border-radius:4px;font-weight:600;margin:16px 0;">Also Read: <a href="/post/current-affairs-17-18-19-march-national-international/" style="color:#1a73e8;text-decoration:underline;">Current Affairs 17-19 March 2026: Top 30 Updates</a></p>
+<p style="padding:12px;background:#f8fafc;border-left:4px solid #1a73e8;border-radius:4px;font-weight:600;margin:16px 0;">Also Read: <a href="/post/current-affairs-17-18-19-march-national-international/">Current Affairs 17-19 March 2026: Top 30 Updates</a></p>
 
 
 

@@ -48,7 +48,7 @@ Iran launched missile and drone attacks on Israel in retaliation, increasing ten
 <p><b>6. Threat to the Strait of Hormuz</b><br>
 The conflict raised concerns over the Strait of Hormuz, a key global oil route.</p>
 
-<p style="padding:12px;background:#f8fafc;border-left:4px solid #1a73e8;border-radius:4px;font-weight:600;margin:16px 0;">Also Read: <a href="/post/iran-israel-us-war-march-updates/" style="color:#1a73e8;text-decoration:underline;">Oil at $155+? 25 Key Facts About the Iran-Israel Conflict (20 to 22 March)</a></p>
+<p style="padding:12px;background:#f8fafc;border-left:4px solid #1a73e8;border-radius:4px;font-weight:600;margin:16px 0;">Also Read: <a href="/post/current-affairs-10-14-march/">Oil at $155+? 25 Key Facts About the Iran-Israel Conflict (20 to 22 March)</a></p>
 
 
 
@@ -91,7 +91,7 @@ Oil prices rose close to $110 per barrel due to tensions.</p>
 <p><b>17. US Signals Stronger Action</b><br>
 The US hinted at more aggressive military action.</p>
 
-<p style="padding:12px;background:#f8fafc;border-left:4px solid #1a73e8;border-radius:4px;font-weight:600;margin:16px 0;">Also Read: <a href="/post/top-30-current-affairs-feb-6-to-16/" style="color:#1a73e8;text-decoration:underline;">Feb 6-16 Current Affairs: U-19 Win, GCC FTA, UCC and Top 30 Updates</a></p>
+<p style="padding:12px;background:#f8fafc;border-left:4px solid #1a73e8;border-radius:4px;font-weight:600;margin:16px 0;">Also Read: <a href="/post/current-affairs-15-16-march/">Feb 6-16 Current Affairs: U-19 Win, GCC FTA, UCC and Top 30 Updates</a></p>
 
 
 
@@ -136,7 +136,7 @@ A major Hindu festival dedicated to Goddess Durga began.</p>
 <p><b>28. Supreme Court Verdict (Adoptive Mothers)</b><br>
 Adoptive mothers granted 12 weeks maternity leave.</p>
 
-<p style="padding:12px;background:#f8fafc;border-left:4px solid #1a73e8;border-radius:4px;font-weight:600;margin:16px 0;">Also Read: <a href="/post/weekly-current-affairs-26-february-2-march-for-competitive-exam/" style="color:#1a73e8;text-decoration:underline;">Weekly Current Affairs: 26 February – 2 March 2026</a></p>
+<p style="padding:12px;background:#f8fafc;border-left:4px solid #1a73e8;border-radius:4px;font-weight:600;margin:16px 0;">Also Read: <a href="/post/current-affairs-25-march-to-1-april/">Weekly Current Affairs: 26 February – 2 March 2026</a></p>
 
 
 

@@ -15,7 +15,7 @@ ai_summary: "Boost your exam preparation with our curated collection of 50+ MCQs
 
 <p>In the competitive world of entrance exams and government job selections, mastering General Ability is often the deciding factor between success and failure. Whether you are preparing for banking, SSC, railways, or campus placements, a strong command over reasoning, quantitative aptitude, and general awareness is essential. This section tests not just your knowledge, but your speed, accuracy, and mental agility in solving complex problems under time pressure.</p>
 
-<p style="padding:12px;background:#f8fafc;border-left:4px solid #1a73e8;border-radius:4px;font-weight:600;margin:16px 0;">Also Read: <a href="/post/50-essential-eye-anatomy-and-optometry-mcqs/" style="color:#1a73e8;text-decoration:underline;">50 Essential Eye Anatomy and Optometry MCQs for Exams</a></p>
+<p style="padding:12px;background:#f8fafc;border-left:4px solid #1a73e8;border-radius:4px;font-weight:600;margin:16px 0;">Also Read: <a href="/post/50-essential-eye-anatomy-and-optometry-mcqs/">50 Essential Eye Anatomy and Optometry MCQs for Exams</a></p>
 
 
 

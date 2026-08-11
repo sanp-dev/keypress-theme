@@ -21,7 +21,7 @@ Chia seeds are packed with soluble fiber, insoluble fiber, omega-3 fatty acids, 
 
 Let's look at five practical, science-backed benefits that I frequently explain to my patients in clinical practice.
 
-<p style="padding:12px;border-radius:4px;font-weight:700;margin:15px 0;">Also Read: <a href="https://demo-blog.quicdecode.com/post/human-digestive-system-quiz-40/" style="color:#1a73e8;text-decoration:underline;">Human Digestive System Quiz: 40 Important MCQs with Answers</a></p>
+<p style="padding:12px;border-radius:4px;font-weight:700;margin:15px 0;">Also Read: <a href="/post/can-spectacles-be-removed/">Human Digestive System Quiz: 40 Important MCQs with Answers</a></p>
 
 ## 1. Improves Digestive Health and Prevents Constipation
 
@@ -57,7 +57,7 @@ I always tell my patients to be realistic: chia seeds do not magically burn fat 
 
 Sustainable weight management still requires a daily calorie deficit, regular physical activity, quality sleep, and **balanced nutrition**. Chia water is simply a helpful tool to make that journey easier.
 
-<p style="padding:12px;border-radius:4px;font-weight:700;margin:15px 0;">Also Read: <a href="https://demo-blog.quicdecode.com/post/impact-of-digital-devices-on-eye-health/" style="color:#1a73e8;text-decoration:underline;">Impact of Digital Devices on Eye Health | Research-Based Guide</a></p>
+<p style="padding:12px;border-radius:4px;font-weight:700;margin:15px 0;">Also Read: <a href="/post/chia-seeds-in-pregnancy/">Impact of Digital Devices on Eye Health | Research-Based Guide</a></p>
 
 ## 3. Supports Better Blood Sugar Control
 

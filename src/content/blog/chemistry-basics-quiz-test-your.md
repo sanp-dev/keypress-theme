@@ -344,7 +344,7 @@ Solution
 
 <p style="padding:12px;background:#f8fafc;border-left:4px solid #6d28d9;border-radius:4px;font-weight:700;margin:15px 0;">Also Read: English Grammar Basics Quiz Part 2: Test Your Skills!</a></p>
 
-<p style="padding:12px;background:#f8fafc;border-left:4px solid #1a73e8;border-radius:4px;font-weight:600;margin:16px 0;">Also Read: <a href="/post/optometry-mcqs-50-eye-dimensions-and/" style="color:#1a73e8;text-decoration:underline;">Optometry MCQs: 50 Eye Dimensions and Refraction MCQs</a></p>
+<p style="padding:12px;background:#f8fafc;border-left:4px solid #1a73e8;border-radius:4px;font-weight:600;margin:16px 0;">Also Read: <a href="/post/50-best-mcqs-on-optometry-topics/">Optometry MCQs: 50 Eye Dimensions and Refraction MCQs</a></p>
 
 
 <br>

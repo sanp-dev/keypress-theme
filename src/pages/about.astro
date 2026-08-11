@@ -6,7 +6,7 @@ import { Image } from 'astro:assets';
 import { SITE_CONFIG } from '../config/site';
 
 const pageTitle = `About Us - ${SITE_CONFIG.name}`;
-const pageDescription = `Learn more about ${SITE_CONFIG.name}. Explore our articles on education, optometry notes, health guides, competitive exam quizzes, business, and self-improvement.`;
+const pageDescription = `Learn more about ${SITE_CONFIG.name}. Explore our articles on education, health guides, competitive exam quizzes, and current affairs.`;
 const siteUrl = SITE_CONFIG.domain;
 const contactEmail = SITE_CONFIG.contactEmail;
 const authors = Object.values(AUTHOR_REGISTRY);
@@ -80,10 +80,10 @@ const schemaJson = {
       <div class="max-w-[800px] mx-auto relative z-10">
         <span class="text-[12px] font-bold tracking-[2px] text-blue-200 uppercase mb-3 block font-['Google_Sans',Arial,sans-serif]">Who We Are</span>
         <h1 class="text-[40px] md:text-[54px] font-bold leading-[1.1] mb-6 font-['Google_Sans',Arial,sans-serif]">
-          Empowering Minds with Smart Advice & Insights
+          Empowering Minds with Smart Insights & Tutorials
         </h1>
         <p class="text-[16px] md:text-[20px] text-blue-100 leading-[1.6] max-w-[650px] mx-auto font-light">
-          Welcome to {SITE_CONFIG.name}, a trusted digital resource for education, optometry notes, health guides, competitive exam quizzes, and self-improvement.
+          Welcome to {SITE_CONFIG.name}, a trusted digital resource for education, health guides, competitive exam quizzes, and current affairs.
         </p>
       </div>
     </section>
@@ -101,7 +101,7 @@ const schemaJson = {
             <strong>{SITE_CONFIG.name}</strong> is proud to operate from <strong>Uttar Pradesh, India</strong>. Founded with the mission to publish well-researched, accessible, and high-quality educational content, we help students, professionals, and general readers gain practical knowledge.
           </p>
           <p class="leading-[1.7] text-[16px] mb-6">
-            From comprehensive optometry study notes and medical awareness articles to competitive exam practice MCQs and daily productivity tips, our goal is to simplify complex concepts for everyone.
+            From comprehensive educational guides and health awareness articles to competitive exam practice MCQs and current affairs updates, our goal is to simplify complex concepts for everyone.
           </p>
           
           <div class="flex items-center space-x-3 p-4 bg-[#f8f9fa] rounded-lg border border-[#dadce0]">
@@ -125,7 +125,7 @@ const schemaJson = {
             <li class="flex items-start">
               <span class="bg-blue-100 text-blue-800 rounded-full h-6 w-6 flex items-center justify-center font-bold text-xs shrink-0 mr-3 mt-0.5">E</span>
               <div>
-                <strong>Education & Optometry:</strong> Detailed study guides, solved papers, and clinical optometry notes for students and healthcare aspirants.
+                <strong>Education:</strong> Detailed study guides, solved papers, and practice sets for students and competitive exam aspirants.
               </div>
             </li>
             <li class="flex items-start">

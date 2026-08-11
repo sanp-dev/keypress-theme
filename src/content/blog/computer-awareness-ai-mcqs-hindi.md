@@ -13,7 +13,7 @@ ai_summary: "Practice the most important Computer Knowledge and Artificial Intel
 
 <p>In almost every modern competitive exam, the Computer Awareness section plays a crucial role in securing a high merit rank. With the rapid advancement of technology, examiners are now shifting their focus from basic computer fundamentals to modern concepts like Artificial Intelligence (AI), Big Data, and Cloud Computing.</p>
 
-<p style="padding:12px;background:#f8fafc;border-left:4px solid #1a73e8;border-radius:4px;font-weight:600;margin:16px 0;">Also Read: <a href="/post/mp-esb-optometry-solved-paper-2025-part-1/" style="color:#1a73e8;text-decoration:underline;">MP ESB Optometry Solved Questions 2025 (Part 1): Important MCQs for AIIMS, RRB and UPSSSC</a></p>
+<p style="padding:12px;background:#f8fafc;border-left:4px solid #1a73e8;border-radius:4px;font-weight:600;margin:16px 0;">Also Read: <a href="/post/50-best-mcqs-on-optometry-topics/">MP ESB Optometry Solved Questions 2025 (Part 1): Important MCQs for AIIMS, RRB and UPSSSC</a></p>
 
 
 
