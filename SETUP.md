@@ -208,3 +208,31 @@ When set to `false`:
 2. **Build-Time Skipping**: Astro skips generating `/webstories/` HTML files and returns 0 paths in `getStaticPaths()`. No unused Web Stories code or pages are built.
 3. **XML Sitemap Exclusion**: `/webstories/` URLs are automatically excluded from `sitemap-index.xml.js`.
 4. **404 Guard**: Direct access to `/webstories/` routes redirects automatically to 404.
+
+---
+
+## 10. IndexNow API Key Setup
+
+[IndexNow](https://www.indexnow.org/) allows instant URL indexing by Bing, Yandex, and other search engines when you publish or update content.
+
+### How It Works
+1. Generate your IndexNow API key from [Bing Webmaster Tools](https://www.bing.com/webmasters/) or [IndexNow Key Generator](https://www.indexnow.org/documentation).
+2. The key is a plain text string (e.g., `a1b2c3d4e5f6g7h8i9j0`).
+3. Create a `.txt` file named **exactly** as your API key in `public/` directory:
+
+```
+public/<your-api-key>.txt
+```
+
+The file content must also contain the same key string. Example:
+
+```bash
+# If your IndexNow key is: a1b2c3d4e5f6g7h8i9j0
+# Create file: public/a1b2c3d4e5f6g7h8i9j0.txt
+# File content: a1b2c3d4e5f6g7h8i9j0
+```
+
+A placeholder file `public/indexnow-api-key.txt` is included as a reference. Replace it with your actual key file.
+
+> **Note**: The demo template includes a placeholder file. You must rename it to match your actual IndexNow API key and update its content accordingly.
+

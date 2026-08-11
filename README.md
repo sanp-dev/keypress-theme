@@ -125,4 +125,4 @@ This template is optimized for Cloudflare Pages with D1 Database & KV Namespace:
 
 ## 📄 License
 
-This project is open-source under the MIT License.
+This project is released under the **Project Source-Available License**. You are free to use, modify, and deploy it for your own website. See [LICENSE.md](LICENSE.md) for full terms.

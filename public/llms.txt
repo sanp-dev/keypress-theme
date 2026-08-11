@@ -4,7 +4,7 @@
 
 - Site: https://demo-blog.quicdecode.com
 - Language: en
-- License: Project Source-Available License (Sandhata Prajapati)
+- License: Source-Available License (Sandhata Prajapati)
 
 ## Active Categories & Sections
 

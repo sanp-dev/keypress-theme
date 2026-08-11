@@ -1,7 +1,7 @@
 {
-  "name": "Quic Decode",
-  "short_name": "Quic Decode",
-  "description": "Quic Decode brings the latest Tech News, AI updates, Android tips, Web Development tutorials, coding guides, app development insights, and digital technology trends.",
+  "name": "DEMO BLOG",
+  "short_name": "DEMO BLOG",
+  "description": "A modern, fully functional web publishing platform built with Astro and Cloudflare Pages, designed for fast, scalable, and customizable websites.",
   "lang": "en-US",
   "display": "standalone",
   "background_color": "#ffffff",
@@ -47,33 +47,22 @@
   "prefer_related_applications": false,
   "shortcuts": [
     {
-      "name": "Tech News",
-      "url": "/category/tech-news/",
+      "name": "Health",
+      "url": "/category/health/",
       "icons": [
         {
-          "src": "/tech-news.png",
+          "src": "/health.png",
           "type": "image/png",
           "sizes": "192x192"
         }
       ]
     },
     {
-      "name": "Generative AI",
-      "url": "/category/generative-ai/",
+      "name": "Education",
+      "url": "/category/education/",
       "icons": [
         {
-          "src": "/generative-ai.png",
-          "type": "image/png",
-          "sizes": "192x192"
-        }
-      ]
-    },
-    {
-      "name": "Android Tips",
-      "url": "/category/android/",
-      "icons": [
-        {
-          "src": "/android.png",
+          "src": "/icon.png",
           "type": "image/png",
           "sizes": "192x192"
         }
@@ -83,6 +72,6 @@
   "categories": [
     "news",
     "education",
-    "tech"
+    "health"
   ]
 }

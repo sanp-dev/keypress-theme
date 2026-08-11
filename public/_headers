@@ -14,7 +14,7 @@
 /_astro/*
   Cache-Control: public, max-age=31536000, immutable
 
-# Pagefind Search Index & WASM Assets Caching (Strict non-overlapping rules)
+# Pagefind Search Index & WASM Assets Caching
 /pagefind/pagefind-entry.json
   Cache-Control: public, max-age=0, s-maxage=300, must-revalidate
 /pagefind/pagefind.js
@@ -61,24 +61,10 @@
   Cache-Control: public, max-age=31536000, s-maxage=31536000, must-revalidate
 /android-chrome-maskable.png
   Cache-Control: public, max-age=31536000, s-maxage=31536000, must-revalidate
-/monochrome.png
-  Cache-Control: public, max-age=31536000, s-maxage=31536000, must-revalidate
-/android.png
-  Cache-Control: public, max-age=31536000, s-maxage=31536000, must-revalidate
-/generative-ai.png
-  Cache-Control: public, max-age=31536000, s-maxage=31536000, must-revalidate
-/tech-news.png
-  Cache-Control: public, max-age=31536000, s-maxage=31536000, must-revalidate
-/badge.png
-  Cache-Control: public, max-age=31536000, s-maxage=31536000, must-revalidate
-/icon.png
-  Cache-Control: public, max-age=31536000, s-maxage=31536000, must-revalidate
-/logo.png
-  Cache-Control: public, max-age=31536000, s-maxage=31536000, must-revalidate
 /default-og-image.jpg
   Cache-Control: public, max-age=31536000, s-maxage=31536000, must-revalidate
 
-# Cache rules for HTML pages only to avoid conflicts on static assets
+# Cache rules for HTML pages
 /
   Cache-Control: public, max-age=300, s-maxage=300, must-revalidate
 /about*
@@ -93,8 +79,6 @@
   Cache-Control: public, max-age=300, s-maxage=604800, must-revalidate
 /search*
   Cache-Control: public, max-age=300, s-maxage=604800, must-revalidate
-/theme*
-  Cache-Control: public, max-age=300, s-maxage=604800, must-revalidate
 /author/*
   Cache-Control: public, max-age=300, s-maxage=604800, must-revalidate
 /category/*
@@ -102,4 +86,6 @@
 /label/*
   Cache-Control: public, max-age=300, s-maxage=604800, must-revalidate
 /post/*
+  Cache-Control: public, max-age=300, s-maxage=604800, must-revalidate
+/webstories/*
   Cache-Control: public, max-age=300, s-maxage=604800, must-revalidate

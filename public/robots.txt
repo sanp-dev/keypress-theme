@@ -1,3 +1,9 @@
-# Demo Site Protection: Block search engines from crawling demo template pages
+# Demo Site Protection: Block search engines from indexing demo template pages.
+# IMPORTANT: When deploying your own site, update this file to allow crawling:
+#
+#   User-agent: *
+#   Allow: /
+#   Sitemap: https://yourdomain.com/sitemap-index.xml
+#
 User-agent: *
 Disallow: /
