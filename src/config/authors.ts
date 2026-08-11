@@ -1,5 +1,5 @@
 import type { ImageMetadata } from 'astro';
-import defaultAvatar from '../assets/authors/default.webp';
+import defaultAvatar from '../assets/authors/default.png';
 import sandhataAvatar from '../assets/authors/sandhata.webp';
 
 export interface AuthorProfile {
