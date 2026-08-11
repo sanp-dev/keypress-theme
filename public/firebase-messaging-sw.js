@@ -15,7 +15,7 @@ try {
   if (typeof firebase !== 'undefined' && firebase.initializeApp) {
     firebase.initializeApp(firebaseConfig);
     const messaging = firebase.messaging();
-    
+
     messaging.onBackgroundMessage((payload) => {
       const title = payload.data?.title || payload.notification?.title || "New Tech Update";
       let pushActions = [];
@@ -43,7 +43,7 @@ try {
   console.info('[Push Notification Demo] Firebase push notification service worker initialized in demonstration mode with dummy credentials.');
 }
 
-const CURRENT_CACHE_VERSION = 'v2';
+const CURRENT_CACHE_VERSION = 'v1';
 
 if (workbox) {
   workbox.core.skipWaiting();

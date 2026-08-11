@@ -51,27 +51,42 @@
       "url": "/category/health/",
       "icons": [
         {
-          "src": "/health.png",
-          "type": "image/png",
-          "sizes": "192x192"
-        }
-      ]
-    },
-    {
-      "name": "Education",
-      "url": "/category/education/",
-      "icons": [
+          "name": "Tech News",
+          "url": "/category/tech-news/",
+          "icons": [
+            {
+              "src": "/tech-news.png",
+              "type": "image/png",
+              "sizes": "192x192"
+            }
+          ]
+        },
         {
-          "src": "/icon.png",
-          "type": "image/png",
-          "sizes": "192x192"
+          "name": "Generative AI",
+          "url": "/category/generative-ai/",
+          "icons": [
+            {
+              "src": "/generative-ai.png",
+              "type": "image/png",
+              "sizes": "192x192"
+            }
+          ]
+        },
+        {
+          "name": "Android Tips",
+          "url": "/category/android/",
+          "icons": [
+            {
+              "src": "/android.png",
+              "type": "image/png",
+              "sizes": "192x192"
+            }
+          ]
         }
+      ],
+      "categories": [
+        "news",
+        "education",
+        "health"
       ]
     }
-  ],
-  "categories": [
-    "news",
-    "education",
-    "health"
-  ]
-}
