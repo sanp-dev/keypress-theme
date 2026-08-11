@@ -17,25 +17,29 @@ export async function onRequestPost({ request, env }) {
     const turnstileToken = data.turnstileToken;
     const secretKey = env.TURNSTILE_SECRET_KEY;
 
-    if (!turnstileToken) {
+    if (!turnstileToken && secretKey) {
       return new Response(JSON.stringify({ error: "Security check is missing. Please complete the captcha." }), {
         status: 400,
         headers: { "Content-Type": "application/json" }
       });
     }
 
-    const verifyResponse = await fetch("https://challenges.cloudflare.com/turnstile/v0/siteverify", {
-      method: "POST",
-      headers: { "Content-Type": "application/x-www-form-urlencoded" },
-      body: `secret=${encodeURIComponent(secretKey)}&response=${encodeURIComponent(turnstileToken)}`
-    });
-
-    const verifyResult = await verifyResponse.json();
-    if (!verifyResult.success) {
-      return new Response(JSON.stringify({ error: "Captcha verification failed. Please refresh the page and try again." }), {
-        status: 400,
-        headers: { "Content-Type": "application/json" }
+    if (secretKey) {
+      const verifyResponse = await fetch("https://challenges.cloudflare.com/turnstile/v0/siteverify", {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: `secret=${encodeURIComponent(secretKey)}&response=${encodeURIComponent(turnstileToken)}`
       });
+
+      const verifyResult = await verifyResponse.json();
+      if (!verifyResult.success) {
+        return new Response(JSON.stringify({ error: "Captcha verification failed. Please refresh the page and try again." }), {
+          status: 400,
+          headers: { "Content-Type": "application/json" }
+        });
+      }
+    } else {
+      console.info("[Contact API] TURNSTILE_SECRET_KEY is not set in Cloudflare environment variables. Bypassing server verification in unconfigured mode.");
     }
 
     // 3. Extract and Clean Inputs

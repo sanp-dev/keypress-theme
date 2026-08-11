@@ -5,8 +5,8 @@ import { SITE_CONFIG } from "../config/site";
 
 const pageTitle = `Contact Us - ${SITE_CONFIG.name}`;
 const pageDescription = `Get in touch with the ${SITE_CONFIG.name} team. Submit technical inquiries, feedback, or guest post requests securely.`;
-// Cloudflare Turnstile Site Key for demo
-const siteKey = "0x4AAAAAACs0331m1LzGQ03V";
+// Cloudflare Turnstile Site Key (configured in src/config/site.ts)
+const siteKey = SITE_CONFIG.turnstileSiteKey || "";
 ---
 
 <BaseLayout title={pageTitle} description={pageDescription}>
@@ -414,7 +414,7 @@ const siteKey = "0x4AAAAAACs0331m1LzGQ03V";
       return;
     }
 
-    if (!turnstileToken) {
+    if (!turnstileToken && document.querySelector(".cf-turnstile")) {
       showError("Please complete the security captcha check.");
       return;
     }

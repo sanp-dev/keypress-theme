@@ -44,10 +44,11 @@ export async function onRequestPost({ request, env }) {
       });
     }
 
-    // 5. Ensure Database Binding exists
-    if (!env || !env.DB) {
+    // 5. Ensure Database Binding 'DB' exists in Cloudflare environment
+    const db = env?.DB;
+    if (!db || typeof db.prepare !== 'function') {
       console.error("D1 Database binding 'DB' is missing in environment settings.");
-      return new Response(JSON.stringify({ error: "Database service unavailable. Please configure Cloudflare D1 DB binding." }), {
+      return new Response(JSON.stringify({ error: "Database service unavailable. Please attach Cloudflare D1 DB binding in Pages Dashboard." }), {
         status: 500,
         headers: { 
           "Content-Type": "application/json",
@@ -57,7 +58,7 @@ export async function onRequestPost({ request, env }) {
     }
 
     // 6. Ensure the subscribers table exists in Cloudflare D1
-    await env.DB.prepare(
+    await db.prepare(
       "CREATE TABLE IF NOT EXISTS subscribers (" +
       "id INTEGER PRIMARY KEY AUTOINCREMENT, " +
       "email TEXT UNIQUE NOT NULL, " +
@@ -66,7 +67,7 @@ export async function onRequestPost({ request, env }) {
     ).run();
 
     // 7. Insert into Cloudflare D1 Database
-    const { success } = await env.DB.prepare(
+    const { success } = await db.prepare(
       "INSERT INTO subscribers (email) VALUES (?)"
     ).bind(email).run();
 

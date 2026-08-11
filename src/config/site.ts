@@ -20,6 +20,7 @@ export interface SiteConfig {
   adsenseLazyLoad?: boolean; // If true, AdSense script loads on first user interaction (or 300ms fallback)
   showAdPlaceholders?: boolean; // If true, displays demo ad placeholders when googleAdsenseId is empty
   enableWebStories?: boolean; // Set to false to completely disable Web Stories navigation, routes & builds
+  turnstileSiteKey?: string;  // Optional Cloudflare Turnstile Site Key for contact form (e.g. 0x4AAAAAAAx...)
   showCookieConsent: boolean; // Control whether custom cookie consent banner is included in the build
   socials: {
     instagram?: string;
@@ -48,6 +49,9 @@ export const SITE_CONFIG: SiteConfig = {
   googleAdsenseId: "",         // Google AdSense client ID (placeholder)
   adsenseLazyLoad: false,                             // Set true to lazy-load AdSense
   showAdPlaceholders: true,                           // Set to false to hide ad placeholder boxes when googleAdsenseId is empty
+
+  // ─── Cloudflare Turnstile Integration ──────────────────────────────────────
+  turnstileSiteKey: "",        // Cloudflare Turnstile Site Key (leave "" for demo/unconfigured)
 
   // ─── Web Stories Configuration ─────────────────────────────────────────────
   enableWebStories: true,                             // Set to false to completely disable Web Stories routes & header link
