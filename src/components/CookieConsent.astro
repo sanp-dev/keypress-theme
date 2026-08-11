@@ -1,0 +1,367 @@
+---
+// src/components/CookieConsent.astro
+---
+
+<!-- Consent Banner -->
+<div
+  id="cookie-consent-banner"
+  class="fixed bottom-4 left-4 right-4 md:bottom-6 md:right-6 md:left-auto md:max-w-md w-auto bg-white border border-[#dadce0] shadow-2xl rounded-2xl p-5 md:p-6 z-[9999] transform translate-y-12 opacity-0 pointer-events-none transition-all duration-500 ease-out flex flex-col gap-4 font-['Google_Sans',Arial,sans-serif]"
+  role="dialog"
+  aria-modal="true"
+  aria-labelledby="cc-title"
+  aria-describedby="cc-desc"
+>
+  <!-- Standard view -->
+  <div id="cc-main-view" class="flex flex-col gap-4">
+    <!-- Header -->
+    <div class="flex items-center gap-3">
+      <div class="w-10 h-10 rounded-full bg-[#e8f0fe] text-[#041e49] flex items-center justify-center shrink-0">
+        <!-- Cookie SVG Icon -->
+        <svg class="w-6 h-6" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10c.81 0 1.58-.1 2.33-.28C14.11 20.89 14 19.97 14 19c0-3.87 3.13-7 7-7 .97 0 1.89.11 2.72.33C23.9 13.58 24 12.81 24 12c0-5.52-4.48-10-10-10zm-3 7.5c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zm6 4c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zm-5 4c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zm-2-4c-.55 0-1-.45-1-1s.45-1 1-1 1 .45 1 1-.45 1-1 1zm7-4c-.55 0-1-.45-1-1s.45-1 1-1 1 .45 1 1-.45 1-1 1z"/>
+        </svg>
+      </div>
+      <h2 id="cc-title" class="text-[18px] font-bold text-[#202124] leading-tight">We value your privacy</h2>
+    </div>
+
+    <!-- Description -->
+    <p id="cc-desc" class="text-[14px] leading-relaxed text-[#3c4043]">
+      We use cookies to improve your browsing experience, serve personalized content, and analyze our traffic. By clicking "Accept All", you consent to our use of cookies. Read our <a href="/privacy-policy/" class="text-[#0b57d0] hover:underline font-medium focus:outline-2 focus:outline-offset-2 focus:outline-[#0b57d0]">Privacy Policy</a> for more details.
+    </p>
+
+    <!-- Buttons -->
+    <div class="flex flex-wrap gap-2.5 mt-1">
+      <button
+        id="cc-accept-all"
+        class="flex-1 min-w-[100px] bg-[#0b57d0] hover:bg-[#0842a0] text-white text-[14px] font-medium py-2.5 px-4 rounded-lg transition-colors cursor-pointer outline-none focus-visible:ring-2 focus-visible:ring-[#0b57d0] focus-visible:ring-offset-2"
+      >
+        Accept All
+      </button>
+      <button
+        id="cc-reject-all"
+        class="flex-1 min-w-[100px] bg-[#f1f3f4] hover:bg-[#e8eaed] text-[#3c4043] text-[14px] font-medium py-2.5 px-4 rounded-lg transition-colors cursor-pointer outline-none focus-visible:ring-2 focus-visible:ring-gray-400 focus-visible:ring-offset-2"
+      >
+        Reject All
+      </button>
+      <button
+        id="cc-customize"
+        class="w-full bg-transparent hover:bg-[#f8f9fa] border border-[#dadce0] text-[#3c4043] hover:text-[#202124] text-[14px] font-medium py-2.5 px-4 rounded-lg transition-colors cursor-pointer outline-none focus-visible:ring-2 focus-visible:ring-gray-400 focus-visible:ring-offset-2"
+      >
+        Customize Preferences
+      </button>
+    </div>
+  </div>
+
+  <!-- Customize View (Hidden initially) -->
+  <div id="cc-customize-view" class="hidden flex-col gap-4">
+    <!-- Header -->
+    <div class="flex items-center gap-3">
+      <button
+        id="cc-back-btn"
+        class="w-8 h-8 rounded-full hover:bg-black/5 flex items-center justify-center text-[#3c4043] transition-colors outline-none cursor-pointer focus-visible:ring-2 focus-visible:ring-gray-400"
+        aria-label="Back to main view"
+      >
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"/>
+        </svg>
+      </button>
+      <h3 class="text-[17px] font-bold text-[#202124]">Cookie Settings</h3>
+    </div>
+
+    <!-- Toggle options list -->
+    <div class="flex flex-col gap-3.5 max-h-[250px] overflow-y-auto pr-1">
+      
+      <!-- Necessary Cookies -->
+      <div class="flex items-start justify-between gap-4 p-3 rounded-xl bg-[#f8f9fa] border border-[#dadce0]/50">
+        <div class="flex flex-col gap-0.5">
+          <span class="text-[14px] font-bold text-[#202124]">Strictly Necessary</span>
+          <span class="text-[12px] text-[#3c4043] leading-normal">Required for the core features of the site to function properly. Cannot be disabled.</span>
+        </div>
+        <div class="relative flex items-center pt-1 shrink-0">
+          <input
+            type="checkbox"
+            checked
+            disabled
+            class="sr-only peer"
+            id="cookie-necessary"
+          />
+          <div class="w-9 h-5 bg-[#0b57d0]/30 rounded-full peer peer-checked:after:translate-x-full after:content-[''] after:absolute after:top-[6px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-[#0b57d0]"></div>
+        </div>
+      </div>
+
+      <!-- Analytical Cookies -->
+      <label for="cookie-analytics" class="flex items-start justify-between gap-4 p-3 rounded-xl hover:bg-[#f8f9fa] border border-transparent hover:border-[#dadce0]/50 transition-colors cursor-pointer">
+        <div class="flex flex-col gap-0.5">
+          <span class="text-[14px] font-bold text-[#202124]">Analytical Cookies</span>
+          <span class="text-[12px] text-[#3c4043] leading-normal">Help us understand how visitors interact with the site, detecting errors and analyzing traffic statistics.</span>
+        </div>
+        <div class="relative flex items-center pt-1 shrink-0">
+          <input
+            type="checkbox"
+            id="cookie-analytics"
+            class="sr-only peer"
+          />
+          <div class="w-9 h-5 bg-gray-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full after:content-[''] after:absolute after:top-[6px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-[#0b57d0]"></div>
+        </div>
+      </label>
+
+      <!-- Marketing Cookies -->
+      <label for="cookie-marketing" class="flex items-start justify-between gap-4 p-3 rounded-xl hover:bg-[#f8f9fa] border border-transparent hover:border-[#dadce0]/50 transition-colors cursor-pointer">
+        <div class="flex flex-col gap-0.5">
+          <span class="text-[14px] font-bold text-[#202124]">Marketing Cookies</span>
+          <span class="text-[12px] text-[#3c4043] leading-normal">Used to track visitors across websites to deliver relevant, personalized advertisements.</span>
+        </div>
+        <div class="relative flex items-center pt-1 shrink-0">
+          <input
+            type="checkbox"
+            id="cookie-marketing"
+            class="sr-only peer"
+          />
+          <div class="w-9 h-5 bg-gray-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full after:content-[''] after:absolute after:top-[6px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-[#0b57d0]"></div>
+        </div>
+      </label>
+
+    </div>
+
+    <!-- Actions -->
+    <button
+      id="cc-save-settings"
+      class="w-full bg-[#0b57d0] hover:bg-[#0842a0] text-white text-[14px] font-medium py-2.5 px-4 rounded-lg transition-colors cursor-pointer outline-none focus-visible:ring-2 focus-visible:ring-[#0b57d0] focus-visible:ring-offset-2"
+    >
+      Save Preferences
+    </button>
+  </div>
+</div>
+
+<!-- Persistent Cookie Settings Icon -->
+<button
+  id="cookie-settings-trigger"
+  class="fixed bottom-4 left-4 md:bottom-6 md:left-6 z-[9998] bg-white border border-[#dadce0] shadow-lg hover:shadow-xl rounded-full w-11 h-11 text-[#3c4043] hover:text-[#0b57d0] hover:scale-110 active:scale-95 transition-[opacity,color,box-shadow,scale] duration-200 cursor-pointer flex items-center justify-center outline-none focus-visible:ring-2 focus-visible:ring-[#0b57d0] focus-visible:ring-offset-2 opacity-0 pointer-events-none translate-y-6"
+  aria-label="Manage cookie consent"
+  title="Manage cookie consent"
+>
+  <!-- Mini Cookie Icon -->
+  <svg class="w-5.5 h-5.5" viewBox="0 0 24 24" fill="currentColor">
+    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10c.81 0 1.58-.1 2.33-.28C14.11 20.89 14 19.97 14 19c0-3.87 3.13-7 7-7 .97 0 1.89.11 2.72.33C23.9 13.58 24 12.81 24 12c0-5.52-4.48-10-10-10zm-3 7.5c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zm6 4c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zm-5 4c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zm-2-4c-.55 0-1-.45-1-1s.45-1 1-1 1 .45 1 1-.45 1-1 1zm7-4c-.55 0-1-.45-1-1s.45-1 1-1 1 .45 1 1-.45 1-1 1z"/>
+  </svg>
+</button>
+
+<script>
+  // Script executes entirely on the client-side
+  const STORAGE_KEY = 'blog-cookie-consent';
+
+  interface CookieConsentData {
+    necessary: boolean;
+    analytics: boolean;
+    marketing: boolean;
+    timestamp: number;
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    const banner = document.getElementById('cookie-consent-banner');
+    const triggerBtn = document.getElementById('cookie-settings-trigger');
+    const mainView = document.getElementById('cc-main-view');
+    const customizeView = document.getElementById('cc-customize-view');
+
+    const acceptAllBtn = document.getElementById('cc-accept-all');
+    const rejectAllBtn = document.getElementById('cc-reject-all');
+    const customizeBtn = document.getElementById('cc-customize');
+    const backBtn = document.getElementById('cc-back-btn');
+    const saveSettingsBtn = document.getElementById('cc-save-settings');
+
+    const analyticsCheckbox = document.getElementById('cookie-analytics') as HTMLInputElement;
+    const marketingCheckbox = document.getElementById('cookie-marketing') as HTMLInputElement;
+
+    if (!banner || !triggerBtn || !mainView || !customizeView) return;
+
+    // Load saved preferences
+    const getPreferences = (): CookieConsentData | null => {
+      try {
+        const stored = localStorage.getItem(STORAGE_KEY);
+        return stored ? JSON.parse(stored) : null;
+      } catch (e) {
+        return null;
+      }
+    };
+
+    // Save preferences
+    const setPreferences = (analytics: boolean, marketing: boolean) => {
+      const data: CookieConsentData = {
+        necessary: true,
+        analytics,
+        marketing,
+        timestamp: Date.now()
+      };
+      try {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+      } catch (e) {
+        // Fallback for private browsing
+      }
+
+      // Dispatch custom window event for external libraries
+      window.dispatchEvent(new CustomEvent('cookie-consent-updated', { detail: data }));
+    };
+
+    // Dispatch event for currently loaded settings
+    const emitCurrentPreferences = () => {
+      const current = getPreferences();
+      if (current) {
+        window.dispatchEvent(new CustomEvent('cookie-consent-updated', { detail: current }));
+      }
+    };
+
+    // Show banner with animation
+    const showBanner = () => {
+      // Re-populate settings in customize panel
+      const saved = getPreferences();
+      if (saved) {
+        if (analyticsCheckbox) analyticsCheckbox.checked = saved.analytics;
+        if (marketingCheckbox) marketingCheckbox.checked = saved.marketing;
+      }
+
+      banner.classList.remove('hidden');
+      // Hide the persistent trigger button
+      hideTrigger();
+
+      // Trigger redraw then animate
+      setTimeout(() => {
+        banner.classList.remove('translate-y-12', 'opacity-0', 'pointer-events-none');
+        banner.classList.add('translate-y-0', 'opacity-100');
+      }, 50);
+    };
+
+    // Hide banner with animation
+    const hideBanner = () => {
+      banner.classList.remove('translate-y-0', 'opacity-100');
+      banner.classList.add('translate-y-12', 'opacity-0', 'pointer-events-none');
+
+      setTimeout(() => {
+        banner.classList.add('hidden');
+        // Show persistent trigger button after banner is fully hidden
+        showTrigger();
+      }, 500);
+    };
+
+    // Show persistent trigger
+    const showTrigger = () => {
+      triggerBtn.classList.remove('hidden');
+      setTimeout(() => {
+        triggerBtn.classList.remove('translate-y-6', 'opacity-0', 'pointer-events-none');
+        triggerBtn.classList.add('translate-y-0', 'opacity-100');
+      }, 50);
+    };
+
+    // Hide persistent trigger
+    const hideTrigger = () => {
+      triggerBtn.classList.remove('translate-y-0', 'opacity-100');
+      triggerBtn.classList.add('translate-y-6', 'opacity-0', 'pointer-events-none');
+      setTimeout(() => {
+        triggerBtn.classList.add('hidden');
+      }, 200);
+    };
+
+    // Main Actions
+    acceptAllBtn?.addEventListener('click', () => {
+      setPreferences(true, true);
+      hideBanner();
+    });
+
+    rejectAllBtn?.addEventListener('click', () => {
+      setPreferences(false, false);
+      hideBanner();
+    });
+
+    customizeBtn?.addEventListener('click', () => {
+      mainView.classList.add('hidden');
+      customizeView.classList.remove('hidden');
+      customizeView.classList.add('flex');
+    });
+
+    backBtn?.addEventListener('click', () => {
+      customizeView.classList.remove('flex');
+      customizeView.classList.add('hidden');
+      mainView.classList.remove('hidden');
+    });
+
+    saveSettingsBtn?.addEventListener('click', () => {
+      const analytics = analyticsCheckbox ? analyticsCheckbox.checked : false;
+      const marketing = marketingCheckbox ? marketingCheckbox.checked : false;
+      setPreferences(analytics, marketing);
+      hideBanner();
+    });
+
+    // Persistent trigger re-opens popup
+    triggerBtn.addEventListener('click', () => {
+      showBanner();
+    });
+
+    // Mobile inline footer trigger re-opens popup
+    const footerTrigger = document.getElementById('footer-cookie-trigger');
+    footerTrigger?.addEventListener('click', () => {
+      showBanner();
+    });
+
+    // Check if consent has already been given
+    const consent = getPreferences();
+    if (!consent) {
+      // Delay showing the popup to optimize initial page loading / CLS
+      setTimeout(showBanner, 1000);
+    } else {
+      // Consent is already given, just emit the current settings and show the small launcher
+      emitCurrentPreferences();
+      showTrigger();
+    }
+
+    // Dynamic positioning when footer is visible to prevent overlap on all devices (zero reflows)
+    const footer = document.querySelector("footer");
+    if (footer && triggerBtn) {
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              triggerBtn.classList.add('footer-visible');
+            } else {
+              triggerBtn.classList.remove('footer-visible');
+            }
+          });
+        },
+        {
+          root: null,
+          threshold: 0,
+        }
+      );
+      observer.observe(footer);
+    }
+  });
+</script>
+
+<style>
+  /* Position the cookie settings trigger button above the footer on desktop and hide on mobile */
+  #cookie-settings-trigger {
+    transition: opacity 0.2s ease, color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease, bottom 0.28s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  }
+  #cookie-settings-trigger.footer-visible {
+    bottom: 210px !important;
+  }
+  @media (max-width: 767px) {
+    #cookie-settings-trigger.footer-visible {
+      opacity: 0 !important;
+      pointer-events: none !important;
+    }
+  }
+
+  /* Custom scrollbar for toggle list if it overflows on very small devices */
+  #cc-customize-view div::-webkit-scrollbar {
+    width: 4px;
+  }
+  #cc-customize-view div::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  #cc-customize-view div::-webkit-scrollbar-thumb {
+    background: #dadce0;
+    border-radius: 10px;
+  }
+  #cc-customize-view div::-webkit-scrollbar-thumb:hover {
+    background: #bdc1c6;
+  }
+</style>

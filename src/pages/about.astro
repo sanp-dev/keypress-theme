@@ -1,0 +1,231 @@
+---
+// src/pages/about.astro
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { AUTHOR_REGISTRY } from '../config/authors';
+import { Image } from 'astro:assets';
+import { SITE_CONFIG } from '../config/site';
+
+const pageTitle = `About Us - ${SITE_CONFIG.name}`;
+const pageDescription = `Learn more about ${SITE_CONFIG.name}. Explore our articles on education, optometry notes, health guides, competitive exam quizzes, business, and self-improvement.`;
+const siteUrl = SITE_CONFIG.domain;
+const contactEmail = SITE_CONFIG.contactEmail;
+const authors = Object.values(AUTHOR_REGISTRY);
+
+// Generate JSON-LD schema for E-E-A-T Trustworthiness
+const schemaJson = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "AboutPage",
+      "@id": `${siteUrl}/about/#webpage`,
+      "url": `${siteUrl}/about/`,
+      "name": pageTitle,
+      "description": pageDescription,
+      "inLanguage": "en-US",
+      "isPartOf": {
+        "@type": "WebSite",
+        "@id": `${siteUrl}/#website`,
+        "url": `${siteUrl}/`,
+        "name": SITE_CONFIG.name
+      },
+      "about": {
+        "@type": "Organization",
+        "@id": `${siteUrl}/#organization`,
+        "name": SITE_CONFIG.name,
+        "url": `${siteUrl}/`,
+        "logo": {
+          "@type": "ImageObject",
+          "url": `${siteUrl}/logo.png`
+        },
+        "address": {
+          "@type": "PostalAddress",
+          "addressRegion": "Uttar Pradesh",
+          "addressCountry": "IN"
+        }
+      },
+      "mainEntity": {
+        "@type": "Organization",
+        "name": SITE_CONFIG.name,
+        "url": `${siteUrl}/`,
+        "address": {
+          "@type": "PostalAddress",
+          "addressRegion": "Uttar Pradesh",
+          "addressCountry": "IN"
+        }
+      }
+    },
+    ...authors.map((author) => ({
+      "@type": "Person",
+      "name": author.name,
+      "jobTitle": author.role,
+      "worksFor": {
+        "@type": "Organization",
+        "name": SITE_CONFIG.name
+      },
+      "url": `${siteUrl}/author/${author.slug}/`
+    }))
+  ]
+};
+---
+
+<BaseLayout title={pageTitle} description={pageDescription}>
+  <!-- Schema Markup Injection -->
+  <script type="application/ld+json" set:html={JSON.stringify(schemaJson)} />
+
+  <main class="w-full font-[Arial,sans-serif] text-[#3c4043] antialiased">
+    
+    <!-- Hero Banner Section -->
+    <section class="bg-gradient-to-br from-[#1a73e8] to-[#1255b8] text-white py-20 px-6 text-center relative overflow-hidden">
+      <div class="absolute inset-0 bg-[radial-gradient(rgba(255,255,255,0.12)_1px,transparent_1px)] bg-[size:20px_20px] pointer-events-none"></div>
+      <div class="max-w-[800px] mx-auto relative z-10">
+        <span class="text-[12px] font-bold tracking-[2px] text-blue-200 uppercase mb-3 block font-['Google_Sans',Arial,sans-serif]">Who We Are</span>
+        <h1 class="text-[40px] md:text-[54px] font-bold leading-[1.1] mb-6 font-['Google_Sans',Arial,sans-serif]">
+          Empowering Minds with Smart Advice & Insights
+        </h1>
+        <p class="text-[16px] md:text-[20px] text-blue-100 leading-[1.6] max-w-[650px] mx-auto font-light">
+          Welcome to {SITE_CONFIG.name}, a trusted digital resource for education, optometry notes, health guides, competitive exam quizzes, and self-improvement.
+        </p>
+      </div>
+    </section>
+
+    <!-- Operational & Content Integrity Section -->
+    <section class="max-w-[1100px] mx-auto px-6 md:px-8 py-16">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-start">
+        
+        <!-- Left Column: Location & Operations -->
+        <div>
+          <h2 class="text-[24px] md:text-[28px] text-[#202124] font-bold mb-4 font-['Google_Sans',Arial,sans-serif]">
+            Our Mission & Journey
+          </h2>
+          <p class="mb-4 leading-[1.7] text-[16px]">
+            <strong>{SITE_CONFIG.name}</strong> is proud to operate from <strong>Uttar Pradesh, India</strong>. Founded with the mission to publish well-researched, accessible, and high-quality educational content, we help students, professionals, and general readers gain practical knowledge.
+          </p>
+          <p class="leading-[1.7] text-[16px] mb-6">
+            From comprehensive optometry study notes and medical awareness articles to competitive exam practice MCQs and daily productivity tips, our goal is to simplify complex concepts for everyone.
+          </p>
+          
+          <div class="flex items-center space-x-3 p-4 bg-[#f8f9fa] rounded-lg border border-[#dadce0]">
+            <svg class="text-[#1a73e8] shrink-0" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg">
+              <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+              <circle cx="12" cy="10" r="3"></circle>
+            </svg>
+            <span class="text-[15px] font-medium text-[#202124]">Base: Uttar Pradesh, India</span>
+          </div>
+        </div>
+
+        <!-- Right Column: Our Content Pillars -->
+        <div>
+          <h2 class="text-[24px] md:text-[28px] text-[#202124] font-bold mb-4 font-['Google_Sans',Arial,sans-serif]">
+            Our Pillars of Content
+          </h2>
+          <p class="mb-4 leading-[1.7] text-[16px]">
+            We focus on delivering high-value, accurate content. Our work is driven by four core pillars:
+          </p>
+          <ul class="space-y-4 text-[15px] leading-[1.6]">
+            <li class="flex items-start">
+              <span class="bg-blue-100 text-blue-800 rounded-full h-6 w-6 flex items-center justify-center font-bold text-xs shrink-0 mr-3 mt-0.5">E</span>
+              <div>
+                <strong>Education & Optometry:</strong> Detailed study guides, solved papers, and clinical optometry notes for students and healthcare aspirants.
+              </div>
+            </li>
+            <li class="flex items-start">
+              <span class="bg-blue-100 text-blue-800 rounded-full h-6 w-6 flex items-center justify-center font-bold text-xs shrink-0 mr-3 mt-0.5">H</span>
+              <div>
+                <strong>Health & Wellness:</strong> Well-researched health awareness articles covering eye care, nutrition, and disease prevention.
+              </div>
+            </li>
+            <li class="flex items-start">
+              <span class="bg-blue-100 text-blue-800 rounded-full h-6 w-6 flex items-center justify-center font-bold text-xs shrink-0 mr-3 mt-0.5">Q</span>
+              <div>
+                <strong>Quizzes & Skill Building:</strong> Interactive exam preparation quizzes, computer awareness questions, and general ability tests.
+              </div>
+            </li>
+            <li class="flex items-start">
+              <span class="bg-blue-100 text-blue-800 rounded-full h-6 w-6 flex items-center justify-center font-bold text-xs shrink-0 mr-3 mt-0.5">T</span>
+              <div>
+                <strong>Trust & User Experience:</strong> A modern, lightning-fast design with zero clutter and direct support for a seamless reading experience.
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Meet Our Team Section (Grid) -->
+    <section class="bg-[#f8f9fa] border-y border-[#dadce0] py-20 px-6">
+      <div class="max-w-[1100px] mx-auto">
+        <div class="text-center mb-16">
+          <span class="text-[12px] font-bold tracking-[1.5px] text-[#1a73e8] uppercase mb-2 block font-['Google_Sans',Arial,sans-serif]">Our Experts</span>
+          <h2 class="text-[32px] md:text-[40px] text-[#202124] font-bold font-['Google_Sans',Arial,sans-serif]">
+            Meet the Editorial Team
+          </h2>
+          <p class="text-[16px] text-[#5f6368] max-w-[550px] mx-auto mt-3">
+            Each contributor brings specialized knowledge to ensure our guides are accurate, actionable, and state-of-the-art.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {authors.map((author) => (
+            <div class="bg-white border border-[#dadce0] rounded-2xl p-8 hover:shadow-lg hover:border-blue-200 transition-all duration-300 flex flex-col items-center text-center">
+              
+              <!-- Avatar -->
+              <div class="w-24 h-24 rounded-full overflow-hidden border-4 border-gray-50 shadow-sm mb-5 shrink-0">
+                {author.avatarUrl && (
+                  <Image 
+                    src={author.avatarUrl} 
+                    alt={author.name}
+                    class="w-full h-full object-cover"
+                    width={192}
+                    height={192}
+                    widths={[96, 192]}
+                    sizes="96px"
+                    quality={75}
+                  />
+                )}
+              </div>
+
+              <!-- Name & Role -->
+              <h3 class="text-[20px] text-[#202124] font-semibold mb-1 font-['Google_Sans',Arial,sans-serif]">
+                {author.name.split(' (')[0]}
+              </h3>
+              <span class="text-[13px] font-bold text-[#1a73e8] tracking-[0.5px] uppercase mb-4 font-['Google_Sans',Arial,sans-serif]">
+                {author.role}
+              </span>
+
+              <!-- Short Bio -->
+              <p class="text-[14px] text-[#5f6368] leading-[1.6] mb-6 flex-grow">
+                {author.bio}
+              </p>
+
+              <!-- Link Button -->
+              <a 
+                href={`/author/${author.slug}/`}
+                class="px-5 py-2 border border-blue-600 text-blue-600 text-[13px] font-bold rounded-full hover:bg-blue-50 transition-colors uppercase font-['Google_Sans',Arial,sans-serif]"
+              >
+                View Articles
+              </a>
+
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Editorial Integrity CTA -->
+    <section class="max-w-[700px] mx-auto px-6 py-20 text-center">
+      <h2 class="text-[26px] text-[#202124] font-bold mb-4 font-['Google_Sans',Arial,sans-serif]">
+        Have Feedback or Questions?
+      </h2>
+      <p class="leading-[1.7] text-[16px] text-[#5f6368] mb-8">
+        We strive for 100% accuracy and quality. If you have suggestions, feedback, or inquiries, feel free to reach out to us directly.
+      </p>
+      <a 
+        href={`mailto:${contactEmail}`} 
+        class="inline-block px-8 py-3 bg-[#1a73e8] text-white font-medium text-[16px] rounded-full hover:bg-[#1557b0] transition-colors shadow-md hover:shadow-lg font-['Google_Sans',Arial,sans-serif]"
+      >
+        Contact Our Team
+      </a>
+    </section>
+
+  </main>
+</BaseLayout>

@@ -1,0 +1,206 @@
+---
+// src/pages/terms-and-conditions.astro
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { SITE_CONFIG } from "../config/site";
+
+const pageTitle = `Terms and Conditions - ${SITE_CONFIG.name}`;
+const pageDescription =
+  `Read the Terms and Conditions of ${SITE_CONFIG.name}. Learn about the rules, guidelines, intellectual property regulations, and agreements governing your use of our blog and mobile app.`;
+const siteUrl = SITE_CONFIG.domain;
+const contactEmail = SITE_CONFIG.contactEmail;
+const lastUpdated = "May 06, 2026";
+---
+
+<BaseLayout title={pageTitle} description={pageDescription}>
+  <main
+    class="w-full max-w-[900px] mx-auto px-6 md:px-8 py-16 font-[Arial,sans-serif] text-[#3c4043] antialiased"
+  >
+    <!-- Header Section -->
+    <header class="border-b border-[#dadce0] pb-8 mb-10">
+      <h1
+        class="text-[36px] md:text-[44px] text-[#202124] font-bold leading-[1.2] mb-3 font-['Google_Sans',Arial,sans-serif]"
+      >
+        Terms and Conditions
+      </h1>
+      <div class="flex items-center text-[14px] text-[#5f6368]">
+        <span>Last Updated: {lastUpdated}</span>
+        <span class="mx-2">·</span>
+        <span>{SITE_CONFIG.name}</span>
+      </div>
+    </header>
+
+    <!-- Content Section -->
+    <article class="prose max-w-none text-[16px] leading-[1.6]">
+      <p class="mb-6">
+        Welcome to <strong>{SITE_CONFIG.name}</strong>! These terms and conditions
+        outline the rules and regulations for the use of {SITE_CONFIG.name}'s Website
+        (located at <a href={siteUrl} class="text-[#1a73e8] hover:underline">{siteUrl}</a>) 
+        and our official mobile application.
+      </p>
+
+      <p class="mb-8">
+        By accessing this website or using our services, we assume you accept these terms and
+        conditions in full. Do not continue to use {SITE_CONFIG.name}'s website or app if you do not agree to
+        take all of the terms and conditions stated on this page.
+      </p>
+
+      <h2
+        class="text-[24px] text-[#202124] font-bold mt-10 mb-4 font-['Google_Sans',Arial,sans-serif] border-l-4 border-[#1a73e8] pl-3"
+      >
+        1. Terminology & Definitions
+      </h2>
+      <p class="mb-6">
+        The following terminology applies to these Terms and Conditions, Privacy
+        Statement and Disclaimer Notice, and all Agreements: "Client", "You" and
+        "Your" refers to you, the person logging onto this website and compliant to
+        the Company's terms and conditions. "The Company", "Ourselves", "We",
+        "Our" and "Us", refers to our Company. "Party", "Parties", or "Us",
+        refers to both the Client and ourselves.
+      </p>
+
+      <h2
+        class="text-[24px] text-[#202124] font-bold mt-10 mb-4 font-['Google_Sans',Arial,sans-serif] border-l-4 border-[#1a73e8] pl-3"
+      >
+        2. Cookies
+      </h2>
+      <p class="mb-6">
+        We employ the use of cookies. By accessing {SITE_CONFIG.name}, you agreed to
+        use cookies in agreement with {SITE_CONFIG.name}'s Privacy Policy. Most
+        interactive websites use cookies to let us retrieve the user's details
+        for each visit. Cookies are used by our website to enable the
+        functionality of certain areas to make it easier for people visiting our
+        website. Some of our affiliate/advertising partners may also use
+        cookies.
+      </p>
+
+      <h2
+        class="text-[24px] text-[#202124] font-bold mt-10 mb-4 font-['Google_Sans',Arial,sans-serif] border-l-4 border-[#1a73e8] pl-3"
+      >
+        3. Intellectual Property License
+      </h2>
+      <p class="mb-4">
+        Unless otherwise stated, {SITE_CONFIG.name} and/or its licensors own the
+        intellectual property rights for all material on {SITE_CONFIG.name} (including the website and mobile application). All
+        intellectual property rights are reserved. You may access this from {SITE_CONFIG.name} for your own personal use subjected to restrictions set in these
+        terms and conditions.
+      </p>
+      <p class="mb-4">You must not:</p>
+      <ul class="list-disc pl-6 mb-6 space-y-2">
+        <li>Republish material from {SITE_CONFIG.name} (including copying text or images to other sites/apps).</li>
+        <li>Sell, rent, or sub-license material from {SITE_CONFIG.name}.</li>
+        <li>Reproduce, duplicate, or copy material from {SITE_CONFIG.name}.</li>
+        <li>Redistribute content from {SITE_CONFIG.name} without proper attribution.</li>
+      </ul>
+
+      <h2
+        class="text-[24px] text-[#202124] font-bold mt-10 mb-4 font-['Google_Sans',Arial,sans-serif] border-l-4 border-[#1a73e8] pl-3"
+      >
+        4. User Comments and Contributions
+      </h2>
+      <p class="mb-4">
+        Parts of this website offer an opportunity for users to post and
+        exchange opinions and information in certain areas of the website. 
+        {SITE_CONFIG.name} does not filter, edit, publish, or review Comments prior to their
+        presence on the website. Comments do not reflect the views and opinions
+        of {SITE_CONFIG.name}, its agents, and/or affiliates. Comments reflect the
+        views and opinions of the person who posts their views and opinions.
+      </p>
+      <p class="mb-4">
+        To the extent permitted by applicable laws, {SITE_CONFIG.name} shall not be
+        liable for the Comments or for any liability, damages, or expenses
+        caused and/or suffered as a result of any use of and/or posting of
+        and/or appearance of the Comments on this website.
+      </p>
+      <p class="mb-4">
+        {SITE_CONFIG.name} reserves the right to monitor all Comments and to remove any
+        Comments which can be considered inappropriate, offensive, or causes
+        breach of these Terms and Conditions.
+      </p>
+
+      <h2
+        class="text-[24px] text-[#202124] font-bold mt-10 mb-4 font-['Google_Sans',Arial,sans-serif] border-l-4 border-[#1a73e8] pl-3"
+      >
+        5. Advertising, AdSense & AdMob
+      </h2>
+      <p class="mb-4">
+        We utilize third-party advertising networks to help keep our educational content database free for everyone. Specifically:
+      </p>
+      <ul class="list-disc pl-6 mb-6 space-y-2">
+        <li>
+          <strong>Google AdSense & AdMob:</strong> Our website displays Google AdSense ads, and our mobile application displays Google AdMob ads. We do not have direct control over individual advertisement content.
+        </li>
+        <li>
+          <strong>Liability Disclaimer:</strong> You agree that we are not responsible for any interaction, transactions, or agreements you make with third-party advertisers. Any issue regarding ad promotions must be addressed directly to the respective advertisers.
+        </li>
+      </ul>
+
+      <h2
+        class="text-[24px] text-[#202124] font-bold mt-10 mb-4 font-['Google_Sans',Arial,sans-serif] border-l-4 border-[#1a73e8] pl-3"
+      >
+        6. Hyperlinking to our Content
+      </h2>
+      <p class="mb-4">
+        The following organizations may link to our Website without prior
+        written approval:
+      </p>
+      <ul class="list-disc pl-6 mb-6 space-y-2">
+        <li>Government agencies;</li>
+        <li>Search engines;</li>
+        <li>News organizations;</li>
+        <li>
+          Online directory distributors may link to our Website in the same
+          manner as they hyperlink to the Websites of other listed businesses;
+          and
+        </li>
+        <li>
+          System wide Accredited Businesses except soliciting non-profit
+          organizations, charity shopping malls, and charity fundraising groups
+          which may not hyperlink to our Web site.
+        </li>
+      </ul>
+
+      <h2
+        class="text-[24px] text-[#202124] font-bold mt-10 mb-4 font-['Google_Sans',Arial,sans-serif] border-l-4 border-[#1a73e8] pl-3"
+      >
+        7. Disclaimer of Liability
+      </h2>
+      <p class="mb-6">
+        To the maximum extent permitted by applicable law, we exclude all
+        representations, warranties, and conditions relating to our website and
+        the use of this website.
+      </p>
+      <p class="mb-6">
+        As long as the website and the information and services on the website
+        are provided free of charge, we will not be liable for any loss or
+        damage of any nature.
+      </p>
+
+      <h2
+        class="text-[24px] text-[#202124] font-bold mt-10 mb-4 font-['Google_Sans',Arial,sans-serif] border-l-4 border-[#1a73e8] pl-3"
+      >
+        8. Contact Information
+      </h2>
+      <p class="mb-6">
+        If you have any questions or concerns regarding these Terms and Conditions, please feel free to reach out to us at:
+      </p>
+      <div class="bg-[#f8f9fa] border border-[#dadce0] rounded-lg p-6 mb-6">
+        <p
+          class="font-bold text-[#202124] mb-1 font-['Google_Sans',Arial,sans-serif]"
+        >
+          {SITE_CONFIG.name}
+        </p>
+        <p class="mb-2">
+          Website: <a href={siteUrl} class="text-[#1a73e8] hover:underline"
+            >{siteUrl}</a
+          >
+        </p>
+        <p>
+          Email: <a
+            href={`mailto:${contactEmail}`}
+            class="text-[#1a73e8] hover:underline">{contactEmail}</a
+          >
+        </p>
+      </div>
+    </article>
+  </main>
+</BaseLayout>

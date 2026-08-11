@@ -1,0 +1,192 @@
+---
+// src/components/Currentaffairs.astro
+import PostCard from "./PostCard.astro";
+import { getCollection } from "astro:content";
+import { getImage } from "astro:assets";
+import { cleanImageUrl } from "../utils/image";
+
+const allPosts = await getCollection("blog");
+
+// Filter posts by category "Current-affairs" (case-insensitive)
+const currentAffairsPosts = allPosts
+  .filter(
+    (post) =>
+      post.data.category &&
+      post.data.category.toLowerCase().replace(" ", "-") === "current-affairs"
+  )
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+
+const CURRENTAFFAIRS_PER_PAGE = 6;
+const initialCurrentAffairsPosts = currentAffairsPosts.slice(0, CURRENTAFFAIRS_PER_PAGE);
+
+// Pre-optimise images for client-side "Load more" rendering
+const clientCurrentAffairsPosts = await Promise.all(
+  currentAffairsPosts.map(async (post) => {
+    let image1x = "";
+    let image2x = "";
+
+    if (post.data.image) {
+      const cleaned = cleanImageUrl(post.data.image);
+      try {
+        const opt1x = await getImage({
+          src: cleaned,
+          width: 120,
+          height: 78,
+          quality: 75,
+          format: "webp",
+        });
+        const opt2x = await getImage({
+          src: cleaned,
+          width: 240,
+          height: 156,
+          quality: 75,
+          format: "webp",
+        });
+        image1x = opt1x.src;
+        image2x = opt2x.src;
+      } catch (err) {
+        console.error(
+          `Failed to optimize current affairs image for post ${post.id}:`,
+          err,
+        );
+        image1x = post.data.image;
+        image2x = post.data.image;
+      }
+    }
+
+    return {
+      id: post.id,
+      data: {
+        title: post.data.title,
+        description: post.data.description || "",
+        category: post.data.category,
+        pubDate: post.data.pubDate,
+        image1x,
+        image2x,
+      },
+    };
+  }),
+);
+---
+
+{
+  currentAffairsPosts.length > 0 && (
+    <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-[52px] py-16 current-affairs-section">
+      <h2 class="text-[19px] font-[600] tracking-[1px] leading-[32px] mb-[24px] text-[#5f6368] font-['Google_Sans',Arial,sans-serif] uppercase">
+        CURRENT AFFAIRS --
+      </h2>
+
+      <div
+        class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+        id="currentAffairsPostsContainer"
+      >
+        {initialCurrentAffairsPosts.map((post) => {
+          const formattedDate = post.data.pubDate
+            .toLocaleDateString("en-US", {
+              month: "short",
+              day: "2-digit",
+            })
+            .toUpperCase();
+
+          return (
+            <PostCard
+              title={post.data.title}
+              category={post.data.category}
+              date={formattedDate}
+              image={post.data.image}
+              url={`/post/${post.id}/`}
+              description={post.data.description}
+            />
+          );
+        })}
+      </div>
+
+      {currentAffairsPosts.length > CURRENTAFFAIRS_PER_PAGE && (
+        <div class="mt-16 flex justify-center">
+          <button
+            id="loadMoreCurrentAffairsBtn"
+            class="px-8 py-3 border border-gray-300 rounded-full text-blue-600 font-medium hover:bg-gray-50 transition-colors"
+          >
+            Load more current affairs
+          </button>
+        </div>
+      )}
+    </section>
+  )
+}
+
+<script
+  define:vars={{
+    currentAffairsSortedPosts: clientCurrentAffairsPosts,
+    CURRENTAFFAIRS_PER_PAGE,
+  }}
+>
+  let currentAffairsCurrentPage = 1;
+  const currentAffairsContainer = document.getElementById("currentAffairsPostsContainer");
+  const loadMoreCurrentAffairsBtn = document.getElementById("loadMoreCurrentAffairsBtn");
+
+  if (loadMoreCurrentAffairsBtn) {
+    loadMoreCurrentAffairsBtn.addEventListener("click", function () {
+      const startIndex = currentAffairsCurrentPage * CURRENTAFFAIRS_PER_PAGE;
+      const endIndex = startIndex + CURRENTAFFAIRS_PER_PAGE;
+      const postsToAdd = currentAffairsSortedPosts.slice(startIndex, endIndex);
+
+      postsToAdd.forEach((post) => {
+        const dateObj = new Date(post.data.pubDate);
+        const formattedDate = dateObj
+          .toLocaleDateString("en-US", {
+            month: "short",
+            day: "2-digit",
+          })
+          .toUpperCase();
+
+        const imageHtml = post.data.image1x
+          ? `
+          <div class="feed-image-wrap">
+            <img
+              src="${post.data.image1x}"
+              srcset="${post.data.image1x} 1x, ${post.data.image2x} 2x"
+              alt="${post.data.title}"
+              class="feed-image"
+              loading="lazy"
+            />
+          </div>
+        `
+          : "";
+
+        let descText = post.data.description || "";
+        if (descText.length > 145) {
+          descText = descText.substring(0, 142) + "...";
+        }
+        const descriptionHtml = descText
+          ? `<p class="feed-description">${descText}</p>`
+          : "";
+
+        const html = `
+          <a href="/post/${post.id}/" class="feed-article group cursor-pointer text-inherit no-underline block">
+            <div class="flex items-center">
+              <span class="text-[#5f6368] text-[12px] font-medium tracking-[0.5px] uppercase">${formattedDate}</span>
+              <span class="text-[#5f6368] mx-2 text-[16px] leading-none">·</span>
+              <span class="text-[#1a73e8] text-[12px] font-medium tracking-[0.5px] uppercase">${post.data.category}</span>
+            </div>
+            <div class="feed-content">
+              ${imageHtml}
+              <h2 class="feed-title font-normal font-['Google_Sans',Arial,sans-serif] group-hover:underline decoration-[1.5px] underline-offset-[3px]">
+                ${post.data.title}
+              </h2>
+              ${descriptionHtml}
+            </div>
+          </a>
+        `;
+
+        currentAffairsContainer.insertAdjacentHTML("beforeend", html);
+      });
+
+      currentAffairsCurrentPage++;
+
+      if (endIndex >= currentAffairsSortedPosts.length) {
+        loadMoreCurrentAffairsBtn.style.display = "none";
+      }
+    });
+  }
+</script>

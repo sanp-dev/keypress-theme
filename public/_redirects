@@ -1,0 +1,6 @@
+# Cloudflare Pages Native 301 Redirects
+
+/feeds/posts/default /rss.xml 301
+/rss.xml/ /rss.xml 301
+/sitemap.xml /sitemap-index.xml 301
+/image-sitemap.xml /sitemap-posts.xml 301

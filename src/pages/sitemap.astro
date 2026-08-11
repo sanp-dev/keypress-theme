@@ -1,0 +1,1533 @@
+---
+// src/pages/sitemap.astro
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { getCollection } from "astro:content";
+import { AUTHOR_REGISTRY, DEFAULT_AUTHOR } from "../config/authors";
+import { Image } from "astro:assets";
+
+import { SITE_CONFIG } from "../config/site";
+
+const pageTitle = `Sitemap - ${SITE_CONFIG.name}`;
+const pageDescription =
+  `Browse the complete sitemap of ${SITE_CONFIG.name}. Find all pages, blog posts, categories, tags, and author profiles organized in a visual, easy-to-navigate structure.`;
+
+// Fetch all blog posts
+const allPosts = await getCollection("blog");
+const sortedPosts = allPosts.sort(
+  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
+);
+
+// Extract unique categories
+const categories = [...new Set(allPosts.map((p) => p.data.category))].sort();
+
+// Extract unique primary tags
+const allTags: string[] = [];
+const seenTagSlugs = new Set<string>();
+allPosts.forEach((post) => {
+  const primaryTag = post.data.tags?.[0];
+  if (primaryTag) {
+    const slug = primaryTag.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)+/g, "");
+    if (slug && !seenTagSlugs.has(slug)) {
+      seenTagSlugs.add(slug);
+      allTags.push(primaryTag);
+    }
+  }
+});
+allTags.sort();
+
+// Look up table by slug
+const profilesBySlug = Object.fromEntries(
+  Object.values(AUTHOR_REGISTRY).map((p) => [p.slug, p]),
+);
+
+const slugifyAuthor = (author: string) =>
+  author
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/(^-|-$)+/g, "");
+
+// Extract unique authors with their profile info by resolving their slug
+const authorMap = new Map<string, { displayName: string; postCount: number }>();
+allPosts.forEach((post) => {
+  const slug = post.data.authorSlug || slugifyAuthor(post.data.author);
+  const existing = authorMap.get(slug);
+  if (existing) {
+    existing.postCount += 1;
+  } else {
+    authorMap.set(slug, { displayName: post.data.author, postCount: 1 });
+  }
+});
+
+const authorProfiles = Array.from(authorMap.entries())
+  .map(([slug, { displayName, postCount }]) => {
+    const registryProfile = profilesBySlug[slug];
+    const profile = registryProfile ?? {
+      ...DEFAULT_AUTHOR,
+      name: displayName,
+      slug: slug,
+    };
+    return {
+      name: profile.name,
+      profile,
+      postCount,
+    };
+  })
+  .sort((a, b) => a.name.localeCompare(b.name));
+
+// Static pages
+const staticPages = [
+  { title: "Home", href: "/", icon: "home" },
+  { title: "About Us", href: "/about/", icon: "info" },
+  { title: "Contact Us", href: "/contact/", icon: "mail" },
+  { title: "Search", href: "/search/", icon: "search" },
+  { title: "Privacy Policy", href: "/privacy-policy/", icon: "shield" },
+  { title: "Terms & Conditions", href: "/terms-and-conditions/", icon: "doc" },
+  { title: "Disclaimer", href: "/disclaimer/", icon: "alert" },
+];
+
+// Helper: slugify
+function slugify(str: string) {
+  return str
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/(^-|-$)+/g, "");
+}
+
+function capitalize(str: string) {
+  return str
+    .split(' ')
+    .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+    .join(' ');
+}
+
+// Collapse thresholds (items shown before "See More")
+const PAGES_SHOW = 4;
+const CAT_SHOW = 5;
+const TAGS_SHOW = 12;
+---
+
+<BaseLayout
+  title={pageTitle}
+  description={pageDescription}
+  breadcrumbs={[
+    { name: "Home", url: Astro.url.origin + "/" },
+    { name: "Sitemap", url: Astro.url.href },
+  ]}
+>
+  <main class="sitemap-page">
+    <!-- ── Header ── -->
+    <header class="sitemap-header">
+      <div class="sitemap-header-inner">
+        <div class="sitemap-icon-badge">
+          <svg
+            width="28"
+            height="28"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.8"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <rect x="3" y="3" width="7" height="7" rx="1.5"></rect>
+            <rect x="14" y="3" width="7" height="7" rx="1.5"></rect>
+            <rect x="3" y="14" width="7" height="7" rx="1.5"></rect>
+            <rect x="14" y="14" width="7" height="7" rx="1.5"></rect>
+          </svg>
+        </div>
+        <h1 class="sitemap-title">Sitemap</h1>
+        <p class="sitemap-subtitle">
+          Explore the complete structure of {SITE_CONFIG.name} — every page, post,
+          category, and author in one place.
+        </p>
+        <div class="sitemap-stats">
+          <span class="stat-chip">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"
+              ><path
+                d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"
+              ></path></svg
+            >
+            {sortedPosts.length} Posts
+          </span>
+          <span class="stat-chip">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"
+              ><path
+                d="M10 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2h-8l-2-2z"
+              ></path></svg
+            >
+            {categories.length} Categories
+          </span>
+          <span class="stat-chip">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"
+              ><path
+                d="M21.41 11.58l-9-9C12.05 2.22 11.55 2 11 2H4c-1.1 0-2 .9-2 2v7c0 .55.22 1.05.59 1.42l9 9c.36.36.86.58 1.41.58.55 0 1.05-.22 1.41-.59l7-7c.37-.36.59-.86.59-1.41 0-.55-.23-1.06-.59-1.42zM5.5 7C4.67 7 4 6.33 4 5.5S4.67 4 5.5 4 7 4.67 7 5.5 6.33 7 5.5 7z"
+              ></path></svg
+            >
+            {allTags.length} Tags
+          </span>
+          <span class="stat-chip">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"
+              ><path
+                d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"
+              ></path></svg
+            >
+            {authorProfiles.length} Authors
+          </span>
+        </div>
+      </div>
+    </header>
+
+    <!-- ── Sitemap Grid (top 3 columns) ── -->
+    <div class="sitemap-grid sitemap-grid--top">
+      <!-- ═══ Section 1: Main Pages ═══ -->
+      <section class="sitemap-section sitemap-section--pages">
+        <div class="section-header">
+          <div class="section-icon section-icon--blue">
+            <svg
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+              <polyline points="9 22 9 12 15 12 15 22"></polyline>
+            </svg>
+          </div>
+          <h2 class="section-title">Main Pages</h2>
+        </div>
+
+        <!-- Collapsible wrapper -->
+        <div class="collapsible-list" id="pages-list" data-limit={PAGES_SHOW}>
+          <ul class="page-list">
+            {
+              staticPages.map((page, i) => (
+                <li class="page-item" data-index={i}>
+                  <a href={page.href} class="page-link">
+                    <span class="page-link-icon">
+                      {page.icon === "home" && (
+                        <svg
+                          width="16"
+                          height="16"
+                          viewBox="0 0 24 24"
+                          fill="currentColor"
+                        >
+                          <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z" />
+                        </svg>
+                      )}
+                      {page.icon === "info" && (
+                        <svg
+                          width="16"
+                          height="16"
+                          viewBox="0 0 24 24"
+                          fill="currentColor"
+                        >
+                          <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z" />
+                        </svg>
+                      )}
+                      {page.icon === "mail" && (
+                        <svg
+                          width="16"
+                          height="16"
+                          viewBox="0 0 24 24"
+                          fill="currentColor"
+                        >
+                          <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z" />
+                        </svg>
+                      )}
+                      {page.icon === "search" && (
+                        <svg
+                          width="16"
+                          height="16"
+                          viewBox="0 0 24 24"
+                          fill="currentColor"
+                        >
+                          <path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z" />
+                        </svg>
+                      )}
+                      {page.icon === "shield" && (
+                        <svg
+                          width="16"
+                          height="16"
+                          viewBox="0 0 24 24"
+                          fill="currentColor"
+                        >
+                          <path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm0 10.99h7c-.53 4.12-3.28 7.79-7 8.94V12H5V6.3l7-3.11v8.8z" />
+                        </svg>
+                      )}
+                      {page.icon === "doc" && (
+                        <svg
+                          width="16"
+                          height="16"
+                          viewBox="0 0 24 24"
+                          fill="currentColor"
+                        >
+                          <path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zM13 9V3.5L18.5 9H13z" />
+                        </svg>
+                      )}
+                      {page.icon === "alert" && (
+                        <svg
+                          width="16"
+                          height="16"
+                          viewBox="0 0 24 24"
+                          fill="currentColor"
+                        >
+                          <path d="M1 21h22L12 2 1 21zm12-3h-2v-2h2v2zm0-4h-2v-4h2v4z" />
+                        </svg>
+                      )}
+                    </span>
+                    <span class="page-link-text">{page.title}</span>
+                    <svg
+                      class="page-link-arrow"
+                      width="16"
+                      height="16"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                    >
+                      <polyline points="9 18 15 12 9 6" />
+                    </svg>
+                  </a>
+                </li>
+              ))
+            }
+          </ul>
+        </div>
+        {
+          staticPages.length > PAGES_SHOW && (
+            <button
+              class="see-more-btn"
+              data-target="pages-list"
+              data-label-more={`+${staticPages.length - PAGES_SHOW} more pages`}
+              data-label-less="Show less"
+            >
+              <svg
+                width="14"
+                height="14"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2.5"
+              >
+                <polyline points="6 9 12 15 18 9" />
+              </svg>
+              +{staticPages.length - PAGES_SHOW} more pages
+            </button>
+          )
+        }
+      </section>
+
+      <!-- ═══ Section 2: Categories ═══ -->
+      <section class="sitemap-section sitemap-section--categories">
+        <div class="section-header">
+          <div class="section-icon section-icon--green">
+            <svg
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path
+                d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"
+              ></path>
+            </svg>
+          </div>
+          <h2 class="section-title">Categories</h2>
+        </div>
+
+        <div class="collapsible-list" id="cat-list" data-limit={CAT_SHOW}>
+          <ul class="category-list">
+            {
+              categories.map((cat, i) => {
+                const count = allPosts.filter(
+                  (p) => p.data.category === cat,
+                ).length;
+                return (
+                  <li class="category-item" data-index={i}>
+                    <a
+                      href={`/category/${slugify(cat)}/`}
+                      class="category-link"
+                    >
+                      <span class="category-name">{cat}</span>
+                      <span class="category-count">{count}</span>
+                    </a>
+                  </li>
+                );
+              })
+            }
+          </ul>
+        </div>
+        {
+          categories.length > CAT_SHOW && (
+            <button
+              class="see-more-btn see-more-btn--green"
+              data-target="cat-list"
+              data-label-more={`+${categories.length - CAT_SHOW} more`}
+              data-label-less="Show less"
+            >
+              <svg
+                width="14"
+                height="14"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2.5"
+              >
+                <polyline points="6 9 12 15 18 9" />
+              </svg>
+              +{categories.length - CAT_SHOW} more
+            </button>
+          )
+        }
+      </section>
+
+      <!-- ═══ Section 3: Tags ═══ -->
+      <section class="sitemap-section sitemap-section--tags">
+        <div class="section-header">
+          <div class="section-icon section-icon--amber">
+            <svg
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path
+                d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"
+              ></path>
+              <line x1="7" y1="7" x2="7.01" y2="7"></line>
+            </svg>
+          </div>
+          <h2 class="section-title">Tags</h2>
+        </div>
+
+        <div class="tags-cloud-wrapper" id="tags-cloud-wrapper">
+          <div class="tags-cloud" id="tags-cloud">
+            {
+              allTags.map((tag, i) => (
+                <a
+                  href={`/label/${slugify(tag)}/`}
+                  class="tag-chip"
+                  data-index={i}
+                >
+                  <svg
+                    width="11"
+                    height="11"
+                    viewBox="0 0 24 24"
+                    fill="currentColor"
+                  >
+                    <path d="M21.41 11.58l-9-9C12.05 2.22 11.55 2 11 2H4c-1.1 0-2 .9-2 2v7c0 .55.22 1.05.59 1.42l9 9c.36.36.86.58 1.41.58.55 0 1.05-.22 1.41-.59l7-7c.37-.36.59-.86.59-1.41 0-.55-.23-1.06-.59-1.42zM5.5 7C4.67 7 4 6.33 4 5.5S4.67 4 5.5 4 7 4.67 7 5.5 6.33 7 5.5 7z" />
+                  </svg>
+                  {capitalize(tag)}
+                </a>
+              ))
+            }
+            {
+              allTags.length === 0 && (
+                <p class="empty-note">No tags found yet.</p>
+              )
+            }
+          </div>
+        </div>
+        {
+          allTags.length > TAGS_SHOW && (
+            <button
+              class="see-more-btn see-more-btn--amber"
+              data-target="tags-cloud-wrapper"
+              data-tags-limit={TAGS_SHOW}
+              data-label-more={`+${allTags.length - TAGS_SHOW} more tags`}
+              data-label-less="Show less tags"
+            >
+              <svg
+                width="14"
+                height="14"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2.5"
+              >
+                <polyline points="6 9 12 15 18 9" />
+              </svg>
+              +{allTags.length - TAGS_SHOW} more tags
+            </button>
+          )
+        }
+      </section>
+    </div>
+
+    <!-- ── Section 6: All Blog Posts (narrowed on desktop) ── -->
+    <div class="sitemap-posts-wrap">
+      <section class="sitemap-section sitemap-section--posts">
+        <div class="section-header">
+          <div class="section-icon section-icon--purple">
+            <svg
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path
+                d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"
+              ></path>
+              <polyline points="14 2 14 8 20 8"></polyline>
+              <line x1="16" y1="13" x2="8" y2="13"></line>
+              <line x1="16" y1="17" x2="8" y2="17"></line>
+              <polyline points="10 9 9 9 8 9"></polyline>
+            </svg>
+          </div>
+          <h2 class="section-title">All Blog Posts</h2>
+          <span class="section-count">{sortedPosts.length}</span>
+        </div>
+        <div class="posts-list">
+          {
+            sortedPosts.map((post, index) => {
+              const date = post.data.pubDate.toLocaleDateString("en-US", {
+                month: "short",
+                day: "2-digit",
+                year: "numeric",
+              });
+              return (
+                <a
+                  href={`/post/${post.id}/`}
+                  class="post-row"
+                  style={`--delay: ${Math.min(index * 25, 500)}ms`}
+                >
+                  <span class="post-index">
+                    {String(index + 1).padStart(2, "0")}
+                  </span>
+                  <div class="post-info">
+                    <span class="post-title-text">{post.data.title}</span>
+                    <div class="post-meta">
+                      <span class="post-category-badge">
+                        {post.data.category}
+                      </span>
+                      <span class="post-date">{date}</span>
+                    </div>
+                  </div>
+                  <svg
+                    class="post-arrow"
+                    width="18"
+                    height="18"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <polyline points="9 18 15 12 9 6" />
+                  </svg>
+                </a>
+              );
+            })
+          }
+        </div>
+      </section>
+    </div>
+
+    <!-- ── Authors + Feeds row (side by side on desktop) ── -->
+    <div class="sitemap-grid sitemap-grid--bottom">
+      <!-- ═══ Section 4: Authors ═══ -->
+      <section class="sitemap-section sitemap-section--authors">
+        <div class="section-header">
+          <div class="section-icon section-icon--red">
+            <svg
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+              <circle cx="9" cy="7" r="4"></circle>
+              <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+              <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+            </svg>
+          </div>
+          <h2 class="section-title">Authors</h2>
+        </div>
+        <ul class="author-list">
+          {
+            authorProfiles.map(({ name, profile, postCount }) => (
+              <li class="author-item">
+                <a href={`/author/${profile.slug}/`} class="author-link">
+                  <div class="author-avatar">
+                    {profile.avatarUrl ? (
+                      <Image
+                        src={profile.avatarUrl}
+                        alt={name}
+                        width={84}
+                        height={84}
+                        widths={[42, 84]}
+                        sizes="42px"
+                        class="author-avatar-img"
+                        quality={75}
+                      />
+                    ) : null}
+                    <span
+                      class="author-avatar-fallback"
+                      style={profile.avatarUrl ? "display:none" : ""}
+                    >
+                      <svg
+                        width="18"
+                        height="18"
+                        viewBox="0 0 24 24"
+                        fill="currentColor"
+                      >
+                        <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z" />
+                      </svg>
+                    </span>
+                  </div>
+                  <div class="author-info">
+                    <span class="author-name">{name}</span>
+                    <span class="author-role">{profile.role}</span>
+                    <span class="author-posts">
+                      {postCount} {postCount === 1 ? "post" : "posts"}
+                    </span>
+                  </div>
+                  <svg
+                    class="page-link-arrow"
+                    width="16"
+                    height="16"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <polyline points="9 18 15 12 9 6" />
+                  </svg>
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </section>
+
+      <!-- ═══ Section 5: Feeds & Resources ═══ -->
+      <section class="sitemap-section sitemap-section--feeds">
+        <div class="section-header">
+          <div class="section-icon section-icon--teal">
+            <svg
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M4 11a9 9 0 0 1 9 9"></path>
+              <path d="M4 4a16 16 0 0 1 16 16"></path>
+              <circle cx="5" cy="19" r="1"></circle>
+            </svg>
+          </div>
+          <h2 class="section-title">Feeds & Resources</h2>
+        </div>
+        <ul class="page-list">
+          <li class="page-item">
+            <a href="/rss.xml" class="page-link" target="_blank" rel="noopener">
+              <span class="page-link-icon">
+                <svg
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                  ><path
+                    d="M6.18 15.64a2.18 2.18 0 1 0 2.18 2.18 2.18 2.18 0 0 0-2.18-2.18zM4 4.44v2.83c7.03 0 12.73 5.7 12.73 12.73h2.83c0-8.59-6.97-15.56-15.56-15.56zm0 5.66v2.83c3.9 0 7.07 3.17 7.07 7.07h2.83c0-5.47-4.43-9.9-9.9-9.9z"
+                  ></path></svg
+                >
+              </span>
+              <span class="page-link-text">RSS Feed</span>
+              <svg
+                class="page-link-arrow"
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                ><polyline points="9 18 15 12 9 6"></polyline></svg
+              >
+            </a>
+          </li>
+          <li class="page-item">
+            <a
+              href="/sitemap-posts.xml"
+              class="page-link"
+              target="_blank"
+              rel="noopener"
+            >
+              <span class="page-link-icon">
+                <svg
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                  ><path
+                    d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zM6 20V4h7v5h5v11H6z"
+                  ></path></svg
+                >
+              </span>
+              <span class="page-link-text">XML Sitemap</span>
+              <svg
+                class="page-link-arrow"
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                ><polyline points="9 18 15 12 9 6"></polyline></svg
+              >
+            </a>
+          </li>
+          <li class="page-item">
+            <a href="/search/" class="page-link">
+              <span class="page-link-icon">
+                <svg
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                  ><path
+                    d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"
+                  ></path></svg
+                >
+              </span>
+              <span class="page-link-text">Site Search</span>
+              <svg
+                class="page-link-arrow"
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                ><polyline points="9 18 15 12 9 6"></polyline></svg
+              >
+            </a>
+          </li>
+        </ul>
+
+        <!-- Quick Links Info -->
+        <div class="feeds-info">
+          <p class="feeds-info-text">
+            <svg
+              width="14"
+              height="14"
+              viewBox="0 0 24 24"
+              fill="currentColor"
+              style="color:#1a73e8;flex-shrink:0;margin-top:1px"
+              ><path
+                d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"
+              ></path></svg
+            >
+            Subscribe to our RSS feed to get the latest posts delivered directly to
+            your RSS reader.
+          </p>
+        </div>
+      </section>
+    </div>
+  </main>
+</BaseLayout>
+
+<!-- See More / Collapse Script -->
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    // ── 1. Page list & Category list collapse ──
+    document
+      .querySelectorAll<HTMLButtonElement>(".see-more-btn[data-target]")
+      .forEach((btn) => {
+        const targetId = btn.dataset.target!;
+        const wrapper = document.getElementById(targetId);
+        if (!wrapper) return;
+
+        // Tags use a different system (data-tags-limit)
+        if (btn.dataset.tagsLimit) return;
+
+        const list = wrapper.querySelector<HTMLElement>("ul");
+        if (!list) return;
+        const items = list.querySelectorAll<HTMLElement>("[data-index]");
+        const limit = parseInt(wrapper.dataset.limit ?? "4", 10);
+
+        // Hide extra items initially
+        items.forEach((item) => {
+          const idx = parseInt(item.dataset.index ?? "0", 10);
+          if (idx >= limit) item.style.display = "none";
+        });
+
+        let expanded = false;
+        const labelMore = btn.dataset.labelMore ?? "See more";
+        const labelLess = btn.dataset.labelLess ?? "Show less";
+
+        btn.addEventListener("click", () => {
+          expanded = !expanded;
+          items.forEach((item) => {
+            const idx = parseInt(item.dataset.index ?? "0", 10);
+            if (idx >= limit) {
+              item.style.display = expanded ? "" : "none";
+            }
+          });
+          const chevron = btn.querySelector("svg");
+          if (chevron)
+            chevron.style.transform = expanded ? "rotate(180deg)" : "";
+          btn.childNodes.forEach((node) => {
+            if (node.nodeType === Node.TEXT_NODE) {
+              node.textContent = " " + (expanded ? labelLess : labelMore);
+            }
+          });
+        });
+      });
+
+    // ── 2. Tags cloud collapse ──
+    document
+      .querySelectorAll<HTMLButtonElement>(".see-more-btn[data-tags-limit]")
+      .forEach((btn) => {
+        const targetId = btn.dataset.target!;
+        const wrapper = document.getElementById(targetId);
+        if (!wrapper) return;
+        const chips = wrapper.querySelectorAll<HTMLElement>(".tag-chip");
+        const limit = parseInt(btn.dataset.tagsLimit ?? "12", 10);
+
+        chips.forEach((chip) => {
+          const idx = parseInt(chip.dataset.index ?? "0", 10);
+          if (idx >= limit) chip.style.display = "none";
+        });
+
+        let expanded = false;
+        const labelMore = btn.dataset.labelMore ?? "See more";
+        const labelLess = btn.dataset.labelLess ?? "Show less";
+
+        btn.addEventListener("click", () => {
+          expanded = !expanded;
+          chips.forEach((chip) => {
+            const idx = parseInt(chip.dataset.index ?? "0", 10);
+            if (idx >= limit) chip.style.display = expanded ? "" : "none";
+          });
+          const chevron = btn.querySelector("svg");
+          if (chevron)
+            chevron.style.transform = expanded ? "rotate(180deg)" : "";
+          btn.childNodes.forEach((node) => {
+            if (node.nodeType === Node.TEXT_NODE) {
+              node.textContent = " " + (expanded ? labelLess : labelMore);
+            }
+          });
+        });
+      });
+  });
+</script>
+
+<style>
+  /* ═══════════════════════════════════════════════
+     Sitemap Page — Google Material-inspired design
+     ═══════════════════════════════════════════════ */
+
+  .sitemap-page {
+    width: 100%;
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 24px 80px;
+  }
+
+  /* ── Header ── */
+  .sitemap-header {
+    padding: 56px 0 40px;
+    text-align: center;
+  }
+
+  .sitemap-header-inner {
+    max-width: 640px;
+    margin: 0 auto;
+  }
+
+  .sitemap-icon-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 56px;
+    height: 56px;
+    border-radius: 16px;
+    background: linear-gradient(135deg, #e8f0fe 0%, #d2e3fc 100%);
+    color: #1a73e8;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 8px rgba(26, 115, 232, 0.15);
+  }
+
+  .sitemap-title {
+    font-family: "Google Sans", Arial, sans-serif;
+    font-size: 44px;
+    font-weight: 400;
+    color: #202124;
+    line-height: 1.2;
+    margin: 0 0 12px;
+    letter-spacing: -0.5px;
+  }
+
+  .sitemap-subtitle {
+    font-size: 17px;
+    color: #5f6368;
+    line-height: 1.6;
+    margin: 0 0 24px;
+  }
+
+  .sitemap-stats {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+  }
+
+  .stat-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 14px;
+    border-radius: 100px;
+    background: #f8f9fa;
+    border: 1px solid #e8eaed;
+    font-size: 13px;
+    font-weight: 500;
+    color: #5f6368;
+    font-family: "Google Sans", Arial, sans-serif;
+  }
+
+  .stat-chip svg {
+    color: #1a73e8;
+  }
+
+  /* ── Grid Layouts ── */
+  .sitemap-grid--top {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    margin-bottom: 32px;
+  }
+
+  /* Authors + Feeds side by side, narrowed & centered on desktop */
+  .sitemap-grid--bottom {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    margin-bottom: 32px;
+    max-width: 860px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+  }
+
+  /* Posts section: narrowed and centered on desktop */
+  .sitemap-posts-wrap {
+    max-width: 860px;
+    margin: 0 auto 32px;
+    width: 100%;
+  }
+
+  /* ── Section Cards ── */
+  .sitemap-section {
+    background: #ffffff;
+    border: 1px solid #e8eaed;
+    border-radius: 12px;
+    padding: 24px;
+    transition:
+      box-shadow 0.2s ease,
+      border-color 0.2s ease;
+  }
+
+  .sitemap-section:hover {
+    box-shadow:
+      0 1px 6px rgba(32, 33, 36, 0.1),
+      0 4px 15px rgba(32, 33, 36, 0.05);
+    border-color: #dadce0;
+  }
+
+  /* ── Section Header ── */
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 16px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid #f1f3f4;
+  }
+
+  .section-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 38px;
+    height: 38px;
+    border-radius: 10px;
+    flex-shrink: 0;
+  }
+
+  .section-icon--blue {
+    background: #e8f0fe;
+    color: #1a73e8;
+  }
+  .section-icon--green {
+    background: #e6f4ea;
+    color: #1e8e3e;
+  }
+  .section-icon--amber {
+    background: #fef7e0;
+    color: #e37400;
+  }
+  .section-icon--red {
+    background: #fce8e6;
+    color: #d93025;
+  }
+  .section-icon--purple {
+    background: #f3e8fd;
+    color: #8430ce;
+  }
+  .section-icon--teal {
+    background: #e0f7fa;
+    color: #00838f;
+  }
+
+  .section-title {
+    font-family: "Google Sans", Arial, sans-serif;
+    font-size: 17px;
+    font-weight: 500;
+    color: #202124;
+    margin: 0;
+    line-height: 1.3;
+  }
+
+  .section-count {
+    margin-left: auto;
+    font-size: 12px;
+    font-weight: 500;
+    color: #5f6368;
+    background: #f1f3f4;
+    padding: 3px 10px;
+    border-radius: 100px;
+    font-family: "Google Sans", Arial, sans-serif;
+  }
+
+  /* ── Page List ── */
+  .page-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .page-item {
+    margin-bottom: 1px;
+  }
+
+  .page-link {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 9px 10px;
+    border-radius: 8px;
+    text-decoration: none;
+    color: #3c4043;
+    font-size: 14px;
+    font-weight: 400;
+    transition:
+      background-color 0.15s,
+      color 0.15s;
+    font-family: "Google Sans", Arial, sans-serif;
+  }
+
+  .page-link:hover {
+    background: #f8f9fa;
+    color: #1a73e8;
+  }
+
+  .page-link-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    border-radius: 7px;
+    background: #f1f3f4;
+    color: #5f6368;
+    flex-shrink: 0;
+    transition:
+      background-color 0.15s,
+      color 0.15s;
+  }
+
+  .page-link:hover .page-link-icon {
+    background: #e8f0fe;
+    color: #1a73e8;
+  }
+  .page-link-text {
+    flex: 1;
+  }
+
+  .page-link-arrow {
+    color: #dadce0;
+    flex-shrink: 0;
+    transition:
+      color 0.15s,
+      transform 0.15s;
+  }
+
+  .page-link:hover .page-link-arrow {
+    color: #1a73e8;
+    transform: translateX(2px);
+  }
+
+  /* ── See More Button ── */
+  .see-more-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    margin-top: 14px;
+    padding: 7px 16px;
+    border-radius: 100px;
+    border: none;
+    background: linear-gradient(135deg, #1a73e8, #4285f4);
+    color: #ffffff !important;
+    font-size: 12px;
+    font-weight: 600;
+    font-family: "Google Sans", Arial, sans-serif;
+    cursor: pointer;
+    box-shadow: 0 2px 6px rgba(26, 115, 232, 0.15);
+    transition:
+      background 0.2s,
+      transform 0.15s,
+      box-shadow 0.2s;
+    text-decoration: none;
+  }
+
+  .see-more-btn:hover {
+    background: linear-gradient(135deg, #1557b0, #1a73e8);
+    transform: translateY(-1.5px);
+    box-shadow: 0 4px 12px rgba(26, 115, 232, 0.25);
+  }
+
+  .see-more-btn svg {
+    color: #ffffff !important;
+    transition: transform 0.25s ease;
+  }
+
+  .see-more-btn--green {
+    background: linear-gradient(135deg, #1e8e3e, #34c759);
+    color: #ffffff !important;
+    box-shadow: 0 2px 6px rgba(30, 142, 62, 0.15);
+  }
+
+  .see-more-btn--green:hover {
+    background: linear-gradient(135deg, #137333, #1e8e3e);
+    box-shadow: 0 4px 12px rgba(30, 142, 62, 0.25);
+  }
+
+  .see-more-btn--green svg {
+    color: #ffffff !important;
+  }
+
+  .see-more-btn--amber {
+    background: linear-gradient(135deg, #e37400, #ffb74d);
+    color: #ffffff !important;
+    box-shadow: 0 2px 6px rgba(227, 116, 0, 0.15);
+  }
+
+  .see-more-btn--amber:hover {
+    background: linear-gradient(135deg, #b06000, #e37400);
+    box-shadow: 0 4px 12px rgba(227, 116, 0, 0.25);
+  }
+
+  .see-more-btn--amber svg {
+    color: #ffffff !important;
+  }
+
+  /* ── Category List ── */
+  .category-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .category-item {
+    margin-bottom: 1px;
+  }
+
+  .category-link {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 9px 10px;
+    border-radius: 8px;
+    text-decoration: none;
+    color: #3c4043;
+    font-size: 13px;
+    font-weight: 500;
+    font-family: "Google Sans", Arial, sans-serif;
+    transition:
+      background-color 0.15s,
+      color 0.15s;
+  }
+
+  .category-link:hover {
+    background: #e6f4ea;
+    color: #1e8e3e;
+  }
+
+  .category-name {
+    text-transform: capitalize;
+  }
+
+  .category-count {
+    font-size: 11px;
+    font-weight: 500;
+    color: #5f6368;
+    background: #f1f3f4;
+    padding: 2px 9px;
+    border-radius: 100px;
+    min-width: 20px;
+    text-align: center;
+    transition:
+      background-color 0.15s,
+      color 0.15s;
+  }
+
+  .category-link:hover .category-count {
+    background: #ceead6;
+    color: #137333;
+  }
+
+  /* ── Tags Cloud ── */
+  .tags-cloud-wrapper {
+    /* wraps for JS collapse */
+  }
+
+  .tags-cloud {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 7px;
+  }
+
+  .tag-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 5px 12px;
+    border-radius: 100px;
+    background: #fef7e0;
+    border: 1px solid #feefc3;
+    font-size: 12px;
+    font-weight: 500;
+    color: #e37400;
+    text-decoration: none;
+    font-family: "Google Sans", Arial, sans-serif;
+    transition: all 0.15s;
+  }
+
+  .tag-chip:hover {
+    background: #feefc3;
+    border-color: #e37400;
+    transform: translateY(-1px);
+    box-shadow: 0 2px 6px rgba(227, 116, 0, 0.15);
+  }
+
+  .empty-note {
+    color: #9aa0a6;
+    font-size: 14px;
+    font-style: italic;
+  }
+
+  /* ── Author List ── */
+  .author-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .author-item {
+    margin-bottom: 3px;
+  }
+
+  .author-link {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 10px;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: background-color 0.15s;
+  }
+
+  .author-link:hover {
+    background: #fce8e6;
+  }
+
+  .author-avatar {
+    position: relative;
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    overflow: hidden;
+    flex-shrink: 0;
+    background: linear-gradient(135deg, #fce8e6, #f8d7da);
+  }
+
+  .author-avatar-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    border-radius: 50%;
+    margin: 0;
+  }
+
+  .author-avatar-fallback {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #d93025;
+  }
+
+  .author-info {
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+    flex: 1;
+    min-width: 0;
+  }
+
+  .author-name {
+    font-size: 14px;
+    font-weight: 500;
+    color: #202124;
+    font-family: "Google Sans", Arial, sans-serif;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .author-role {
+    font-size: 11px;
+    color: #1a73e8;
+    font-weight: 500;
+    font-family: "Google Sans", Arial, sans-serif;
+  }
+
+  .author-posts {
+    font-size: 11px;
+    color: #9aa0a6;
+  }
+
+  /* ── Feeds Info box ── */
+  .feeds-info {
+    margin-top: 16px;
+    padding: 12px 14px;
+    background: #f8f9fa;
+    border-radius: 8px;
+    border: 1px solid #e8eaed;
+  }
+
+  .feeds-info-text {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    font-size: 13px;
+    color: #5f6368;
+    line-height: 1.5;
+    margin: 0;
+    font-family: "Google Sans", Arial, sans-serif;
+  }
+
+  /* ── Posts List ── */
+  .posts-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+  }
+
+  .post-row {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 12px 14px;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: background-color 0.15s;
+    animation: fadeInUp 0.35s ease forwards;
+    animation-delay: var(--delay);
+    opacity: 0;
+  }
+
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(6px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .post-row:hover {
+    background: #f8f9fa;
+  }
+
+  .post-index {
+    font-size: 12px;
+    font-weight: 600;
+    color: #bdc1c6;
+    min-width: 24px;
+    flex-shrink: 0;
+    font-family: monospace;
+  }
+
+  .post-info {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .post-title-text {
+    display: block;
+    font-size: 14px;
+    font-weight: 400;
+    color: #202124;
+    line-height: 1.4;
+    margin-bottom: 3px;
+    font-family: "Google Sans", Arial, sans-serif;
+    transition: color 0.15s;
+  }
+
+  .post-row:hover .post-title-text {
+    color: #1a73e8;
+  }
+
+  .post-meta {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .post-category-badge {
+    font-size: 10px;
+    font-weight: 600;
+    color: #1a73e8;
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+    font-family: "Google Sans", Arial, sans-serif;
+  }
+
+  .post-date {
+    font-size: 11px;
+    color: #9aa0a6;
+  }
+
+  .post-arrow {
+    color: #dadce0;
+    flex-shrink: 0;
+    transition:
+      color 0.15s,
+      transform 0.15s;
+  }
+
+  .post-row:hover .post-arrow {
+    color: #1a73e8;
+    transform: translateX(3px);
+  }
+
+  /* ═══ Responsive ═══ */
+
+  /* Tablet: 3-col top → 2-col, bottom stays 2-col, posts full width */
+  @media (max-width: 1024px) {
+    .sitemap-grid--top {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    .sitemap-posts-wrap,
+    .sitemap-grid--bottom {
+      max-width: 100%;
+    }
+  }
+
+  /* Small tablet / Mobile: all single column */
+  @media (max-width: 768px) {
+    .sitemap-page {
+      padding: 0 16px 60px;
+    }
+
+    .sitemap-header {
+      padding: 36px 0 24px;
+    }
+
+    .sitemap-title {
+      font-size: 30px;
+    }
+
+    .sitemap-subtitle {
+      font-size: 15px;
+    }
+
+    .sitemap-grid--top,
+    .sitemap-grid--bottom {
+      grid-template-columns: 1fr;
+    }
+
+    .sitemap-posts-wrap {
+      max-width: 100%;
+    }
+
+    .sitemap-section {
+      padding: 18px;
+    }
+
+    .section-title {
+      font-size: 15px;
+    }
+
+    .post-row {
+      padding: 10px 10px;
+      gap: 10px;
+    }
+
+    .post-title-text {
+      font-size: 13px;
+    }
+
+    .stat-chip {
+      font-size: 12px;
+      padding: 5px 10px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .sitemap-title {
+      font-size: 26px;
+    }
+
+    .sitemap-stats {
+      gap: 6px;
+    }
+
+    .post-index {
+      display: none;
+    }
+
+    .author-name {
+      font-size: 13px;
+    }
+  }
+</style>

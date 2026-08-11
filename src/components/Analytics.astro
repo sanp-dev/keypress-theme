@@ -1,0 +1,145 @@
+---
+// src/components/Analytics.astro
+import { SITE_CONFIG } from "../config/site";
+const gaId = import.meta.env.PUBLIC_GA_ID;
+const clarityId = import.meta.env.PUBLIC_CLARITY_ID;
+const showCookieConsent = SITE_CONFIG.showCookieConsent;
+---
+
+{gaId || clarityId ? (
+  <script is:inline define:vars={{ gaId, clarityId, showCookieConsent }}>
+    (function() {
+      const STORAGE_KEY = 'blog-cookie-consent';
+
+      function loadAnalytics() {
+        if (window.analyticsLoaded) return;
+        window.analyticsLoaded = true;
+
+        // 1. Google Analytics (GA4)
+        if (gaId && !gaId.includes('XXXXXXXXXX')) {
+          const gaScript = document.createElement('script');
+          gaScript.async = true;
+          gaScript.src = `https://www.googletagmanager.com/gtag/js?id=${gaId}`;
+          document.head.appendChild(gaScript);
+
+          window.dataLayer = window.dataLayer || [];
+          window.gtag = function gtag() {
+            window.dataLayer.push(arguments);
+          };
+          window.gtag('js', new Date());
+          window.gtag('config', gaId, {
+            page_path: window.location.pathname,
+          });
+
+          // Also track custom page_view event on initialization
+          window.gtag('event', 'page_view', {
+            page_title: document.title,
+            page_location: window.location.href,
+            page_path: window.location.pathname
+          });
+        }
+
+        // 2. Microsoft Clarity
+        if (clarityId && !clarityId.includes('xxxxxxxxxx')) {
+          (function(c,l,a,r,i,t,y){
+            c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+            t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+            y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+          })(window,document,"clarity","script",clarityId);
+        }
+      }
+
+      function initInteractionTracker() {
+        const events = ['scroll', 'mousemove', 'mousedown', 'touchstart', 'keydown'];
+        
+        // Safety fallback: load after 4 seconds if no interaction occurs
+        const timeoutId = setTimeout(loadAnalytics, 4000);
+
+        function triggerAndCleanup() {
+          clearTimeout(timeoutId);
+          events.forEach(function(event) {
+            window.removeEventListener(event, triggerAndCleanup);
+          });
+          loadAnalytics();
+        }
+
+        events.forEach(function(event) {
+          window.addEventListener(event, triggerAndCleanup, { passive: true, once: true });
+        });
+      }
+
+      // Check current consent status and initialize or listen to changes
+      function checkConsentAndInit() {
+        if (!showCookieConsent) {
+          // If custom cookie consent is disabled, initialize immediately with page interaction tracker
+          initInteractionTracker();
+          return;
+        }
+
+        const consentData = localStorage.getItem(STORAGE_KEY);
+        if (consentData) {
+          try {
+            const parsed = JSON.parse(consentData);
+            if (parsed.analytics) {
+              initInteractionTracker();
+              return;
+            }
+          } catch (e) {
+            console.error('Error parsing cookie consent:', e);
+          }
+        }
+
+        // Listen for consent changes if not yet accepted or if modified
+        window.addEventListener('cookie-consent-updated', function(e) {
+          if (e.detail) {
+            if (e.detail.analytics) {
+              // Load immediately on consent update (since the user is already interacting)
+              loadAnalytics();
+            } else if (window.analyticsLoaded) {
+              // If analytics were already loaded and user now turned it off, reload page to stop tracking
+              window.location.reload();
+            }
+          }
+        });
+      }
+
+      // Run check on DOM ready or immediately
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', checkConsentAndInit);
+      } else {
+        checkConsentAndInit();
+      }
+    })();
+  </script>
+) : null}
+
+<!-- Cloudflare Web Analytics (Lazy Loaded to avoid Lighthouse blocking and cache issues) -->
+<script is:inline>
+  (function() {
+    var cfLoaded = false;
+    function loadCloudflareInsights() {
+      if (cfLoaded) return;
+      cfLoaded = true;
+      var script = document.createElement('script');
+      script.async = true;
+      script.src = 'https://static.cloudflareinsights.com/beacon.min.js';
+      script.setAttribute('data-cf-beacon', '{"token": "7f8ff08239394581a7112755f20cba49"}');
+      document.head.appendChild(script);
+    }
+    
+    var events = ['scroll', 'mousemove', 'mousedown', 'touchstart', 'keydown'];
+    function triggerAndCleanup() {
+      events.forEach(function(e) {
+        window.removeEventListener(e, triggerAndCleanup);
+      });
+      loadCloudflareInsights();
+    }
+    
+    events.forEach(function(e) {
+      window.addEventListener(e, triggerAndCleanup, { passive: true, once: true });
+    });
+    
+    // Safety fallback: load after 4 seconds if no interaction
+    setTimeout(loadCloudflareInsights, 4000);
+  })();
+</script>

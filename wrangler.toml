@@ -1,0 +1,14 @@
+# Cloudflare Pages / Workers Configuration for Demo Blog
+name = "demo-blog"
+compatibility_date = "2026-08-10"
+
+# Cloudflare D1 Database Binding for Email Subscriptions
+[[d1_databases]]
+binding = "DB"
+database_name = "demo-blog-db"
+database_id = "f460a0e9-0dc4-418a-89c3-70abd57b2070"
+
+# Cloudflare KV Namespace Binding for Page Views Tracking & Popular Posts
+[[kv_namespaces]]
+binding = "POST_VIEWS"
+id = "2c815d1dfe2a4228b0271204db3d43d5"

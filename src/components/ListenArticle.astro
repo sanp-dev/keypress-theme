@@ -1,0 +1,334 @@
+---
+// src/components/ListenArticle.astro
+export interface Props {
+  readingTime: number;
+}
+
+const { readingTime } = Astro.props;
+---
+
+<!-- Initially hidden (hidden class), will be revealed by JS if Web Speech API is supported -->
+<div id="tts-container" class="max-w-[720px] mx-auto mb-10 bg-[#f8f9fa] rounded-[24px] md:rounded-[30px] p-1.5 md:p-2 pr-3 md:pr-4 flex items-center justify-between w-full border border-transparent hover:border-[#dadce0] transition-all shadow-sm hover:shadow-md hidden relative z-30">
+  
+  <div class="flex items-center gap-1.5 md:gap-2">
+    <!-- Play/Pause Button -->
+    <button id="tts-play-btn" aria-label="Play Article" class="w-9 h-9 md:w-12 md:h-12 rounded-full bg-[#1a73e8] hover:bg-[#174ea6] hover:scale-105 active:scale-95 transition-all flex items-center justify-center text-white shrink-0 cursor-pointer outline-none shadow-sm">
+      <!-- Play Icon -->
+      <svg id="tts-icon-play" class="w-5 h-5 md:w-7 md:h-7 translate-x-[0.5px] md:translate-x-[1px]" fill="currentColor" viewBox="0 0 24 24">
+        <path d="M8 5.14v13.72a.5.5 0 00.77.42l10.28-6.86a.5.5 0 000-.84L8.77 4.72A.5.5 0 008 5.14z"/>
+      </svg>
+      <!-- Pause Icon -->
+      <svg id="tts-icon-pause" class="w-5 h-5 md:w-7 md:h-7 hidden" fill="currentColor" viewBox="0 0 24 24">
+        <path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/>
+      </svg>
+    </button>
+    
+    <div class="ml-1.5 md:ml-2 flex flex-col justify-center">
+      <div class="flex items-center gap-1 md:gap-1.5">
+        <span id="tts-status-text" class="text-[#174ea6] text-[13px] md:text-[15px] font-semibold leading-none font-['Google_Sans',Arial,sans-serif]">
+          Listen to article
+        </span>
+        <svg id="tts-audio-waves" class="w-3.5 h-3.5 md:w-[16px] md:h-[16px] fill-[#174ea6] hidden" viewBox="0 0 24 24">
+          <path d="M11 7h2v2h-2zm0 4h2v6h-2zm1-9C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/>
+        </svg>
+      </div>
+      <span class="text-[#5f6368] font-medium text-[11px] md:text-[12px] leading-none mt-0.5 font-['Google_Sans',Arial,sans-serif]">
+        <span id="tts-progress">{readingTime} minutes</span>
+      </span>
+    </div>
+  </div>
+
+  <!-- Right Side Controls (Prev, Next, Settings) -->
+  <div class="flex items-center gap-0.5 md:gap-1">
+    <!-- Prev Button -->
+    <button id="tts-prev-btn" aria-label="Previous sentence" class="w-8 h-8 md:w-9 md:h-9 rounded-full hover:bg-[#e8f0fe] text-[#5f6368] hover:text-[#174ea6] active:scale-95 transition-all flex items-center justify-center cursor-pointer outline-none disabled:opacity-30 disabled:cursor-not-allowed">
+      <svg class="w-4 h-4 md:w-5 md:h-5" fill="currentColor" viewBox="0 0 24 24">
+        <path d="M6 6h2v12H6zm3.5 6l8.5 6V6z"/>
+      </svg>
+    </button>
+  
+    <!-- Next Button -->
+    <button id="tts-next-btn" aria-label="Next sentence" class="w-8 h-8 md:w-9 md:h-9 rounded-full hover:bg-[#e8f0fe] text-[#5f6368] hover:text-[#174ea6] active:scale-95 transition-all flex items-center justify-center cursor-pointer outline-none disabled:opacity-30 disabled:cursor-not-allowed">
+      <svg class="w-4 h-4 md:w-5 md:h-5" fill="currentColor" viewBox="0 0 24 24">
+        <path d="M6 18l8.5-6L6 6v12zM16 6v12h2V6z"/>
+      </svg>
+    </button>
+ 
+    <div class="w-px h-5 md:h-6 bg-[#dadce0] mx-0.5 md:mx-1"></div> <!-- Divider -->
+ 
+    <!-- Settings Dropdown -->
+    <div class="relative">
+      <button id="tts-settings-btn" aria-label="Audio Settings" class="w-8 h-8 md:w-9 md:h-9 rounded-full hover:bg-[#e8f0fe] text-[#5f6368] hover:text-[#174ea6] active:scale-95 transition-all flex items-center justify-center outline-none cursor-pointer">
+        <svg class="w-4 h-4 md:w-5 md:h-5" fill="currentColor" viewBox="0 0 24 24">
+          <path d="M19.14 12.94c.04-.3.06-.61.06-.94 0-.32-.02-.64-.07-.94l2.03-1.58c.18-.14.23-.41.12-.61l-1.92-3.32c-.12-.22-.37-.29-.59-.22l-2.39.96c-.5-.38-1.03-.7-1.62-.94l-.36-2.54c-.04-.24-.24-.41-.48-.41h-3.84c-.24 0-.43.17-.47.41l-.36 2.54c-.59.24-1.13.57-1.62.94l-2.39-.96c-.22-.08-.47 0-.59.22L2.74 8.87c-.12.21-.08.47.12.61l2.03 1.58c-.05.3-.09.63-.09.94s.02.64.07.94l-2.03 1.58c-.18.14-.23.41-.12.61l1.92 3.32c.12.22.37.29.59.22l2.39-.96c.5.38 1.03.7 1.62.94l.36 2.54c.05.24.24.41.48.41h3.84c.24 0 .44-.17.47-.41l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.39.96c.22.08.47 0 .59-.22l1.92-3.32c.12-.22.07-.47-.12-.61l-2.01-1.58zM12 15.6c-1.98 0-3.6-1.62-3.6-3.6s1.62-3.6 3.6-3.6 3.6 1.62 3.6 3.6-1.62 3.6-3.6 3.6z"/>
+        </svg>
+      </button>
+      
+      <!-- Settings Menu -->
+      <div id="tts-settings-menu" class="absolute right-0 top-10 md:top-12 bg-white border border-[#dadce0] rounded-lg shadow-[0_4px_12px_rgba(0,0,0,0.15)] p-4 w-[260px] hidden z-50">
+      <h4 class="text-[14px] font-bold text-[#202124] mb-3 border-b border-[#dadce0] pb-2 font-['Google_Sans',Arial,sans-serif]">Audio Settings</h4>
+      
+      <!-- Voice Selection -->
+      <div class="mb-4 relative">
+        <label class="block text-[12px] font-bold text-[#5f6368] uppercase tracking-[0.5px] mb-2 font-['Google_Sans',Arial,sans-serif]">Voice (Male/Female)</label>
+        
+        <!-- Custom Select Box -->
+        <div id="tts-voice-custom-select" class="w-full border border-[#dadce0] rounded-[6px] p-2.5 text-[14px] text-[#202124] bg-white hover:border-[#1a73e8] hover:bg-[#f8f9fa] transition-colors cursor-pointer flex justify-between items-center relative z-10">
+          <span id="tts-voice-selected-text" class="truncate font-medium">Loading voices...</span>
+          <svg class="w-4 h-4 text-[#5f6368] transition-transform duration-200" id="tts-voice-chevron" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+        </div>
+        
+        <!-- Custom Options Dropdown -->
+        <div id="tts-voice-options-container" class="absolute left-0 right-0 top-full mt-1 bg-white border border-[#dadce0] rounded-[8px] shadow-[0_4px_16px_rgba(0,0,0,0.12)] max-h-[180px] overflow-y-auto hidden z-20 custom-scrollbar">
+          <div id="tts-voice-options-list" class="py-1">
+            <div class="px-3 py-2 text-[14px] text-[#5f6368] italic">Loading voices...</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Speed Control -->
+      <div>
+        <label class="block text-[12px] font-bold text-[#5f6368] uppercase tracking-[0.5px] mb-2 font-['Google_Sans',Arial,sans-serif]">Reading Speed</label>
+        <div class="flex items-center gap-3">
+          <input type="range" id="tts-rate-slider" min="0.5" max="2" step="0.25" value="1" class="w-full accent-[#1a73e8] cursor-pointer">
+          <span id="tts-rate-label" class="text-[13px] font-bold text-[#202124] w-[35px] text-right">1x</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+<script is:inline>
+  document.addEventListener("DOMContentLoaded", () => {
+    const container = document.getElementById('tts-container');
+    if (!('speechSynthesis' in window) || !('SpeechSynthesisUtterance' in window)) return;
+    container.classList.remove('hidden');
+
+    const playBtn = document.getElementById('tts-play-btn');
+    const prevBtn = document.getElementById('tts-prev-btn');
+    const nextBtn = document.getElementById('tts-next-btn');
+    const playIcon = document.getElementById('tts-icon-play');
+    const pauseIcon = document.getElementById('tts-icon-pause');
+    const statusText = document.getElementById('tts-status-text');
+    const progressText = document.getElementById('tts-progress');
+    const audioWaves = document.getElementById('tts-audio-waves');
+    
+    const settingsBtn = document.getElementById('tts-settings-btn');
+    const settingsMenu = document.getElementById('tts-settings-menu');
+    
+    // Custom Select Elements
+    const customSelect = document.getElementById('tts-voice-custom-select');
+    const selectedText = document.getElementById('tts-voice-selected-text');
+    const optionsContainer = document.getElementById('tts-voice-options-container');
+    const optionsList = document.getElementById('tts-voice-options-list');
+    const chevron = document.getElementById('tts-voice-chevron');
+    let selectedVoiceURI = '';
+
+    const rateSlider = document.getElementById('tts-rate-slider');
+    const rateLabel = document.getElementById('tts-rate-label');
+
+    const synth = window.speechSynthesis;
+    let voices = [];
+    let chunks = [];
+    let currentChunkIndex = 0;
+    let isPlaying = false;
+    let isPaused = false;
+    let currentUtterance = null;
+    let defaultTimeText = progressText.textContent;
+
+    synth.cancel();
+
+    // Setup Voices
+    const populateVoices = () => {
+      voices = synth.getVoices();
+      let filteredVoices = voices.filter(v => v.lang.startsWith('en') || v.lang.startsWith('hi'));
+      if (filteredVoices.length === 0) filteredVoices = voices;
+
+      if (filteredVoices.length > 0) {
+        optionsList.innerHTML = filteredVoices.map((voice, index) => {
+          let label = voice.name.replace(/Microsoft |Desktop |Google |Apple |Natural |Mobile |Online |Premium |Standard | \(.*?\)|-[a-zA-Z]{2}/gi, '').trim();
+          if (!label || label === voice.lang) label = `Voice ${index + 1}`;
+          let langName = voice.lang.toUpperCase();
+          if (langName.startsWith('EN-US')) langName = 'US';
+          else if (langName.startsWith('EN-GB')) langName = 'UK';
+          else if (langName.startsWith('EN-IN')) langName = 'IN';
+          else if (langName.startsWith('EN-AU')) langName = 'AU';
+          else if (langName.startsWith('HI')) langName = 'Hindi';
+          return '<div class="tts-voice-option px-3 py-2 text-[14px] text-[#202124] hover:bg-[#e8f0fe] hover:text-[#174ea6] cursor-pointer transition-colors" data-value="' + voice.voiceURI + '">' + label + ' (' + langName + ')</div>';
+        }).join('');
+        
+        if(!selectedVoiceURI) {
+            selectedVoiceURI = filteredVoices[0].voiceURI;
+            const firstOption = optionsList.querySelector('.tts-voice-option');
+            if(firstOption) selectedText.textContent = firstOption.textContent;
+        }
+
+        // Attach click events to new options
+        document.querySelectorAll('.tts-voice-option').forEach(option => {
+          option.addEventListener('click', (e) => {
+            selectedVoiceURI = e.currentTarget.getAttribute('data-value');
+            selectedText.textContent = e.currentTarget.textContent;
+            optionsContainer.classList.add('hidden');
+            chevron.style.transform = '';
+            restartSpeech();
+          });
+        });
+
+      } else {
+        optionsList.innerHTML = '<div class="px-3 py-2 text-[14px] text-[#5f6368] italic">Default OS Voice</div>';
+        selectedText.textContent = 'Default OS Voice';
+        selectedVoiceURI = '';
+      }
+    };
+    populateVoices();
+    if (speechSynthesis.onvoiceschanged !== undefined) speechSynthesis.onvoiceschanged = populateVoices;
+
+    // UI Toggles
+    settingsBtn.addEventListener('click', (e) => { e.stopPropagation(); settingsMenu.classList.toggle('hidden'); });
+    
+    // Custom Select Toggle
+    customSelect.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const isHidden = optionsContainer.classList.contains('hidden');
+      if (isHidden) {
+          optionsContainer.classList.remove('hidden');
+          chevron.style.transform = 'rotate(180deg)';
+      } else {
+          optionsContainer.classList.add('hidden');
+          chevron.style.transform = '';
+      }
+    });
+
+    document.addEventListener('click', (e) => { 
+      if (!settingsMenu.contains(e.target) && !settingsBtn.contains(e.target)) settingsMenu.classList.add('hidden'); 
+      if (!customSelect.contains(e.target) && !optionsContainer.contains(e.target)) {
+        optionsContainer.classList.add('hidden');
+        chevron.style.transform = '';
+      }
+    });
+    
+    rateSlider.addEventListener('input', (e) => { rateLabel.textContent = e.target.value + 'x'; });
+
+    const updateControls = () => {
+      prevBtn.disabled = currentChunkIndex === 0;
+      nextBtn.disabled = currentChunkIndex >= chunks.length - 1;
+      if (chunks.length > 0) {
+        let pct = Math.round(((currentChunkIndex) / chunks.length) * 100);
+        progressText.textContent = `${pct}% completed`;
+      } else {
+        progressText.textContent = defaultTimeText;
+      }
+    };
+
+    const toggleUI = (playing) => {
+      isPlaying = playing;
+      if (playing) {
+        playIcon.classList.add('hidden');
+        pauseIcon.classList.remove('hidden');
+        audioWaves.classList.remove('hidden');
+        statusText.textContent = "Playing...";
+        isPaused = false;
+      } else {
+        playIcon.classList.remove('hidden');
+        pauseIcon.classList.add('hidden');
+        audioWaves.classList.add('hidden');
+        statusText.textContent = isPaused ? "Paused" : "Listen to article";
+      }
+      updateControls();
+    };
+
+    // Prepare Text Chunks (Sentence level)
+    const prepareChunks = () => {
+      const articleEl = document.getElementById('articleContent');
+      if (!articleEl) return;
+      // Split by full stops, question marks, or new lines to create natural speaking chunks
+      let rawText = articleEl.textContent;
+      // Simple regex to split by sentences while keeping the punctuation
+      let splits = rawText.match(/[^.!?\n]+[.!?\n]+/g) || [rawText];
+      
+      chunks = splits.map(s => s.trim()).filter(s => s.length > 0);
+    };
+
+    const playCurrentChunk = () => {
+      if (currentChunkIndex >= chunks.length) {
+        // Finished
+        currentChunkIndex = 0;
+        toggleUI(false);
+        progressText.textContent = defaultTimeText;
+        return;
+      }
+
+      synth.cancel(); // Stop anything playing
+
+      const text = chunks[currentChunkIndex];
+      currentUtterance = new SpeechSynthesisUtterance(text);
+      
+      const selectedVoice = voices.find(v => v.voiceURI === selectedVoiceURI);
+      if (selectedVoice) currentUtterance.voice = selectedVoice;
+      currentUtterance.rate = parseFloat(rateSlider.value);
+
+      currentUtterance.onend = () => {
+        // Only move to next if we are actively playing and not paused/cancelled manually
+        if (isPlaying && !isPaused) {
+          currentChunkIndex++;
+          playCurrentChunk();
+        }
+      };
+      currentUtterance.onerror = (e) => {
+        if(e.error !== 'canceled') {
+           console.error("TTS Error", e);
+           toggleUI(false);
+        }
+      };
+
+      synth.speak(currentUtterance);
+      toggleUI(true);
+    };
+
+    playBtn.addEventListener('click', () => {
+      if (chunks.length === 0) prepareChunks();
+      if (chunks.length === 0) return;
+
+      if (isPlaying) {
+        // Pause
+        synth.pause();
+        isPaused = true;
+        toggleUI(false);
+      } else if (isPaused) {
+        // Resume
+        synth.resume();
+        toggleUI(true);
+      } else {
+        // Start Fresh or after stop
+        playCurrentChunk();
+      }
+    });
+
+    prevBtn.addEventListener('click', () => {
+      if (chunks.length === 0) prepareChunks();
+      if (currentChunkIndex > 0) {
+        currentChunkIndex--;
+        if (isPlaying) playCurrentChunk();
+        else updateControls();
+      }
+    });
+
+    nextBtn.addEventListener('click', () => {
+      if (chunks.length === 0) prepareChunks();
+      if (currentChunkIndex < chunks.length - 1) {
+        currentChunkIndex++;
+        if (isPlaying) playCurrentChunk();
+        else updateControls();
+      }
+    });
+
+    const restartSpeech = () => {
+      if (isPlaying) playCurrentChunk();
+    };
+
+    rateSlider.addEventListener('change', restartSpeech);
+
+    window.addEventListener('beforeunload', () => synth.cancel());
+  });
+</script>

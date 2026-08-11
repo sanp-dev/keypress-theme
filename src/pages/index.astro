@@ -1,0 +1,242 @@
+---
+// src/pages/index.astro
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Hero from "../components/Hero.astro";
+import MoreNews from "../components/MoreNews.astro";
+import PerspectiveHighlight from "../components/PerspectiveHighlight.astro";
+import PostCard from "../components/PostCard.astro";
+import Newsletter from "../components/Newsletter.astro";
+import Currentaffairs from "../components/Currentaffairs.astro";
+import PopularPosts from "../components/PopularPosts.astro";
+import Quizzes from "../components/Quizzes.astro";
+import AdSense from "../components/AdSense.astro";
+
+import { getCollection } from "astro:content";
+import { getImage } from "astro:assets";
+import { cleanImageUrl } from "../utils/image";
+import { SITE_CONFIG } from "../config/site";
+
+const allPosts = await getCollection("blog");
+const sortedPosts = allPosts.sort(
+  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
+);
+
+const POSTS_PER_PAGE = 6;
+const initialPosts = sortedPosts.slice(0, POSTS_PER_PAGE);
+
+const clientPosts = await Promise.all(
+  sortedPosts.map(async (post) => {
+    let image1x = "";
+    let image2x = "";
+
+    if (post.data.image) {
+      const cleaned = cleanImageUrl(post.data.image);
+      try {
+        const opt1x = await getImage({
+          src: cleaned,
+          width: 120,
+          height: 78,
+          quality: 75,
+          format: "webp",
+        });
+        const opt2x = await getImage({
+          src: cleaned,
+          width: 240,
+          height: 156,
+          quality: 75,
+          format: "webp",
+        });
+        image1x = opt1x.src;
+        image2x = opt2x.src;
+      } catch (err) {
+        console.error(
+          `Failed to optimize clientPost image for post ${post.id}:`,
+          err,
+        );
+        image1x = post.data.image;
+        image2x = post.data.image;
+      }
+    }
+
+    return {
+      id: post.id,
+      data: {
+        title: post.data.title,
+        description: post.data.description || "",
+        category: post.data.category,
+        pubDate: post.data.pubDate,
+        image1x,
+        image2x,
+      },
+    };
+  }),
+);
+
+const latestPost = sortedPosts[0];
+let heroPreloadImage = undefined;
+if (latestPost && latestPost.data.image) {
+  try {
+    const cleaned = cleanImageUrl(latestPost.data.image);
+    const heroImageMeta = await getImage({
+      src: cleaned,
+      width: 1024,
+      height: 576,
+      widths: [480, 768, 1024, 1280],
+      sizes: "(max-width: 1023px) 100vw, 750px",
+      quality: 75,
+    });
+    heroPreloadImage = {
+      src: heroImageMeta.src,
+      srcSet: heroImageMeta.srcSet.attribute,
+      sizes: "(max-width: 1023px) 100vw, 750px",
+    };
+  } catch (err) {
+    console.error("Failed to generate preload metadata for hero image:", err);
+  }
+}
+---
+
+<BaseLayout
+  isHomePage={true}
+  title={SITE_CONFIG.title}
+  description={SITE_CONFIG.description}
+  preloadImage={heroPreloadImage}
+>
+  <Hero />
+  <MoreNews />
+  <!-- AdSense: Horizontal Ad above PerspectiveHighlight -->
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-[52px] pt-8">
+    <AdSense slot="3323737681" format="auto" responsive="true" />
+  </div>
+
+  <PerspectiveHighlight />
+  <Currentaffairs />
+  <Newsletter />
+
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-[52px] py-16">
+    <h2
+      class="text-[19px] font-[600] tracking-[1px] leading-[32px] mb-[24px] text-[#5f6368] font-['Google_Sans',Arial,sans-serif]"
+    >
+      ALL STORIES --
+    </h2>
+
+    <div
+      class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+      id="postsContainer"
+    >
+      {
+        initialPosts.map((post) => {
+          const formattedDate = post.data.pubDate
+            .toLocaleDateString("en-US", {
+              month: "short",
+              day: "2-digit",
+            })
+            .toUpperCase();
+
+          return (
+            <PostCard
+              title={post.data.title}
+              category={post.data.category}
+              date={formattedDate}
+              image={post.data.image}
+              url={`/post/${post.id}/`}
+              description={post.data.description}
+            />
+          );
+        })
+      }
+    </div>
+
+    {
+      sortedPosts.length > POSTS_PER_PAGE && (
+        <div class="mt-16 flex justify-center">
+          <button
+            id="loadMoreBtn"
+            class="px-8 py-3 border border-gray-300 rounded-full text-blue-600 font-medium hover:bg-gray-50 transition-colors"
+          >
+            Load more stories
+          </button>
+        </div>
+      )
+    }
+  </main>
+
+  <!-- AdSense: Bottom Ad before Popular Posts -->
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-[52px] pb-8">
+    <AdSense slot="2038576175" format="auto" responsive="true" />
+  </div>
+
+  <PopularPosts />
+  <Quizzes />
+
+  <script define:vars={{ sortedPosts: clientPosts, POSTS_PER_PAGE }}>
+    let currentPage = 1;
+    const postsContainer = document.getElementById("postsContainer");
+    const loadMoreBtn = document.getElementById("loadMoreBtn");
+
+    if (loadMoreBtn) {
+      loadMoreBtn.addEventListener("click", function () {
+        const startIndex = currentPage * POSTS_PER_PAGE;
+        const endIndex = startIndex + POSTS_PER_PAGE;
+        const postsToAdd = sortedPosts.slice(startIndex, endIndex);
+
+        postsToAdd.forEach((post) => {
+          const dateObj = new Date(post.data.pubDate);
+          const formattedDate = dateObj
+            .toLocaleDateString("en-US", {
+              month: "short",
+              day: "2-digit",
+            })
+            .toUpperCase();
+
+          const imageHtml = post.data.image1x
+            ? `
+            <div class="feed-image-wrap">
+              <img
+                src="${post.data.image1x}"
+                srcset="${post.data.image1x} 1x, ${post.data.image2x} 2x"
+                alt="${post.data.title}"
+                class="feed-image"
+                loading="lazy"
+              />
+            </div>
+          `
+            : "";
+
+          let descText = post.data.description || "";
+          if (descText.length > 145) {
+            descText = descText.substring(0, 142) + "...";
+          }
+          const descriptionHtml = descText
+            ? `<p class="feed-description">${descText}</p>`
+            : "";
+
+          const html = `
+            <a href="/post/${post.id}/" class="feed-article group cursor-pointer text-inherit no-underline block">
+              <div class="flex items-center">
+                <span class="text-[#5f6368] text-[12px] font-medium tracking-[0.5px] uppercase">${formattedDate}</span>
+                <span class="text-[#5f6368] mx-2 text-[16px] leading-none">·</span>
+                <span class="text-[#1a73e8] text-[12px] font-medium tracking-[0.5px] uppercase">${post.data.category}</span>
+              </div>
+              <div class="feed-content">
+                ${imageHtml}
+                <h2 class="feed-title font-normal font-['Google_Sans',Arial,sans-serif] group-hover:underline decoration-[1.5px] underline-offset-[3px]">
+                  ${post.data.title}
+                </h2>
+                ${descriptionHtml}
+              </div>
+            </a>
+          `;
+
+          postsContainer.insertAdjacentHTML("beforeend", html);
+        });
+
+        currentPage++;
+
+        if (endIndex >= sortedPosts.length) {
+          loadMoreBtn.style.display = "none";
+        }
+      });
+    }
+  </script>
+</BaseLayout>

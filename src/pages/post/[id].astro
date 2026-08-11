@@ -1,0 +1,1457 @@
+---
+// src/pages/post/[id].astro
+import { getCollection, render } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PostCard from '../../components/PostCard.astro';
+import ListenArticle from '../../components/ListenArticle.astro';
+import AISummaryModal from '../../components/AISummaryModal.astro';
+import Newsletter from '../../components/Newsletter.astro';
+import AdSense from '../../components/AdSense.astro';
+import McqStyles from '../../components/McqStyles.astro';
+import PopularPosts from '../../components/PopularPosts.astro';
+import FlashcardStyles from '../../components/FlashcardStyles.astro';
+import { AUTHOR_REGISTRY } from '../../config/authors';
+import { SITE_CONFIG } from '../../config/site';
+import { Image } from 'astro:assets';
+import { cleanImageUrl } from '../../utils/image';
+
+const profilesBySlug = Object.fromEntries(
+  Object.values(AUTHOR_REGISTRY).map((p) => [p.slug, p])
+);
+
+function capitalize(str: string) {
+  return str
+    .split(' ')
+    .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+    .join(' ');
+}
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog');
+  return posts.map(post => ({
+    params: { id: post.id },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+
+// Dynamically calculate reading time (average 200 words per minute)
+const wordCount = post.body ? post.body.split(/\s+/).length : 0;
+const readingTime = Math.max(1, Math.ceil(wordCount / 200));
+
+const formattedDate = post.data.pubDate.toLocaleDateString('en-US', { 
+  year: 'numeric',
+  month: 'short', 
+  day: '2-digit' 
+});
+
+const allPosts = await getCollection('blog');
+let relatedPosts = allPosts.filter(p => p.data.category === post.data.category && p.id !== post.id)
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+
+if (relatedPosts.length < 4) {
+  const otherPosts = allPosts.filter(p => p.id !== post.id && !relatedPosts.some(rp => rp.id === p.id))
+    .sort(() => 0.5 - Math.random());
+  relatedPosts = [...relatedPosts, ...otherPosts];
+}
+
+relatedPosts = relatedPosts.slice(0, 4);
+
+const categorySlug = post.data.category.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)+/g, '');
+
+const authorSlugResolved =
+  post.data.authorSlug ||
+  post.data.author.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)+/g, '');
+const authorAvatarUrl = profilesBySlug[authorSlugResolved]?.avatarUrl ?? null;
+const authorRole = profilesBySlug[authorSlugResolved]?.role ?? 'Author';
+const cleanedHeroImage = cleanImageUrl(post.data.image);
+
+// ═══════════════════════════════════════════════════════
+// Build-time Content Detection for Conditional Injection
+// Scans raw markdown body for component markers.
+// CSS/JS/Schema injected ONLY when components are present.
+// ═══════════════════════════════════════════════════════
+const postBody = post.body || '';
+const hasMcqs = postBody.includes('qd-quiz-wrap');
+const hasFlashcards = postBody.includes('qd-flashcard-deck');
+const hasFaqs = /\<details[\s>]/.test(postBody) && postBody.includes('<summary');
+
+// Auto-generate Flashcard Education Q&A Schema (Google ACTIVE feature)
+let flashcardSchema: Record<string, any> | null = null;
+if (hasFlashcards) {
+  const cardMatches = [...postBody.matchAll(/data-front="([^"]*)"[\s\S]*?data-back="([^"]*)"/g)];
+  if (cardMatches.length > 0) {
+    flashcardSchema = {
+      "@context": "https://schema.org/",
+      "@type": "Quiz",
+      "about": { "@type": "Thing", "name": post.data.title },
+      "educationalAlignment": [
+        {
+          "@type": "AlignmentObject",
+          "alignmentType": "educationalSubject",
+          "targetName": post.data.category || "Education"
+        }
+      ],
+      "hasPart": cardMatches.map(m => ({
+        "@type": "Question",
+        "eduQuestionType": "Flashcard",
+        "text": m[1],
+        "acceptedAnswer": { "@type": "Answer", "text": m[2] }
+      }))
+    };
+  }
+}
+
+// Auto-generate FAQ Schema (deprecated rich result but helpful for AI understanding)
+let faqSchema: Record<string, any> | null = null;
+if (hasFaqs) {
+  const faqMatches = [...postBody.matchAll(/<summary>([\s\S]*?)<\/summary>[\s\S]*?<p>([\s\S]*?)<\/p>/g)];
+  if (faqMatches.length > 0) {
+    faqSchema = {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": faqMatches.map(m => ({
+        "@type": "Question",
+        "name": m[1].replace(/<[^>]*>/g, '').trim(),
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": m[2].replace(/<[^>]*>/g, '').trim()
+        }
+      }))
+    };
+  }
+}
+---
+
+<BaseLayout 
+  title={`${post.data.title} - ${SITE_CONFIG.name}`} 
+  description={post.data.description}
+  image={post.data.image}
+  url={Astro.url.href}
+  type="article"
+  author={post.data.author}
+  publishedTime={post.data.pubDate}
+  category={post.data.category}
+  tags={post.data.tags}
+  breadcrumbs={[
+    { name: "Home", url: Astro.url.origin + "/" },
+    { name: post.data.category, url: `${Astro.url.origin}/category/${categorySlug}/` },
+    { name: post.data.title, url: Astro.url.href }
+  ]}
+>
+  
+  <!-- SVG Definitions -->
+  <svg style="display: none;">
+    <symbol id="social-facebook" viewBox="0 0 18 18">
+      <path d="M15.7,1.5H2.3c-0.5,0-0.8,0.4-0.8,0.8v13.3c0,0.5,0.4,0.8,0.8,0.8h7.2v-5.8h-2V8.4h2V6.8c0-1.9,1.2-3,2.9-3 c0.8,0,1.5,0.1,1.7,0.1v2l-1.2,0c-0.9,0-1.1,0.4-1.1,1.1v1.4h2.2l-0.3,2.3h-1.9v5.8h3.8c0.5,0,0.8-0.4,0.8-0.8V2.3 C16.5,1.9,16.1,1.5,15.7,1.5z"></path>
+    </symbol>
+    <symbol id="social-x" viewBox="0 0 18 18">
+      <path d="M13.3133 2.25H15.6133L10.5884 7.99336L16.5 15.8086H11.8712L8.24593 11.0686L4.09772 15.8086H1.79616L7.17082 9.66551L1.5 2.25H6.24606L9.5231 6.58242L13.3133 2.25ZM12.506 14.4318H13.7806L5.5536 3.5545H4.18603L12.506 14.4318Z"/>
+    </symbol>
+    <symbol id="social-linkedin" viewBox="0 0 18 18">
+      <path d="M15.4,1.5H2.6C2,1.5,1.5,2,1.5,2.6v12.8c0,0.6,0.5,1.1,1.1,1.1h12.8c0.6,0,1.1-0.5,1.1-1.1V2.6C16.5,2,16,1.5,15.4,1.5z M3.8,7.1H6v7.2H3.8V7.1z M4.9,6.1c-0.7,0-1.3-0.6-1.3-1.3c0-0.7,0.6-1.3,1.3-1.3c0.7,0,1.3,0.6,1.3,1.3C6.2,5.6,5.6,6.1,4.9,6.1z M14.5,14.3h-2.3v-3.5c0-0.8,0-1.9-1.2-1.9c-1.2,0-1.4,0.9-1.4,1.8v3.5H7.4V7.1h2.2v1h0c0.3-0.6,1-1.2,2.1-1.2 c2.3,0,2.7,1.5,2.7,3.4V14.3z"></path>
+    </symbol>
+    <symbol id="social-whatsapp" viewBox="0 0 24 24">
+      <path d="M12.031 21.172c-1.42 0-2.812-.382-4.045-1.106l-4.52 1.185 1.205-4.407a9.143 9.143 0 0 1-1.21-4.606c0-5.068 4.126-9.194 9.194-9.194 5.068 0 9.194 4.126 9.194 9.194 0 5.068-4.126 9.194-9.194 9.194zM16.96 15.39c-.27-.135-1.6-.79-1.848-.88-.25-.09-.43-.135-.61.135-.18.27-.694.88-.85 1.06-.156.18-.31.202-.58.067-.27-.135-1.144-.422-2.18-1.345-.806-.72-1.35-1.61-1.506-1.88-.156-.27-.016-.416.12-.55.12-.118.27-.315.405-.473.135-.157.18-.27.27-.45.09-.18.045-.338-.023-.473-.068-.135-.61-1.472-.836-2.015-.22-.53-.444-.458-.61-.466-.157-.008-.337-.008-.517-.008-.18 0-.473.068-.72.338-.248.27-.945.922-.945 2.247s.967 2.607 1.102 2.787c.135.18 1.9 2.9 4.605 4.068 2.705 1.168 2.705.79 3.198.745.495-.045 1.6-.653 1.825-1.283.225-.63.225-1.17.157-1.283-.068-.113-.248-.18-.518-.315z"/>
+    </symbol>
+    <symbol id="social-mail" viewBox="0 0 18 18">
+      <path d="M9,8.2L3,4.5h12L9,8.2z M15,13.5H3V6l6,3.8L15,6V13.5z M15,3H3C2.2,3,1.5,3.7,1.5,4.5l0,9C1.5,14.3,2.2,15,3,15 h12c0.8,0,1.5-0.7,1.5-1.5v-9C16.5,3.7,15.8,3,15,3z"></path>
+    </symbol>
+    <symbol id="social-link" viewBox="0 0 18 18">
+      <path d="M12.8,5.2h-3v1.4h3c1.3,0,2.3,1,2.3,2.3s-1,2.3-2.3,2.3h-3v1.4h3c2.1,0,3.8-1.7,3.8-3.8S14.8,5.2,12.8,5.2z M6,9.8h6V8.2H6V9.8z M2.9,9c0-1.3,1-2.3,2.3-2.3h3V5.2h-3C3.2,5.2,1.5,6.9,1.5,9s1.7,3.8,3.8,3.8h3v-1.4h-3C4,11.3,2.9,10.3,2.9,9z"></path>
+    </symbol>
+    <symbol id="ai-generate-summary" viewBox="0 0 24 24" fill="none">
+      <path d="M8 17C8.28333 17 8.52083 16.9042 8.7125 16.7125C8.90417 16.5208 9 16.2833 9 16C9 15.7167 8.90417 15.4792 8.7125 15.2875C8.52083 15.0958 8.28333 15 8 15C7.71667 15 7.47917 15.0958 7.2875 15.2875C7.09583 15.4792 7 15.7167 7 16C7 16.2833 7.09583 16.5208 7.2875 16.7125C7.47917 16.9042 7.71667 17 8 17ZM8 13C8.28333 13 8.52083 12.9042 8.7125 12.7125C8.90417 12.5208 9 12.2833 9 12C9 11.7167 8.90417 11.4792 8.7125 11.2875C8.52083 11.0958 8.28333 11 8 11C7.71667 11 7.47917 11.0958 7.2875 11.2875C7.09583 11.4792 7 11.7167 7 12C7 12.2833 7.09583 12.5208 7.2875 12.7125C7.47917 12.9042 7.71667 13 8 13ZM8 9C8.28333 9 8.52083 8.90417 8.7125 8.7125C8.90417 8.52083 9 8.28333 9 8C9 7.71667 8.90417 7.47917 8.7125 7.2875C8.52083 7.09583 8.28333 7 8 7C7.71667 7 7.47917 7.09583 7.2875 7.2875C7.09583 7.47917 7 7.71667 7 8C7 8.28333 7.09583 8.52083 7.2875 8.7125C7.47917 8.90417 7.71667 9 8 9ZM11 17H17V15H11V17ZM11 13H15V11H11V13ZM5 21C4.45 21 3.97917 20.8042 3.5875 20.4125C3.19583 20.0208 3 19.55 3 19V5C3 4.45 3.19583 3.97917 3.5875 3.5875C3.97917 3.19583 4.45 3 5 3H13V5H5V19H19V11H21V19C21 19.55 20.8042 20.0208 20.4125 20.4125C20.0208 20.8042 19.55 21 19 21H5ZM17.5 12C17.5 10.4667 16.9667 9.16667 15.9 8.1C14.8333 7.03333 13.5333 6.5 12 6.5C13.5333 6.5 14.8333 5.96667 15.9 4.9C16.9667 3.83333 17.5 2.53333 17.5 1C17.5 2.53333 18.0333 3.83333 19.1 4.9C20.1667 5.96667 21.4667 6.5 23 6.5C21.4667 6.5 20.1667 7.03333 19.1 8.1C18.0333 9.16667 17.5 10.4667 17.5 12Z" fill="currentColor"/>
+    </symbol>
+  </svg>
+
+  <main class="max-w-[1000px] xl:max-w-[1360px] mx-auto px-4 sm:px-6 lg:px-8 pt-10 pb-16">
+    <div class="max-w-[1000px] mx-auto">
+    
+    <nav aria-label="Breadcrumb" class="flex items-center text-[12px] font-medium tracking-[0.5px] text-[#1a73e8] uppercase mb-8 font-['Google_Sans',Arial,sans-serif]">
+      <a href="/" class="hover:text-[#174ea6] transition-colors flex items-center" aria-label="Home">
+        <svg class="w-4 h-4" style="transform: translateY(-1px);" fill="currentColor" viewBox="0 0 20 20">
+          <path d="M10 2L2 9v1h2v8h5v-5h2v5h5v-8h2V9l-8-7z"/>
+        </svg>
+      </a>
+      <span class="mx-2 text-[#5f6368]">/</span>
+      <a href="/" class="hover:underline">Blog</a>
+      <span class="mx-2 text-[#5f6368]">/</span>
+      <span aria-current="page" class="text-[#5f6368] uppercase">{post.data.category}</span>
+    </nav>
+
+    <h1 class="text-[32px] md:text-[48px] leading-[1.3] font-normal text-[#202124] mb-8 font-['Google_Sans',Arial,sans-serif] tracking-tight" id="articleTitle" data-pagefind-meta="title">
+      {post.data.title}
+    </h1>
+
+    <div class="flex flex-col md:flex-row gap-6 mb-12">
+      <div class="flex items-start justify-between md:flex-col text-[14px] text-[#5f6368] leading-[24px] min-w-[140px] w-full md:w-auto">
+        <div class="flex flex-col">
+          <time datetime={post.data.pubDate.toISOString().split('T')[0]}>{formattedDate}</time>
+          <span>{readingTime} min read</span>
+        </div>
+        
+        <!-- Mobile Share Button (Visible only on mobile) -->
+        <div class="md:hidden relative inline-block share-menu-container">
+          <button class="flex items-center gap-2 text-[#5f6368] hover:text-[#202124] text-[15px] font-medium transition-colors px-3 py-1.5 border border-transparent rounded-[4px] share-trigger-btn">
+            <svg class="w-5 h-5 current-color" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z" />
+            </svg>
+            Share
+          </button>
+
+          <!-- Dropdown Dialog -->
+          <div class="uni-social-share__dialog uni-social-share__content share-dropdown">
+            <ul class="m-0 p-0 list-none">
+              <li>
+                <a href="#" class="article-share__link-text share-action" data-platform="x">
+                  <svg class="w-[18px] h-[18px] mr-4 fill-[#3c4043]"><use href="#social-x"></use></svg>
+                  <span class="text-[14px] text-[#3c4043] font-['Google_Sans',Arial,sans-serif]">x.com</span>
+                </a>
+              </li>
+              <li>
+                <a href="#" class="article-share__link-text share-action" data-platform="facebook">
+                  <svg class="w-[18px] h-[18px] mr-4 fill-[#3c4043]"><use href="#social-facebook"></use></svg>
+                  <span class="text-[14px] text-[#3c4043] font-['Google_Sans',Arial,sans-serif]">Facebook</span>
+                </a>
+              </li>
+              <li>
+                <a href="#" class="article-share__link-text share-action" data-platform="linkedin">
+                  <svg class="w-[18px] h-[18px] mr-4 fill-[#3c4043]"><use href="#social-linkedin"></use></svg>
+                  <span class="text-[14px] text-[#3c4043] font-['Google_Sans',Arial,sans-serif]">LinkedIn</span>
+                </a>
+              </li>
+              <li>
+                <a href="#" class="article-share__link-text share-action" data-platform="whatsapp">
+                  <svg class="w-[18px] h-[18px] mr-4 fill-[#3c4043]"><use href="#social-whatsapp"></use></svg>
+                  <span class="text-[14px] text-[#3c4043] font-['Google_Sans',Arial,sans-serif]">WhatsApp</span>
+                </a>
+              </li>
+              <li>
+                <a href="#" class="article-share__link-text share-action" data-platform="email">
+                  <svg class="w-[18px] h-[18px] mr-4 fill-[#3c4043]"><use href="#social-mail"></use></svg>
+                  <span class="text-[14px] text-[#3c4043] font-['Google_Sans',Arial,sans-serif]">Mail</span>
+                </a>
+              </li>
+              <li>
+                <a href="#" class="article-share__link-text share-action" data-platform="copy">
+                  <svg class="w-[18px] h-[18px] mr-4 fill-[#3c4043]"><use href="#social-link"></use></svg>
+                  <span class="text-[14px] text-[#3c4043] font-['Google_Sans',Arial,sans-serif]">Copy link</span>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      
+      <div class="hidden md:block w-px bg-[#dadce0]"></div>
+      
+      <div class="text-[20px] leading-[32px] text-[#5f6368] font-normal font-['Google_Sans',Arial,sans-serif]">
+        {post.data.description}
+      </div>
+    </div>
+
+    <!-- Author & Share Row -->
+    <div class="flex flex-col md:flex-row md:items-center justify-between gap-6 mb-12 relative">
+      
+      <div class="flex items-center gap-4">
+        <a href={`/author/${authorSlugResolved}/`} class="w-12 h-12 rounded-full overflow-hidden bg-[#1a73e8] flex items-center justify-center text-white text-[20px] font-bold shrink-0">
+          {authorAvatarUrl
+            ? <Image src={authorAvatarUrl} alt={post.data.author} class="w-full h-full object-cover" width={96} height={96} widths={[48, 96]} sizes="48px" quality={75} />
+            : post.data.author.charAt(0)}
+        </a>
+        <div class="flex flex-col">
+          <a href={`/author/${authorSlugResolved}/`} class="text-[16px] font-bold text-[#202124] font-['Google_Sans',Arial,sans-serif] hover:underline">{post.data.author}</a>
+          <span class="text-[14px] text-[#5f6368] mt-0.5">{authorRole}</span>
+        </div>
+      </div>
+
+      <div class="flex items-center gap-4 relative">
+        {post.data.ai_summary && (
+          <button id="open-ai-summary-btn" class="flex items-center gap-2 bg-[#e8f0fe] text-[#041e49] px-5 py-2.5 rounded-full text-[14px] font-medium hover:bg-[#c2e7ff] transition-colors outline-none cursor-pointer">
+            <svg class="w-4 h-4 shrink-0" fill="currentColor">
+              <use href="#ai-generate-summary"></use>
+            </svg>
+            Read AI-generated summary
+          </button>
+        )}
+        
+        <!-- Desktop Share Button Wrapper -->
+        <div class="hidden md:inline-block relative share-menu-container">
+          <button class="flex items-center gap-2 text-[#5f6368] hover:text-[#202124] text-[15px] font-medium transition-colors px-3 py-2 border border-transparent rounded-[4px] share-trigger-btn">
+            <svg class="w-5 h-5 current-color" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z" />
+            </svg>
+            Share
+          </button>
+
+          <!-- Dropdown Dialog -->
+          <div class="uni-social-share__dialog uni-social-share__content share-dropdown">
+            <ul class="m-0 p-0 list-none">
+              <li>
+                <a href="#" class="article-share__link-text share-action" data-platform="x">
+                  <svg class="w-[18px] h-[18px] mr-4 fill-[#3c4043]"><use href="#social-x"></use></svg>
+                  <span class="text-[14px] text-[#3c4043] font-['Google_Sans',Arial,sans-serif]">x.com</span>
+                </a>
+              </li>
+              <li>
+                <a href="#" class="article-share__link-text share-action" data-platform="facebook">
+                  <svg class="w-[18px] h-[18px] mr-4 fill-[#3c4043]"><use href="#social-facebook"></use></svg>
+                  <span class="text-[14px] text-[#3c4043] font-['Google_Sans',Arial,sans-serif]">Facebook</span>
+                </a>
+              </li>
+              <li>
+                <a href="#" class="article-share__link-text share-action" data-platform="linkedin">
+                  <svg class="w-[18px] h-[18px] mr-4 fill-[#3c4043]"><use href="#social-linkedin"></use></svg>
+                  <span class="text-[14px] text-[#3c4043] font-['Google_Sans',Arial,sans-serif]">LinkedIn</span>
+                </a>
+              </li>
+              <li>
+                <a href="#" class="article-share__link-text share-action" data-platform="whatsapp">
+                  <svg class="w-[18px] h-[18px] mr-4 fill-[#3c4043]"><use href="#social-whatsapp"></use></svg>
+                  <span class="text-[14px] text-[#3c4043] font-['Google_Sans',Arial,sans-serif]">WhatsApp</span>
+                </a>
+              </li>
+              <li>
+                <a href="#" class="article-share__link-text share-action" data-platform="email">
+                  <svg class="w-[18px] h-[18px] mr-4 fill-[#3c4043]"><use href="#social-mail"></use></svg>
+                  <span class="text-[14px] text-[#3c4043] font-['Google_Sans',Arial,sans-serif]">Mail</span>
+                </a>
+              </li>
+              <li>
+                <a href="#" class="article-share__link-text share-action" data-platform="copy">
+                  <svg class="w-[18px] h-[18px] mr-4 fill-[#3c4043]"><use href="#social-link"></use></svg>
+                  <span class="text-[14px] text-[#3c4043] font-['Google_Sans',Arial,sans-serif]">Copy link</span>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Rest of the Article -->
+    <figure class="w-full mb-12">
+      {cleanedHeroImage && (
+        <Image 
+          src={cleanedHeroImage} 
+          alt={post.data.title} 
+          width={1000}
+          height={563}
+          widths={[480, 768, 1000, 1200, 1600]}
+          sizes="(max-width: 1024px) 100vw, 1000px"
+          class="w-full h-auto aspect-[16/9] object-cover rounded-[4px]"
+          loading="eager"
+          fetchpriority="high"
+          quality={75}
+        />
+      )}
+      {post.data.image_caption && (
+        <figcaption class="text-center text-[14px] text-[#5f6368] italic mt-3">
+          {post.data.image_caption}
+        </figcaption>
+      )}
+    </figure>
+
+    <!-- AdSense: Top Horizontal Ad (after hero image, before article) -->
+    <div class="max-w-[720px] mx-auto my-8">
+      <AdSense slot="3323737681" format="auto" responsive="true" />
+    </div>
+
+    <ListenArticle readingTime={readingTime} />
+
+    </div> <!-- End of top max-width wrapper -->
+
+    <!-- Article with Sticky Sidebar Ads (desktop only)
+         Layout: sidebars are fixed 160px each, article fills
+         the remaining space (capped at 720px).  Sidebar
+         fill/unfill never pushes the article — space is
+         always reserved via flex-basis.                      -->
+    <!-- Article Layout with Absolute Sticky Sidebars (Zero Layout Shift / CLS=0)
+         Article body is statically centered at max-w-[720px] mx-auto.
+         Sidebars are positioned absolutely on the left/right flanks (-left-48 / -right-48).
+         Whether sidebar ads load, fail to load, or auto-hide, article body NEVER moves. -->
+    <div class="article-sidebar-layout relative max-w-[720px] mx-auto mt-[36px]">
+      <!-- Left Sidebar Sticky Ad (desktop only) -->
+      <aside class="hidden xl:block absolute -left-[192px] inset-y-0 w-[160px] pointer-events-auto z-10">
+        <div class="sticky top-24 w-[160px] h-[600px]">
+          <AdSense slot="8384492677" style="display:inline-block;width:160px;height:600px" responsive="false" desktopOnly={true} />
+        </div>
+      </aside>
+
+      <!-- Main Article Content (Always centered, full 720px width) -->
+      <article id="articleContent" data-post-id={post.id} data-pagefind-body class="w-full text-[15px] leading-[26px] text-[#53575a] font-normal tracking-normal antialiased prose prose-lg prose-a:text-[#1a73e8]" style="font-family: 'Google Sans', Arial, sans-serif; min-width: 0;">
+        <Content />
+      </article>
+
+      <!-- Right Sidebar Sticky Ad (desktop only) -->
+      <aside class="hidden xl:block absolute -right-[192px] inset-y-0 w-[160px] pointer-events-auto z-10">
+        <div class="sticky top-24 w-[160px] h-[600px]">
+          <AdSense slot="6679349138" style="display:inline-block;width:160px;height:600px" responsive="false" desktopOnly={true} />
+        </div>
+      </aside>
+    </div>
+
+    <!-- AdSense: Bottom Square Ad (after article content, before newsletter) -->
+    <div class="max-w-[720px] mx-auto my-8">
+      <AdSense slot="2038576175" format="auto" responsive="true" />
+    </div>
+
+    <Newsletter />
+
+    <div class="max-w-[720px] mx-auto flex flex-col sm:flex-row sm:items-center gap-6 mb-20">
+      <span class="text-[14px] font-medium text-[#202124] tracking-[0.25px] leading-[48px] uppercase whitespace-nowrap" style="font-family: 'Google Sans', Arial, sans-serif;">
+        POSTED IN:
+      </span>
+      
+      <ul class="flex flex-wrap gap-3">
+        {post.data.category && (
+          <li>
+            <a href={`/category/${categorySlug}/`} class="bg-[#e6f4ea] text-[#137333] px-[20px] py-[12px] rounded-[30px] text-[16px] font-bold hover:bg-[#d2e3fc] hover:text-[#174ea6] transition-colors inline-block text-center" style="font-family: 'Google Sans', Arial, sans-serif;">
+              {post.data.category}
+            </a>
+          </li>
+        )}
+        {post.data.tags && post.data.tags.length > 0 && (() => {
+          const primaryTag = post.data.tags[0];
+          const tagSlug = primaryTag.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)+/g, '');
+          return (
+            <li>
+              <a href={`/label/${tagSlug}/`} class="bg-[#e8f0fe] text-[#174ea6] px-[20px] py-[12px] rounded-[30px] text-[16px] font-normal hover:bg-[#d2e3fc] transition-colors inline-block text-center" style="font-family: 'Google Sans', Arial, sans-serif;">
+                {capitalize(primaryTag)}
+              </a>
+            </li>
+          );
+        })()}
+      </ul>
+    </div>
+
+    {relatedPosts.length > 0 && (
+      <div class="mt-[100px] w-full max-w-[1000px] mx-auto border-t border-[#dadce0] pt-[60px]">
+        <h2 class="text-[24px] md:text-[28px] text-[#202124] font-bold mb-10 antialiased" style="font-family: 'Google Sans', Arial, sans-serif;">
+          Related stories
+        </h2>
+
+        <!-- Mobile Layout: PostCard Style -->
+        <div class="flex flex-col gap-6 md:hidden">
+          {relatedPosts.map((related) => {
+            const relDate = related.data.pubDate.toLocaleDateString('en-US', { month: 'short', day: '2-digit', year: 'numeric' });
+            return (
+              <PostCard 
+                title={related.data.title}
+                category={related.data.category}
+                date={relDate}
+                image={related.data.image}
+                url={`/post/${related.id}/`}
+                description={related.data.description}
+              />
+            );
+          })}
+        </div>
+
+        <!-- Desktop Layout: Carousel -->
+        <div class="hidden md:block">
+          <!-- Grid -->
+          <div id="relatedGrid" class="related-grid">
+            {relatedPosts.map((related, index) => {
+              const relDate = related.data.pubDate.toLocaleDateString('en-US', { month: 'short', day: '2-digit', year: 'numeric' });
+              return (
+                <a
+                  href={`/post/${related.id}/`}
+                  class="related-card group"
+                  data-index={index}
+                >
+                  <div class="related-card-img">
+                    {related.data.image && (
+                      <Image 
+                        src={cleanImageUrl(related.data.image)} 
+                        alt={related.data.title} 
+                        width={320}
+                        height={180}
+                        widths={[320, 640]}
+                        sizes="(max-width: 520px) 100vw, (max-width: 768px) 50vw, 320px"
+                        loading="lazy"
+                        quality={75}
+                      />
+                    )}
+                  </div>
+                  <div class="related-card-body">
+                    <span class="related-card-cat">{related.data.category}</span>
+                    <h3 class="related-card-title">{related.data.title}</h3>
+                    {related.data.description && (
+                      <p class="related-card-desc">{related.data.description}</p>
+                    )}
+                    <div class="related-card-footer">
+                      <span class="related-card-date">{relDate}</span>
+                      <svg class="related-card-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14M12 5l7 7-7 7"/>
+                      </svg>
+                    </div>
+                  </div>
+                </a>
+              );
+            })}
+          </div>
+
+          <!-- Pagination -->
+          <div id="relatedPagination" class="related-pagination"></div>
+        </div>
+      </div>
+    )}
+
+    <PopularPosts />
+
+    <!-- AI Summary Modal -->
+    {post.data.ai_summary && <AISummaryModal summary={post.data.ai_summary} />}
+  </main>
+
+  <!-- 3. CSS for Related Stories + Share Component -->
+  <style is:global>
+    /* ── Article Sidebar Layout — CLS-safe ──
+       When sidebar ads are unfilled and hidden, the article
+       must stay centered. flex: 1 1 auto on article +
+       margin auto handles this gracefully.                */
+    .article-sidebar-layout #articleContent {
+      width: 100%;
+    }
+    /* If BOTH sidebars are gone, article auto-centers */
+    @media (min-width: 1280px) {
+      .article-sidebar-layout {
+        /* Already has justify-center from Tailwind */
+      }
+      /* When an aside is hidden (unfilled), let article
+         keep its max-width and stay centered via flex */
+      .article-sidebar-layout > aside[style]:has(ins[data-ad-status="unfilled"]) {
+        /* The display:none from global.css handles it;
+           flex-basis becomes irrelevant when hidden */
+      }
+    }
+
+    /* ── Related Stories Carousel ── */
+    .related-grid {
+      display: flex;
+      gap: 20px;
+      margin-bottom: 36px;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      scroll-behavior: smooth;
+      scrollbar-width: none; /* Firefox */
+      -ms-overflow-style: none; /* IE/Edge */
+    }
+    .related-grid::-webkit-scrollbar {
+      display: none; /* Chrome/Safari */
+    }
+
+    /* Card */
+    .related-card {
+      display: flex;
+      flex-direction: column;
+      border: 1px solid #dadce0;
+      border-radius: 4px;
+      overflow: hidden;
+      background: #fff;
+      text-decoration: none;
+      color: inherit;
+      transition: box-shadow 0.2s, transform 0.2s;
+      flex: 0 0 calc(33.333% - 13.333px);
+      scroll-snap-align: start;
+      scroll-snap-stop: always;
+    }
+    @media (max-width: 768px) {
+      .related-card { flex: 0 0 calc(50% - 10px); }
+    }
+    @media (max-width: 520px) {
+      .related-card { flex: 0 0 100%; }
+    }
+    .related-card:hover {
+      box-shadow: 0 1px 3px rgba(54,64,67,.3), 0 4px 8px 3px rgba(54,64,67,.15);
+      transform: translateY(-2px);
+    }
+
+    /* Card image */
+    .related-card-img {
+      width: 100%;
+      aspect-ratio: 16/9;
+      overflow: hidden;
+      background: #e8f0fe;
+      flex-shrink: 0;
+    }
+    .related-card-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.3s;
+    }
+    .related-card:hover .related-card-img img {
+      transform: scale(1.04);
+    }
+
+    /* Card body */
+    .related-card-body {
+      padding: 16px 18px 18px;
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+      gap: 6px;
+    }
+    .related-card-cat {
+      font-size: 11px;
+      font-weight: 700;
+      color: #1a73e8;
+      text-transform: uppercase;
+      letter-spacing: 0.6px;
+    }
+    .related-card-title {
+      font-size: 16px;
+      font-weight: 400;
+      color: #202124;
+      line-height: 1.45;
+      font-family: 'Google Sans', Arial, sans-serif;
+      flex: 1;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      margin: 0;
+    }
+    .related-card:hover .related-card-title {
+      text-decoration: underline;
+      text-decoration-thickness: 1.5px;
+      text-underline-offset: 3px;
+    }
+    .related-card-desc {
+      font-size: 14px;
+      line-height: 1.5;
+      color: #5f6368;
+      font-family: 'Google Sans', Arial, sans-serif;
+      margin: 0;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+    .related-card-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 10px;
+    }
+    .related-card-date {
+      font-size: 12px;
+      color: #5f6368;
+      font-weight: 500;
+    }
+    .related-card-arrow {
+      width: 16px;
+      height: 16px;
+      color: #5f6368;
+      transition: color 0.2s, transform 0.2s;
+      flex-shrink: 0;
+    }
+    .related-card:hover .related-card-arrow {
+      color: #1a73e8;
+      transform: translateX(3px);
+    }
+
+    /* ── Pagination ── */
+    .related-pagination {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 4px;
+      margin-top: 8px;
+    }
+    .rpg-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      border: none;
+      background: transparent;
+      cursor: pointer;
+      font-size: 14px;
+      font-weight: 500;
+      font-family: 'Google Sans', Arial, sans-serif;
+      color: #5f6368;
+      transition: background 0.15s;
+    }
+    .rpg-btn:hover:not(.rpg-active):not([disabled]) {
+      background: rgba(0, 0, 0, 0.06);
+    }
+    .rpg-btn.rpg-active {
+      background: #e8f0fe;
+      color: #1a73e8;
+    }
+    .rpg-arrow {
+      color: #1a73e8;
+    }
+    .rpg-arrow:disabled,
+    .rpg-arrow[disabled] {
+      opacity: 0.3;
+      cursor: default;
+      color: #5f6368;
+      pointer-events: none;
+    }
+
+    .share-trigger-btn.active {
+      border-color: #1a73e8;
+      color: #1a73e8;
+    }
+    
+    .uni-social-share__dialog {
+      background-color: #fff;
+      border: 1px solid #dadce0;
+      border-radius: 5px;
+      box-shadow: 0 4px 12px rgba(0,0,0,.15);
+      display: none;
+      padding: 12px 0;
+      position: absolute;
+      top: 48px;
+      right: 0;
+      z-index: 50;
+    }
+    
+    .uni-social-share__show-dialog {
+      display: block;
+    }
+    
+    .uni-social-share__content {
+      width: 160px;
+    }
+    
+    .article-share__link-text {
+      align-items: center;
+      display: flex;
+      padding: 10px 24px;
+      text-decoration: none;
+      transition: background-color 0.2s;
+    }
+    
+    .article-share__link-text:hover {
+      background-color: #f1f3f4;
+    }
+    
+    .article-share__link-text:hover svg {
+      fill: #1a73e8;
+    }
+    
+    .article-share__link-text:hover span {
+      color: #1a73e8;
+    }
+
+    /* ── Copy Link Animation ── */
+    .copy-feedback-active {
+      display: inline-block !important;
+      animation: copyFeedback 2s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    
+    @keyframes copyFeedback {
+      0% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      15% {
+        opacity: 0;
+        transform: translateY(-8px);
+      }
+      20% {
+        opacity: 0;
+        transform: translateY(8px);
+      }
+      35% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      75% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      85% {
+        opacity: 0;
+        transform: translateY(-8px);
+      }
+      90% {
+        opacity: 0;
+        transform: translateY(8px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* ── Shayari Card Styling (.csl) ── */
+    .csl {
+      position: relative !important;
+      display: block !important;
+      background: linear-gradient(145deg, #fbfcfe, #f8fafd) !important;
+      border: 1px solid #dadce0 !important;
+      border-radius: 5px !important;
+      padding: 24px 24px 20px 24px !important;
+      margin: 28px 0 !important;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05) !important;
+      font-size: 19px !important;
+      line-height: 1.85 !important;
+      color: #202124 !important;
+      text-align: center !important;
+      font-weight: 500 !important;
+      transition: all 0.25s ease !important;
+      overflow: hidden;
+      font-style: normal !important;
+    }
+
+    .csl:hover {
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08) !important;
+      border-color: #1a73e8 !important;
+      transform: translateY(-1px);
+      background: #ffffff !important;
+    }
+
+    /* For blockquotes with csl class */
+    blockquote.csl {
+      padding: 24px 24px 20px 24px !important;
+    }
+
+    /* Actions Toolbar */
+    .csl-actions {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 16px;
+      margin-top: 20px;
+      padding-top: 16px;
+      border-top: 1px dashed rgba(26, 115, 232, 0.12);
+      pointer-events: auto; /* Ensure clickable */
+    }
+
+    .csl-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: #ffffff;
+      border: 1px solid #dadce0;
+      color: #5f6368;
+      padding: 6px 16px;
+      font-size: 13px;
+      font-weight: 500;
+      border-radius: 20px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      outline: none;
+      user-select: none;
+      font-family: 'Google Sans', sans-serif !important;
+    }
+
+    /* Like Button States */
+    .csl-like-btn:hover {
+      background: #fdf2f2;
+      border-color: #f28b82;
+      color: #d93025;
+    }
+    
+    .csl-like-btn.liked {
+      background: #fdf2f2;
+      border-color: #d93025;
+      color: #d93025;
+      animation: heartBeat 0.3s ease-in-out;
+    }
+
+    .csl-like-btn .heart-filled {
+      display: none;
+      fill: #d93025;
+    }
+
+    .csl-like-btn.liked .heart-outline {
+      display: none;
+    }
+
+    .csl-like-btn.liked .heart-filled {
+      display: block;
+    }
+
+    /* Copy Button States */
+    .csl-copy-btn:hover {
+      background: #e8f0fe;
+      border-color: #c2e7ff;
+      color: #1a73e8;
+    }
+
+    .csl-copy-btn.copied {
+      background: #e6f4ea;
+      border-color: #137333;
+      color: #137333;
+    }
+
+    /* Icon sizes */
+    .csl-btn svg {
+      width: 16px;
+      height: 16px;
+      flex-shrink: 0;
+      transition: transform 0.2s ease;
+    }
+
+    .csl-btn:active svg {
+      transform: scale(0.85);
+    }
+
+    @keyframes heartBeat {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.25); }
+      100% { transform: scale(1); }
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 640px) {
+      .csl {
+        font-size: 17.5px !important;
+        padding: 20px 16px 16px 16px !important;
+        margin: 20px 0 !important;
+      }
+      .csl-actions {
+        margin-top: 16px;
+        padding-top: 12px;
+        gap: 12px;
+      }
+      .csl-btn {
+        padding: 5px 14px;
+        font-size: 12px;
+      }
+    }
+
+    /* ── Image Optimization (.imd-container) ── */
+    .imd-container {
+      opacity: 0;
+      transform: translateY(24px) scale(0.99);
+      transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), 
+                  transform 0.8s cubic-bezier(0.16, 1, 0.3, 1) !important;
+      will-change: opacity, transform;
+    }
+
+    /* Reset duplicate shadow and border radius on outer picture tag */
+    picture.imd-container {
+      display: block;
+      box-shadow: none !important;
+      border-radius: 0 !important;
+      background: transparent !important;
+    }
+
+    /* Ensure floated images get correct border radius */
+    .imd-container img,
+    img.imd {
+      border-radius: 8px !important;
+    }
+
+    .imd-container.in-view {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+
+    /* Desktop float layouts */
+    @media (min-width: 769px) {
+      .imd-container {
+        max-width: 320px !important;
+        width: 100% !important;
+        height: auto !important;
+        display: block !important;
+        margin: 12px 0 24px 0 !important;
+      }
+      
+      .imd-float-left {
+        float: left !important;
+        margin-right: 28px !important;
+      }
+
+      .imd-float-right {
+        float: right !important;
+        margin-left: 28px !important;
+      }
+
+      /* Clear floats for structural elements */
+      #articleContent h1,
+      #articleContent h2,
+      #articleContent h3,
+      #articleContent h4,
+      #articleContent h5,
+      #articleContent h6,
+      #articleContent hr {
+        clear: both !important;
+      }
+    }
+
+    /* Clearfix for article body */
+    #articleContent::after {
+      content: "";
+      display: table;
+      clear: both;
+    }
+  </style>
+
+  <script is:inline>
+    // Robust copy-to-clipboard utility
+    function copyTextToClipboard(text, callback) {
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text).then(callback).catch(() => {
+          fallbackCopy(text, callback);
+        });
+      } else {
+        fallbackCopy(text, callback);
+      }
+    }
+
+    function fallbackCopy(text, callback) {
+      const textArea = document.createElement("textarea");
+      textArea.value = text;
+      textArea.style.position = "fixed"; // avoid scrolling to bottom
+      textArea.style.opacity = "0";
+      document.body.appendChild(textArea);
+      textArea.focus();
+      textArea.select();
+      try {
+        document.execCommand('copy');
+        callback();
+      } catch (err) {
+        console.error('Fallback copy failed', err);
+      }
+      document.body.removeChild(textArea);
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+      // Wrap all markdown tables inside articleContent to make them responsive and scrollable
+      const tables = document.querySelectorAll('#articleContent table');
+      tables.forEach(table => {
+        if (!table.closest('.qd-table-wrap')) {
+          const wrapper = document.createElement('div');
+          wrapper.className = 'qd-table-wrap';
+          table.parentNode.insertBefore(wrapper, table);
+          wrapper.appendChild(table);
+        }
+      });
+
+      const shareContainers = document.querySelectorAll('.share-menu-container');
+      
+      shareContainers.forEach(container => {
+        const shareBtn = container.querySelector('.share-trigger-btn');
+        const shareDropdown = container.querySelector('.share-dropdown');
+        
+        shareBtn.addEventListener('click', (e) => {
+          e.stopPropagation(); 
+          
+          // Close other open share dropdowns first
+          shareContainers.forEach(otherContainer => {
+            if (otherContainer !== container) {
+              otherContainer.querySelector('.share-dropdown').classList.remove('uni-social-share__show-dialog');
+              otherContainer.querySelector('.share-trigger-btn').classList.remove('active');
+            }
+          });
+
+          shareDropdown.classList.toggle('uni-social-share__show-dialog');
+          shareBtn.classList.toggle('active');
+        });
+      });
+
+      document.addEventListener('click', (e) => {
+        shareContainers.forEach(container => {
+          const shareBtn = container.querySelector('.share-trigger-btn');
+          const shareDropdown = container.querySelector('.share-dropdown');
+          if (!container.contains(e.target)) {
+            shareDropdown.classList.remove('uni-social-share__show-dialog');
+            shareBtn.classList.remove('active');
+          }
+        });
+      });
+
+      const shareActions = document.querySelectorAll('.share-action');
+      const currentUrl = encodeURIComponent(window.location.href);
+      const titleElement = document.getElementById('articleTitle');
+      const currentTitle = encodeURIComponent(titleElement ? titleElement.textContent : document.title);
+
+      shareActions.forEach(action => {
+        action.addEventListener('click', (e) => {
+          e.preventDefault();
+          e.stopPropagation();
+          const platform = action.getAttribute('data-platform');
+          let shareUrl = '';
+
+          switch (platform) {
+            case 'x':
+              shareUrl = `https://twitter.com/intent/tweet?url=${currentUrl}&text=${currentTitle}`;
+              window.open(shareUrl, '_blank', 'width=600,height=400');
+              break;
+            case 'facebook':
+              shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${currentUrl}`;
+              window.open(shareUrl, '_blank', 'width=600,height=400');
+              break;
+            case 'linkedin':
+              shareUrl = `https://www.linkedin.com/shareArticle?mini=true&url=${currentUrl}&title=${currentTitle}`;
+              window.open(shareUrl, '_blank', 'width=600,height=400');
+              break;
+            case 'whatsapp':
+              shareUrl = `https://api.whatsapp.com/send?text=${currentTitle} ${currentUrl}`;
+              window.open(shareUrl, '_blank');
+              break;
+            case 'email':
+              shareUrl = `mailto:?subject=${currentTitle}&body=Read this article: ${currentUrl}`;
+              window.location.href = shareUrl;
+              break;
+            case 'copy':
+              copyTextToClipboard(window.location.href, () => {
+                const span = action.querySelector('span');
+                if (span && !span.classList.contains('copy-feedback-active')) {
+                  span.classList.add('copy-feedback-active');
+                  
+                  // Change text to "Copied" during the first transition (around 300ms)
+                  setTimeout(() => {
+                    span.textContent = 'Copied';
+                  }, 300);
+
+                  // Change text back to "Copy link" during the second transition (around 1700ms)
+                  setTimeout(() => {
+                    span.textContent = 'Copy link';
+                  }, 1700);
+
+                  // Clean up and close dropdown after animation ends (2000ms)
+                  setTimeout(() => {
+                    span.classList.remove('copy-feedback-active');
+                    const container = action.closest('.share-menu-container');
+                    if (container) {
+                      container.querySelector('.share-dropdown').classList.remove('uni-social-share__show-dialog');
+                      container.querySelector('.share-trigger-btn').classList.remove('active');
+                    }
+                  }, 2000);
+                }
+              });
+              break;
+          }
+          
+          // Close immediately for other platforms, but NOT copy platform
+          if (platform !== 'copy') {
+            shareContainers.forEach(container => {
+              container.querySelector('.share-dropdown').classList.remove('uni-social-share__show-dialog');
+              container.querySelector('.share-trigger-btn').classList.remove('active');
+            });
+          }
+        });
+      });
+
+      const grid = document.getElementById('relatedGrid');
+      const paginationEl = document.getElementById('relatedPagination');
+
+      if (grid && paginationEl) {
+        paginationEl.innerHTML = '';
+
+        const prev = document.createElement('button');
+        prev.className = 'rpg-btn rpg-arrow';
+        prev.setAttribute('aria-label', 'Previous');
+        prev.disabled = true; // Initially disabled since scroll is at 0
+        prev.innerHTML = '<svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"/></svg>';
+        paginationEl.appendChild(prev);
+
+        const next = document.createElement('button');
+        next.className = 'rpg-btn rpg-arrow';
+        next.setAttribute('aria-label', 'Next');
+        next.innerHTML = '<svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>';
+        paginationEl.appendChild(next);
+
+        // Helper to get card width dynamically on click to avoid forced reflows during load/layout
+        const getCardWidth = () => {
+          const card = grid.querySelector('.related-card');
+          return card ? card.offsetWidth + 20 : 0;
+        };
+
+        const updateButtons = () => {
+          const scrollLeft = grid.scrollLeft;
+          const maxScrollLeft = grid.scrollWidth - grid.clientWidth;
+          prev.disabled = scrollLeft <= 5;
+          next.disabled = scrollLeft >= maxScrollLeft - 5;
+        };
+
+        prev.addEventListener('click', () => {
+          grid.scrollBy({ left: -getCardWidth(), behavior: 'smooth' });
+        });
+
+        next.addEventListener('click', () => {
+          grid.scrollBy({ left: getCardWidth(), behavior: 'smooth' });
+        });
+
+        let ticking = false;
+        grid.addEventListener('scroll', () => {
+          if (!ticking) {
+            window.requestAnimationFrame(() => {
+              updateButtons();
+              ticking = false;
+            });
+            ticking = true;
+          }
+        }, { passive: true });
+
+        // Defer initial button state check to window load event to ensure layout is completely stable and avoid forced reflows
+        window.addEventListener('load', () => {
+          setTimeout(() => {
+            requestAnimationFrame(updateButtons);
+          }, 300);
+        });
+
+        // Handle window resizing with debounce to avoid forced reflow
+        let relatedResizeTimer;
+        window.addEventListener('resize', () => {
+          clearTimeout(relatedResizeTimer);
+          relatedResizeTimer = setTimeout(() => {
+            requestAnimationFrame(updateButtons);
+          }, 150);
+        });
+      }
+
+      // ── Shayari Card Actions (.csl) ──
+      const cslElements = document.querySelectorAll('.csl');
+      const articleEl = document.getElementById('articleContent');
+      const cardPostId = articleEl ? articleEl.getAttribute('data-post-id') : 'default';
+
+      cslElements.forEach((el, index) => {
+        if (el.querySelector('.csl-actions')) return;
+
+        const storageKey = `csl_liked_${cardPostId}_${index}`;
+        const isLiked = localStorage.getItem(storageKey) === 'true';
+
+        const actionsDiv = document.createElement('div');
+        actionsDiv.className = 'csl-actions';
+
+        const likeBtn = document.createElement('button');
+        likeBtn.className = `csl-btn csl-like-btn${isLiked ? ' liked' : ''}`;
+        likeBtn.setAttribute('aria-label', 'Like Shayari');
+        likeBtn.innerHTML = `
+          <svg class="heart-outline" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+          </svg>
+          <svg class="heart-filled" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"></path>
+          </svg>
+          <span>${isLiked ? 'Liked' : 'Like'}</span>
+        `;
+
+        const copyBtn = document.createElement('button');
+        copyBtn.className = 'csl-btn csl-copy-btn';
+        copyBtn.setAttribute('aria-label', 'Copy Shayari');
+        copyBtn.innerHTML = `
+          <svg class="copy-icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+            <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+          </svg>
+          <span>Copy</span>
+        `;
+
+        likeBtn.addEventListener('click', (e) => {
+          e.preventDefault();
+          e.stopPropagation();
+          const hasLiked = likeBtn.classList.contains('liked');
+          if (hasLiked) {
+            likeBtn.classList.remove('liked');
+            likeBtn.querySelector('span').textContent = 'Like';
+            localStorage.setItem(storageKey, 'false');
+          } else {
+            likeBtn.classList.add('liked');
+            likeBtn.querySelector('span').textContent = 'Liked';
+            localStorage.setItem(storageKey, 'true');
+          }
+        });
+
+        copyBtn.addEventListener('click', (e) => {
+          e.preventDefault();
+          e.stopPropagation();
+
+          const clone = el.cloneNode(true);
+          const actions = clone.querySelector('.csl-actions');
+          if (actions) actions.remove();
+
+          const textToCopy = clone.innerText.trim();
+
+          copyTextToClipboard(textToCopy, () => {
+            copyBtn.classList.add('copied');
+            copyBtn.innerHTML = `
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="20 6 9 17 4 12"></polyline>
+              </svg>
+              <span>Copied!</span>
+            `;
+
+            setTimeout(() => {
+              copyBtn.classList.remove('copied');
+              copyBtn.innerHTML = `
+                <svg class="copy-icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                  <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                </svg>
+                <span>Copy</span>
+              `;
+            }, 2000);
+          });
+        });
+
+        actionsDiv.appendChild(likeBtn);
+        actionsDiv.appendChild(copyBtn);
+        el.appendChild(actionsDiv);
+      });
+
+      // ── Image Optimization Layout & Animation (.imd) ──
+      const imdImages = document.querySelectorAll('#articleContent img.imd');
+      const observedTargets = Array.from(imdImages).map(img => {
+        return img.closest('picture') || img;
+      });
+
+      const imdObserverOptions = {
+        root: null,
+        rootMargin: '0px 0px -40px 0px',
+        threshold: 0.1
+      };
+
+      const imdObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('in-view');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, imdObserverOptions);
+
+      // Batch all classList additions in a single rAF to avoid multiple style recalcs
+      requestAnimationFrame(() => {
+        observedTargets.forEach((target, index) => {
+          target.classList.add('imd-container', index % 2 === 0 ? 'imd-float-left' : 'imd-float-right');
+          imdObserver.observe(target);
+        });
+      });
+
+      // ── Responsive Table Wrapper (Batched to eliminate forced reflow) ──
+      requestAnimationFrame(() => {
+        const tsaTables = document.querySelectorAll('#articleContent table');
+        tsaTables.forEach(table => {
+          if (!table.parentElement.classList.contains('qd-table-wrap')) {
+            const wrapper = document.createElement('div');
+            wrapper.className = 'qd-table-wrap';
+            table.parentNode.insertBefore(wrapper, table);
+            wrapper.appendChild(table);
+          }
+        });
+      });
+
+      // ── In-Article Native Ad Auto-Insertion (Multiple Slots for Long Posts) ──
+      requestAnimationFrame(() => {
+        const article = document.getElementById('articleContent');
+        if (!article) return;
+        const elements = article.querySelectorAll(':scope > p, :scope > h2, :scope > .qd-quiz-wrap');
+        
+        // Slot 1: Insert after 3rd paragraph/heading
+        if (elements.length >= 3 && !article.querySelector('.ins-inarticle-ad-1')) {
+          const target1 = elements[2];
+          const adWrapper1 = document.createElement('div');
+          adWrapper1.className = 'ins-inarticle-ad-1 my-8 text-center overflow-hidden';
+          adWrapper1.innerHTML = `
+            <ins class="adsbygoogle"
+                 style="display:block; text-align:center;"
+                 data-ad-layout="in-article"
+                 data-ad-format="fluid"
+                 data-ad-client="ca-pub-7247235328568345"
+                 data-ad-slot="7358005986"></ins>
+          `;
+          target1.parentNode.insertBefore(adWrapper1, target1.nextSibling);
+          requestAnimationFrame(function() {
+            try { (window.adsbygoogle = window.adsbygoogle || []).push({}); } catch(e) {}
+          });
+        }
+
+        // Slot 2: Insert after 8th paragraph/heading (for longer articles)
+        if (elements.length >= 8 && !article.querySelector('.ins-inarticle-ad-2')) {
+          const target2 = elements[7];
+          const adWrapper2 = document.createElement('div');
+          adWrapper2.className = 'ins-inarticle-ad-2 my-8 text-center overflow-hidden';
+          adWrapper2.innerHTML = `
+            <ins class="adsbygoogle"
+                 style="display:block; text-align:center;"
+                 data-ad-layout="in-article"
+                 data-ad-format="fluid"
+                 data-ad-client="ca-pub-7247235328568345"
+                 data-ad-slot="8678826515"></ins>
+          `;
+          target2.parentNode.insertBefore(adWrapper2, target2.nextSibling);
+          requestAnimationFrame(function() {
+            try { (window.adsbygoogle = window.adsbygoogle || []).push({}); } catch(e) {}
+          });
+        }
+      });
+
+    });
+  </script>
+
+  {/* ═══ Conditional Component Injection (build-time detected) ═══ */}
+  {hasMcqs && <McqStyles />}
+  {hasFlashcards && <FlashcardStyles />}
+
+  {/* ═══ Auto-generated Schema Markup ═══ */}
+  {flashcardSchema && (
+    <script type="application/ld+json" set:html={JSON.stringify(flashcardSchema)} />
+  )}
+  {faqSchema && (
+    <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+  )}
+
+</BaseLayout>
+
+<script define:vars={{ postId: post.id }}>
+  // Non-blocking view tracker — fires after page is idle, doesn't affect LCP/FCP
+  (function () {
+    // Client-side rate-limiting: skip fetch if already viewed in last 24 hours
+    const storageKey = 'viewed_post_' + postId;
+    const lastViewed = localStorage.getItem(storageKey);
+    const now = Date.now();
+    if (lastViewed && (now - parseInt(lastViewed, 10)) < 24 * 60 * 60 * 1000) {
+      return;
+    }
+
+    function trackView() {
+      fetch('/api/track-view', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ postId }),
+        keepalive: true, // Ensures request completes even if page navigates away
+      })
+      .then(res => {
+        if (res.ok) {
+          localStorage.setItem(storageKey, String(Date.now()));
+        }
+      })
+      .catch(() => {}); // Silently ignore all errors
+    }
+
+    function scheduleTrack() {
+      let tracked = false;
+      const doTrack = () => {
+        if (tracked) return;
+        tracked = true;
+        if ('requestIdleCallback' in window) {
+          requestIdleCallback(trackView, { timeout: 3000 });
+        } else {
+          setTimeout(trackView, 500);
+        }
+      };
+
+      // Delay execution to ensure it doesn't block LCP/FCP
+      // Only track if the user interacts with the page or after 5 seconds
+      const events = ['scroll', 'click', 'mousemove', 'keydown', 'touchstart'];
+      const onInteract = () => {
+        events.forEach(e => window.removeEventListener(e, onInteract));
+        doTrack();
+      };
+      
+      events.forEach(e => window.addEventListener(e, onInteract, { passive: true, once: true }));
+      
+      // Fallback if no interaction happens but page is kept open
+      setTimeout(doTrack, 5000);
+    }
+
+    scheduleTrack();
+  })();
+</script>

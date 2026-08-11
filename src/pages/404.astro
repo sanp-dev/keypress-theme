@@ -1,0 +1,31 @@
+---
+// src/pages/404.astro
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { SITE_CONFIG } from '../config/site';
+---
+
+<BaseLayout title={`Page not found - ${SITE_CONFIG.name}`} description="We couldn't find the page you were looking for." noindex={true}>
+  
+  <main class="w-full max-w-[1000px] mx-auto px-4 md:px-8 text-center" style="margin-top: 80px; margin-bottom: 80px;">
+    <div class="flex flex-col items-center justify-center">
+      <h1 style="font-size: clamp(120px, 18vw, 220px); color: #b1babe; line-height: 0.8; font-weight: 700; margin: 0; padding: 0; user-select: none; font-family: 'Google Sans', Arial, sans-serif;">
+        404
+      </h1>
+      <h2 class="text-[32px] md:text-[40px] text-[#202124] font-normal mb-4 mt-8 antialiased" style="font-family: 'Google Sans', Arial, sans-serif;">
+        Page not found
+      </h2>
+      <p class="text-[16px] md:text-[18px] text-[#5f6368] leading-[28px] mb-10 max-w-[500px] mx-auto antialiased" style="font-family: 'Google Sans', Arial, sans-serif;">
+        We couldn't find the page you were looking for. It might have been removed, renamed, or doesn't exist.
+      </p>
+      <div class="flex flex-wrap items-center justify-center gap-4">
+        <a href="/" class="px-8 py-3 bg-[#1a73e8] text-white font-medium text-[16px] rounded-full hover:bg-[#1557b0] transition-colors antialiased" style="font-family: 'Google Sans', Arial, sans-serif;">
+          Go to homepage
+        </a>
+        <a href="/search" class="px-8 py-3 bg-white text-[#1a73e8] border border-[#dadce0] font-medium text-[16px] rounded-full hover:bg-[#f8f9fa] transition-colors antialiased" style="font-family: 'Google Sans', Arial, sans-serif;">
+          Search articles
+        </a>
+      </div>
+    </div>
+  </main>
+
+</BaseLayout>

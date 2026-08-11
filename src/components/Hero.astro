@@ -1,0 +1,239 @@
+---
+// src/components/Hero.astro
+import { getCollection } from "astro:content";
+import { Image } from "astro:assets";
+import { cleanImageUrl } from "../utils/image";
+
+// 1. Fetch all posts
+const allPosts = await getCollection("blog");
+
+// 2. Sort by date
+const sortedPosts = allPosts.sort(
+  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
+);
+
+// 3. Get latest post
+const latestPost = sortedPosts[0];
+
+// 4. Generate URL for click
+const postUrl = `/post/${latestPost.id}/`;
+
+const cleanedImage = cleanImageUrl(latestPost.data.image);
+---
+
+<a
+  href={postUrl}
+  class="featured-article-hero group cursor-pointer text-inherit no-underline block"
+>
+  <div class="featured-article-hero__link--img">
+    <div class="featured-article-hero__image">
+      {
+        cleanedImage && (
+          <Image
+            src={cleanedImage}
+            alt={latestPost.data.title}
+            width={1024}
+            height={576}
+            widths={[480, 768, 1024, 1280]}
+            sizes="(max-width: 1023px) 100vw, 750px"
+            loading="eager"
+            decoding="sync"
+            fetchpriority="high"
+            quality={75}
+          />
+        )
+      }
+      <div class="image-gradient-overlay"></div>
+    </div>
+  </div>
+
+  <div class="featured-article-hero__link--card">
+    <div class="featured-article-hero__card">
+      <div
+        class="text-[#1a73e8] text-[12px] font-medium tracking-[0.5px] uppercase mb-6"
+      >
+        {latestPost.data.category}
+      </div>
+
+      <h1
+        class="text-[24px] lg:text-[36px] text-[#202124] leading-[1.2] font-normal mb-6 font-['Google_Sans',Arial,sans-serif] group-hover:underline decoration-[2px] underline-offset-[4px]"
+      >
+        {latestPost.data.title}
+      </h1>
+
+      <p class="text-[16px] text-[#5f6368] leading-[1.6] mb-10">
+        {latestPost.data.description}
+      </p>
+
+      <div class="featured-article-hero__authors-box--no-authors flex">
+        <svg
+          class="w-6 h-6 text-[#1a73e8] transition-transform duration-200 group-hover:translate-x-1"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M5 12h14M12 5l7 7-7 7"></path>
+        </svg>
+      </div>
+    </div>
+  </div>
+</a>
+
+<style>
+  /* --- 1. Main Container --- */
+  .featured-article-hero {
+    position: relative;
+    max-width: 1280px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+  }
+
+  @media (min-width: 1024px) {
+    .featured-article-hero {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 24px;
+      padding: 0 24px;
+      align-items: center;
+      margin-top: 64px;
+      margin-bottom: 64px;
+    }
+  }
+
+  /* --- 2. Image Wrapper --- */
+  .featured-article-hero__link--img {
+    position: relative;
+    width: 100%;
+  }
+
+  @media (min-width: 1024px) {
+    .featured-article-hero__link--img {
+      grid-column: 1 / 8;
+      grid-row: 1;
+      z-index: 1;
+    }
+  }
+
+  .featured-article-hero__image {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+  }
+
+  /* Fallback for older browsers */
+  @supports not (aspect-ratio: 16 / 9) {
+    .featured-article-hero__image {
+      padding-top: 56.25%;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .featured-article-hero__image {
+      border-radius: 10px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    }
+  }
+
+  .featured-article-hero__image img {
+    display: block;
+    height: 100%;
+    left: 0;
+    object-fit: cover;
+    object-position: center;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    transition: transform 0.4s ease;
+    border: 0;
+  }
+
+  .featured-article-hero:hover .featured-article-hero__image img {
+    transform: scale(1.03);
+  }
+
+  @media (min-width: 1024px) {
+    .image-gradient-overlay {
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      width: 40%;
+      background: linear-gradient(
+        to right,
+        transparent 0%,
+        rgba(0, 0, 0, 0.4) 100%
+      );
+      z-index: 1;
+      pointer-events: none;
+    }
+  }
+
+  /* --- 3. Card Wrapper --- */
+  .featured-article-hero__link--card {
+    padding: 0 16px;
+    z-index: 2;
+  }
+
+  @media (min-width: 1024px) {
+    .featured-article-hero__link--card {
+      grid-column: 7 / 13;
+      grid-row: 1;
+      padding: 0;
+      align-self: stretch;
+      display: flex;
+    }
+  }
+
+  .featured-article-hero__card {
+    background: #fff;
+    border-radius: 20px;
+    box-shadow:
+      0 4px 16px rgba(0, 0, 0, 0.08),
+      0 2px 4px rgba(0, 0, 0, 0.04);
+    margin-bottom: 36px;
+    margin-top: -16px;
+    padding-bottom: 36px;
+    padding-top: 24px;
+    padding-inline: 24px;
+    display: flex;
+    flex-direction: column;
+    transition:
+      box-shadow 0.3s ease,
+      transform 0.3s ease;
+    width: 100%;
+  }
+
+  @media (min-width: 1024px) {
+    .featured-article-hero__card {
+      margin-top: -25px;
+      margin-bottom: -25px;
+
+      justify-content: center;
+      padding-inline: 40px;
+      padding-top: 48px;
+      padding-bottom: 48px;
+      border-top: 6px solid #1a73e8;
+      box-shadow:
+        0 20px 40px -10px rgba(0, 0, 0, 0.15),
+        0 10px 20px -5px rgba(0, 0, 0, 0.1);
+    }
+  }
+
+  .featured-article-hero:hover .featured-article-hero__card {
+    box-shadow:
+      0 24px 48px -12px rgba(0, 0, 0, 0.18),
+      0 12px 24px -6px rgba(0, 0, 0, 0.12);
+    transform: translateY(-4px);
+  }
+
+  .featured-article-hero__authors-box--no-authors {
+    justify-content: flex-end;
+    align-items: center;
+  }
+</style>

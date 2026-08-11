@@ -1,0 +1,26 @@
+User-agent: Mediapartners-Google
+Disallow:
+
+User-agent: AhrefsBot
+Crawl-delay: 10
+
+User-agent: AhrefsSiteAudit
+Crawl-delay: 10
+
+User-agent: SemrushBot
+Crawl-delay: 10
+
+User-agent: SiteAuditBot
+Crawl-delay: 10
+
+User-agent: *
+Allow: /
+Disallow: /search/
+Disallow: /category/*/rss.xml
+Disallow: /label/*/rss.xml
+Disallow: /404/
+Disallow: /api/
+
+Sitemap: https://www.quicdecode.com/sitemap-index.xml
+Sitemap: https://www.quicdecode.com/sitemap-posts.xml
+Allow: /rss.xml

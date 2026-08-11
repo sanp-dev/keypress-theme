@@ -1,0 +1,1187 @@
+---
+// src/components/Header.astro
+import { getCollection } from "astro:content";
+import { SITE_CONFIG } from "../config/site";
+
+export interface SubMenuItem {
+  label: string;
+  href: string;
+  description?: string;
+}
+
+export interface MenuItem {
+  label: string;
+  href?: string;
+  children?: SubMenuItem[];
+}
+
+// ── Main Nav items (Updated for DEMO BLOG) ──
+const menuItems: MenuItem[] = [
+  { label: "HOME", href: "/" },
+  { label: "HEALTH", href: "/category/health/" },
+  { label: "EDUCATION", href: "/category/education/" },
+  { label: "QUIZZES", href: "/category/quiz/" },
+  { label: "CURRENT AFFAIRS", href: "/category/current-affairs/" },
+  { label: "WEBSTORIES", href: "/webstories/" },
+  {
+    label: "MORE",
+    children: [
+      {
+        label: "Sample Topic 1",
+        href: "#",
+        description: "Example sub-category or topic description",
+      },
+      {
+        label: "Sample Topic 2",
+        href: "#",
+        description: "Example sub-category or topic description",
+      },
+      {
+        label: "Sample Topic 3",
+        href: "#",
+        description: "Example sub-category or topic description",
+      },
+    ],
+  },
+];
+
+// ── Chip color palette (cycled by index) ──
+const chipPalette = [
+  { bg: "#e8f0fe", fg: "#1a73e8" }, // Blue
+  { bg: "#e6f4ea", fg: "#188038" }, // Green
+  { bg: "#fce8e6", fg: "#c5221f" }, // Red
+  { bg: "#fef7e0", fg: "#b06000" }, // Yellow
+  { bg: "#f3e8fd", fg: "#7627bb" }, // Purple
+  { bg: "#e0f7fa", fg: "#007b83" }, // Teal
+];
+
+// ── Slug helper (same logic as [name].astro getStaticPaths) ──
+const toSlug = (str: string) =>
+  str
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/(^-|-$)+/g, "");
+
+const capitalize = (str: string) =>
+  str
+    .split(' ')
+    .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+    .join(' ');
+
+// ── Fetch all blog posts ──
+const allPosts = await getCollection("blog");
+
+// ─────────────────────────────────────────
+// 1. BROWSE BY CATEGORY - actual categories from posts with slugified URLs.
+// These pages are generated in getStaticPaths, so they won't 404.
+// ─────────────────────────────────────────
+const seenCats = new Set<string>();
+const dynamicCategories: Array<{ label: string; href: string }> = [];
+
+for (const post of allPosts) {
+  const cat = post.data.category;
+  if (cat && !seenCats.has(cat)) {
+    seenCats.add(cat);
+    dynamicCategories.push({ label: cat, href: `/category/${toSlug(cat)}/` });
+  }
+}
+
+// Alphabetical sort
+dynamicCategories.sort((a, b) => a.label.localeCompare(b.label));
+
+// ─────────────────────────────────────────
+// 2. SUGGESTED SEARCHES - unique tags from posts (max 6).
+// If tags are fewer than 6, supplemented by post titles.
+// ─────────────────────────────────────────
+const seenSuggestions = new Set<string>();
+const suggestedSearches: Array<{ text: string; bg: string; fg: string }> = [];
+
+// Step A: from primary tags (short & searchable)
+for (const post of allPosts) {
+  if (suggestedSearches.length >= 6) break;
+  const primaryTag = post.data.tags?.[0];
+  if (primaryTag) {
+    const slug = toSlug(primaryTag);
+    if (!seenSuggestions.has(slug) && suggestedSearches.length < 6) {
+      seenSuggestions.add(slug);
+      const c = chipPalette[suggestedSearches.length % chipPalette.length];
+      suggestedSearches.push({ text: primaryTag, bg: c.bg, fg: c.fg });
+    }
+  }
+}
+
+// Step B: if tags are fewer -> fill from post titles (max 60 chars truncate)
+for (const post of allPosts) {
+  if (suggestedSearches.length >= 6) break;
+  const title =
+    post.data.title.length > 55
+      ? post.data.title.slice(0, 52) + "…"
+      : post.data.title;
+  if (!seenSuggestions.has(title)) {
+    seenSuggestions.add(title);
+    const c = chipPalette[suggestedSearches.length % chipPalette.length];
+    suggestedSearches.push({ text: title, bg: c.bg, fg: c.fg });
+  }
+}
+
+const currentPath = Astro.url.pathname;
+---
+
+<!-- ════════════════════════════════════════
+     HEADER
+════════════════════════════════════════ -->
+<header
+  class="bg-white sticky top-0 z-50 w-full h-[64px] shadow-[0_2px_5px_0_rgba(0,0,0,0.16),0_2px_5px_0_rgba(0,0,0,0.23)]"
+>
+  <div
+    class="max-w-[1280px] mx-auto w-full h-full px-4 lg:px-8 flex items-center justify-between"
+  >
+    <!-- Left: Hamburger + Logo -->
+    <div class="flex items-center shrink-0">
+      <button
+        id="hamburger-btn"
+        class="lg:hidden p-2 mr-2 text-[#5f6368] hover:bg-gray-100 rounded-full transition-colors focus:outline-none"
+        aria-label="Open navigation menu"
+        aria-expanded="false"
+        aria-controls="mob-menu"
+      >
+        <svg
+          id="hamburger-icon"
+          class="w-6 h-6"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M4 6h16M4 12h16M4 18h16"></path>
+        </svg>
+        <svg
+          id="close-icon"
+          class="w-6 h-6 hidden"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M6 18L18 6M6 6l12 12"></path>
+        </svg>
+      </button>
+
+      <a
+        href="/"
+        translate="no"
+        class="notranslate flex items-center text-[22px] font-medium text-[#5f6368] tracking-[0.5px] whitespace-nowrap"
+        style="font-family: 'Google Sans', Arial, sans-serif;"
+      >
+        {
+          SITE_CONFIG.logoLetters && SITE_CONFIG.logoLetters.length > 0 ? (
+            <span class="font-bold mr-1.5 text-[24px]">
+              {SITE_CONFIG.logoLetters.map((letter) => (
+                <span class={letter.color}>{letter.char}</span>
+              ))}
+            </span>
+          ) : null
+        }
+        {SITE_CONFIG.logoTextSuffix}
+      </a>
+    </div>
+
+    <!-- Desktop Navigation -->
+    <nav
+      class="hidden lg:flex items-center flex-1 h-full pl-4 xl:pl-8"
+      aria-label="Main navigation"
+    >
+      <ul class="flex items-center h-full space-x-1 m-0 p-0 list-none">
+        {
+          menuItems.map((item) => {
+            const hasChildren = item.children && item.children.length > 0;
+            const isChildActive = hasChildren && item.children?.some((sub) => currentPath.startsWith(sub.href));
+            const isActive = item.href
+              ? (item.href === "/" ? currentPath === "/" : currentPath.startsWith(item.href))
+              : isChildActive;
+
+            if (hasChildren) {
+              return (
+                <li class="h-full flex items-center relative group">
+                  <button
+                    type="button"
+                    class={`qd-nav-link flex items-center gap-1.5 cursor-pointer bg-transparent border-none outline-none ${isActive || isChildActive ? "qd-nav-active" : ""}`}
+                    aria-expanded="false"
+                    aria-haspopup="true"
+                  >
+                    <span>{item.label}</span>
+                    <svg class="w-3.5 h-3.5 transition-transform duration-200 group-hover:rotate-180 text-[#5f6368] group-hover:text-[#202124]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7" />
+                    </svg>
+                  </button>
+
+                  <div class="dropdown-menu">
+                    {item.children?.map((sub) => {
+                      const isSubActive = currentPath.startsWith(sub.href);
+                      return (
+                        <a
+                          href={sub.href}
+                          class={`dropdown-item ${isSubActive ? "dropdown-item-active" : ""}`}
+                        >
+                          <div class="dropdown-item-title">{sub.label}</div>
+                          {sub.description && <div class="dropdown-item-desc">{sub.description}</div>}
+                        </a>
+                      );
+                    })}
+                  </div>
+                </li>
+              );
+            }
+
+            return (
+              <li class="h-full flex items-center">
+                <a
+                  href={item.href}
+                  class={`qd-nav-link ${isActive ? "qd-nav-active" : ""}`}
+                  aria-current={isActive ? "page" : undefined}
+                >
+                  {item.label}
+                </a>
+              </li>
+            );
+          })
+        }
+      </ul>
+    </nav>
+
+    <!-- Search Icon Button -->
+    <div class="flex items-center shrink-0 ml-4">
+      <button
+        id="search-btn"
+        class="search-icon-btn"
+        aria-label="Open search"
+        aria-expanded="false"
+        aria-controls="srch-overlay"
+      >
+        <svg
+          class="w-6 h-6"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+        </svg>
+      </button>
+    </div>
+
+    <!-- Desktop Subscribe (Notification) Button -->
+    <div class="hidden md:flex items-center shrink-0 ml-4">
+      <button
+        id="nt-link-desktop"
+        class="bg-[#1a73e8] hover:bg-[#174ea6] text-white text-[13px] font-medium py-1.5 px-4 rounded-lg transition-colors cursor-pointer outline-none shadow-sm h-[36px] flex items-center justify-center font-['Google_Sans',Arial,sans-serif]"
+      >
+        Subscribe
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- ════════════════════════════════════════
+     MOBILE MENU
+════════════════════════════════════════ -->
+<div id="mob-overlay" aria-hidden="true"></div>
+
+<nav id="mob-menu" aria-label="Mobile navigation" aria-hidden="true">
+  <ul>
+    {
+      menuItems.map((item) => {
+        const hasChildren = item.children && item.children.length > 0;
+        const isChildActive = hasChildren && item.children?.some((sub) => currentPath.startsWith(sub.href));
+        const isActive = item.href
+          ? (item.href === "/" ? currentPath === "/" : currentPath.startsWith(item.href))
+          : isChildActive;
+
+        if (hasChildren) {
+          return (
+            <li class="mob-dropdown-wrap">
+              <button
+                type="button"
+                class={`mob-link mob-dropdown-toggle w-full flex items-center justify-between cursor-pointer border-none bg-transparent ${isActive || isChildActive ? "mob-active" : ""}`}
+              >
+                <span>{item.label}</span>
+                <svg class="mob-chevron w-4 h-4 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                </svg>
+              </button>
+              <ul class="mob-sub-menu hidden pl-4 pr-2 py-1 bg-[#f8f9fa] border-y border-[#dadce0] list-none m-0">
+                {item.children?.map((sub) => {
+                  const isSubActive = currentPath.startsWith(sub.href);
+                  return (
+                    <li>
+                      <a
+                        href={sub.href}
+                        class={`mob-link mob-sub-link text-[14px] py-2.5 rounded-md ${isSubActive ? "mob-active" : ""}`}
+                        aria-current={isSubActive ? "page" : undefined}
+                      >
+                        {sub.label}
+                      </a>
+                    </li>
+                  );
+                })}
+              </ul>
+            </li>
+          );
+        }
+
+        return (
+          <li>
+            <a
+              href={item.href}
+              class={`mob-link ${isActive ? "mob-active" : ""}`}
+              aria-current={isActive ? "page" : undefined}
+            >
+              {item.label}
+            </a>
+          </li>
+        );
+      })
+    }
+    <li class="mob-search-sep">
+      <a href="/search" class="mob-link mob-search-link">
+        <svg
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+          width="18"
+          height="18"
+          aria-hidden="true"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+        </svg>
+        Search
+      </a>
+    </li>
+  </ul>
+</nav>
+
+<!-- ════════════════════════════════════════
+     SEARCH OVERLAY
+════════════════════════════════════════ -->
+<div
+  id="srch-overlay"
+  role="dialog"
+  aria-modal="true"
+  aria-label="Search"
+  aria-hidden="true"
+>
+  <div id="srch-panel">
+    <!-- Input Row -->
+    <div id="srch-input-row">
+      <div id="srch-icon-wrap" aria-hidden="true">
+        <svg
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+          width="22"
+          height="22"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2.2"
+            d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+        </svg>
+      </div>
+
+      <input
+        id="srch-input"
+        type="search"
+        placeholder="Ask a question or enter a keyword"
+        autocomplete="off"
+        spellcheck="false"
+        aria-label="Search articles"
+      />
+
+      <div id="srch-actions">
+        <button
+          id="srch-clear"
+          class="srch-icon-btn"
+          aria-label="Clear"
+          title="Clear"
+          style="display:none;"
+        >
+          <svg
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+            width="18"
+            height="18"
+          >
+            <circle
+              cx="12"
+              cy="12"
+              r="9"
+              stroke-width="1.8"
+              fill="#dadce0"
+              stroke="none"></circle>
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              stroke="white"
+              d="M9 9l6 6M15 9l-6 6"></path>
+          </svg>
+        </button>
+        <div id="srch-divider-v"></div>
+        <button
+          id="srch-close"
+          class="srch-icon-btn"
+          aria-label="Close search"
+          title="Close (Esc)"
+        >
+          <svg
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+            width="22"
+            height="22"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M6 18L18 6M6 6l12 12"></path>
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Animated rainbow border -->
+    <div id="srch-border">
+      <div id="srch-border-inner"></div>
+    </div>
+
+    <!-- Body -->
+    <div id="srch-body">
+      <p id="srch-hint">
+        Search freely using keywords, or by asking a question
+      </p>
+
+      <!-- ★ Suggested searches: dynamic chips from tags/titles -->
+      {
+        suggestedSearches.length > 0 && (
+          <div id="srch-suggested-section">
+            <div id="srch-suggested-title">
+              <svg
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                width="15"
+                height="15"
+                aria-hidden="true"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M4 6h16M4 10h16M4 14h8"
+                />
+              </svg>
+              Suggested searches
+            </div>
+            <div id="srch-chips">
+              {suggestedSearches.map((s) => (
+                <button
+                  class="srch-chip"
+                  data-query={s.text}
+                  style={`--chip-bg:${s.bg};--chip-fg:${s.fg};`}
+                >
+                  {capitalize(s.text)}
+                </button>
+              ))}
+            </div>
+          </div>
+        )
+      }
+
+      <!-- ★ Browse by category: dynamic links from actual categories -->
+      {
+        dynamicCategories.length > 0 && (
+          <div id="srch-categories">
+            <div id="srch-cat-title">
+              <svg
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                width="15"
+                height="15"
+                aria-hidden="true"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A2 2 0 013 12V7a2 2 0 014-4z"
+                />
+              </svg>
+              Browse by category
+            </div>
+            <div id="srch-cat-links">
+              {dynamicCategories.map((cat) => (
+                <a href={cat.href} class="srch-cat-link">
+                  {cat.label}
+                </a>
+              ))}
+            </div>
+          </div>
+        )
+      }
+    </div>
+  </div>
+
+  <!-- Backdrop -->
+  <div id="srch-backdrop"></div>
+</div>
+
+<!-- ════════════════════════════════════════
+     STYLES (is:global - for ID selectors)
+════════════════════════════════════════ -->
+<style is:global>
+  /* ── Desktop Nav ── */
+  .qd-nav-link {
+    font-family: "Google Sans", Arial, sans-serif;
+    font-size: 13px;
+    color: #5f6368;
+    text-decoration: none;
+    padding: 0 8px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    position: relative;
+    letter-spacing: 0.01rem;
+    white-space: nowrap;
+    transition: color 0.2s ease;
+    user-select: none;
+  }
+  @media (min-width: 1280px) {
+    .qd-nav-link {
+      font-size: 14px;
+      padding: 0 12px;
+      letter-spacing: 0.02rem;
+    }
+  }
+  .qd-nav-link:hover {
+    color: #202124;
+  }
+  .qd-nav-active {
+    color: #1a73e8 !important;
+    font-weight: 500;
+  }
+  .qd-nav-active::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 8px;
+    right: 8px;
+    height: 3px;
+    background: #1a73e8;
+    border-radius: 3px 3px 0 0;
+  }
+  @media (min-width: 1280px) {
+    .qd-nav-active::after {
+      left: 12px;
+      right: 12px;
+    }
+  }
+
+  /* ── Desktop Dropdown Submenu ── */
+  .relative.group:hover .dropdown-menu,
+  .relative.group:focus-within .dropdown-menu {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-50%) translateY(0);
+    pointer-events: auto;
+  }
+  .dropdown-menu {
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%) translateY(8px);
+    width: 290px;
+    background: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15), 0 1px 3px rgba(0, 0, 0, 0.08);
+    border: 1px solid #dadce0;
+    padding: 6px;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s ease;
+    z-index: 60;
+  }
+  .dropdown-item {
+    display: block;
+    padding: 10px 12px;
+    border-radius: 6px;
+    text-decoration: none;
+    transition: background 0.15s ease;
+  }
+  .dropdown-item:hover {
+    background: #f1f3f4;
+  }
+  .dropdown-item-active {
+    background: #e8f0fe !important;
+  }
+  .dropdown-item-title {
+    font-family: "Google Sans", Arial, sans-serif;
+    font-size: 13.5px;
+    font-weight: 500;
+    color: #202124;
+    line-height: 1.3;
+  }
+  .dropdown-item:hover .dropdown-item-title {
+    color: #1a73e8;
+  }
+  .dropdown-item-desc {
+    font-family: "Google Sans", Arial, sans-serif;
+    font-size: 11.5px;
+    color: #5f6368;
+    margin-top: 2px;
+    line-height: 1.3;
+  }
+
+  /* Search Icon Button */
+  .search-icon-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px;
+    width: 40px;
+    height: 40px;
+    border: none;
+    background: transparent;
+    color: #5f6368;
+    border-radius: 50%;
+    cursor: pointer;
+    position: relative;
+    transition:
+      color 0.2s ease,
+      transform 0.15s ease;
+    font-family: "Google Sans", Arial, sans-serif;
+  }
+
+  /* Pseudo-element for background effect */
+  .search-icon-btn::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    background: #f8f9fa;
+    opacity: 0;
+    transition:
+      opacity 0.25s cubic-bezier(0.4, 0, 0.2, 1),
+      background 0.25s ease;
+    z-index: -1;
+  }
+
+  .search-icon-btn:hover {
+    color: #1a73e8;
+    transform: scale(1.08);
+  }
+
+  .search-icon-btn:hover::before {
+    opacity: 1;
+    background: #e8f0fe;
+  }
+
+  .search-icon-btn:active {
+    transform: scale(0.96);
+  }
+
+  .search-icon-btn:focus {
+    outline: none;
+  }
+
+  .search-icon-btn:focus-visible {
+    box-shadow:
+      0 0 0 2px #fff,
+      0 0 0 4px #1a73e8;
+  }
+
+  /* Mobile focus state */
+  @media (hover: none) and (pointer: coarse) {
+    .search-icon-btn:active::before {
+      opacity: 0.8;
+      background: #dce9fd;
+    }
+  }
+
+  /* ── Mobile Overlay ── */
+  #mob-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.32);
+    z-index: 38;
+  }
+  #mob-overlay.is-open {
+    display: block;
+  }
+
+  /* ── Mobile Menu ── */
+  #mob-menu {
+    display: none;
+    position: fixed;
+    top: 64px;
+    left: 0;
+    right: 0;
+    z-index: 39;
+    background: #fff;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.14);
+    max-height: calc(100vh - 64px);
+    overflow-y: auto;
+  }
+  #mob-menu.is-open {
+    display: block;
+    animation: mob-slide-in 0.22s ease forwards;
+  }
+  @keyframes mob-slide-in {
+    from {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  #mob-menu ul {
+    list-style: none;
+    margin: 0;
+    padding: 8px 0 12px;
+  }
+  .mob-link {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 14px 24px;
+    font-size: 15px;
+    font-family: "Google Sans", Arial, sans-serif;
+    color: #202124;
+    text-decoration: none;
+    transition: background 0.15s ease;
+  }
+  .mob-link:hover {
+    background: #f1f3f4;
+  }
+  .mob-active {
+    color: #1a73e8;
+    font-weight: 500;
+    background: #e8f0fe;
+  }
+  .mob-active:hover {
+    background: #dce9fd;
+  }
+  .mob-search-sep {
+    border-top: 1px solid #dadce0;
+    margin-top: 8px;
+    padding-top: 4px;
+  }
+  .mob-search-link {
+    color: #5f6368;
+  }
+  .mob-search-link:hover {
+    color: #202124;
+    background: #f1f3f4;
+  }
+
+  /* ════════════════════════════════════════
+     SEARCH OVERLAY
+  ════════════════════════════════════════ */
+  #srch-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 60;
+  }
+  #srch-overlay.is-open {
+    display: block;
+  }
+
+  /* Backdrop */
+  #srch-backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(32, 33, 36, 0.45);
+    backdrop-filter: blur(2px);
+    -webkit-backdrop-filter: blur(2px);
+  }
+
+  /* White Panel */
+  #srch-panel {
+    position: relative;
+    z-index: 2;
+    background: #fff;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.18);
+    animation: srch-in 0.2s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  }
+  @keyframes srch-in {
+    from {
+      opacity: 0;
+      transform: translateY(-12px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* Input Row */
+  #srch-input-row {
+    display: flex;
+    align-items: center;
+    padding: 12px 20px 0;
+    max-width: 1280px;
+    margin: 0 auto;
+  }
+  #srch-icon-wrap {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #1a73e8;
+    flex-shrink: 0;
+    margin-right: 16px;
+  }
+  #srch-input {
+    flex: 1;
+    border: none;
+    outline: none;
+    font-family: "Google Sans", Arial, sans-serif;
+    font-size: 18px;
+    color: #202124;
+    background: transparent;
+    padding: 8px 0;
+    letter-spacing: 0.01rem;
+    -webkit-appearance: none;
+    appearance: none;
+  }
+  #srch-input::placeholder {
+    color: #9aa0a6;
+  }
+  #srch-input::-webkit-search-cancel-button {
+    display: none;
+  }
+
+  #srch-actions {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    flex-shrink: 0;
+    margin-left: 8px;
+  }
+  .srch-icon-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border: none;
+    background: transparent;
+    color: #5f6368;
+    border-radius: 50%;
+    cursor: pointer;
+    transition:
+      background 0.15s,
+      color 0.15s;
+  }
+  .srch-icon-btn:hover {
+    background: #f1f3f4;
+    color: #202124;
+  }
+  #srch-divider-v {
+    width: 1px;
+    height: 24px;
+    background: #dadce0;
+    margin: 0 6px;
+  }
+
+  /* Rainbow border */
+  #srch-border {
+    max-width: 1280px;
+    margin: 10px auto 0;
+    padding: 0 20px;
+    height: 2px;
+    background: #e8eaed;
+    overflow: hidden;
+  }
+  #srch-border-inner {
+    height: 100%;
+    width: 0%;
+    background: linear-gradient(
+      90deg,
+      #4285f4 0%,
+      #ea4335 33%,
+      #fbbc05 66%,
+      #34a853 100%
+    );
+    background-size: 300% 100%;
+    transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  #srch-overlay.is-open #srch-border-inner {
+    width: 100%;
+    animation: rainbow-flow 3s linear infinite;
+  }
+  @keyframes rainbow-flow {
+    0% {
+      background-position: 0% 50%;
+    }
+    100% {
+      background-position: 300% 50%;
+    }
+  }
+
+  /* Body */
+  #srch-body {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 18px 20px 24px;
+  }
+  #srch-hint {
+    font-family: "Google Sans", Arial, sans-serif;
+    font-size: 14px;
+    color: #5f6368;
+    margin: 0 0 20px;
+  }
+
+  /* Section titles */
+  #srch-suggested-title,
+  #srch-cat-title {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    font-family: "Google Sans", Arial, sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+    color: #80868b;
+    margin-bottom: 12px;
+  }
+
+  /* Suggested searches chips */
+  #srch-suggested-section {
+    margin-bottom: 22px;
+  }
+  #srch-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .srch-chip {
+    display: inline-flex;
+    align-items: center;
+    padding: 8px 16px;
+    border-radius: 24px;
+    border: none;
+    background: var(--chip-bg, #f1f3f4);
+    color: var(--chip-fg, #202124);
+    font-family: "Google Sans", Arial, sans-serif;
+    font-size: 13.5px;
+    font-weight: 500;
+    cursor: pointer;
+    white-space: nowrap;
+    transition:
+      filter 0.15s,
+      transform 0.1s,
+      box-shadow 0.15s;
+  }
+  .srch-chip:hover {
+    filter: brightness(0.93);
+    transform: translateY(-1px);
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.12);
+  }
+  .srch-chip:active {
+    transform: translateY(0);
+    filter: brightness(0.87);
+  }
+
+  /* Category links */
+  #srch-categories {
+    border-top: 1px solid #f1f3f4;
+    padding-top: 18px;
+  }
+  #srch-cat-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .srch-cat-link {
+    display: inline-flex;
+    align-items: center;
+    padding: 7px 14px;
+    border-radius: 6px;
+    background: #f8f9fa;
+    border: 1px solid #e8eaed;
+    color: #3c4043;
+    font-family: "Google Sans", Arial, sans-serif;
+    font-size: 13px;
+    text-decoration: none;
+    transition:
+      background 0.15s,
+      border-color 0.15s,
+      color 0.15s;
+  }
+  .srch-cat-link:hover {
+    background: #e8f0fe;
+    border-color: #c5d6f8;
+    color: #1a73e8;
+  }
+</style>
+
+<!-- ════════════════════════════════════════
+     SCRIPTS
+════════════════════════════════════════ -->
+<script>
+  /* ── Mobile Menu ── */
+  const hambBtn = document.getElementById("hamburger-btn");
+  const mobMenu = document.getElementById("mob-menu");
+  const mobOvl = document.getElementById("mob-overlay");
+  const hamIcon = document.getElementById("hamburger-icon");
+  const xIcon = document.getElementById("close-icon");
+  let mobOpen = false;
+
+  function openMob() {
+    mobOpen = true;
+    mobMenu?.classList.add("is-open");
+    mobOvl?.classList.add("is-open");
+    hamIcon?.classList.add("hidden");
+    xIcon?.classList.remove("hidden");
+    hambBtn?.setAttribute("aria-expanded", "true");
+    mobMenu?.setAttribute("aria-hidden", "false");
+    document.body.style.overflow = "hidden";
+  }
+  function closeMob() {
+    mobOpen = false;
+    mobMenu?.classList.remove("is-open");
+    mobOvl?.classList.remove("is-open");
+    hamIcon?.classList.remove("hidden");
+    xIcon?.classList.add("hidden");
+    hambBtn?.setAttribute("aria-expanded", "false");
+    mobMenu?.setAttribute("aria-hidden", "true");
+    document.body.style.overflow = "";
+  }
+
+  hambBtn?.addEventListener("click", () => (mobOpen ? closeMob() : openMob()));
+  mobOvl?.addEventListener("click", closeMob);
+  document
+    .querySelectorAll("#mob-menu a")
+    .forEach((a) => a.addEventListener("click", closeMob));
+
+  // Mobile Submenu Accordion Toggle
+  document.querySelectorAll(".mob-dropdown-toggle").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const wrap = btn.closest(".mob-dropdown-wrap");
+      const subMenu = wrap?.querySelector(".mob-sub-menu");
+      const chevron = btn.querySelector(".mob-chevron");
+
+      const isOpen = !subMenu?.classList.contains("hidden");
+      if (isOpen) {
+        subMenu?.classList.add("hidden");
+        chevron?.classList.remove("rotate-180");
+      } else {
+        subMenu?.classList.remove("hidden");
+        chevron?.classList.add("rotate-180");
+      }
+    });
+  });
+
+  let headerResizeTimer: ReturnType<typeof setTimeout>;
+  window.addEventListener("resize", () => {
+    clearTimeout(headerResizeTimer);
+    headerResizeTimer = setTimeout(() => {
+      if (window.innerWidth >= 1024 && mobOpen) closeMob();
+    }, 100);
+  });
+
+  /* ── Search Overlay ── */
+  const searchBtn = document.getElementById("search-btn");
+  const srchOverlay = document.getElementById("srch-overlay");
+  const srchInput = document.getElementById(
+    "srch-input",
+  ) as HTMLInputElement | null;
+  const srchClose = document.getElementById("srch-close");
+  const srchClear = document.getElementById("srch-clear") as HTMLElement | null;
+  const srchBackdrop = document.getElementById("srch-backdrop");
+  let srchOpen = false;
+
+  function openSearch() {
+    if (mobOpen) closeMob();
+    srchOpen = true;
+    srchOverlay?.classList.add("is-open");
+    srchOverlay?.setAttribute("aria-hidden", "false");
+    searchBtn?.setAttribute("aria-expanded", "true");
+    document.body.style.overflow = "hidden";
+    setTimeout(() => srchInput?.focus(), 80);
+  }
+  function closeSearch() {
+    srchOpen = false;
+    srchOverlay?.classList.remove("is-open");
+    srchOverlay?.setAttribute("aria-hidden", "true");
+    searchBtn?.setAttribute("aria-expanded", "false");
+    document.body.style.overflow = "";
+    if (srchInput) srchInput.value = "";
+    if (srchClear) srchClear.style.display = "none";
+  }
+  function doSearch(q: string) {
+    const query = q.trim();
+    if (!query) return;
+    window.location.href = `/search?q=${encodeURIComponent(query)}`;
+  }
+
+  searchBtn?.addEventListener("click", openSearch);
+  srchClose?.addEventListener("click", closeSearch);
+  srchBackdrop?.addEventListener("click", closeSearch);
+
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") {
+      if (srchOpen) closeSearch();
+      else if (mobOpen) closeMob();
+    }
+  });
+
+  srchInput?.addEventListener("input", () => {
+    if (srchClear)
+      srchClear.style.display =
+        (srchInput?.value?.length ?? 0) > 0 ? "flex" : "none";
+  });
+  srchInput?.addEventListener("keydown", (e) => {
+    if (e.key === "Enter") doSearch(srchInput?.value ?? "");
+  });
+
+  srchClear?.addEventListener("click", () => {
+    if (srchInput) srchInput.value = "";
+    if (srchClear) srchClear.style.display = "none";
+    srchInput?.focus();
+  });
+
+  // Chips → search
+  document.querySelectorAll(".srch-chip").forEach((chip) => {
+    chip.addEventListener("click", () =>
+      doSearch((chip as HTMLElement).dataset.query ?? ""),
+    );
+  });
+
+  // Category links → close overlay pehle
+  document.querySelectorAll(".srch-cat-link").forEach((link) => {
+    link.addEventListener("click", closeSearch);
+  });
+</script>

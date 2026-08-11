@@ -1,0 +1,791 @@
+---
+// src/components/PopularPosts.astro
+// Lazy-loaded Popular Posts section for the homepage.
+// Renders as a beautiful, premium horizontal card carousel (slider) with navigation dots.
+// Supports finger swipe on touch devices, mouse drag, and dot control.
+// Inspired by Google Keyword's card slider style.
+---
+
+<section
+  class="popular-posts-section"
+  id="popularPostsSection"
+  aria-label="Popular Posts"
+>
+  <div class="popular-posts-inner">
+    <!-- Section Header -->
+    <div class="pp-header">
+      <h2 class="pp-title">POPULAR POSTS --</h2>
+    </div>
+
+    <!-- Carousel Container -->
+    <div class="pp-carousel-outer">
+      <!-- Skeleton Loader (shown while loading) -->
+      <div class="pp-carousel" id="ppSkeleton" aria-hidden="true">
+        {
+          Array(7)
+            .fill(null)
+            .map(() => (
+              <div class="pp-skeleton-card">
+                <div class="pp-skeleton-image" />
+                <div class="pp-skeleton-text-wrap">
+                  <div class="pp-skeleton-eyebrow" />
+                  <div class="pp-skeleton-title" />
+                  <div class="pp-skeleton-title pp-skeleton-title--short" />
+                  <div class="pp-skeleton-footer" />
+                </div>
+              </div>
+            ))
+        }
+      </div>
+
+      <!-- Real Posts Carousel -->
+      <div class="pp-carousel" id="ppGrid" hidden></div>
+    </div>
+
+    <!-- Dots Navigation Indicator -->
+    <div class="pp-dots-container" id="ppDots" hidden></div>
+
+    <!-- Error State -->
+    <p class="pp-error" id="ppError" hidden>
+      Could not load popular posts. <a href="/search/" class="pp-error-link"
+        >Browse all posts →</a
+      >
+    </p>
+  </div>
+</section>
+
+<script>
+  (function () {
+    const section = document.getElementById("popularPostsSection");
+    const skeleton = document.getElementById("ppSkeleton");
+    const grid = document.getElementById("ppGrid");
+    const errorEl = document.getElementById("ppError");
+    const dotsContainer = document.getElementById("ppDots");
+
+    if (!section || !skeleton || !grid || !dotsContainer) return;
+
+    let loaded = false;
+
+    // Format date like "Jul 01, 2026"
+    function formatDate(isoString) {
+      try {
+        return new Date(isoString).toLocaleDateString("en-US", {
+          month: "short",
+          day: "2-digit",
+          year: "numeric",
+        });
+      } catch {
+        return "";
+      }
+    }
+
+    // Build card mimicking Google Keyword card style
+    function buildCard(post, index) {
+      const date = post.pubDate ? formatDate(post.pubDate) : "";
+      const category = post.category || "";
+      const title = post.title || "Untitled";
+      const url = post.url || `/post/${post.id}/`;
+
+      const imageHtml = post.image
+        ? `<div class="pp-card-image-wrap">
+           <img src="${post.image}" alt="${title.replace(/"/g, "&quot;")}" class="pp-card-image" loading="lazy" decoding="async" />
+         </div>`
+        : `<div class="pp-card-image-wrap pp-card-image-placeholder"></div>`;
+
+      return `
+      <a href="${url}" class="pp-card group" aria-label="${title.replace(/"/g, "&quot;")}" data-index="${index}">
+        ${imageHtml}
+        <div class="pp-card-text-wrap">
+          <div class="pp-card-eyebrow">
+            ${category ? `<span class="pp-card-category">${category}</span>` : ""}
+          </div>
+          <h3 class="pp-card-title">${title}</h3>
+          <div class="pp-card-footer">
+            ${date ? `<span class="pp-card-date">${date}</span>` : ""}
+            <span class="pp-card-arrow" aria-hidden="true">→</span>
+          </div>
+        </div>
+      </a>
+    `;
+    }
+
+    // Source badge text
+    function getSourceLabel(source) {
+      if (source === "kv") return "📊 Live data";
+      if (source === "ga4") return "📈 Analytics data";
+      if (source === "random") return "✨ Editor's picks";
+      return "";
+    }
+
+    // Fetch and render
+    async function loadPopularPosts() {
+      if (loaded) return;
+      loaded = true;
+
+      try {
+        let res = await fetch("/api/popular-posts", {
+          method: "GET",
+          headers: { Accept: "application/json" },
+        });
+
+        let data;
+        let posts = [];
+        let source = "random";
+
+        if (res.ok) {
+          data = await res.json();
+          posts = data.posts || [];
+          source = data.source || "random";
+        } else if (res.status === 404) {
+          // Fallback locally directly from static build JSON files
+          console.log(
+            "[PopularPosts] /api/popular-posts returned 404. Using static JSON fallback.",
+          );
+          let staticRes = await fetch("/popular-posts-ga4.json");
+          source = "ga4";
+
+          if (staticRes.ok) {
+            data = await staticRes.json();
+            posts = Array.isArray(data) ? data : data.posts || [];
+          } else {
+            throw new Error("Static fallback files also failed");
+          }
+        } else {
+          throw new Error(`HTTP ${res.status}`);
+        }
+
+        // Limit to max 7 posts
+        const limitedPosts = posts.slice(0, 7);
+
+        if (limitedPosts.length === 0) {
+          skeleton.hidden = true;
+          errorEl.hidden = false;
+          return;
+        }
+
+        let enrichedPosts = limitedPosts;
+
+        // Enrich KV data with meta if needed (Fallback if server-side enrichment failed to return titles)
+        if (
+          source === "kv" &&
+          limitedPosts.length > 0 &&
+          !limitedPosts[0].title
+        ) {
+          try {
+            const fallbackRes = await fetch("/posts-metadata.json");
+            if (fallbackRes.ok) {
+              const allPosts = await fallbackRes.json();
+              const postMap = Object.fromEntries(
+                allPosts.map((p) => [p.id, p]),
+              );
+              enrichedPosts = limitedPosts
+                .map((p) => ({ ...postMap[p.id], views: p.views }))
+                .filter((p) => p && p.title);
+
+              // Safe fallback: if client KV enrichment resulted in no valid posts,
+              // fall back to showing the first 6 posts from the static popular posts JSON.
+              if (enrichedPosts.length === 0) {
+                console.warn(
+                  "[PopularPosts] Client-side KV enrichment resulted in 0 posts. Falling back to static popular posts.",
+                );
+                const staticRes = await fetch("/popular-posts-ga4.json");
+                if (staticRes.ok) {
+                  const staticData = await staticRes.json();
+                  enrichedPosts = (
+                    Array.isArray(staticData)
+                      ? staticData
+                      : staticData.posts || []
+                  ).slice(0, 7);
+                  source = "ga4";
+                }
+              }
+            }
+          } catch (e) {
+            console.warn(
+              "[PopularPosts] Client-side KV metadata enrichment failed:",
+              e,
+            );
+          }
+        }
+
+        // Render cards
+        grid.innerHTML = enrichedPosts
+          .map((post, idx) => buildCard(post, idx))
+          .join("");
+
+        // Create dots indicators
+        const dotsHtml = enrichedPosts
+          .map(
+            (_, idx) => `
+        <button class="pp-dot-btn" aria-selected="${idx === 0 ? "true" : "false"}" aria-label="Go to slide ${idx + 1}" data-index="${idx}">
+          <span class="pp-dot-text">Go to slide ${idx + 1}</span>
+        </button>
+      `,
+          )
+          .join("");
+        dotsContainer.innerHTML = dotsHtml;
+        dotsContainer.hidden = false;
+
+        // Swap loader -> grid
+        skeleton.hidden = true;
+        grid.hidden = false;
+
+        // Attach click events on dots
+        const dotButtons = dotsContainer.querySelectorAll(".pp-dot-btn");
+        dotButtons.forEach((btn) => {
+          btn.addEventListener("click", () => {
+            const idx = parseInt(btn.getAttribute("data-index"), 10);
+            const cards = grid.querySelectorAll(".pp-card");
+            if (cards[idx]) {
+              cards[idx].scrollIntoView({
+                behavior: "smooth",
+                block: "nearest",
+                inline: "start",
+              });
+            }
+          });
+        });
+
+        let totalCardWidth = 0;
+        const measureCardWidth = () => {
+          const card = grid.querySelector(".pp-card");
+          if (!card) return;
+          const cardWidth = card.offsetWidth;
+          const style = window.getComputedStyle(card);
+          const marginRight = parseFloat(style.marginRight || "0");
+          totalCardWidth = cardWidth + marginRight;
+        };
+
+        // Measure initially — defer to next task queue tick to avoid forced reflow after innerHTML render
+        setTimeout(measureCardWidth, 100);
+
+        let ppResizeTimer;
+        window.addEventListener("resize", () => {
+          clearTimeout(ppResizeTimer);
+          ppResizeTimer = setTimeout(measureCardWidth, 150);
+        });
+
+        let ticking = false;
+        // Synchronize dots with scroll snap position
+        grid.addEventListener(
+          "scroll",
+          () => {
+            if (!ticking) {
+              window.requestAnimationFrame(() => {
+                if (totalCardWidth > 0) {
+                  const scrollLeft = grid.scrollLeft;
+                  const activeIndex = Math.round(scrollLeft / totalCardWidth);
+
+                  dotButtons.forEach((btn, idx) => {
+                    if (idx === activeIndex) {
+                      btn.setAttribute("aria-selected", "true");
+                    } else {
+                      btn.setAttribute("aria-selected", "false");
+                    }
+                  });
+                }
+                ticking = false;
+              });
+              ticking = true;
+            }
+          },
+          { passive: true },
+        );
+
+        // Trigger reveal animation
+        requestAnimationFrame(() => {
+          grid.classList.add("pp-carousel--visible");
+        });
+      } catch (err) {
+        console.warn("[PopularPosts] Render error:", err);
+        skeleton.hidden = true;
+        errorEl.hidden = false;
+      }
+    }
+
+    // IntersectionObserver: trigger load on scroll-in view
+    if ("IntersectionObserver" in window) {
+      const observer = new IntersectionObserver(
+        (entries) => {
+          if (entries[0].isIntersecting) {
+            observer.disconnect();
+            loadPopularPosts();
+          }
+        },
+        { rootMargin: "250px 0px" },
+      );
+      observer.observe(section);
+    } else {
+      loadPopularPosts();
+    }
+  })();
+</script>
+
+<style is:global>
+  /* ─── Section Outer Wrapper ─────────────────────────────────────────────── */
+  .popular-posts-section {
+    background: #ffffff;
+    border-top: 1px solid #e8eaed;
+    padding: 64px 0;
+    margin-top: 32px;
+    overflow: hidden;
+  }
+
+  .popular-posts-inner {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 24px;
+    position: relative;
+  }
+
+  @media (min-width: 1024px) {
+    .popular-posts-inner {
+      padding: 0 44px;
+    }
+  }
+
+  /* ─── Section Header ────────────────────────────────────────────────────── */
+  .pp-header {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    margin-bottom: 36px;
+    gap: 16px;
+  }
+
+  .pp-title {
+    font-size: 19px;
+    font-weight: 600;
+    color: #1a73e8;
+    margin: 0;
+    font-family: "Google Sans", Arial, sans-serif;
+    letter-spacing: 1px;
+    text-align: left;
+  }
+
+  .pp-badge {
+    font-size: 11px;
+    font-weight: 500;
+    color: #1a73e8;
+    background: #e8f0fe;
+    border-radius: 20px;
+    padding: 6px 14px;
+    letter-spacing: 0.25px;
+    font-family: "Google Sans", Arial, sans-serif;
+  }
+
+  /* ─── Carousel Wrapper & Container ───────────────────────────────────────── */
+  .pp-carousel-outer {
+    position: relative;
+    margin-left: -24px;
+    margin-right: -24px;
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+
+  @media (min-width: 1024px) {
+    .pp-carousel-outer {
+      margin-left: -44px;
+      margin-right: -44px;
+      padding-left: 44px;
+      padding-right: 44px;
+    }
+  }
+
+  .pp-carousel {
+    display: flex;
+    gap: 24px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE and Edge */
+    padding: 8px 4px 16px;
+  }
+
+  .pp-carousel::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Opera */
+  }
+
+  #ppGrid {
+    opacity: 0;
+    transition: opacity 0.4s ease;
+  }
+
+  #ppGrid.pp-carousel--visible {
+    opacity: 1;
+  }
+
+  /* ─── Google Style Premium Card ─────────────────────────────────────────── */
+  .pp-card {
+    flex: 0 0 85%;
+    max-width: 340px;
+    min-width: 250px;
+    scroll-snap-align: start;
+    display: flex;
+    flex-direction: column;
+    background: #ffffff;
+    border: 1px solid #dadce0;
+    border-radius: 4px;
+    overflow: hidden;
+    text-decoration: none;
+    color: inherit;
+    transition:
+      box-shadow 0.3s cubic-bezier(0.25, 0.8, 0.25, 1),
+      transform 0.2s ease;
+    cursor: pointer;
+    margin-right: 4px;
+  }
+
+  .pp-card:hover {
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+    transform: translateY(-2px);
+  }
+
+  @media (min-width: 768px) {
+    .pp-card {
+      flex: 0 0 calc(50% - 12px);
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .pp-card {
+      flex: 0 0 calc(33.333% - 16px);
+      max-width: 300px;
+    }
+  }
+
+  /* Card Image */
+  .pp-card-image-wrap {
+    position: relative;
+    width: 100%;
+    height: 160px; /* Reduced by 40px for Mobile by default */
+    overflow: hidden;
+    background-color: #f1f3f4;
+  }
+
+  @media (min-width: 1024px) {
+    .pp-card-image-wrap {
+      height: 170px; /* Reduced by 30px from original 200px for Desktop */
+    }
+  }
+
+  .pp-card-image-placeholder {
+    height: 140px; /* Reduced by 40px for Mobile */
+    background: linear-gradient(135deg, #e8f0fe 0%, #d2e3fc 100%);
+  }
+
+  @media (min-width: 1024px) {
+    .pp-card-image-placeholder {
+      height: 150px; /* Reduced by 30px for Desktop */
+    }
+  }
+
+  .pp-card-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+
+    display: block;
+    transition: transform 0.4s ease;
+  }
+
+  .pp-card:hover .pp-card-image {
+    transform: scale(1.04);
+  }
+
+  /* Card Info & Text */
+  .pp-card-text-wrap {
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+  }
+
+  .pp-card-eyebrow {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 12px;
+  }
+
+  .pp-card-category {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.8px;
+    color: #1a73e8;
+    text-transform: uppercase;
+    font-family: "Google Sans", Arial, sans-serif;
+  }
+
+  .pp-card-dot-separator {
+    color: #80868b;
+    font-size: 14px;
+    line-height: 1;
+  }
+
+  .pp-card-views {
+    font-size: 12px;
+    color: #5f6368;
+    font-weight: 500;
+    font-family: "Google Sans", Arial, sans-serif;
+  }
+
+  .pp-card-title {
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 26px;
+    color: #202124;
+    margin: 0 0 16px 0;
+    font-family: "Google Sans", Arial, sans-serif;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    height: 78px; /* Standardize card titles layout height */
+  }
+
+  .pp-card:hover .pp-card-title {
+    text-decoration: underline;
+    text-decoration-thickness: 1.5px;
+    text-underline-offset: 3px;
+  }
+
+  /* Card Footer (Date + Arrow) */
+  .pp-card-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: auto;
+    border-top: 1px solid #f1f3f4;
+    padding-top: 16px;
+  }
+
+  .pp-card-date {
+    font-size: 13px;
+    color: #5f6368;
+    font-weight: 400;
+    font-family: "Google Sans", Arial, sans-serif;
+  }
+
+  .pp-card-arrow {
+    font-size: 20px;
+    color: #202124;
+    font-weight: bold;
+    line-height: 1;
+    transition: transform 0.2s cubic-bezier(0.2, 0, 0, 1);
+  }
+
+  .pp-card:hover .pp-card-arrow {
+    transform: translateX(4px);
+    color: #1a73e8;
+  }
+
+  /* ─── Carousel Dots Indicator Navigation ──────────────────────────────────── */
+  .pp-dots-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 7px;
+    margin-top: 36px;
+  }
+
+  @media (max-width: 768px) {
+    .pp-dots-container {
+      gap: 6px;
+    }
+  }
+
+  /* Base Button styling with expanded touch target */
+  .pp-dot-btn {
+    background: none;
+    border: 0px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: block;
+    font: inherit;
+    height: 18px;
+    width: 18px;
+    outline: none;
+    padding: 22px;
+    position: relative;
+    text-indent: -9999px;
+    transition: 0.2s ease-in-out;
+  }
+
+  @media (max-width: 768px) {
+    .pp-dot-btn {
+      padding: 19px;
+    }
+  }
+
+  /* Hover and Focus states */
+  .pp-dot-btn:hover {
+    box-shadow:
+      rgba(54, 64, 67, 0.3) 0px 1px 3px,
+      rgba(54, 64, 67, 0.3) 0px 4px 8px 3px;
+  }
+
+  .pp-dot-btn:focus {
+    background: rgb(241, 243, 244);
+    outline: rgb(23, 78, 166) solid 2px;
+    outline-offset: 0px;
+  }
+
+  /* Visual dot indicator via pseudo-element */
+  .pp-dot-btn::before {
+    border: 2px solid rgb(32, 33, 36);
+    border-radius: 50%;
+    content: "";
+    display: block;
+    height: 10px;
+    width: 10px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate3d(-50%, -50%, 0px);
+  }
+
+  /* Active state indicator */
+  .pp-dot-btn[aria-selected="true"]::before {
+    background: rgb(32, 33, 36);
+  }
+
+  /* Visually hidden text for accessibility */
+  .pp-dot-text {
+    clip: rect(1px, 1px, 1px, 1px);
+    height: 1px;
+    width: 1px;
+    overflow: hidden;
+    position: absolute;
+  }
+
+  /* ─── Skeleton Loader ───────────────────────────────────────────────────── */
+  .pp-skeleton-card {
+    flex: 0 0 85%;
+    max-width: 340px;
+    min-width: 250px;
+    height: 344px; /* Reduced by 40px for Mobile (originally 384px) */
+    border: 1px solid #dadce0;
+    border-radius: 4px;
+    overflow: hidden;
+    background: #fff;
+    display: flex;
+    flex-direction: column;
+  }
+
+  @media (min-width: 768px) {
+    .pp-skeleton-card {
+      flex: 0 0 calc(50% - 12px);
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .pp-skeleton-card {
+      flex: 0 0 calc(33.333% - 16px);
+      max-width: 300px;
+      height: 354px; /* Reduced by 30px for Desktop (originally 384px) */
+    }
+  }
+
+  .pp-skeleton-image {
+    width: 100%;
+    height: 160px; /* Matches Mobile Card Image Wrap */
+    background: #f1f3f4;
+    position: relative;
+    overflow: hidden;
+  }
+
+  @media (min-width: 1024px) {
+    .pp-skeleton-image {
+      height: 170px; /* Matches Desktop Card Image Wrap */
+    }
+  }
+
+  .pp-skeleton-text-wrap {
+    padding: 24px;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .pp-skeleton-eyebrow {
+    width: 80px;
+    height: 12px;
+    background: #f1f3f4;
+    border-radius: 4px;
+    margin-bottom: 12px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .pp-skeleton-title {
+    width: 100%;
+    height: 16px;
+    background: #f1f3f4;
+    border-radius: 4px;
+    margin-bottom: 8px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .pp-skeleton-title--short {
+    width: 60%;
+    margin-bottom: 24px;
+  }
+
+  .pp-skeleton-footer {
+    width: 90px;
+    height: 14px;
+    background: #f1f3f4;
+    border-radius: 4px;
+    margin-top: auto;
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* Shimmer glow animation */
+  .pp-skeleton-image::after,
+  .pp-skeleton-eyebrow::after,
+  .pp-skeleton-title::after,
+  .pp-skeleton-footer::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      90deg,
+      transparent 0%,
+      rgba(255, 255, 255, 0.6) 50%,
+      transparent 100%
+    );
+    animation: pp-shimmer 1.5s infinite;
+  }
+
+  @keyframes pp-shimmer {
+    0% {
+      transform: translateX(-100%);
+    }
+    100% {
+      transform: translateX(100%);
+    }
+  }
+
+  /* ─── Error state ───────────────────────────────────────────────────────── */
+  .pp-error {
+    text-align: center;
+    color: #5f6368;
+    font-size: 15px;
+    font-family: "Google Sans", Arial, sans-serif;
+    padding: 32px 0;
+    margin: 0;
+  }
+
+  .pp-error-link {
+    color: #1a73e8;
+    text-decoration: none;
+    font-weight: 500;
+  }
+
+  .pp-error-link:hover {
+    text-decoration: underline;
+  }
+</style>

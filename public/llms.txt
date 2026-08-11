@@ -1,0 +1,28 @@
+# Quic Decode
+
+> Latest Tech News, AI Updates, Android Tips, Web Development Tutorials, Coding Guides, App Development and Digital Technology.
+
+- Site: https://www.quicdecode.com
+- Language: en
+- License: All Rights Reserved
+
+## Important URLs
+
+- [Home](https://www.quicdecode.com/)
+- [Tech News](https://www.quicdecode.com/category/tech-news/)
+- [AI](https://www.quicdecode.com/category/ai/)
+- [Android](https://www.quicdecode.com/category/android/)
+- [Web Development](https://www.quicdecode.com/category/web-development/)
+- [Programming](https://www.quicdecode.com/category/programming/)
+- [Sitemap Index](https://www.quicdecode.com/sitemap-index.xml)
+- [Sitemap Posts](https://www.quicdecode.com/sitemap-posts.xml)
+- [RSS](https://www.quicdecode.com/rss.xml)
+
+## Policies
+
+- [Robots](https://www.quicdecode.com/robots.txt)
+- [Privacy Policy](https://www.quicdecode.com/privacy-policy/)
+
+## Contact
+
+- Email: contact@quicdecode.com

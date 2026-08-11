@@ -1,0 +1,429 @@
+---
+// src/components/PushNotification.astro
+import { SITE_CONFIG } from "../config/site";
+const showCookieConsent = SITE_CONFIG.showCookieConsent;
+---
+
+<div
+  id="ts-push-ui"
+  class="fixed bottom-[-100%] left-0 w-full bg-white border-t border-[#dadce0] shadow-[0_-8px_24px_rgba(0,0,0,0.08)] z-[9999] transition-all duration-500 ease-out rounded-t-2xl md:left-6 md:bottom-[-100%] md:w-[400px] md:rounded-2xl md:border md:mb-6 font-['Google_Sans',Arial,sans-serif]"
+  role="dialog"
+  aria-modal="false"
+  aria-label="Notification Permission Prompt"
+>
+  <div class="p-6">
+    <div class="flex items-start gap-4 mb-4">
+      <div
+        class="w-12 h-12 rounded-full bg-[#e8f0fe] text-[#1a73e8] flex items-center justify-center shrink-0"
+      >
+        <svg
+          class="w-6 h-6 animate-[wiggle_1.5s_ease-in-out_infinite]"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          viewBox="0 0 24 24"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M14.857 17.082a23.848 23.848 0 005.454-1.31A8.967 8.967 0 0118 9.75v-.7V9A6 6 0 006 9v.75a8.967 8.967 0 01-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 01-5.714 0m5.714 0a3 3 0 11-5.714 0"
+          ></path>
+        </svg>
+      </div>
+      <div class="flex-grow">
+        <h3 class="text-[16px] font-bold text-[#202124] leading-snug mb-1">
+          Stay updated in real-time
+        </h3>
+        <p class="text-[13px] leading-relaxed text-[#5f6368] m-0">
+          Would you like to receive instant notifications on our latest Health,
+          Optometry notes, and Educational updates?
+        </p>
+      </div>
+    </div>
+
+    <div class="flex flex-wrap gap-2 mb-4">
+      <span
+        class="text-[11px] bg-[#f1f3f4] text-[#5f6368] font-medium px-2.5 py-1 rounded-full"
+        >Health</span
+      >
+      <span
+        class="text-[11px] bg-[#f1f3f4] text-[#5f6368] font-medium px-2.5 py-1 rounded-full"
+        >Education</span
+      >
+      <span
+        class="text-[11px] bg-[#f1f3f4] text-[#5f6368] font-medium px-2.5 py-1 rounded-full"
+        >Current Affairs</span
+      >
+      <span
+        class="text-[11px] bg-[#f1f3f4] text-[#5f6368] font-medium px-2.5 py-1 rounded-full"
+        >Quizzes</span
+      >
+    </div>
+
+    <div class="flex justify-end items-center gap-3">
+      <button
+        id="ts-deny"
+        class="bg-transparent hover:bg-[#f8f9fa] text-[#5f6368] hover:text-[#202124] text-[14px] font-medium py-2 px-4 rounded-lg transition-colors cursor-pointer outline-none focus-visible:ring-2 focus-visible:ring-gray-300"
+      >
+        Not Now
+      </button>
+      <button
+        id="ts-allow"
+        class="bg-[#1a73e8] hover:bg-[#174ea6] text-white text-[14px] font-medium py-2 px-5 rounded-lg transition-colors cursor-pointer outline-none focus-visible:ring-2 focus-visible:ring-[#1a73e8] focus-visible:ring-offset-2 shadow-sm"
+      >
+        Yes, Notify Me
+      </button>
+    </div>
+    <p class="text-[11px] text-[#70757a] mt-3 mb-0 text-center">
+      We respect your privacy. Read our <a href="/privacy-policy/" class="text-[#1a73e8] hover:underline">Privacy Policy</a>.
+    </p>
+  </div>
+</div>
+
+<div
+  id="ts-np-overlay"
+  class="fixed inset-0 bg-[#202124]/30 backdrop-blur-[2px] z-[99999] flex items-center justify-center opacity-0 pointer-events-none transition-all duration-300"
+>
+  <div
+    class="bg-white border border-[#dadce0] w-[90%] max-w-[420px] rounded-2xl p-6 shadow-2xl scale-[0.9] transition-all duration-300 font-['Google_Sans',Arial,sans-serif]"
+    id="ts-np-card"
+  >
+    <div
+      class="flex justify-between items-center border-b border-[#f1f3f4] pb-3 mb-4"
+    >
+      <h3 id="ts-np-title" class="text-[16px] font-bold text-[#202124] m-0">
+        Notification Status
+      </h3>
+      <button
+        id="ts-np-close"
+        class="text-[#5f6368] hover:text-[#202124] text-xl font-bold bg-transparent border-none cursor-pointer outline-none w-8 h-8 rounded-full hover:bg-black/5 flex items-center justify-center transition-colors"
+        >&times;</button
+      >
+    </div>
+    <div
+      id="ts-np-message"
+      class="text-[14px] leading-relaxed text-[#5f6368] mb-4"
+    >
+    </div>
+    <div class="flex justify-end">
+      <button
+        id="ts-np-ok"
+        class="bg-[#1a73e8] hover:bg-[#174ea6] text-white text-[14px] font-medium py-2 px-5 rounded-lg transition-colors cursor-pointer outline-none"
+        >OK</button
+      >
+    </div>
+  </div>
+</div>
+
+<style>
+  #ts-push-ui.show {
+    bottom: 0;
+  }
+  @media (min-width: 768px) {
+    #ts-push-ui.show {
+      bottom: 24px;
+    }
+  }
+
+  /* Overlay show class */
+  #ts-np-overlay.show {
+    opacity: 1;
+    pointer-events: auto;
+  }
+  #ts-np-overlay.show #ts-np-card {
+    transform: scale(1);
+  }
+
+  /* Bell wiggle micro-animation */
+  @keyframes wiggle {
+    0%,
+    100% {
+      transform: rotate(0);
+    }
+    15% {
+      transform: rotate(-15deg);
+    }
+    30% {
+      transform: rotate(10deg);
+    }
+    45% {
+      transform: rotate(-8deg);
+    }
+    60% {
+      transform: rotate(4deg);
+    }
+    75% {
+      transform: rotate(-2deg);
+    }
+  }
+</style>
+
+<script is:inline define:vars={{ showCookieConsent }}>
+  (function () {
+    // Unconditionally register Service Worker for Workbox caching & offline support on load
+    window.addEventListener("load", () => {
+      if ("serviceWorker" in navigator) {
+        navigator.serviceWorker
+          .register("/firebase-messaging-sw.js", { scope: "/" })
+          .catch(console.error);
+      }
+    });
+
+    // 1. Exclude WebView clients or specific flag
+    if (
+      location.search.includes("utm_source=webview") ||
+      "1" === localStorage.getItem("tsw_is")
+    ) {
+      return;
+    }
+
+    const ls_token = "qd_push_token";
+    const ls_deny = "qd_deny";
+    // Dummy Firebase messagingSenderId for public template demo
+    const app_id = "000000000000";
+    // Dummy VAPID key for public template demo
+    const vapidKey =
+      "BXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX=";
+
+    // Dummy Firebase project credentials for demonstration mode
+    const firebaseConfig = {
+      apiKey: "AIzaSyDUMMYKEYFORPUBLICDEMOBlogTemplate1234",
+      authDomain: "demo-blog-push.firebaseapp.com",
+      projectId: "demo-blog-push",
+      storageBucket: "demo-blog-push.appspot.com",
+      messagingSenderId: app_id,
+      appId: "1:" + app_id + ":web:0000000000000000000000",
+    };
+
+    const pushBanner = document.getElementById("ts-push-ui");
+    const allowBtn = document.getElementById("ts-allow");
+    const denyBtn = document.getElementById("ts-deny");
+
+    const desktopBtn = document.getElementById("nt-link-desktop");
+    const mobileBtn = document.getElementById("nt-link-mobile");
+
+    const messageOverlay = document.getElementById("ts-np-overlay");
+    const overlayMsg = document.getElementById("ts-np-message");
+    const overlayTitle = document.getElementById("ts-np-title");
+    const overlayClose = document.getElementById("ts-np-close");
+    const overlayOk = document.getElementById("ts-np-ok");
+
+    // Close overlay functions
+    const hideOverlay = () => {
+      if (messageOverlay) messageOverlay.classList.remove("show");
+    };
+    if (overlayClose) overlayClose.onclick = hideOverlay;
+    if (overlayOk) overlayOk.onclick = hideOverlay;
+    if (messageOverlay) {
+      messageOverlay.onclick = (e) =>
+        e.target === messageOverlay && hideOverlay();
+    }
+
+    // Show custom modal dialogue helper
+    const showModal = (title, message) => {
+      if (overlayTitle) overlayTitle.innerText = title;
+      if (overlayMsg) overlayMsg.innerHTML = message;
+      if (messageOverlay) messageOverlay.classList.add("show");
+    };
+
+    // Main registration function (Only downloads Firebase SDK when notifications are enabled)
+    const registerSubscription = async () => {
+      if (!("Notification" in window) || Notification.permission !== "granted")
+        return;
+
+      try {
+        const registration = await navigator.serviceWorker.ready;
+        if (!registration) return;
+
+        // B. Dynamic Import of Firebase 12.7.0 Web SDK to optimize initial Page Speed
+        const [{ initializeApp, getApps, getApp }, { getMessaging, getToken }] =
+          await Promise.all([
+            import("https://www.gstatic.com/firebasejs/12.7.0/firebase-app.js"),
+            import("https://www.gstatic.com/firebasejs/12.7.0/firebase-messaging.js"),
+          ]);
+
+        // C. Initialize Firebase
+        const app = getApps().length ? getApp() : initializeApp(firebaseConfig);
+        const messaging = getMessaging(app);
+
+        // D. Get FCM Token
+        const currentToken = await getToken(messaging, {
+          vapidKey: vapidKey,
+          serviceWorkerRegistration: registration,
+        });
+
+        const storedToken = localStorage.getItem(ls_token);
+
+        if (currentToken && currentToken !== storedToken) {
+          // Send to Cloudflare D1 via POST API request
+          const response = await fetch("/api/push-subscribe", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ token: currentToken }),
+          });
+
+          if (response.ok) {
+            localStorage.setItem(ls_token, currentToken);
+          }
+        }
+      } catch (e) {
+        console.info("[Push Notification Demo] Using placeholder Firebase credentials. Push notification registration operating in demo mode.");
+      }
+    };
+
+    // Update buttons status and bind event listeners
+    const updateButtons = () => {
+      const permission =
+        "Notification" in window ? Notification.permission : "default";
+
+      const configureButton = (btn, isMobile) => {
+        if (!btn) return;
+
+        if (permission === "granted") {
+          btn.innerHTML = `
+            <svg class="w-4 h-4 text-[#137333] shrink-0" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"></path>
+            </svg>
+            <span class="text-[#137333]">Subscribed</span>
+          `;
+          btn.className = `${isMobile ? "py-1.5 px-3 text-[12px]" : "py-1.5 px-4 text-[13px]"} bg-[#e6f4ea] hover:bg-[#d2e3fc] border border-transparent rounded-[3px] transition-colors cursor-pointer outline-none flex items-center gap-1.5 font-['Google_Sans',Arial,sans-serif] h-[36px] font-medium`;
+        } else if (permission === "denied") {
+          btn.innerHTML = `
+            <svg class="w-4 h-4 text-[#c5221f] shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9.143 17.082a24.248 24.248 0 003.844.148m-3.844-.148a23.856 23.856 0 01-5.455-1.31 8.964 8.964 0 002.3-5.542m3.155 6.852a3 3 0 005.667 1.97m1.965-2.277L21 21m-4.225-4.225a23.81 23.81 0 003.536-1.003A8.967 8.967 0 0118 9.75V9A6 6 0 006.53 6.53m10.245 10.245L3 3m5.877 5.877V9"></path>
+            </svg>
+            <span class="text-[#c5221f]">Blocked</span>
+          `;
+          btn.className = `${isMobile ? "py-1.5 px-3 text-[12px]" : "py-1.5 px-4 text-[13px]"} bg-[#fce8e6] hover:bg-[#fad2cf] border border-transparent rounded-[3px] transition-colors cursor-pointer outline-none flex items-center gap-1.5 font-['Google_Sans',Arial,sans-serif] h-[36px] font-medium`;
+        } else {
+          btn.innerHTML = `
+            <svg class="w-4 h-4 shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M14.857 17.082a23.848 23.848 0 005.454-1.31A8.967 8.967 0 0118 9.75v-.7V9A6 6 0 006 9v.75a8.967 8.967 0 01-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 01-5.714 0m5.714 0a3 3 0 11-5.714 0"></path>
+            </svg>
+            <span>Subscribe</span>
+          `;
+          btn.className = `${isMobile ? "py-1.5 px-3 text-[12px]" : "py-1.5 px-4 text-[13px]"} bg-[#1a73e8] hover:bg-[#174ea6] text-white border border-transparent rounded-[3px] transition-all cursor-pointer outline-none shadow-[0_1px_2px_rgba(60,64,67,0.3),_0_1px_3px_1px_rgba(60,64,67,0.15)] hover:shadow-[0_1px_3px_rgba(60,64,67,0.3),_0_4px_8px_3px_rgba(60,64,67,0.15)] flex items-center gap-1.5 font-['Google_Sans',Arial,sans-serif] h-[36px] font-medium`;
+        }
+
+        btn.onclick = (e) => {
+          e.preventDefault();
+          if (!("Notification" in window)) {
+            showModal(
+              "Unsupported Browser",
+              "Push notifications are not supported by this browser.",
+            );
+            return;
+          }
+
+          const currentPerm = Notification.permission;
+          if (currentPerm === "granted") {
+            showModal(
+              "Notifications Active",
+              "<b>Notifications are active!</b><br>You are all set to receive automatic educational, health & study updates directly on your device.",
+            );
+          } else if (currentPerm === "default") {
+            Notification.requestPermission().then((res) => {
+              updateButtons();
+              if (res === "granted") {
+                registerSubscription();
+                showModal(
+                  "Success",
+                  "<b>Thank you!</b><br>You have successfully subscribed to DEMO BLOG notifications.",
+                );
+              }
+            });
+          } else {
+            const isStandalone = window.matchMedia(
+              "(display-mode: standalone)",
+            ).matches;
+            const instructions = isStandalone
+              ? "1. <b>Long press</b> the DEMO BLOG app icon.<br>2. Tap on <b>App Info (i)</b>.<br>3. Open <b>Notifications</b> settings.<br>4. Toggle <b>Allow Notifications</b> to ON."
+              : "1. Click the <b>Lock (🔒)</b> or Settings icon in the browser URL bar.<br>2. Select <b>Site Settings</b> or Permissions.<br>3. Locate <b>Notifications</b> and set it to <b>Allow</b> or reset the permission.";
+
+            showModal(
+              "Notifications Blocked",
+              `You have blocked notifications for this site.<br>To enable them, please follow these steps:<br><br><div style="text-align:left; font-size:13px; background:#f8f9fa; border:1px solid #dadce0; padding:12px; border-radius:10px; line-height:1.6; color:#3c4043;">${instructions}</div>`,
+            );
+          }
+        };
+      };
+
+      configureButton(desktopBtn, false);
+      configureButton(mobileBtn, true);
+    };
+
+    // Initialize UI status — deferred to next frame to batch DOM writes and avoid forced reflow
+    requestAnimationFrame(updateButtons);
+
+    // Trigger registration immediately if already granted
+    if ("Notification" in window && Notification.permission === "granted") {
+      registerSubscription();
+    }
+
+    // Defer the Slide-up banner and its event listeners to window load
+    window.addEventListener("load", () => {
+      const denyTime = localStorage.getItem(ls_deny);
+      const cooldownPeriod = 172800000; // 2 days in milliseconds
+
+      if (denyTime && Date.now() - parseInt(denyTime, 10) < cooldownPeriod) {
+        return;
+      }
+
+      // Slide-up trigger (wait for cookie consent if it's a new user, to prevent overlapping popups)
+      if (
+        "Notification" in window &&
+        Notification.permission === "default" &&
+        pushBanner
+      ) {
+        const ccKey = "blog-cookie-consent";
+        if (!showCookieConsent || localStorage.getItem(ccKey)) {
+          // User already accepted cookies or custom banner is disabled, show after 10 seconds
+          setTimeout(() => {
+            pushBanner.classList.add("show");
+          }, 10000);
+        } else {
+          // New user: wait until they dismiss cookie banner, then show after 10 seconds
+          window.addEventListener(
+            "cookie-consent-updated",
+            () => {
+              setTimeout(() => {
+                pushBanner.classList.add("show");
+              }, 10000);
+            },
+            { once: true },
+          );
+        }
+      }
+
+      // Banner Allow click handler
+      if (allowBtn) {
+        allowBtn.onclick = () => {
+          pushBanner.classList.remove("show");
+          Notification.requestPermission().then((res) => {
+            updateButtons();
+            if (res === "granted") {
+              registerSubscription();
+              showModal(
+                "Subscribed Successfully",
+                "<b>Welcome!</b><br>You will now receive notifications on our latest content.",
+              );
+            } else if (res === "denied") {
+              localStorage.setItem(ls_deny, Date.now().toString());
+            }
+          });
+        };
+      }
+
+      // Banner Deny click handler (with 2-day cooldown)
+      if (denyBtn) {
+        denyBtn.onclick = () => {
+          pushBanner.classList.remove("show");
+          localStorage.setItem(ls_deny, Date.now().toString());
+        };
+      }
+    });
+  })();
+</script>

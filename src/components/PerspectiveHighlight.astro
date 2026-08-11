@@ -1,0 +1,243 @@
+---
+// src/components/PerspectiveHighlight.astro
+import { getCollection } from "astro:content";
+import { Image } from "astro:assets";
+import { cleanImageUrl } from "../utils/image";
+import { AUTHOR_REGISTRY } from "../config/authors";
+
+// 1. Fetch posts from database
+const allPosts = await getCollection("blog");
+
+// 2. Sort posts by date
+const sortedPosts = allPosts.sort(
+  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
+);
+
+// 3. Get 5th post, fallback to first
+const featuredPost = sortedPosts[4] || sortedPosts[0];
+
+// 4. Generate post URL
+const postUrl = `/post/${featuredPost?.id}/`;
+
+const cleanedImage = cleanImageUrl(featuredPost?.data.image);
+
+// Resolve author profile
+const profilesBySlug = Object.fromEntries(
+  Object.values(AUTHOR_REGISTRY).map((p) => [p.slug, p])
+);
+
+const authorSlugResolved =
+  featuredPost?.data.authorSlug ||
+  featuredPost?.data.author.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)+/g, '');
+const authorProfile = profilesBySlug[authorSlugResolved];
+const authorAvatarUrl = authorProfile?.avatarUrl ?? null;
+const authorRole = authorProfile?.role ?? 'Author';
+---
+
+{
+  featuredPost && (
+    <section class="max-w-[1280px] mx-auto px-4 lg:px-[52px] mt-12 mb-16 perspective-highlight">
+      <a
+        href={postUrl}
+        class="card group cursor-pointer block no-underline text-inherit"
+      >
+        <div class="card__text-top">
+          <h2 class="uni-headline-3 group-hover:underline decoration-[1.5px] underline-offset-[3px] font-['Google_Sans',Arial,sans-serif] antialiased">
+            {featuredPost.data.title}
+          </h2>
+
+          <p class="text-[#5f6368] text-[16px] leading-[24px] mt-4 hidden lg:block antialiased line-clamp-2">
+            {featuredPost.data.description}
+          </p>
+        </div>
+
+        <div class="card__hero-image bg-[#e8f0fe]">
+          {cleanedImage && (
+            <Image
+              src={cleanedImage}
+              alt={featuredPost.data.title}
+              width={440}
+              height={248}
+              widths={[360, 480, 600, 768, 880]}
+              sizes="(max-width: 1023px) calc(100vw - 64px), 440px"
+              class="lazy-image--no-blur group-hover:scale-[1.02] transition-transform duration-300"
+              loading="lazy"
+              quality={75}
+            />
+          )}
+        </div>
+
+        <div class="card__bottom-row">
+          <div class="author-byline">
+            <div class="w-10 h-10 lg:w-12 lg:h-12 rounded-full bg-[#1a73e8] flex items-center justify-center text-white text-[18px] lg:text-[20px] font-bold mr-4 shrink-0 overflow-hidden">
+              {authorAvatarUrl ? (
+                <Image
+                  src={authorAvatarUrl}
+                  alt={featuredPost.data.author}
+                  class="w-full h-full object-cover"
+                  width={96}
+                  height={96}
+                  widths={[40, 48, 80, 96]}
+                  sizes="(max-width: 1023px) 40px, 48px"
+                  quality={75}
+                />
+              ) : (
+                featuredPost.data.author.charAt(0)
+              )}
+            </div>
+            <div class="flex flex-col">
+              <span class="text-[#202124] text-[14px] lg:text-[16px] font-bold leading-tight font-['Google_Sans',Arial,sans-serif] antialiased">
+                {featuredPost.data.author}
+              </span>
+              <span class="text-[#5f6368] text-[12px] lg:text-[14px] mt-0.5 font-['Google_Sans',Arial,sans-serif] antialiased">
+                {authorRole}
+              </span>
+            </div>
+          </div>
+
+          <div class="card__arrow">
+            <svg
+              class="w-6 h-6 text-[#202124] group-hover:text-[#1a73e8] transition-colors duration-200 group-hover:translate-x-1"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M5 12h14M12 5l7 7-7 7"
+              />
+            </svg>
+          </div>
+        </div>
+      </a>
+    </section>
+  )
+}
+
+<style>
+  .perspective-highlight .card {
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    box-shadow:
+      0 4px 8px 3px rgba(60, 64, 67, 0.15),
+      0 1px 3px 0 rgba(60, 64, 67, 0.3);
+    transition: box-shadow 0.2s ease;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    padding-block: 24px;
+    padding-inline: 16px;
+  }
+
+  /* Shadow effect on hover/active for mobile and desktop */
+  .perspective-highlight .card:hover,
+  .perspective-highlight .card:active {
+    box-shadow:
+      0 6px 10px 4px rgba(60, 64, 67, 0.15),
+      0 2px 3px 0 rgba(60, 64, 67, 0.3);
+  }
+
+  .uni-headline-3 {
+    color: #202124;
+    font-size: 22px;
+    line-height: 30px;
+    font-weight: 400;
+    margin-block: 0;
+  }
+
+  .perspective-highlight .card__hero-image {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    height: auto;
+    border-radius: 8px;
+    overflow: hidden;
+    background: linear-gradient(90deg, #e8f0fe 25%, #d2e3fc 50%, #e8f0fe 75%);
+    background-size: 200% 100%;
+    animation: shimmer 1.5s infinite linear;
+  }
+
+  @keyframes shimmer {
+    0% {
+      background-position: 200% 0;
+    }
+    100% {
+      background-position: -200% 0;
+    }
+  }
+
+  .perspective-highlight .card__hero-image img {
+    height: 100%;
+    object-fit: cover;
+    width: 100%;
+  }
+
+  .lazy-image--no-blur {
+    filter: none !important;
+  }
+
+  .card__bottom-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .author-byline {
+    align-items: center;
+    display: flex;
+    min-height: 48px;
+    min-width: 200px;
+  }
+
+  .perspective-highlight .card__arrow {
+    align-self: flex-end;
+    line-height: 0;
+    margin: 0 -12px -12px 0;
+    padding: 16px;
+  }
+
+  /* =========================================
+     DESKTOP VIEW 
+     ========================================= */
+  @media (min-width: 1024px) {
+    .perspective-highlight .card {
+      display: grid;
+      gap: 36px;
+      grid-template-columns: 1fr 440px;
+      grid-template-rows: auto 1fr;
+
+      /* Padding: 36px to 26px */
+      padding-block: 26px;
+      padding-inline: 36px;
+      align-items: center; /* Center content */
+    }
+
+    .card__text-top {
+      grid-column: 1 / 2;
+      grid-row: 1 / 2;
+    }
+
+    .uni-headline-3 {
+      font-size: 28px;
+      line-height: 36px;
+    }
+
+    .perspective-highlight .card__hero-image {
+      grid-column: 2 / 3;
+      grid-row: 1 / 3;
+
+      /* Lock image to 16:9 aspect ratio */
+      width: 100%;
+      height: auto;
+      aspect-ratio: 16 / 9;
+      min-height: unset; /* Remove old height */
+    }
+
+    .card__bottom-row {
+      grid-column: 1 / 2;
+      grid-row: 2 / 3;
+      align-items: flex-end;
+    }
+  }
+</style>

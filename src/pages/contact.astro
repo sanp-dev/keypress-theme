@@ -1,0 +1,475 @@
+---
+// src/pages/contact.astro
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { SITE_CONFIG } from "../config/site";
+
+const pageTitle = `Contact Us - ${SITE_CONFIG.name}`;
+const pageDescription = `Get in touch with the ${SITE_CONFIG.name} team. Submit technical inquiries, feedback, or guest post requests securely.`;
+// TODO: Replace with your Cloudflare Turnstile Site Key (https://dash.cloudflare.com → Turnstile)
+const siteKey = "0x4AAAAAACs0331m1LzGQ03V";
+---
+
+<BaseLayout title={pageTitle} description={pageDescription}>
+  <!-- Load Cloudflare Turnstile Captcha Script -->
+  <script
+    src="https://challenges.cloudflare.com/turnstile/v0/api.js"
+    async
+    defer></script>
+
+  <main
+    class="w-full font-[Arial,sans-serif] text-[#3c4043] antialiased bg-gray-50/50"
+  >
+    <div class="max-w-[1100px] mx-auto px-6 md:px-8 py-16 md:py-24">
+      <!-- Top Title section -->
+      <div class="text-center mb-16 max-w-[600px] mx-auto">
+        <h1
+          class="text-[36px] md:text-[46px] font-bold text-[#202124] leading-[1.2] mb-4 font-['Google_Sans',Arial,sans-serif]"
+        >
+          Get in Touch
+        </h1>
+        <p class="text-[16px] md:text-[18px] text-[#5f6368] leading-[1.6]">
+          Have a question, feedback, or a partnership inquiry? Fill out the form
+          below, and our team will get back to you.
+        </p>
+      </div>
+
+      <!-- Split Layout Grid -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+        <!-- Left Side: Trust Info & Location (E-E-A-T) -->
+        <div class="lg:col-span-5 space-y-8">
+          <div
+            class="bg-white border border-[#dadce0] rounded-2xl p-6 md:p-8 space-y-6"
+          >
+            <h2
+              class="text-[22px] font-bold text-[#202124] font-['Google_Sans',Arial,sans-serif]"
+            >
+              Operational Details
+            </h2>
+
+            <div class="space-y-4 text-[15px] leading-[1.6]">
+              <div class="flex items-start space-x-3">
+                <svg
+                  class="text-[#1a73e8] shrink-0 mt-1"
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"
+                  ></path>
+                  <circle cx="12" cy="10" r="3"></circle>
+                </svg>
+                <div>
+                  <h3 class="font-semibold text-[#202124]">Location</h3>
+                  <p class="text-[#5f6368]">Uttar Pradesh, India</p>
+                </div>
+              </div>
+
+              <div class="flex items-start space-x-3">
+                <svg
+                  class="text-[#1a73e8] shrink-0 mt-1"
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"
+                  ></path>
+                  <polyline points="22,6 12,13 2,6"></polyline>
+                </svg>
+                <div>
+                  <h3 class="font-semibold text-[#202124]">Email</h3>
+                  <a
+                    href={`mailto:${SITE_CONFIG.contactEmail}`}
+                    class="text-[#1a73e8] hover:underline"
+                    >{SITE_CONFIG.contactEmail}</a
+                  >
+                </div>
+              </div>
+
+              <div class="flex items-start space-x-3">
+                <svg
+                  class="text-[#1a73e8] shrink-0 mt-1"
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <circle cx="12" cy="12" r="10"></circle>
+                  <polyline points="12,6 12,12 16,14"></polyline>
+                </svg>
+                <div>
+                  <h3 class="font-semibold text-[#202124]">Response Time</h3>
+                  <p class="text-[#5f6368]">
+                    We usually respond within 24-48 business hours.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div
+            class="bg-blue-50/50 border border-blue-100 rounded-2xl p-6 md:p-8"
+          >
+            <h3
+              class="font-semibold text-[#1a73e8] text-[16px] mb-2 font-['Google_Sans',Arial,sans-serif] uppercase tracking-[0.5px]"
+            >
+              Editorial Standards
+            </h3>
+            <p class="text-[14px] leading-[1.6] text-[#5f6368]">
+              All queries regarding article corrections, source references, or
+              author disclosures are handled strictly in accordance with our
+              editorial guidelines. Please provide complete details if referencing existing publications.
+            </p>
+          </div>
+
+          <!-- Guest Posting & Publishing Card -->
+          <div
+            class="bg-green-50/40 border border-green-150 rounded-2xl p-6 md:p-8"
+          >
+            <h3
+              class="font-semibold text-green-700 text-[16px] mb-2 font-['Google_Sans',Arial,sans-serif] uppercase tracking-[0.5px]"
+            >
+              Publish Your Work
+            </h3>
+            <p class="text-[14px] leading-[1.6] text-green-800">
+              You can publish your own articles, study notes, health guides, business tips, or quizzes here with your name and photo (following our content guidelines). Contact us via this form or email us at <a href={`mailto:${SITE_CONFIG.contactEmail}`} class="text-[#1a73e8] hover:underline font-semibold">{SITE_CONFIG.contactEmail}</a> to submit your work!
+            </p>
+          </div>
+        </div>
+
+        <!-- Right Side: Contact Form -->
+        <div
+          class="lg:col-span-7 bg-transparent sm:bg-white border-0 sm:border border-[#dadce0] sm:rounded-2xl shadow-none sm:shadow-sm overflow-hidden"
+        >
+          <!-- Successful Send Panel (Initially Hidden) -->
+          <div
+            id="success-panel"
+            class="hidden px-0 py-12 sm:p-12 flex flex-col items-center justify-center text-center space-y-6 min-h-[450px]"
+          >
+            <div
+              class="w-16 h-16 bg-green-100 text-green-600 rounded-full flex items-center justify-center animate-bounce"
+            >
+              <svg
+                width="32"
+                height="32"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="3"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <polyline points="20,6 9,17 4,12"></polyline>
+              </svg>
+            </div>
+            <h2
+              class="text-[26px] font-bold text-[#202124] font-['Google_Sans',Arial,sans-serif]"
+            >
+              Message Sent!
+            </h2>
+            <p class="text-[#5f6368] max-w-[400px] leading-[1.6] text-[15px]">
+              Thank you for contacting us. Your message has been safely
+              delivered to our inbox. We will read and reply shortly.
+            </p>
+            <button
+              id="reset-btn"
+              class="px-6 py-2.5 bg-[#1a73e8] text-white font-medium rounded-full hover:bg-[#1557b0] transition-colors text-[14px]"
+            >
+              Send Another Message
+            </button>
+          </div>
+
+          <!-- Contact Form Panel -->
+          <form id="contact-form" class="px-0 py-6 sm:p-10 space-y-6">
+            <!-- Error Banner (Initially Hidden) -->
+            <div
+              id="error-banner"
+              class="hidden p-4 bg-red-50 border-l-4 border-red-500 rounded text-red-700 text-[14px] font-medium leading-[1.5]"
+            >
+              Error message goes here
+            </div>
+
+            <!-- Honeypot field (hidden from users, loved by bots) -->
+            <div class="hidden" aria-hidden="true">
+              <label for="website">Leave this field blank</label>
+              <input
+                type="text"
+                id="website"
+                name="website"
+                tabindex="-1"
+                autocomplete="off"
+              />
+            </div>
+
+            <!-- Grid Name & Email -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <!-- Full Name -->
+              <div>
+                <label
+                  for="name"
+                  class="block text-[14px] font-medium text-[#202124] mb-2"
+                  >Full Name</label
+                >
+                <input
+                  type="text"
+                  id="name"
+                  name="name"
+                  required
+                  maxlength="50"
+                  placeholder="Enter your name"
+                  class="w-full px-4 py-2.5 border border-[#dadce0] rounded-lg focus:outline-none focus:border-[#1a73e8] text-[15px] transition-colors"
+                />
+              </div>
+
+              <!-- Email Address -->
+              <div>
+                <label
+                  for="email"
+                  class="block text-[14px] font-medium text-[#202124] mb-2"
+                  >Email Address</label
+                >
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  required
+                  maxlength="100"
+                  placeholder="name@example.com"
+                  class="w-full px-4 py-2.5 border border-[#dadce0] rounded-lg focus:outline-none focus:border-[#1a73e8] text-[15px] transition-colors"
+                />
+              </div>
+            </div>
+
+            <!-- Subject -->
+            <div>
+              <label
+                for="subject"
+                class="block text-[14px] font-medium text-[#202124] mb-2"
+                >Subject</label
+              >
+              <input
+                type="text"
+                id="subject"
+                name="subject"
+                required
+                maxlength="100"
+                placeholder="What is this regarding?"
+                class="w-full px-4 py-2.5 border border-[#dadce0] rounded-lg focus:outline-none focus:border-[#1a73e8] text-[15px] transition-colors"
+              />
+            </div>
+
+            <!-- Message -->
+            <div>
+              <div class="flex justify-between items-center mb-2">
+                <label
+                  for="message"
+                  class="block text-[14px] font-medium text-[#202124]"
+                  >Message</label
+                >
+                <span id="char-count" class="text-[12px] text-[#5f6368]"
+                  >0/1000</span
+                >
+              </div>
+              <textarea
+                id="message"
+                name="message"
+                required
+                rows="5"
+                maxlength="1000"
+                placeholder="Write your message details..."
+                class="w-full px-4 py-2.5 border border-[#dadce0] rounded-lg focus:outline-none focus:border-[#1a73e8] text-[15px] transition-colors resize-none"
+              ></textarea>
+            </div>
+
+            <!-- Cloudflare Turnstile Captcha -->
+            <div class="flex justify-center md:justify-start pt-2">
+              <div
+                class="cf-turnstile animate-fade-in"
+                data-sitekey={siteKey}
+                data-theme="light"
+              >
+              </div>
+            </div>
+
+            <!-- Submit Button -->
+            <div class="pt-2">
+              <button
+                type="submit"
+                id="submit-btn"
+                class="w-full md:w-auto px-8 py-3 bg-[#1a73e8] text-white font-medium rounded-full hover:bg-[#1557b0] transition-colors flex items-center justify-center space-x-2 text-[15px] shadow-sm hover:shadow focus:outline-none disabled:opacity-50 disabled:cursor-not-allowed"
+              >
+                <span>Send Message</span>
+                <!-- Loading Spinner -->
+                <svg
+                  id="spinner"
+                  class="hidden animate-spin h-5 w-5 text-white"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                >
+                  <circle
+                    class="opacity-25"
+                    cx="12"
+                    cy="12"
+                    r="10"
+                    stroke="currentColor"
+                    stroke-width="4"></circle>
+                  <path
+                    class="opacity-75"
+                    fill="currentColor"
+                    d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                  ></path>
+                </svg>
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </main>
+</BaseLayout>
+
+<script>
+  // DOM Elements
+  const form = document.getElementById("contact-form") as HTMLFormElement;
+  const successPanel = document.getElementById(
+    "success-panel",
+  ) as HTMLDivElement;
+  const errorBanner = document.getElementById("error-banner") as HTMLDivElement;
+  const submitBtn = document.getElementById("submit-btn") as HTMLButtonElement;
+  const submitBtnText = submitBtn.querySelector("span") as HTMLSpanElement;
+  const spinner = document.getElementById("spinner") as SVGElement;
+  const messageInput = document.getElementById(
+    "message",
+  ) as HTMLTextAreaElement;
+  const charCount = document.getElementById("char-count") as HTMLSpanElement;
+  const resetBtn = document.getElementById("reset-btn") as HTMLButtonElement;
+
+  // Real-time character counter
+  messageInput.addEventListener("input", () => {
+    const len = messageInput.value.length;
+    charCount.textContent = `${len}/1000`;
+    if (len >= 950) {
+      charCount.className = "text-[12px] text-red-500 font-medium";
+    } else {
+      charCount.className = "text-[12px] text-[#5f6368]";
+    }
+  });
+
+  // Reset form view helper
+  resetBtn.addEventListener("click", () => {
+    form.reset();
+    charCount.textContent = "0/1000";
+    charCount.className = "text-[12px] text-[#5f6368]";
+    successPanel.classList.add("hidden");
+    form.classList.remove("hidden");
+    // @ts-ignore
+    if (window.turnstile) window.turnstile.reset();
+  });
+
+  // Form submit handler
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    errorBanner.classList.add("hidden");
+
+    // Validate Client side first
+    const name = (
+      document.getElementById("name") as HTMLInputElement
+    ).value.trim();
+    const email = (
+      document.getElementById("email") as HTMLInputElement
+    ).value.trim();
+    const subject = (
+      document.getElementById("subject") as HTMLInputElement
+    ).value.trim();
+    const message = messageInput.value.trim();
+    const website = (document.getElementById("website") as HTMLInputElement)
+      .value;
+
+    // @ts-ignore
+    const turnstileToken = window.turnstile
+      ? window.turnstile.getResponse()
+      : "";
+
+    if (!name || !email || !subject || !message) {
+      showError("Please fill out all fields.");
+      return;
+    }
+
+    if (!turnstileToken) {
+      showError("Please complete the security captcha check.");
+      return;
+    }
+
+    // Set Loading States
+    submitBtn.disabled = true;
+    submitBtnText.textContent = "Sending...";
+    spinner.classList.remove("hidden");
+
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name,
+          email,
+          subject,
+          message,
+          website,
+          turnstileToken,
+        }),
+      });
+
+      const result = await response.json();
+
+      if (response.ok) {
+        // Success
+        form.classList.add("hidden");
+        successPanel.classList.remove("hidden");
+      } else {
+        // Validation/server error
+        showError(result.error || "An error occurred. Please try again.");
+        // @ts-ignore
+        if (window.turnstile) window.turnstile.reset();
+      }
+    } catch (err) {
+      showError(
+        "Failed to connect to the server. Please check your internet connection.",
+      );
+      // @ts-ignore
+      if (window.turnstile) window.turnstile.reset();
+    } finally {
+      // Clear Loading States
+      submitBtn.disabled = false;
+      submitBtnText.textContent = "Send Message";
+      spinner.classList.add("hidden");
+    }
+  });
+
+  // Display errors helper
+  function showError(msg: string) {
+    errorBanner.textContent = msg;
+    errorBanner.classList.remove("hidden");
+    errorBanner.scrollIntoView({ behavior: "smooth", block: "nearest" });
+  }
+</script>

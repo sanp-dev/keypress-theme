@@ -1,0 +1,126 @@
+---
+// src/pages/disclaimer.astro
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { SITE_CONFIG } from "../config/site";
+
+const pageTitle = `Disclaimer - ${SITE_CONFIG.name}`;
+const pageDescription =
+  `Read the Disclaimer for ${SITE_CONFIG.name}. Learn about the limitations of liability, health & medical content disclaimer, external links disclaimer, and Google AdSense disclosures.`;
+const siteUrl = SITE_CONFIG.domain;
+const contactEmail = SITE_CONFIG.contactEmail;
+const lastUpdated = "May 06, 2026";
+---
+
+<BaseLayout title={pageTitle} description={pageDescription}>
+  <main
+    class="w-full max-w-[900px] mx-auto px-6 md:px-8 py-16 font-[Arial,sans-serif] text-[#3c4043] antialiased"
+  >
+    <!-- Header Section -->
+    <header class="border-b border-[#dadce0] pb-8 mb-10">
+      <h1
+        class="text-[36px] md:text-[44px] text-[#202124] font-bold leading-[1.2] mb-3 font-['Google_Sans',Arial,sans-serif]"
+      >
+        Disclaimer
+      </h1>
+      <div class="flex items-center text-[14px] text-[#5f6368]">
+        <span>Last Updated: {lastUpdated}</span>
+        <span class="mx-2">·</span>
+        <span>{SITE_CONFIG.name}</span>
+      </div>
+    </header>
+
+    <!-- Content Section -->
+    <article class="prose max-w-none text-[16px] leading-[1.6]">
+      <p class="mb-6">
+        If you require any more information or have any questions about our
+        site's disclaimer, please feel free to contact us by email at <a
+          href={`mailto:${contactEmail}`}
+          class="text-[#1a73e8] hover:underline">{contactEmail}</a
+        >.
+      </p>
+
+      <h2
+        class="text-[24px] text-[#202124] font-bold mt-10 mb-4 font-['Google_Sans',Arial,sans-serif] border-l-4 border-[#1a73e8] pl-3"
+      >
+        1. General Information Only
+      </h2>
+      <p class="mb-4">
+        All the information on this website - <a
+          href={siteUrl}
+          class="text-[#1a73e8] hover:underline">{siteUrl}</a
+        > - is published in good faith and for general educational, health awareness, and informational purposes only.
+      </p>
+      <p class="mb-6">
+        <strong>{SITE_CONFIG.name}</strong> does not make any warranties about the completeness,
+        reliability, and accuracy of this information. Any action you take upon the
+        information you find on this website ({SITE_CONFIG.name}), is strictly at your own
+        risk. {SITE_CONFIG.name} will not be liable for any losses and/or damages in connection
+        with the use of our website.
+      </p>
+
+      <h2
+        class="text-[24px] text-[#202124] font-bold mt-10 mb-4 font-['Google_Sans',Arial,sans-serif] border-l-4 border-[#1a73e8] pl-3"
+      >
+        2. Medical & Health Information Disclaimer
+      </h2>
+      <p class="mb-6">
+        The articles, notes, and information on <strong>{SITE_CONFIG.name}</strong> relating to health, optometry, eye care, and medical science are written for educational and general informational purposes only. Content on this site is <strong>not intended to be a substitute for professional medical advice, diagnosis, or treatment</strong>. Always seek the advice of your physician, optometrist, or qualified health provider with any questions you may have regarding a medical condition.
+      </p>
+
+      <h2
+        class="text-[24px] text-[#202124] font-bold mt-10 mb-4 font-['Google_Sans',Arial,sans-serif] border-l-4 border-[#1a73e8] pl-3"
+      >
+        3. External Links Disclaimer
+      </h2>
+      <p class="mb-6">
+        From our website, you can visit other websites by following hyperlinks
+        to such external sites. While we strive to provide only quality links to
+        useful and ethical websites, we have no control over the content and
+        nature of these sites. These links to other websites do not imply a
+        recommendation for all the content found on these sites.
+      </p>
+      <p class="mb-6">
+        Please be aware that when you leave our website, other sites may
+        have different privacy policies and terms which are beyond our control.
+      </p>
+
+      <h2
+        class="text-[24px] text-[#202124] font-bold mt-10 mb-4 font-['Google_Sans',Arial,sans-serif] border-l-4 border-[#1a73e8] pl-3"
+      >
+        4. Advertisements & Monetization Disclosures
+      </h2>
+      <p class="mb-4">
+        This blog may contain advertising, sponsored content, paid insertions,
+        or other forms of monetization.
+      </p>
+      <ul class="list-disc pl-6 mb-6 space-y-2">
+        <li>
+          <strong>Google AdSense:</strong> We display Google AdSense ads on this site. Google, as a third-party vendor, uses cookies to serve ads. You may manage or opt-out of cookie tracking by visiting Google's advertising privacy settings.
+        </li>
+      </ul>
+      <p class="mb-6">
+        We display ads to maintain server operations and support educational content creation. Any representation about a third-party product or service promoted in these ads should be verified directly with the advertiser or manufacturer.
+      </p>
+
+      <h2
+        class="text-[24px] text-[#202124] font-bold mt-10 mb-4 font-['Google_Sans',Arial,sans-serif] border-l-4 border-[#1a73e8] pl-3"
+      >
+        5. Consent and Acceptance
+      </h2>
+      <p class="mb-6">
+        By using our website, you hereby consent to our disclaimer and agree to
+        its terms.
+      </p>
+
+      <h2
+        class="text-[24px] text-[#202124] font-bold mt-10 mb-4 font-['Google_Sans',Arial,sans-serif] border-l-4 border-[#1a73e8] pl-3"
+      >
+        6. Updates
+      </h2>
+      <p class="mb-6">
+        Should we update, amend or make any changes to this document, those
+        changes will be prominently posted here.
+      </p>
+    </article>
+  </main>
+</BaseLayout>

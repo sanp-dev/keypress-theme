@@ -1,0 +1,74 @@
+---
+// src/components/AdSense.astro
+// Reusable AdSense ad unit component with responsive styling,
+// unfilled-ad auto-hiding, and theme-matching design.
+//
+// Normal ads (desktopOnly=false) statically pre-render <ins> for 0 forced reflow.
+// Desktop-only ads (desktopOnly=true) inject <ins> ONLY on >=1280px viewports
+// to prevent AdSense auto-scanner from crashing with "No slot size for availableWidth=0" on mobile.
+import { SITE_CONFIG } from "../config/site";
+
+export interface Props {
+  slot: string;
+  style?: string;
+  format?: "auto" | "fluid" | "rectangle" | "horizontal" | "vertical" | string;
+  responsive?: "true" | "false";
+  class?: string;
+  desktopOnly?: boolean;
+}
+
+const {
+  slot,
+  style = "display:block",
+  format = "auto",
+  responsive = "true",
+  class: className = "",
+  desktopOnly = false,
+} = Astro.props;
+
+const adsenseId = SITE_CONFIG.googleAdsenseId;
+const placeholderId = `ads-ph-${slot}-${Math.floor(Math.random() * 100000)}`;
+---
+
+{adsenseId && (
+  <div class={`ad-container ${className}`}>
+    {desktopOnly ? (
+      <div id={placeholderId}></div>
+      <script is:inline define:vars={{ placeholderId, adsenseId, slot, style, format, responsive }}>
+        (function() {
+          if (window.innerWidth >= 1280) {
+            var container = document.getElementById(placeholderId);
+            if (container) {
+              var ins = document.createElement('ins');
+              ins.className = 'adsbygoogle';
+              ins.style.cssText = style;
+              ins.setAttribute('data-ad-client', adsenseId);
+              ins.setAttribute('data-ad-slot', slot);
+              ins.setAttribute('data-ad-format', format);
+              ins.setAttribute('data-full-width-responsive', responsive);
+              container.appendChild(ins);
+              
+              requestAnimationFrame(function() {
+                try { (window.adsbygoogle = window.adsbygoogle || []).push({}); } catch (e) {}
+              });
+            }
+          }
+        })();
+      </script>
+    ) : (
+      <ins class="adsbygoogle"
+           style={style}
+           data-ad-client={adsenseId}
+           data-ad-slot={slot}
+           data-ad-format={format}
+           data-full-width-responsive={responsive}></ins>
+      <script is:inline>
+        requestAnimationFrame(function() {
+          try {
+            (window.adsbygoogle = window.adsbygoogle || []).push({});
+          } catch (e) {}
+        });
+      </script>
+    )}
+  </div>
+)}

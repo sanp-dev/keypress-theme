@@ -1,0 +1,339 @@
+---
+// src/pages/category/[name].astro
+import { getCollection } from "astro:content";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import PostCard from "../../components/PostCard.astro";
+import { Image, getImage } from "astro:assets";
+import { cleanImageUrl } from "../../utils/image";
+import { SITE_CONFIG } from "../../config/site";
+import AdSense from "../../components/AdSense.astro";
+
+export async function getStaticPaths() {
+  const allPosts = await getCollection("blog");
+
+  const uniqueCategories = [
+    ...new Set(allPosts.map((post) => post.data.category)),
+  ];
+
+  return uniqueCategories.map((category) => {
+    const slug = category
+      .toLowerCase()
+      .replace(/[^a-z0-9]+/g, "-")
+      .replace(/(^-|-$)+/g, "");
+
+    const filteredPosts = allPosts
+      .filter((post) => post.data.category === category)
+      .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+
+    return {
+      params: { name: slug },
+      props: { category, posts: filteredPosts },
+    };
+  });
+}
+
+const { category, posts } = Astro.props;
+
+const heroPost = posts[0];
+const remainingPosts = posts.slice(1);
+
+const heroDate = heroPost
+  ? heroPost.data.pubDate.toLocaleDateString("en-US", {
+      month: "short",
+      day: "2-digit",
+      year: "numeric",
+    })
+  : "";
+
+const POSTS_PER_PAGE = 6;
+const initialPosts = remainingPosts.slice(0, POSTS_PER_PAGE);
+
+const clientPosts = await Promise.all(
+  remainingPosts.map(async (post) => {
+    let image1x = "";
+    let image2x = "";
+
+    if (post.data.image) {
+      const cleaned = cleanImageUrl(post.data.image);
+      try {
+        const opt1x = await getImage({
+          src: cleaned,
+          width: 120,
+          height: 78,
+          quality: 75,
+          format: "webp",
+        });
+        const opt2x = await getImage({
+          src: cleaned,
+          width: 240,
+          height: 156,
+          quality: 75,
+          format: "webp",
+        });
+        image1x = opt1x.src;
+        image2x = opt2x.src;
+      } catch (err) {
+        console.error(
+          `Failed to optimize clientPost image for post ${post.id}:`,
+          err,
+        );
+        image1x = post.data.image;
+        image2x = post.data.image;
+      }
+    }
+
+    return {
+      id: post.id,
+      data: {
+        title: post.data.title,
+        description: post.data.description || "",
+        category: post.data.category,
+        pubDate: post.data.pubDate,
+        image1x,
+        image2x,
+      },
+    };
+  }),
+);
+
+const cleanedHeroImage = heroPost ? cleanImageUrl(heroPost.data.image) : "";
+---
+
+<BaseLayout
+  title={`${category} - ${SITE_CONFIG.name}`}
+  description={`Discover the best collection of Shayari, quotes, and articles in the ${category} category on ${SITE_CONFIG.name}.`}
+  breadcrumbs={[
+    { name: "Home", url: Astro.url.origin + "/" },
+    { name: category, url: Astro.url.href },
+  ]}
+>
+  <main class="max-w-[1280px] mx-auto px-4 md:px-8 py-8">
+    <nav
+      class="flex items-center text-[12px] font-bold tracking-[0.5px] text-[#1a73e8] uppercase mb-10 antialiased"
+      style="font-family: 'Google Sans', Arial, sans-serif;"
+    >
+      <a href="/" class="hover:text-[#174ea6] transition-colors flex items-center" aria-label="Home">
+        <svg class="w-4 h-4" style="transform: translateY(-1px);" fill="currentColor" viewBox="0 0 20 20"
+          ><path
+            d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"
+          ></path></svg
+        >
+      </a>
+      <span class="mx-2 text-[#5f6368]">></span>
+      <a href="/" class="hover:underline">Blog</a>
+      <span class="mx-2 text-[#5f6368]">></span>
+      <span class="text-[#5f6368]">{category}</span>
+    </nav>
+
+    <div
+      class="flex flex-col lg:flex-row lg:justify-between lg:items-start mb-12"
+    >
+      <div class="max-w-[700px]">
+        <h1
+          class="text-[36px] md:text-[48px] leading-[1.3] text-[#202124] font-normal tracking-tight mb-4 antialiased"
+          style="font-family: 'Google Sans', Arial, sans-serif; text-transform: capitalize;"
+        >
+          {category.toLowerCase()}
+        </h1>
+        <p
+          class="text-[18px] md:text-[20px] leading-[32px] text-[#3c4043] font-normal antialiased"
+          style="font-family: 'Google Sans', Arial, sans-serif;"
+        >
+          The latest news, updates, and stories about <span class="font-medium"
+            >{category}</span
+          > from our team.
+        </p>
+      </div>
+    </div>
+
+    {
+      heroPost && (
+        <a
+          href={`/post/${heroPost.id}/`}
+          class="group flex flex-col lg:flex-row border border-[#dadce0] rounded-[8px] overflow-hidden bg-white hover:shadow-[0_1px_6px_rgba(32,33,36,0.28)] transition-all duration-300 mb-20"
+        >
+          <div class="w-full lg:w-[60%] relative">
+            {cleanedHeroImage && (
+              <Image
+                src={cleanedHeroImage}
+                width={768}
+                height={432}
+                widths={[480, 768, 1024, 1200]}
+                sizes="(max-width: 1023px) 100vw, 768px"
+                class="w-full aspect-video lg:aspect-auto lg:h-full lg:absolute lg:inset-0 object-cover transition-transform duration-700 group-hover:scale-[1.05]"
+                alt={heroPost.data.title}
+                loading="eager"
+                fetchpriority="high"
+                quality={75}
+              />
+            )}
+          </div>
+
+          <div class="w-full lg:w-[40%] p-6 md:p-10 flex flex-col justify-center min-h-[350px]">
+            <span
+              class="text-[12px] font-bold text-[#1a73e8] uppercase tracking-[0.5px] mb-4 antialiased"
+              style="font-family: 'Google Sans', Arial, sans-serif;"
+            >
+              {heroPost.data.category}
+            </span>
+            <h2
+              class="text-[28px] md:text-[36px] leading-[1.2] text-[#202124] font-normal group-hover:text-[#1a73e8] transition-colors mb-8 antialiased"
+              style="font-family: 'Google Sans', Arial, sans-serif;"
+            >
+              {heroPost.data.title}
+            </h2>
+            <div class="mt-auto flex items-center justify-between">
+              <span
+                class="text-[14px] font-bold text-[#5f6368] antialiased"
+                style="font-family: 'Google Sans', Arial, sans-serif;"
+              >
+                By {heroPost.data.author}{" "}
+                <br class="hidden md:block lg:hidden" /> -{" "}
+                <span class="font-normal">{heroDate}</span>
+              </span>
+              <svg
+                class="w-6 h-6 text-[#202124] group-hover:text-[#1a73e8] transition-colors shrink-0 ml-4"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M5 12h14M12 5l7 7-7 7"
+                />
+              </svg>
+            </div>
+          </div>
+        </a>
+      )
+    }
+
+    <!-- AdSense: Horizontal Ad between hero post and listings -->
+    <div class="mb-12">
+      <AdSense slot="3323737681" format="auto" responsive="true" />
+    </div>
+
+    {
+      remainingPosts.length > 0 && (
+        <div class="border-t border-[#dadce0] pt-12">
+          <h2
+            class="text-[28px] md:text-[30px] text-[#202124] font-bold mb-10 antialiased"
+            style="font-family: 'Google Sans', Arial, sans-serif;"
+          >
+            All the Latest
+          </h2>
+
+          <div
+            class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+            id="postsContainer"
+          >
+            {initialPosts.map((post) => {
+              const formattedDate = post.data.pubDate
+                .toLocaleDateString("en-US", {
+                  month: "short",
+                  day: "2-digit",
+                })
+                .toUpperCase();
+
+              return (
+                <PostCard
+                  title={post.data.title}
+                  category={post.data.category}
+                  date={formattedDate}
+                  image={post.data.image}
+                  url={`/post/${post.id}/`}
+                />
+              );
+            })}
+          </div>
+
+          {remainingPosts.length > POSTS_PER_PAGE && (
+            <div class="flex justify-center mt-16 mb-16">
+              <button
+                id="loadMoreBtn"
+                class="px-8 py-3 border border-[#dadce0] rounded-full text-[16px] text-[#1a73e8] font-medium hover:bg-[#f8f9fa] transition-colors"
+                style="font-family: 'Google Sans', Arial, sans-serif;"
+              >
+                Load more stories
+              </button>
+            </div>
+          )}
+        </div>
+      )
+    }
+  </main>
+
+  <script define:vars={{ remainingPosts: clientPosts, POSTS_PER_PAGE }}>
+    let currentPage = 1;
+    const postsContainer = document.getElementById("postsContainer");
+    const loadMoreBtn = document.getElementById("loadMoreBtn");
+
+    if (loadMoreBtn) {
+      loadMoreBtn.addEventListener("click", function () {
+        const startIndex = currentPage * POSTS_PER_PAGE;
+        const endIndex = startIndex + POSTS_PER_PAGE;
+        const postsToAdd = remainingPosts.slice(startIndex, endIndex);
+
+        postsToAdd.forEach((post) => {
+          const dateObj = new Date(post.data.pubDate);
+          const formattedDate = dateObj
+            .toLocaleDateString("en-US", {
+              month: "short",
+              day: "2-digit",
+            })
+            .toUpperCase();
+
+          const imageHtml = post.data.image1x
+            ? `
+            <div class="feed-image-wrap">
+              <img
+                src="${post.data.image1x}"
+                srcset="${post.data.image1x} 1x, ${post.data.image2x} 2x"
+                alt="${post.data.title}"
+                class="feed-image"
+                loading="lazy"
+              />
+            </div>
+          `
+            : "";
+
+          let descText = post.data.description || '';
+          if (descText.length > 145) {
+            descText = descText.substring(0, 142) + '...';
+          }
+          const descriptionHtml = descText
+            ? `<p class="feed-description">${descText}</p>`
+            : '';
+
+          const html = `
+            <a href="/post/${post.id}/" class="feed-article group cursor-pointer text-inherit no-underline block">
+              <div class="flex items-center">
+                <span class="text-[#5f6368] text-[12px] font-medium tracking-[0.5px] uppercase">${formattedDate}</span>
+                <span class="text-[#5f6368] mx-2 text-[16px] leading-none">·</span>
+                <span class="text-[#1a73e8] text-[12px] font-medium tracking-[0.5px] uppercase">${post.data.category}</span>
+              </div>
+              <div class="feed-content">
+                ${imageHtml}
+                <h2 class="feed-title font-normal font-['Google_Sans',Arial,sans-serif] group-hover:underline decoration-[1.5px] underline-offset-[3px]">
+                  ${post.data.title}
+                </h2>
+                ${descriptionHtml}
+              </div>
+            </a>
+          `;
+          postsContainer.insertAdjacentHTML("beforeend", html);
+        });
+
+        currentPage++;
+
+        // Hide button if all posts are loaded
+        if (endIndex >= remainingPosts.length) {
+          loadMoreBtn.style.display = "none";
+        }
+      });
+    }
+  </script>
+
+</BaseLayout>

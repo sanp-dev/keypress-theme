@@ -1,0 +1,242 @@
+---
+// src/pages/webstories/[category].astro
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { SITE_CONFIG } from "../../config/site";
+
+export async function getStaticPaths() {
+  let stories = [];
+  try {
+    console.log("Fetching stories at build-time for categories...");
+    const jsonUrl = `${SITE_CONFIG.domain}/webstories/story-list.json`;
+    const jsonResponse = await fetch(jsonUrl, {
+      headers: {
+        "Accept": "application/json",
+        "User-Agent": "qd-Dashboard/1.0"
+      }
+    });
+
+    if (jsonResponse.ok) {
+      const data = await jsonResponse.json();
+      stories = data.items || [];
+    }
+  } catch (err) {
+    console.error("Failed to fetch stories for category static paths:", err);
+  }
+
+  if (stories.length === 0) {
+    stories = [
+      {
+        title: "5 Simple Foods to Boost Immunity Naturally",
+        url: "#",
+        image: "/default-og-image.jpg",
+        category: "Health",
+        publishDate: "2026-03-01T00:00:00Z"
+      },
+      {
+        title: "Top 7 Proven Tips for Eye Fatigue & Digital Strain",
+        url: "#",
+        image: "/default-og-image.jpg",
+        category: "Education",
+        publishDate: "2026-03-02T00:00:00Z"
+      }
+    ];
+  }
+
+  // Group stories by category slug
+  const categoriesMap = new Map();
+
+  for (const story of stories) {
+    if (!story.category) continue;
+    const slug = story.category.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)+/g, "");
+    if (!categoriesMap.has(slug)) {
+      categoriesMap.set(slug, {
+        name: story.category,
+        items: []
+      });
+    }
+    categoriesMap.get(slug).items.push(story);
+  }
+
+  return Array.from(categoriesMap.entries()).map(([slug, catData]) => {
+    return {
+      params: { category: slug },
+      props: { categoryName: catData.name, stories: catData.items }
+    };
+  });
+}
+
+const { category } = Astro.params;
+const { categoryName, stories } = Astro.props;
+
+const pageTitle = `${categoryName} Web Stories - ${SITE_CONFIG.name}`;
+const pageDescription = `Explore interactive, visual, and mobile-friendly Web Stories on ${categoryName} from ${SITE_CONFIG.name}.`;
+const pageUrl = new URL(`/webstories/${category}/`, SITE_CONFIG.domain).href;
+
+// Breadcrumbs matching story schema format
+const breadcrumbs = [
+  { name: "Home", url: new URL("/", SITE_CONFIG.domain).href },
+  { name: "Web Stories", url: new URL("/webstories/", SITE_CONFIG.domain).href },
+  { name: categoryName, url: pageUrl }
+];
+
+// Function to optimize cover images using Cloudflare Image Resizing
+function getOptimizedImageUrl(src) {
+  if (!src) return "/default-story-cover.jpg";
+  if (src.includes(SITE_CONFIG.cdnDomain) || src.includes(SITE_CONFIG.domain)) {
+    if (src.includes("width=")) {
+      return src.replace(/width=\d+/, "width=400");
+    } else if (src.includes("/image/")) {
+      return src.replace("/image/", "/image/width=400,");
+    }
+  }
+  return src;
+}
+
+// Format dates
+const formattedStories = stories.map((story) => {
+  let formattedDate = "";
+  if (story.publishDate) {
+    try {
+      const dateObj = new Date(story.publishDate);
+      formattedDate = dateObj
+        .toLocaleDateString("en-US", {
+          month: "short",
+          day: "2-digit",
+          year: "numeric"
+        })
+        .toUpperCase();
+    } catch (e) {
+      // ignore
+    }
+  }
+  return {
+    ...story,
+    formattedDate,
+    optimizedImage: getOptimizedImageUrl(story.image)
+  };
+});
+
+// ItemList and CollectionPage JSON-LD schema
+const schemaJson = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "CollectionPage",
+      "@id": `${pageUrl}#webpage`,
+      "url": pageUrl,
+      "name": pageTitle,
+      "description": pageDescription,
+      "isPartOf": {
+        "@type": "WebSite",
+        "@id": `${new URL("/", SITE_CONFIG.domain).href}#website`
+      }
+    },
+    {
+      "@type": "ItemList",
+      "@id": `${pageUrl}#itemlist`,
+      "name": `${categoryName} Web Stories List`,
+      "numberOfItems": formattedStories.length,
+      "itemListElement": formattedStories.map((story, index) => ({
+        "@type": "ListItem",
+        "position": index + 1,
+        "url": story.url,
+        "name": story.title,
+        "image": story.image,
+        "description": story.description || ""
+      }))
+    }
+  ]
+};
+---
+
+<BaseLayout
+  title={pageTitle}
+  description={pageDescription}
+  url={pageUrl}
+  breadcrumbs={breadcrumbs}
+>
+  <script type="application/ld+json" set:html={JSON.stringify(schemaJson)} />
+
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-[52px] py-16 flex-grow w-full">
+    <!-- Header Section -->
+    <header class="mb-12">
+      <div class="flex items-center gap-2 mb-2 text-xs text-[#5f6368]">
+        <a href="/webstories/" class="hover:text-[#1a73e8] transition-colors">Web Stories</a>
+        <span>&rsaquo;</span>
+        <span class="font-medium text-[#202124]">{categoryName}</span>
+      </div>
+      <h1
+        class="text-[28px] md:text-[36px] font-[600] tracking-[-0.5px] leading-[44px] mb-[8px] text-[#202124] font-['Google_Sans',Arial,sans-serif]"
+      >
+        {categoryName} Stories
+      </h1>
+      <div class="h-[4px] w-[60px] bg-[#1a73e8] rounded-full mb-6"></div>
+      <p class="text-[#5f6368] text-sm sm:text-base max-w-[700px] leading-relaxed">
+        Browse our collection of visual Web Stories categorized under {categoryName}.
+      </p>
+    </header>
+
+    <!-- Grid Container -->
+    <div
+      class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6"
+      id="webstories-grid-container"
+    >
+      {formattedStories.map((story, index) => (
+        <article
+          class="group relative flex flex-col justify-end aspect-[9/16] overflow-hidden rounded-2xl bg-[#f8f9fa] border border-[#dadce0] shadow-[0_1px_3px_rgba(60,64,67,.15),0_2px_6px_rgba(60,64,67,.1)] hover:shadow-[0_1px_3px_rgba(54, 64, 67, 0.3), 0_4px_8px_3px_rgba(54, 64, 67, 0.15)] transition-all duration-300 transform hover:-translate-y-1"
+        >
+          <!-- Cover Image with hover zoom effect -->
+          <div class="absolute inset-0 w-full h-full overflow-hidden">
+            <img
+              src={story.optimizedImage}
+              alt={story.title || "Web Story"}
+              loading={index < 4 ? "eager" : "lazy"}
+              fetchpriority={index < 4 ? "high" : "auto"}
+              decoding="async"
+              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+            />
+          </div>
+
+          <!-- Bottom Dark Gradient for readability -->
+          <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/35 to-transparent pointer-events-none"></div>
+
+          <!-- Content Overlay -->
+          <div class="relative z-10 p-4 sm:p-5 flex flex-col gap-2">
+            <!-- Category Tag -->
+            <span class="self-start text-[10px] font-[600] tracking-[0.5px] uppercase px-2 py-0.5 rounded-full text-white bg-[#1a73e8]">
+              {categoryName.split(' ')[0]}
+            </span>
+
+            <!-- Story Title -->
+            <h2 class="text-white text-sm sm:text-base font-bold leading-snug line-clamp-3 font-['Google_Sans',Arial,sans-serif] m-0 group-hover:text-blue-200 transition-colors">
+              <a
+                href={story.url || "#"}
+                class="focus:outline-none after:absolute after:inset-0 after:z-10 no-underline text-white group-hover:text-blue-200"
+              >
+                {story.title}
+              </a>
+            </h2>
+
+            <!-- Publish Date -->
+            {story.formattedDate && (
+              <time datetime={story.publishDate} class="text-gray-300 text-[10px] font-medium tracking-[0.5px] uppercase relative z-20">
+                {story.formattedDate}
+              </time>
+            )}
+          </div>
+        </article>
+      ))}
+    </div>
+  </main>
+
+  <style>
+    /* Explicitly override any global stylesheet rules to guarantee text visibility */
+    #webstories-grid-container a {
+      color: #ffffff !important;
+      text-decoration: none !important;
+    }
+    #webstories-grid-container article:hover h2 a {
+      color: #c2e7ff !important; /* Soft premium Google blue on hover */
+    }
+  </style>
+</BaseLayout>

@@ -1,0 +1,567 @@
+---
+// FlashcardStyles.astro — Interactive 3D Flip Flashcard Component
+// Conditionally injected by [id].astro only when post contains qd-flashcard-deck
+// Google Education Q&A Schema compatible (eduQuestionType: "Flashcard")
+---
+
+<style is:global>
+/* ═══════════════════════════════════════════════════════
+   QD Flashcard Component — Interactive 3D Flip Cards
+   Theme: Google Material Design inspired
+   Injected ONLY on posts containing .qd-flashcard-deck
+   ═══════════════════════════════════════════════════════ */
+
+/* ── Deck Container ── */
+#articleContent .qd-flashcard-deck,
+.qd-flashcard-deck {
+  margin: 2.5rem 0 !important;
+  padding: 0 !important;
+  background: #ffffff !important;
+  border: 1px solid #e2e8f0 !important;
+  border-radius: 16px !important;
+  box-shadow: 0 4px 24px rgba(15, 23, 42, 0.06) !important;
+  overflow: hidden !important;
+  font-family: 'Google Sans', Arial, sans-serif !important;
+}
+
+/* ── Header ── */
+#articleContent .qd-fc-header,
+.qd-fc-header {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  padding: 16px 20px !important;
+  background: linear-gradient(135deg, #1a73e8, #4285f4) !important;
+  color: #ffffff !important;
+  border-radius: 15px 15px 0 0 !important;
+}
+
+/* Override any articleContent h3 global color styles */
+#articleContent .qd-fc-header h3,
+#articleContent h3.qd-fc-title,
+.qd-fc-header h3,
+.qd-fc-title {
+  margin: 0 !important;
+  padding: 0 !important;
+  font-size: 1.15rem !important;
+  font-weight: 700 !important;
+  color: #ffffff !important;
+  letter-spacing: 0.01em !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+  line-height: 1.2 !important;
+  border: none !important;
+}
+
+#articleContent .qd-fc-header h3 *,
+.qd-fc-header h3 * {
+  color: #ffffff !important;
+}
+
+#articleContent .qd-fc-header h3 svg,
+.qd-fc-header h3 svg,
+.qd-fc-title-icon {
+  width: 22px !important;
+  height: 22px !important;
+  display: inline-block !important;
+  vertical-align: middle !important;
+  fill: #ffffff !important;
+  stroke: none !important;
+  flex-shrink: 0 !important;
+}
+
+.qd-fc-counter {
+  font-size: 0.85rem !important;
+  font-weight: 600 !important;
+  background: rgba(255, 255, 255, 0.25) !important;
+  color: #ffffff !important;
+  padding: 4px 14px !important;
+  border-radius: 20px !important;
+  backdrop-filter: blur(4px) !important;
+  white-space: nowrap !important;
+}
+
+/* ── Viewport (card area) ── */
+.qd-fc-viewport {
+  position: relative;
+  width: 100%;
+  min-height: 260px;
+  perspective: 1200px;
+  padding: 28px 24px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ── Card ── */
+.qd-fc-card {
+  position: absolute;
+  width: calc(100% - 48px);
+  min-height: 200px;
+  cursor: pointer;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateX(60px) scale(0.95);
+  transition: opacity 0.35s ease, transform 0.35s ease;
+}
+.qd-fc-card.qd-fc-active {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateX(0) scale(1);
+  position: relative;
+  width: 100%;
+}
+.qd-fc-card.qd-fc-exit-left {
+  opacity: 0;
+  transform: translateX(-60px) scale(0.95);
+}
+
+/* ── Inner (3D flip container) ── */
+.qd-fc-inner {
+  position: relative;
+  width: 100%;
+  min-height: 200px;
+  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  transform-style: preserve-3d;
+}
+.qd-fc-card.qd-fc-flipped .qd-fc-inner {
+  transform: rotateY(180deg);
+}
+
+/* ── Front & Back faces ── */
+.qd-fc-front,
+.qd-fc-back {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  min-height: 200px;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 32px 28px;
+  border-radius: 14px;
+  text-align: center;
+  box-sizing: border-box;
+}
+.qd-fc-front {
+  background: linear-gradient(145deg, #f8faff, #eef3fc);
+  border: 1.5px solid #d2e3fc;
+  color: #202124;
+}
+.qd-fc-back {
+  background: linear-gradient(145deg, #e8f5e9, #f1f8e9);
+  border: 1.5px solid #a5d6a7;
+  color: #1b5e20;
+  transform: rotateY(180deg);
+}
+
+/* ── Badge ── */
+.qd-fc-badge {
+  display: inline-block;
+  font-size: 0.65rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 3px 12px;
+  border-radius: 20px;
+  margin-bottom: 16px;
+}
+.qd-fc-front .qd-fc-badge {
+  background: #e0f2fe !important;
+  color: #0369a1 !important;
+  border: 1px solid #bae6fd !important;
+  font-weight: 800 !important;
+}
+.qd-fc-back .qd-fc-badge {
+  background: #dcfce7 !important;
+  color: #15803d !important;
+  border: 1px solid #bbf7d0 !important;
+  font-weight: 800 !important;
+}
+
+/* ── Card Text ── */
+.qd-fc-front p,
+.qd-fc-back p {
+  margin: 0;
+  font-size: 1.1rem;
+  line-height: 1.65;
+  font-weight: 600;
+}
+
+/* ── Tap Hint ── */
+.qd-fc-hint {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  margin-top: 14px;
+  font-size: 0.78rem;
+  color: #334155 !important;
+  font-weight: 600 !important;
+}
+.qd-fc-hint svg {
+  width: 14px;
+  height: 14px;
+}
+.qd-fc-card.qd-fc-flipped .qd-fc-hint {
+  display: none;
+}
+
+/* ── Controls ── */
+.qd-fc-controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 0 24px 20px;
+}
+.qd-fc-prev,
+.qd-fc-next,
+.qd-fc-flip {
+  border: none;
+  cursor: pointer;
+  font-family: 'Google Sans', Arial, sans-serif;
+  font-weight: 600;
+  font-size: 0.85rem;
+  border-radius: 24px;
+  transition: all 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  outline: none;
+  white-space: nowrap !important;
+}
+.qd-fc-prev,
+.qd-fc-next {
+  background: #f1f3f4;
+  color: #5f6368;
+  padding: 10px 20px;
+}
+.qd-fc-prev:hover:not(:disabled),
+.qd-fc-next:hover:not(:disabled) {
+  background: #e8eaed;
+  color: #202124;
+}
+.qd-fc-prev:disabled,
+.qd-fc-next:disabled {
+  opacity: 0.35;
+  cursor: default;
+}
+.qd-fc-flip {
+  background: #1a73e8;
+  color: #ffffff !important;
+  padding: 10px 28px;
+  box-shadow: 0 1px 3px rgba(26,115,232,0.3);
+}
+.qd-fc-flip svg {
+  width: 16px;
+  height: 16px;
+  fill: #ffffff;
+  stroke: none;
+  transition: transform 0.3s ease;
+}
+.qd-fc-flip:hover {
+  background: #1557b0;
+  box-shadow: 0 2px 6px rgba(26,115,232,0.4);
+}
+.qd-fc-flip:hover svg {
+  transform: rotate(180deg);
+}
+.qd-fc-flip:active {
+  transform: scale(0.97);
+}
+
+/* ── Progress bar ── */
+.qd-fc-progress {
+  height: 4px;
+  background: #e8eaed;
+  border-radius: 0 0 16px 16px;
+  overflow: hidden;
+}
+.qd-fc-progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #1a73e8, #34a853);
+  transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  width: 0%;
+  border-radius: 0 2px 2px 0;
+}
+
+/* ── Keyboard shortcut hint ── */
+.qd-fc-kb-hint {
+  text-align: center;
+  font-size: 0.75rem;
+  color: #334155 !important;
+  padding: 8px 0 14px;
+  font-weight: 600 !important;
+}
+.qd-fc-kb-hint kbd {
+  display: inline-block;
+  background: #f1f5f9 !important;
+  border: 1px solid #cbd5e1 !important;
+  border-radius: 4px;
+  padding: 2px 7px;
+  font-family: inherit;
+  font-size: 0.72rem;
+  color: #0f172a !important;
+  font-weight: 700 !important;
+  margin: 0 2px;
+}
+
+/* ═══════ Responsive ═══════ */
+@media (max-width: 640px) {
+  .qd-fc-header {
+    padding: 14px 18px !important;
+  }
+  #articleContent .qd-fc-header h3,
+  .qd-fc-header h3 {
+    font-size: 1rem !important;
+  }
+  .qd-fc-viewport {
+    min-height: 220px;
+    padding: 20px 16px 16px;
+  }
+  .qd-fc-card {
+    width: calc(100% - 32px);
+  }
+  .qd-fc-card.qd-fc-active {
+    width: 100%;
+  }
+  .qd-fc-front,
+  .qd-fc-back {
+    padding: 24px 18px;
+    min-height: 170px;
+  }
+  .qd-fc-front p,
+  .qd-fc-back p {
+    font-size: 1rem;
+  }
+  .qd-fc-controls {
+    display: flex !important;
+    flex-wrap: nowrap !important;
+    justify-content: space-between !important;
+    gap: 6px !important;
+    padding: 0 12px 16px !important;
+  }
+  .qd-fc-prev,
+  .qd-fc-next {
+    padding: 9px 10px !important;
+    font-size: 0.78rem !important;
+    flex: 1 1 auto !important;
+    white-space: nowrap !important;
+  }
+  .qd-fc-flip {
+    padding: 9px 14px !important;
+    font-size: 0.78rem !important;
+    flex: 1.2 1 auto !important;
+    white-space: nowrap !important;
+  }
+  .qd-fc-kb-hint {
+    display: none;
+  }
+}
+
+/* ═══════ Dark Mode (.drK) ═══════ */
+.drK .qd-flashcard-deck {
+  background: #1e1e1f !important;
+  border-color: #2e2e30 !important;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.3) !important;
+}
+.drK .qd-fc-header {
+  background: linear-gradient(135deg, #174ea6, #1a73e8) !important;
+}
+.drK .qd-fc-front {
+  background: linear-gradient(145deg, #252526, #2d2d30);
+  border-color: #3e3e42;
+  color: #e8eaed;
+}
+.drK .qd-fc-back {
+  background: linear-gradient(145deg, #1a2e1a, #243524);
+  border-color: #2e7d32;
+  color: #a5d6a7;
+}
+.drK .qd-fc-front .qd-fc-badge {
+  background: #1c2a3a;
+  color: #8ab4f8;
+}
+.drK .qd-fc-back .qd-fc-badge {
+  background: #1a2e1a;
+  color: #81c784;
+}
+.drK .qd-fc-prev,
+.drK .qd-fc-next {
+  background: #2d2d30;
+  color: #9aa0a6;
+}
+.drK .qd-fc-prev:hover:not(:disabled),
+.drK .qd-fc-next:hover:not(:disabled) {
+  background: #3e3e42;
+  color: #e8eaed;
+}
+.drK .qd-fc-flip {
+  background: #1a73e8;
+}
+.drK .qd-fc-progress {
+  background: #2d2d30;
+}
+.drK .qd-fc-hint {
+  color: #cbd5e1 !important;
+}
+.drK .qd-fc-kb-hint {
+  color: #cbd5e1 !important;
+}
+.drK .qd-fc-kb-hint kbd {
+  background: #1e293b !important;
+  border-color: #334155 !important;
+  color: #f8fafc !important;
+}
+</style>
+
+<script is:inline>
+(function() {
+  function initFlashcards() {
+    var flipSvg = '<svg class="qd-fc-flip-svg" width="16" height="16" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M18.13 17.13c-.15.18-.31.36-.48.52-.73.74-1.59 1.31-2.54 1.71-1.97.83-4.26.83-6.23 0-.95-.4-1.81-.98-2.54-1.72a7.8 7.8 0 0 1-1.71-2.54c-.42-.99-.63-2.03-.63-3.11H2c0 1.35.26 2.66.79 3.89.5 1.19 1.23 2.26 2.14 3.18s1.99 1.64 3.18 2.14c1.23.52 2.54.79 3.89.79s2.66-.26 3.89-.79c1.19-.5 2.26-1.23 3.18-2.14.17-.17.32-.35.48-.52L22 20.99v-6h-6l2.13 2.13Zm.94-12.2a9.9 9.9 0 0 0-3.18-2.14 10.12 10.12 0 0 0-7.79 0c-1.19.5-2.26 1.23-3.18 2.14-.17.17-.32.35-.48.52L1.99 3v6h6L5.86 6.87c.15-.18.31-.36.48-.52.73-.74 1.59-1.31 2.54-1.71 1.97-.83 4.26-.83 6.23 0 .95.4 1.81.98 2.54 1.72.74.73 1.31 1.59 1.71 2.54.42.99.63 2.03.63 3.11h2c0-1.35-.26-2.66-.79-3.89-.5-1.19-1.23-2.26-2.14-3.18Z"></path></svg>';
+
+    document.querySelectorAll('.qd-flashcard-deck').forEach(function(deck) {
+      if (deck._tsaFcInit) return;
+      deck._tsaFcInit = true;
+
+      var cards = deck.querySelectorAll('.qd-fc-card');
+      var counter = deck.querySelector('.qd-fc-counter');
+      var prevBtn = deck.querySelector('.qd-fc-prev');
+      var nextBtn = deck.querySelector('.qd-fc-next');
+      var flipBtn = deck.querySelector('.qd-fc-flip');
+      var progressFill = deck.querySelector('.qd-fc-progress-fill');
+      var total = cards.length;
+      var current = 0;
+
+      if (total === 0) return;
+
+      function updateFlipButtonState(isFlipped) {
+        if (flipBtn) {
+          flipBtn.innerHTML = flipSvg + '<span>' + (isFlipped ? 'Flip Back' : 'Flip Card') + '</span>';
+        }
+      }
+
+      function showCard(index, direction) {
+        requestAnimationFrame(function() {
+          cards.forEach(function(c, i) {
+            c.classList.remove('qd-fc-active', 'qd-fc-flipped', 'qd-fc-exit-left');
+            if (i === index) {
+              c.classList.add('qd-fc-active');
+            }
+          });
+          if (counter) counter.textContent = (index + 1) + ' / ' + total;
+          if (prevBtn) prevBtn.disabled = (index === 0);
+          if (nextBtn) nextBtn.disabled = (index === total - 1);
+          if (progressFill) progressFill.style.width = ((index + 1) / total * 100) + '%';
+          updateFlipButtonState(false);
+        });
+      }
+
+      // Initialize first card
+      showCard(0);
+
+      // Flip on card click
+      cards.forEach(function(card) {
+        card.addEventListener('click', function(e) {
+          if (e.target.closest('.qd-fc-controls')) return;
+          this.classList.toggle('qd-fc-flipped');
+          updateFlipButtonState(this.classList.contains('qd-fc-flipped'));
+        });
+      });
+
+      // Flip button
+      if (flipBtn) {
+        flipBtn.addEventListener('click', function(e) {
+          e.stopPropagation();
+          var activeCard = deck.querySelector('.qd-fc-card.qd-fc-active');
+          if (activeCard) {
+            activeCard.classList.toggle('qd-fc-flipped');
+            updateFlipButtonState(activeCard.classList.contains('qd-fc-flipped'));
+          }
+        });
+      }
+
+      // Navigation
+      if (prevBtn) {
+        prevBtn.addEventListener('click', function(e) {
+          e.stopPropagation();
+          if (current > 0) {
+            current--;
+            showCard(current, 'prev');
+          }
+        });
+      }
+      if (nextBtn) {
+        nextBtn.addEventListener('click', function(e) {
+          e.stopPropagation();
+          if (current < total - 1) {
+            current++;
+            showCard(current, 'next');
+          }
+        });
+      }
+
+      // Keyboard navigation
+      document.addEventListener('keydown', function(e) {
+        // Only if this deck is visible in viewport
+        var rect = deck.getBoundingClientRect();
+        var inView = rect.top < window.innerHeight && rect.bottom > 0;
+        if (!inView) return;
+
+        if (e.key === 'ArrowLeft' && current > 0) {
+          current--;
+          showCard(current, 'prev');
+        } else if (e.key === 'ArrowRight' && current < total - 1) {
+          current++;
+          showCard(current, 'next');
+        } else if (e.key === ' ' || e.key === 'Enter') {
+          var activeCard = deck.querySelector('.qd-fc-card.qd-fc-active');
+          if (activeCard && rect.top >= -100 && rect.top < window.innerHeight * 0.7) {
+            e.preventDefault();
+            activeCard.classList.toggle('qd-fc-flipped');
+            updateFlipButtonState(activeCard.classList.contains('qd-fc-flipped'));
+          }
+        }
+      });
+
+      // Touch/Swipe support
+      var touchStartX = 0;
+      var touchEndX = 0;
+      var viewport = deck.querySelector('.qd-fc-viewport');
+      if (viewport) {
+        viewport.addEventListener('touchstart', function(e) {
+          touchStartX = e.changedTouches[0].screenX;
+        }, { passive: true });
+
+        viewport.addEventListener('touchend', function(e) {
+          touchEndX = e.changedTouches[0].screenX;
+          var diff = touchStartX - touchEndX;
+          if (Math.abs(diff) > 50) {
+            if (diff > 0 && current < total - 1) {
+              // Swipe left → next
+              current++;
+              showCard(current, 'next');
+            } else if (diff < 0 && current > 0) {
+              // Swipe right → prev
+              current--;
+              showCard(current, 'prev');
+            }
+          }
+        }, { passive: true });
+      }
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initFlashcards);
+  } else {
+    initFlashcards();
+  }
+})();
+</script>

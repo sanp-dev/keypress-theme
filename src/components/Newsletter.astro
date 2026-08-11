@@ -1,0 +1,231 @@
+---
+// src/components/Newsletter.astro
+---
+
+<section class="max-w-[1280px] mx-auto px-4 lg:px-[52px] mt-12 mb-16">
+  <div id="unsubscribedBlock" class="newsletter-homepage-form__section">
+
+    <div class="newsletter-homepage-form__icon-wrapper hidden lg:block">
+      <svg class="inbox-icon" viewBox="0 0 240 180" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="60" cy="130" r="35" fill="#E8F0FE" />
+        <circle cx="190" cy="65" r="22" fill="#E6F4EA" />
+        <g opacity="0.85">
+          <rect x="145" y="45" width="45" height="30" rx="4" fill="#EA4335" />
+          <path d="M145 45L167.5 61L190 45" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </g>
+        <g opacity="0.9">
+          <rect x="45" y="55" width="45" height="45" rx="4" fill="#FBBC05" />
+          <line x1="55" y1="68" x2="80" y2="68" stroke="#FFFFFF" stroke-width="2.5" stroke-linecap="round"/>
+          <line x1="55" y1="80" x2="72" y2="80" stroke="#FFFFFF" stroke-width="2.5" stroke-linecap="round"/>
+        </g>
+        <g>
+          <rect x="75" y="70" width="90" height="60" rx="6" fill="#34A853" />
+          <line x1="90" y1="88" x2="150" y2="88" stroke="#FFFFFF" stroke-width="3.5" stroke-linecap="round"/>
+          <line x1="90" y1="102" x2="135" y2="102" stroke="#FFFFFF" stroke-width="3.5" stroke-linecap="round"/>
+        </g>
+        <rect x="35" y="115" width="170" height="35" rx="6" fill="#1557b0" />
+        <path d="M25 120H65C70.5 120 75 124.5 75 130V130C75 134.5 79.5 138 85 138H155C160.5 138 165 134.5 165 130V130C165 124.5 169.5 120 175 120H215V146C215 151.5 210.5 156 205 156H35C29.5 156 25 151.5 25 146V120Z" fill="#4285F4"/>
+        <path d="M120 32L122.5 38L128.5 39L124 43.5L125.5 49.5L120 46L114.5 49.5L116 43.5L111.5 39L117.5 38L120 32Z" fill="#FBBC05" />
+      </svg>
+    </div>
+
+    <div class="relative z-10 max-w-2xl mx-auto flex flex-col items-center">
+      
+      <h2 class="newsletter-homepage-form__title font-['Google_Sans',Arial,sans-serif] antialiased">
+        Get the latest <span>Health & Education Guides</span> in your inbox.
+      </h2>
+
+      <form id="newsletterForm" class="homepage-newsletter-form__form w-full flex flex-col sm:flex-row gap-4 justify-center items-center mb-4">
+        <input 
+          type="email" 
+          id="emailInput"
+          placeholder="Email address" 
+          class="kw-form-input__field w-full sm:w-[320px] px-4 font-['Google_Sans',Arial,sans-serif] outline-none focus:border-[#1a73e8] transition-colors relative z-20"
+          required
+        />
+        <button type="submit" id="submitBtn" class="uni-button uni-button--high-emphasis font-['Google_Sans',Arial,sans-serif] antialiased hover:bg-[#1557b0] hover:shadow-md transition-all relative z-20">
+          Subscribe
+        </button>
+      </form>
+
+      <p id="formMessage" class="homepage-newsletter-form__info-paragraph text-center text-[13px] text-[#3c4043] font-['Google_Sans',Arial,sans-serif] antialiased w-full max-w-[400px]">
+        Your information will be used in accordance with our <a href="/privacy-policy/" class="underline text-[#1557b0] font-medium hover:text-[#0d3c80]">Privacy Policy</a>.
+      </p>
+
+    </div>
+  </div>
+
+  <div id="subscribedBlock" class="hidden max-w-[720px] mx-auto mt-[100px] mb-[80px] relative border border-[#dadce0] rounded-[8px] pt-[48px] pb-[48px] px-[24px] text-center">
+    <div class="absolute left-1/2 -translate-x-1/2 -top-[45px] bg-white px-4 w-[90px] h-[90px] flex justify-center">
+      <svg class="absolute top-2 z-10" fill="none" height="59" width="55" xmlns="http://www.w3.org/2000/svg">
+        <path d="m.503.476h53.996v57.105h-53.996z" fill="#fff" stroke="#e8eaed" stroke-width=".952"/>
+        <path d="m23.524 27.885-5.968-5.996-1.99 1.998 7.958 7.995 17.053-17.131-1.99-1.999z" fill="#34a853"/>
+      </svg>
+      <svg class="absolute bottom-0 z-20" fill="none" height="58" width="73" xmlns="http://www.w3.org/2000/svg">
+        <g fill="#d2e3fc" stroke="#aecbfa" stroke-linejoin="round" stroke-width=".952">
+          <path d="m71.55 29.677c.264 0 .477.213.477.475v26.65a.476.476 0 0 1 -.476.475h-70.105a.476.476 0 0 1 -.476-.476v-26.649c0-.262.213-.476.476-.476h70.104z"/>
+          <path d="m71.251 1.23a.476.476 0 0 1 .776.37v55.2a.476.476 0 0 1 -.776.37l-34.105-27.6a.476.476 0 0 1 0-.74z"/>
+          <path d="m1.74 1.226a.476.476 0 0 0 -.77.374v55.2a.476.476 0 0 0 .77.374l35.052-27.6a.476.476 0 0 0 0-.748z"/>
+        </g>
+      </svg>
+    </div>
+
+    <h3 id="subscribedTitle" class="text-[22px] text-[#3c4043] font-normal tracking-normal mt-4 antialiased" style="font-family: 'Google Sans', Arial, sans-serif;">
+      You are already subscribed to our newsletter.
+    </h3>
+    
+    <p class="max-w-[237px] mx-auto mt-[24px] text-[16px] leading-[28px] text-[#5f6368] font-normal antialiased" style="font-family: 'Google Sans', Arial, sans-serif;">
+      You can also subscribe with a <a href="#" id="resetSubscribeBtn" class="text-[#1a73e8] hover:underline whitespace-nowrap">different email address</a>.
+    </p>
+  </div>
+</section>
+
+<style>
+  .newsletter-homepage-form__section {
+    background-color: #f8f9fa; border-radius: 8px; overflow: hidden;
+    padding-block: 36px; padding-inline: 24px; position: relative;
+    min-height: 240px; display: flex; align-items: center; justify-content: center;
+  }
+  .newsletter-homepage-form__title {
+    color: #202124; font-size: 20px; line-height: 28px;
+    margin-block-end: 24px; text-align: center; font-weight: 400;
+  }
+  @media (min-width: 1024px) {
+    .newsletter-homepage-form__title { font-size: 28px; line-height: 36px; }
+  }
+  .newsletter-homepage-form__title span { color: #188038; }
+  .homepage-newsletter-form__form .kw-form-input__field {
+    background-color: #fff; border: 1px solid #dadce0; border-radius: 4px;
+    color: #5f6368; height: 48px; line-height: 48px; font-size: 16px;
+  }
+  .uni-button--high-emphasis { background-color: #1a73e8; color: #fff; }
+  .uni-button {
+    align-items: center; border: 1px solid transparent; border-radius: 48px;
+    display: inline-flex; justify-content: center; min-height: 48px;
+    padding-inline-end: 24px; padding-inline-start: 24px; font-size: 16px;
+    font-weight: 500; line-height: 24px; transition: background-color .2s, box-shadow .2s;
+    cursor: pointer;
+  }
+  .uni-button:disabled { background-color: #8ab4f8; cursor: not-allowed; }
+  
+  /* 🌟 The Magic Fix for Responsiveness 🌟 */
+  .newsletter-homepage-form__icon-wrapper {
+    position: absolute; 
+    bottom: 10px; 
+    left: max(2%, 10px); 
+    width: clamp(120px, 22%, 240px); /* Scales dynamically based on container width */
+    height: auto; 
+    z-index: 1; 
+    pointer-events: none; /* Crucial: Prevents SVG from blocking form clicks */
+  }
+  .inbox-icon { 
+    width: 100%; height: auto; display: block; 
+  }
+</style>
+
+<script is:inline>
+  document.addEventListener("DOMContentLoaded", () => {
+    const form = document.getElementById('newsletterForm');
+    const messageEl = document.getElementById('formMessage');
+    const submitBtn = document.getElementById('submitBtn');
+    const emailInput = document.getElementById('emailInput');
+    const unsubscribedBlock = document.getElementById('unsubscribedBlock');
+    const subscribedBlock = document.getElementById('subscribedBlock');
+    const resetBtn = document.getElementById('resetSubscribeBtn');
+    const subscribedTitle = document.getElementById('subscribedTitle');
+
+    function showSubscribed(justSubscribed = false) {
+      if(unsubscribedBlock) unsubscribedBlock.style.display = 'none';
+      if(subscribedBlock) {
+        subscribedBlock.classList.remove('hidden');
+        subscribedBlock.classList.add('block');
+      }
+      if(subscribedTitle) {
+        if (justSubscribed) {
+          subscribedTitle.innerText = "Thank you for subscribing!";
+        } else {
+          subscribedTitle.innerText = "You are already subscribed to our newsletter.";
+        }
+      }
+    }
+
+    function showUnsubscribed() {
+      if(unsubscribedBlock) unsubscribedBlock.style.display = 'flex';
+      if(subscribedBlock) {
+        subscribedBlock.classList.remove('block');
+        subscribedBlock.classList.add('hidden');
+      }
+    }
+
+    // --- 1. Persistent UI Check (Is the user already subscribed?) ---
+    if (localStorage.getItem('keyword_subscribed') === 'true') {
+      showSubscribed(false);
+    }
+
+    if (resetBtn) {
+      resetBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        localStorage.removeItem('keyword_subscribed');
+        showUnsubscribed();
+        if(emailInput) emailInput.value = '';
+        if(submitBtn) {
+          submitBtn.innerText = "Subscribe";
+          submitBtn.disabled = false;
+        }
+        if(messageEl) {
+          messageEl.innerHTML = `Your information will be used in accordance with our <a href="/privacy-policy/" class="underline text-[#1a73e8] hover:text-[#1557b0]">Privacy Policy</a>.`;
+        }
+      });
+    }
+
+    if (form) {
+      form.addEventListener('submit', async (e) => {
+        e.preventDefault(); 
+        
+        // --- 2. Anti-Spam Cooldown (10-second limit between attempts) ---
+        const lastAttempt = localStorage.getItem('last_subscribe_attempt');
+        const now = Date.now();
+        if (lastAttempt && (now - parseInt(lastAttempt)) < 10000) {
+          messageEl.innerHTML = `<span style="color: #ea4335; font-weight: 500;">Please wait a moment before trying again.</span>`;
+          return;
+        }
+        localStorage.setItem('last_subscribe_attempt', now.toString());
+
+        const email = emailInput.value.trim();
+        
+        // Show loading state
+        submitBtn.innerText = "Subscribing...";
+        submitBtn.disabled = true;
+        messageEl.innerHTML = `Verifying...`;
+        messageEl.style.color = "#5f6368"; 
+
+        try {
+          // Send data to our secure Cloudflare API
+          const response = await fetch('/api/subscribe', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ email: email })
+          });
+
+          const result = await response.json();
+
+          if (response.ok) {
+            // --- 3. Success: Save state to localStorage and update UI ---
+            localStorage.setItem('keyword_subscribed', 'true');
+            showSubscribed(true);
+          } else {
+            // Error (Fake email, Invalid length, or Duplicate)
+            messageEl.innerHTML = `<span style="color: #d93025; font-weight: 500;">${result.error}</span>`;
+            submitBtn.innerText = "Subscribe";
+            submitBtn.disabled = false;
+          }
+        } catch (err) {
+          // Network error handling
+          messageEl.innerHTML = `<span style="color: #d93025; font-weight: 500;">Network error. Please check your connection.</span>`;
+          submitBtn.innerText = "Subscribe";
+          submitBtn.disabled = false;
+        }
+      });
+    }
+  });
+</script>

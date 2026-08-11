@@ -1,0 +1,143 @@
+---
+import { Image } from "astro:assets";
+import { cleanImageUrl } from "../utils/image";
+
+export interface Props {
+  title: string;
+  category: string;
+  date: string;
+  image: string;
+  url?: string;
+  description?: string;
+}
+
+const { title, category, date, image, url = "#", description } = Astro.props;
+
+const cleanedImage = cleanImageUrl(image);
+
+// Simulating line-clamp: 3 without creating a CSS Block Formatting Context (which breaks float wrap)
+let truncatedDescription = description;
+if (truncatedDescription && truncatedDescription.length > 145) {
+  truncatedDescription = truncatedDescription.substring(0, 142) + "...";
+}
+---
+
+<a
+  href={url}
+  class="feed-article group cursor-pointer text-inherit no-underline block"
+>
+  <div class="flex items-center">
+    <span
+      class="text-[#5f6368] text-[12px] font-medium tracking-[0.5px] uppercase"
+      >{date}</span
+    >
+    <span class="text-[#5f6368] mx-2 text-[16px] leading-none">·</span>
+    <span
+      class="text-[#1a73e8] text-[12px] font-medium tracking-[0.5px] uppercase"
+      >{category}</span
+    >
+  </div>
+
+  <div class="feed-content">
+    {
+      cleanedImage && (
+        <div class="feed-image-wrap">
+          <Image
+            src={cleanedImage}
+            alt={title}
+            width={120}
+            height={78}
+            widths={[120, 240]}
+            sizes="120px"
+            class="feed-image"
+            loading="lazy"
+            quality={75}
+          />
+        </div>
+      )
+    }
+    <h2
+      class="feed-title font-normal font-['Google_Sans',Arial,sans-serif] group-hover:underline decoration-[1.5px] underline-offset-[3px]"
+    >
+      {title}
+    </h2>
+    {
+      truncatedDescription && (
+        <p class="feed-description">{truncatedDescription}</p>
+      )
+    }
+  </div>
+</a>
+
+<style is:global>
+  .feed-article {
+    display: block;
+    border: 1px solid #dadce0;
+    border-radius: 8px;
+    min-height: 132px;
+    padding: 16px 16px 16px 24px;
+    transition: all 0.15s;
+    text-decoration: none;
+    color: inherit;
+    cursor: pointer;
+  }
+
+  .feed-article:hover {
+    box-shadow:
+      0 1px 3px rgba(54, 64, 67, 0.3),
+      0 4px 8px 3px rgba(54, 64, 67, 0.15);
+  }
+
+  /* Eyebrow row spacing */
+  .feed-article > .flex {
+    margin-bottom: 16px;
+  }
+
+  /* Content area — block flow with floated image */
+  .feed-content {
+    display: block;
+  }
+
+  /* Image floats right — title & description wrap around it */
+  .feed-image-wrap {
+    float: right;
+    width: 112px;
+    height: 72px;
+    border-radius: 8px;
+    overflow: hidden;
+    margin-left: 16px;
+    margin-bottom: 8px;
+  }
+
+  .feed-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    margin: 0;
+    transition: transform 0.15s;
+  }
+
+  .feed-article:hover .feed-image {
+    transform: scale(1.05);
+  }
+
+  /* Title */
+  .feed-title {
+    color: #202124;
+    font-size: 16px;
+    line-height: 24px;
+    margin: 0 0 6px 0;
+    display: block;
+  }
+
+  /* Description — wraps around float naturally */
+  .feed-description {
+    color: #5f6368;
+    font-size: 14px;
+    line-height: 20px;
+    margin: 0;
+    font-family: "Google Sans", Arial, sans-serif;
+    display: block;
+  }
+</style>

@@ -1,0 +1,213 @@
+---
+// src/components/MoreNews.astro
+import { getCollection } from "astro:content";
+import { Image } from "astro:assets";
+import { cleanImageUrl } from "../utils/image";
+
+const allPosts = await getCollection("blog");
+
+const sortedPosts = allPosts.sort(
+  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
+);
+
+const moreNewsPosts = sortedPosts.slice(1, 4);
+---
+
+<section class="max-w-[1280px] mx-auto px-4 lg:px-[52px] mt-12 mb-16">
+  <h2
+    class="text-[21px] font-[600] tracking-[1px] text-[#1a73e8] mb-8 font-['Google_Sans',Arial,sans-serif]"
+  >
+    MORE NEWS --
+  </h2>
+
+  <div class="nup-container nup-container--3up">
+    {
+      moreNewsPosts.map((post) => {
+        const cleanedImage = cleanImageUrl(post.data.image);
+        return (
+          <a
+            href={`/post/${post.id}/`}
+            class="nup-card group text-inherit no-underline block"
+          >
+            <div class="nup-card__eyebrow">
+              <span class="text-[#1a73e8] text-[12px] font-medium tracking-[0.5px] uppercase">
+                {post.data.category}
+              </span>
+            </div>
+
+            <div class="nup-card__content">
+              <div class="nup-card__image-wrapper">
+                {cleanedImage && (
+                  <Image
+                    src={cleanedImage}
+                    alt={post.data.title}
+                    width={384}
+                    height={216}
+                    widths={[96, 192, 384, 768]}
+                    sizes="(max-width: 1023px) 96px, 384px"
+                    class="nup-card__image"
+                    loading="lazy"
+                    quality={75}
+                  />
+                )}
+              </div>
+
+              <div class="nup-card__text-wrapper">
+                <h3 class="nup-card__title font-['Google_Sans',Arial,sans-serif] font-normal antialiased [text-rendering:optimizeLegibility] group-hover:underline decoration-[1.5px] underline-offset-[3px]">
+                  {post.data.title}
+                </h3>
+
+                {post.data.description && (
+                  <p class="nup-card__description font-['Google_Sans',Arial,sans-serif]">
+                    {post.data.description}
+                  </p>
+                )}
+              </div>
+            </div>
+          </a>
+        );
+      })
+    }
+  </div>
+</section>
+
+<style>
+  .nup-container {
+    display: grid;
+    gap: 24px;
+    grid-auto-rows: auto;
+    grid-template-columns: minmax(0, 1fr); /* 1 column mobile */
+    list-style: none;
+    margin: 0;
+  }
+
+  @media (min-width: 1024px) {
+    .nup-container--3up {
+      grid-template-columns: repeat(3, 1fr); /* 3 columns desktop */
+    }
+  }
+
+  .nup-card {
+    background: #fff;
+    border: 1px solid #dadce0;
+    border-radius: 8px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+    transition: box-shadow 0.3s ease;
+  }
+
+  .nup-card:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  }
+
+  /* =========================================
+     MOBILE VIEW
+     ========================================= */
+  .nup-card__eyebrow {
+    padding: 24px 24px 12px 24px;
+  }
+
+  .nup-card__content {
+    display: block;
+    padding: 0 24px 24px 24px;
+    height: 100%;
+  }
+
+  .nup-card__image-wrapper {
+    float: right;
+    width: 96px;
+    height: 64px;
+    border-radius: 8px;
+    overflow: hidden;
+    margin-left: 16px;
+    margin-bottom: 8px;
+  }
+
+  .nup-card__image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.2s ease;
+  }
+
+  .nup-card:hover .nup-card__image {
+    transform: scale(1.03);
+  }
+
+  .nup-card__text-wrapper {
+    display: block;
+  }
+
+  .nup-card__title {
+    color: #202124;
+    margin: 0 0 6px 0;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+    display: block;
+  }
+
+  .nup-card__description {
+    color: #5f6368;
+    margin: 0;
+    font-size: 14px;
+    line-height: 20px;
+    display: block;
+  }
+
+  /* =========================================
+     DESKTOP VIEW
+     ========================================= */
+  @media (min-width: 1024px) {
+    .nup-card__eyebrow {
+      padding-top: 24px;
+      padding-inline: 36px;
+      padding-bottom: 16px;
+    }
+
+    .nup-card__content {
+      display: flex;
+      flex-direction: column;
+      padding: 0;
+      gap: 0;
+    }
+
+    .nup-card__text-wrapper {
+      order: 1;
+      padding-inline: 36px;
+      margin-bottom: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .nup-card__title {
+      margin-bottom: 0;
+      font-size: 20px;
+      line-height: 28px;
+    }
+
+    .nup-card__description {
+      font-size: 15px;
+      line-height: 22px;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    .nup-card__image-wrapper {
+      float: none;
+      margin-left: 0;
+      margin-bottom: 0;
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      height: auto;
+      border-radius: 0;
+      order: 2;
+      margin-top: auto;
+    }
+  }
+</style>
