@@ -102,9 +102,16 @@ export async function onRequestPost({ request, env }) {
       });
     }
 
-    // TODO: Replace with your Google Apps Script URL for receiving contact form submissions
-    // See SETUP.md for instructions on creating a Google Apps Script webhook
-    const googleScriptUrl = env.CONTACT_FORM_WEBHOOK_URL || "https://script.google.com/macros/s/AKfycbzJD8xE48SjsfeReYQVkKR3IuTv9Tk6qzg9MbKTNy02fXF-M1jLMbGSiDwmBvEINUHh/exec";
+    // Webhook URL read securely from Cloudflare Environment Variables
+    const googleScriptUrl = env.CONTACT_FORM_WEBHOOK_URL;
+
+    if (!googleScriptUrl) {
+      console.info("[Contact API] CONTACT_FORM_WEBHOOK_URL is not configured in Cloudflare environment variables.");
+      return new Response(JSON.stringify({ success: "Thank you! Your message has been received in demo mode." }), {
+        status: 200,
+        headers: { "Content-Type": "application/json" }
+      });
+    }
 
     const forwardResponse = await fetch(googleScriptUrl, {
       method: "POST",
