@@ -5,8 +5,8 @@ pubDate: "2026-08-07T14:19:46.657Z"
 category: "Education"
 image: "https://demo-cdn.quicdecode.com/1000358698-orupq.png"
 image_caption: "Will UPI Become Paid?"
-author: "Mandhata"
-authorSlug: "mandhata-assistant"
+author: "Writer Two Name"
+authorSlug: "writer-two"
 tags: ["UPI Charges", "Digital Payments"]
 ai_summary: "The landscape of digital payments in India is evolving with the recent passing of the Payment and Settlement Systems (Amendment) Bill, 2026 in the Lok Sabha. For years, the Unified Payments Interface (UPI) has dominated the Indian economy thanks to the government's \"Zero MDR\" (Merchant Discount Rate) policy introduced in 2019, which made digital transactions practically free for both consumers and merchants. However, the new 2026 amendment gives the government the legal authority to permit banks and payment service providers to levy MDR on UPI and other digital payments in the future.
 ​Does this mean UPI is now chargeable? The short answer is no. This article provides a comprehensive, fact-checked deep dive into what MDR is, why banks are pushing for it due to massive infrastructure costs, and how the new bill actually works. It clarifies that even if MDR is introduced eventually, it is levied on merchants, not directly on regular consumers making peer-to-peer (P2P) transfers. We explore the potential economic impacts, tiered charge structures, and what the future holds for small vendors versus large enterprises. Read on to separate fact from panic-inducing fiction regarding the future of UPI payments in India."

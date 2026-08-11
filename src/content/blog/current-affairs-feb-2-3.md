@@ -1,4 +1,4 @@
-﻿---
+---
 title: "Daily Current Affairs (Feb 2-3, 2026): New Ramsar Sites, Budget and Grammy Winners"
 description: "Current affairs updates and news recap for competitive exams. Daily Current Affairs (Feb 2-3, 2026): New Ramsar Sites, Budget and Grammy Winners"
 pubDate: "2026-03-02T06:59:21.290Z"
@@ -19,12 +19,12 @@ ai_summary: "Daily Current Affairs (Feb 2-3, 2026): New Ramsar Sites, Budget and
 <h3>2. Environment: India Adds Two New Ramsar Sites</h3>
 <p>Ahead of World Wetlands Day (February 2), the Union Environment Ministry announced the addition of two new wetlands to the list of Ramsar sites of international importance. The new sites are the <strong>Patna Bird Sanctuary</strong> in Etah district, Uttar Pradesh, and the <strong>Chhari-Dhand Wetland Reserve</strong> in the Kutch district of Gujarat. This inclusion highlights India's continued focus on conserving biodiversity and critical marshland ecosystems.</p>
 
-<p style="padding:12px;background:#f8fafc;border-left:4px solid #1a73e8;border-radius:4px;font-weight:600;margin:16px 0;">Also Read: <a href="/post/current-affairs-10-14-march/">Top Current Affairs 3–6 March 2026: India and World Updates with MCQs</a></p>
+<p style="padding:12px;background:#f8fafc;border-left:4px solid #1a73e8;border-radius:4px;font-weight:600;margin:16px 0;">Also Read: <a href="/post/current-affairs-10-14-march/">Top Current Affairs 3�6 March 2026: India and World Updates with MCQs</a></p>
 
 
 
 <h3>3. Economy: Launch of 'Biopharma SHAKTI' Scheme</h3>
-<p>Following the Union Budget presentation, the government has launched the ‘Biopharma SHAKTI’ mission with a massive outlay of ₹10,000 crore. The scheme aims to position India as a global hub for the manufacturing of biologics and biosimilars. It focuses on upgrading the National Institutes of Pharmaceutical Education and Research (NIPERs) and establishing new clinical trial infrastructure to reduce import dependence in the high-value pharma sector.</p>
+<p>Following the Union Budget presentation, the government has launched the �Biopharma SHAKTI� mission with a massive outlay of ?10,000 crore. The scheme aims to position India as a global hub for the manufacturing of biologics and biosimilars. It focuses on upgrading the National Institutes of Pharmaceutical Education and Research (NIPERs) and establishing new clinical trial infrastructure to reduce import dependence in the high-value pharma sector.</p>
 
 <h3>4. Awards: Dalai Lama and Bad Bunny Win at 2026 Grammys</h3>
 <p>The 68th Grammy Awards saw historic wins, with Tibetan spiritual leader, the <strong>Dalai Lama</strong>, winning the 'Best Audio Book, Narration, and Storytelling Recording' award. In the music categories, Puerto Rican artist <strong>Bad Bunny</strong> clinched the prestigious 'Album of the Year' award, marking a significant moment for Latin music on the global stage. Additionally, the track "Golden" became the first-ever K-Pop song to win a Grammy, securing the 'Best Song Written for Visual Media' title.</p>
@@ -46,7 +46,7 @@ ai_summary: "Daily Current Affairs (Feb 2-3, 2026): New Ramsar Sites, Budget and
 <p>Renowned climate scientist <strong>Veerabhadran Ramanathan</strong> has been awarded the prestigious Crafoord Prize in Geosciences for 2026. He was honoured for his groundbreaking work on the impact of short-lived climate pollutants (like black carbon) on global warming. The Crafoord Prize is often considered a complement to the Nobel Prizes in disciplines not covered by the Nobel committee.</p>
 
 <h3>9. Infrastructure: New Baggage Rules for International Travellers</h3>
-<p>The Central Board of Indirect Taxes and Customs (CBIC) has notified new baggage rules effective from February 3, 2026. The limit for bringing duty-free goods into India for international passengers has been raised to <strong>₹75,000</strong>, aiming to ease customs clearances and facilitate smoother travel experiences for tourists and returning Indians.</p>
+<p>The Central Board of Indirect Taxes and Customs (CBIC) has notified new baggage rules effective from February 3, 2026. The limit for bringing duty-free goods into India for international passengers has been raised to <strong>?75,000</strong>, aiming to ease customs clearances and facilitate smoother travel experiences for tourists and returning Indians.</p>
 
 <h3>10. Defence: BLA Launches 'Operation Herof Phase II' in Pakistan</h3>
 <p>Tensions have escalated in India's neighborhood as the Balochistan Liberation Army (BLA) launched 'Operation Herof Phase II', targeting Pakistani military infrastructure and the China-Pakistan Economic Corridor (CPEC) assets in Gwadar. This internal conflict in Pakistan poses security concerns for the region and impacts the stability of the Chinese investments in the province.</p>
@@ -57,7 +57,7 @@ ai_summary: "Daily Current Affairs (Feb 2-3, 2026): New Ramsar Sites, Budget and
 <ul>
 <li><strong>Article 21:</strong> Now covers Menstrual Health Rights.</li>
 <li><strong>New Ramsar Sites:</strong> Patna Bird Sanctuary (UP), Chhari-Dhand (Gujarat).</li>
-<li><strong>Biopharma SHAKTI:</strong> ₹10,000 Cr scheme for biologics.</li>
+<li><strong>Biopharma SHAKTI:</strong> ?10,000 Cr scheme for biologics.</li>
 <li><strong>Grammy 2026:</strong> Dalai Lama (Audio Book), Bad Bunny (Album of Year).</li>
 <li><strong>Tax Devolution:</strong> Retained at 41% by 16th FC.</li>
 </ul>

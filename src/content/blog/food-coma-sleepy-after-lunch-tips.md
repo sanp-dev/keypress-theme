@@ -5,8 +5,8 @@ pubDate: 2026-08-03T06:19:21.181Z
 category: "Health"
 image: "https://demo-cdn.quicdecode.com/beat-food-coma-why-you-feel-9bc76.webp"
 image_caption: ""
-author: "Sushil"
-authorSlug: "sushil-assistant-one"
+author: "Writer One Name"
+authorSlug: "writer-one"
 tags: ["food coma causes", "postprandial somnolence", "afternoon fatigue fixes", "tired after lunch"]
 ai_summary: ""
 ---

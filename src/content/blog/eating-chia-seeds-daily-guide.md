@@ -5,8 +5,8 @@ pubDate: 2026-07-29T05:50:54.755Z
 category: "Health"
 image: "https://demo-cdn.quicdecode.com/eating-chia-seeds-daily-what-really-1uujc.webp"
 image_caption: ""
-author: "Sushil"
-authorSlug: "sushil-assistant-one"
+author: "Writer One Name"
+authorSlug: "writer-one"
 tags: ["chia seeds daily benefits", "how to drink chia seeds", "chia seed water weight loss", "best time to eat chia seeds"]
 ai_summary: ""
 ---

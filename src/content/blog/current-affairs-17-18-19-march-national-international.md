@@ -1,4 +1,4 @@
-ï»¿---
+---
 title: "Current Affairs 17-19 March 2026: Top 30 Updates"
 description: "Current affairs updates and news recap for competitive exams. Current Affairs 17-19 March 2026: Top 30 Updates"
 pubDate: "2026-02-26T21:13:32.903Z"
@@ -17,7 +17,7 @@ ai_summary: "Current Affairs 17-19 March 2026: Top 30 Updates"
 <h3>International Affairs</h3>
 
 <p><b>1. Assassination of Ali Larijani</b><br>
-Ali Larijani, a senior Iranian political figure, was reportedly killed in a USâ€“Israel airstrike. His death is considered a major blow to Iranâ€™s leadership.</p>
+Ali Larijani, a senior Iranian political figure, was reportedly killed in a US–Israel airstrike. His death is considered a major blow to Iran’s leadership.</p>
 <p>You can see the verified statement here:</p>
 
 <blockquote class="twitter-tweet">
@@ -27,7 +27,7 @@ Ali Larijani, a senior Iranian political figure, was reportedly killed in a USâ€
 </blockquote>
 
 <p><b>2. Death of Gholamreza Soleimani</b><br>
-Gholamreza Soleimani, head of Iranâ€™s Basij Force, was killed. This weakens Iranâ€™s internal security structure.</p>
+Gholamreza Soleimani, head of Iran’s Basij Force, was killed. This weakens Iran’s internal security structure.</p>
 
 <p>You can see the verified statement here:</p>
 <blockquote class="twitter-tweet">
@@ -36,13 +36,13 @@ Gholamreza Soleimani, head of Iranâ€™s Basij Force, was killed. This weakens Ira
 <a href="https://x.com/i/status/2034326316737053172">March 18, 2026</a>
 </blockquote>
 
-<p><b>3. Confirmation of Ayatollah Ali Khameneiâ€™s Death</b><br>
-Reports confirmed the death of Iranâ€™s Supreme Leader Ayatollah Ali Khamenei, ending his long leadership.</p>
+<p><b>3. Confirmation of Ayatollah Ali Khamenei’s Death</b><br>
+Reports confirmed the death of Iran’s Supreme Leader Ayatollah Ali Khamenei, ending his long leadership.</p>
 
 <p><b>4. Mojtaba Khamenei Becomes Supreme Leader</b><br>
 Mojtaba Khamenei was declared the new Supreme Leader, raising debates over dynastic succession.</p>
 
-<p><b>5. Iranâ€™s Missile Attack on Israel</b><br>
+<p><b>5. Iran’s Missile Attack on Israel</b><br>
 Iran launched missile and drone attacks on Israel in retaliation, increasing tensions.</p>
 
 <p><b>6. Threat to the Strait of Hormuz</b><br>
@@ -71,15 +71,15 @@ The United Nations prepared for an emergency meeting to discuss the crisis.</p>
 <h3>International Affairs</h3>
 
 <p><b>11. Killing of Intelligence Minister Ismail Khatib</b><br>
-Iranâ€™s Intelligence Minister Ismail Khatib was reportedly killed, impacting intelligence operations.</p>
+Iran’s Intelligence Minister Ismail Khatib was reportedly killed, impacting intelligence operations.</p>
 
 <p><b>12. Death of Senior Iranian Leaders</b><br>
-Several top officials, including Ali Shamkhani, were killed, weakening Iranâ€™s command.</p>
+Several top officials, including Ali Shamkhani, were killed, weakening Iran’s command.</p>
 
 <p><b>13. Attack on South Pars Gas Field</b><br>
-Israel targeted the worldâ€™s largest gas field, affecting global energy supply.</p>
+Israel targeted the world’s largest gas field, affecting global energy supply.</p>
 
-<p><b>14. Iranâ€™s Drone and Missile Strikes</b><br>
+<p><b>14. Iran’s Drone and Missile Strikes</b><br>
 Iran expanded attacks to Gulf countries, widening the conflict.</p>
 
 <p><b>15. Attack on Bushehr Nuclear Plant</b><br>
@@ -136,7 +136,7 @@ A major Hindu festival dedicated to Goddess Durga began.</p>
 <p><b>28. Supreme Court Verdict (Adoptive Mothers)</b><br>
 Adoptive mothers granted 12 weeks maternity leave.</p>
 
-<p style="padding:12px;background:#f8fafc;border-left:4px solid #1a73e8;border-radius:4px;font-weight:600;margin:16px 0;">Also Read: <a href="/post/current-affairs-25-march-to-1-april/">Weekly Current Affairs: 26 February â€“ 2 March 2026</a></p>
+<p style="padding:12px;background:#f8fafc;border-left:4px solid #1a73e8;border-radius:4px;font-weight:600;margin:16px 0;">Also Read: <a href="/post/current-affairs-25-march-to-1-april/">Weekly Current Affairs: 26 February – 2 March 2026</a></p>
 
 
 
@@ -163,7 +163,7 @@ Thunderstorm warnings were issued in Vidarbha region.</p>
 <p><b>Arunachal Football Event</b><br>
 An international football tournament was announced.</p>
 
-<p><b>Indiaâ€™s Energy Strategy Shift</b><br>
+<p><b>India’s Energy Strategy Shift</b><br>
 India is diversifying oil import sources.</p>
 
 <p><b>Advisory for Indians Abroad</b><br>
@@ -174,13 +174,13 @@ India maintained a balanced stance and called for peace.</p>
 
 <h2>Exam-Oriented Key Takeaways</h2>
 
-<p><b>Important Topics:</b> Iranâ€“Israelâ€“US conflict, oil crisis, Indiaâ€™s foreign policy.</p>
+<p><b>Important Topics:</b> Iran–Israel–US conflict, oil crisis, India’s foreign policy.</p>
 <p><b>Important Days:</b> Rajasthan Day, Chaitra Navratri.</p>
 <p><b>Important Decisions:</b> Supreme Court maternity leave, NIA Court.</p>
 
 <h2>Conclusion</h2>
 
-<p>This set of current affairs is highly important for exams as it covers international relations, economy, and Indiaâ€™s governance.</p>
+<p>This set of current affairs is highly important for exams as it covers international relations, economy, and India’s governance.</p>
 
 <script type="text/javascript">
 //<![CDATA[

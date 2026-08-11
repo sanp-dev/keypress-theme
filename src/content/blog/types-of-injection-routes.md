@@ -1,4 +1,4 @@
-﻿---
+---
 title: "Types of Injection Routes: IM, IV, IC, ID,  Needle Types, Colour and More"
 description: "Injection routes refer to the various ways medications are administered using a syringe and needle."
 pubDate: "2026-06-26T02:56:46.451Z"
@@ -270,16 +270,16 @@ ai_summary: "Injection routes refer to the various ways medications are administ
 
 <h3>How to Identify Needle Gauge by Color?</h3>
 <ul>
-  <li><strong>Look at the needle hub (plastic base)</strong> → It is <strong>color-coded</strong> according to gauge size.</li>
-  <li><strong>Larger needles (lower gauge, e.g., 18G, 21G)</strong> → Used for <strong>blood draws, IV fluids</strong>.</li>
-  <li><strong>Smaller needles (higher gauge, e.g., 24G, 26G)</strong> → Used for <strong>pediatrics, insulin, delicate veins</strong>.</li>
+  <li><strong>Look at the needle hub (plastic base)</strong> ? It is <strong>color-coded</strong> according to gauge size.</li>
+  <li><strong>Larger needles (lower gauge, e.g., 18G, 21G)</strong> ? Used for <strong>blood draws, IV fluids</strong>.</li>
+  <li><strong>Smaller needles (higher gauge, e.g., 24G, 26G)</strong> ? Used for <strong>pediatrics, insulin, delicate veins</strong>.</li>
 </ul>
 
 <h2>Conclusion</h2>
 <p>Understanding different injection routes, infusion methods, and syringe/needle types is crucial for safe and effective drug administration. Proper knowledge ensures correct drug delivery, minimizes patient discomfort, and prevents complications.</p>
 
 <style>
-/* QD Responsive Table â€” Self-Contained */
+/* QD Responsive Table — Self-Contained */
 .qd-table-wrap {
   margin: 1.5rem 0;
   overflow-x: auto;

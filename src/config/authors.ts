@@ -1,8 +1,6 @@
 import type { ImageMetadata } from 'astro';
 import defaultAvatar from '../assets/authors/default.webp';
 import sandhataAvatar from '../assets/authors/sandhata.webp';
-import sushilAvatar from '../assets/authors/sushil-assistant.webp';
-import mandhataAvatar from '../assets/authors/mandhata-assistant.webp';
 
 export interface AuthorProfile {
   name: string;
@@ -21,16 +19,16 @@ export const AUTHOR_REGISTRY: Record<string, AuthorProfile> = {
     role: 'Editor-in-Chief',
   },
   'writer1@demo-blog.quicdecode.com': {
-    name: 'Sushil',
-    slug: 'sushil-assistant-one',
-    avatarUrl: sushilAvatar,
+    name: 'Writer One Name',
+    slug: 'writer-one',
+    avatarUrl: defaultAvatar,
     bio: 'Assistant Writer',
     role: 'Staff Writer',
   },
   'writer2@demo-blog.quicdecode.com': {
-    name: 'Mandhata',
-    slug: 'mandhata-assistant',
-    avatarUrl: mandhataAvatar,
+    name: 'Writer Two Name',
+    slug: 'writer-two',
+    avatarUrl: defaultAvatar,
     bio: 'Assistant Writer',
     role: 'Staff Writer',
   },

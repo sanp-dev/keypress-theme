@@ -1,6 +1,6 @@
-Ôªø---
-title: "Current Affairs 15‚Äì16 March 2026: India and World Updates"
-description: "Current affairs updates and news recap for competitive exams. Current Affairs 15‚Äì16 March 2026: India and World Updates"
+---
+title: "Current Affairs 15ñ16 March 2026: India and World Updates"
+description: "Current affairs updates and news recap for competitive exams. Current Affairs 15ñ16 March 2026: India and World Updates"
 pubDate: "2026-02-25T04:20:38.709Z"
 category: "Current-affairs"
 image: "https://demo-cdn.quicdecode.com/e097e5fb-current-affairs-15-16-march-2026.webp"
@@ -8,19 +8,19 @@ image_caption: ""
 author: "SANDHATA"
 authorSlug: "sandhata"
 tags: []
-ai_summary: "Current Affairs 15‚Äì16 March 2026: India and World Updates"
+ai_summary: "Current Affairs 15ñ16 March 2026: India and World Updates"
 ---
-<p>Staying updated with current affairs is extremely important for competitive exams such as UPSC, SSC, Banking, and State PCS. The period between 15‚Äì16 March 2026 witnessed several major developments including the escalating Iran‚ÄìIsrael conflict, global oil supply disruptions, India‚Äôs energy concerns, international diplomacy, and key national events.</p>
+<p>Staying updated with current affairs is extremely important for competitive exams such as UPSC, SSC, Banking, and State PCS. The period between 15ñ16 March 2026 witnessed several major developments including the escalating IranñIsrael conflict, global oil supply disruptions, Indiaís energy concerns, international diplomacy, and key national events.</p>
 
 <p>Below is a detailed exam-oriented summary of the most important current affairs.</p>
 
 <h2>Current affairs 15-16 March</h2>
 
-<h3>1. Iran‚ÄìIsrael War Intensifies</h3>
+<h3>1. IranñIsrael War Intensifies</h3>
 <p>The conflict between Iran and Israel intensified further as Israeli airstrikes targeted several Iranian fuel depots and oil infrastructure.</p>
 
 <ul>
-<li>Iran‚Äôs foreign minister described the attacks as ‚Äúecocide‚Äù, referring to environmental destruction caused by burning oil facilities.</li>
+<li>Iranís foreign minister described the attacks as ìecocideî, referring to environmental destruction caused by burning oil facilities.</li>
 <li>Iran reportedly arrested more than 500 people accused of spying for Israel.</li>
 <li>In Lebanon, more than 850 deaths have been reported due to the expanding conflict.</li>
 </ul>
@@ -28,7 +28,7 @@ ai_summary: "Current Affairs 15‚Äì16 March 2026: India and World Updates"
 <p>The situation has raised global concerns about a wider Middle East war.</p>
 
 <h3>2. Strait of Hormuz Nearly Closed</h3>
-<p>The escalating conflict has disrupted maritime activity near the Strait of Hormuz, one of the world‚Äôs most important oil routes.</p>
+<p>The escalating conflict has disrupted maritime activity near the Strait of Hormuz, one of the worldís most important oil routes.</p>
 
 <ul>
 <li>Around 20% of global oil and LNG shipments pass through this route.</li>
@@ -89,7 +89,7 @@ ai_summary: "Current Affairs 15‚Äì16 March 2026: India and World Updates"
 <li>Regional military tensions remain high.</li>
 </ul>
 
-<h3>8. International Day to Combat Islamophobia ‚Äì 15 March</h3>
+<h3>8. International Day to Combat Islamophobia ñ 15 March</h3>
 <p>The world observed the International Day to Combat Islamophobia on 15 March.</p>
 
 <ul>
@@ -125,7 +125,7 @@ ai_summary: "Current Affairs 15‚Äì16 March 2026: India and World Updates"
 
 <ul>
 <li>More than 89 business sessions were organized.</li>
-<li>The state received investment proposals worth around ‚Çπ1.55 lakh crore since 2022.</li>
+<li>The state received investment proposals worth around ?1.55 lakh crore since 2022.</li>
 <li>The summit focused on manufacturing, technology, and infrastructure.</li>
 </ul>
 
@@ -178,7 +178,7 @@ ai_summary: "Current Affairs 15‚Äì16 March 2026: India and World Updates"
 
 <ul>
 <li>International gold prices remained near $2000 per ounce.</li>
-<li>In India, gold prices remained around ‚Çπ65,000 per 10 grams.</li>
+<li>In India, gold prices remained around ?65,000 per 10 grams.</li>
 <li>Market fluctuations were influenced by global economic uncertainty.</li>
 </ul>
 
@@ -201,7 +201,7 @@ ai_summary: "Current Affairs 15‚Äì16 March 2026: India and World Updates"
 
 <tr>
 <td>Middle East Conflict</td>
-<td>Iran‚ÄìIsrael tensions intensify</td>
+<td>IranñIsrael tensions intensify</td>
 </tr>
 
 <tr>
@@ -226,7 +226,7 @@ ai_summary: "Current Affairs 15‚Äì16 March 2026: India and World Updates"
 
 <tr>
 <td>International Day</td>
-<td>Islamophobia Day ‚Äì 15 March</td>
+<td>Islamophobia Day ñ 15 March</td>
 </tr>
 
 <tr>
@@ -246,7 +246,7 @@ ai_summary: "Current Affairs 15‚Äì16 March 2026: India and World Updates"
 <hr />
 
 <div class="qd-question" id="qd-question1">
-<b>1.</b> Which international sea route became a major concern due to the Iran‚ÄìIsrael conflict in March 2026?
+<b>1.</b> Which international sea route became a major concern due to the IranñIsrael conflict in March 2026?
 </div>
 <div class="qd-option" data-correct="false" data-question="qd-question1">
 Strait of Malacca
@@ -828,7 +828,7 @@ initSmartAdviceQuiz();
 })();
 </script>
 <style>
-/* QD Responsive Table √¢‚Ç¨‚Äù Self-Contained */
+/* QD Responsive Table ‚Äî Self-Contained */
 .qd-table-wrap {
   margin: 1.5rem 0;
   overflow-x: auto;

@@ -5,8 +5,8 @@ pubDate: 2026-07-29T06:02:35.230Z
 category: "Health"
 image: "https://demo-cdn.quicdecode.com/first-second-or-third-trimester-heres-crfp0.webp"
 image_caption: ""
-author: "Sushil"
-authorSlug: "sushil-assistant-one"
+author: "Writer One Name"
+authorSlug: "writer-one"
 tags: ["chia seeds during pregnancy. chia seeds in pregnancy", "chia seeds benefits in pregnancy"]
 ai_summary: ""
 ---

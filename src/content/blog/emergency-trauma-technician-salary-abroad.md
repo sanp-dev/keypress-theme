@@ -5,8 +5,8 @@ pubDate: 2026-07-26T12:35:14.566Z
 category: "Health"
 image: "https://demo-cdn.quicdecode.com/er-tech-salary-scope-best-jobs-2144.webp"
 image_caption: ""
-author: "Sushil"
-authorSlug: "sushil-assistant-one"
+author: "Writer One Name"
+authorSlug: "writer-one"
 tags: ["emergency and trauma care technician salary", "er tech scope"]
 ai_summary: ""
 ---

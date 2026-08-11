@@ -1,4 +1,4 @@
-ï»¿---
+---
 title: "Current Affairs 25 Mar to 1 Apr 2026 War Updates and India's Action"
 description: "Current affairs updates and news recap for competitive exams. Current Affairs 25 Mar to 1 Apr 2026 War Updates and India's Action"
 pubDate: "2026-02-28T14:06:27.096Z"
@@ -10,7 +10,7 @@ authorSlug: "sandhata"
 tags: []
 ai_summary: "Current Affairs 25 Mar to 1 Apr 2026 War Updates and India's Action"
 ---
-<p>This detailed current affairs post covers day-by-day updates from 25 March to 1 April 2026 with focus on war locations, missile attacks, Indiaâ€™s response, government actions, and exam-oriented analysis for competitive exams preparation.</p>
+<p>This detailed current affairs post covers day-by-day updates from 25 March to 1 April 2026 with focus on war locations, missile attacks, India’s response, government actions, and exam-oriented analysis for competitive exams preparation.</p>
 
 <h2>25 MARCH 2026</h2>
 <p>Iran continued missile strikes targeting southern and central Israel. Major locations included Tel Aviv, Ashdod and Beersheba. Israel retaliated with airstrikes on Iranian-linked bases in Damascus (Syria) and southern Lebanon. India issued travel advisories and activated emergency monitoring systems.</p>
@@ -96,7 +96,7 @@ ai_summary: "Current Affairs 25 Mar to 1 Apr 2026 War Updates and India's Action
 <li>Global uncertainty continued</li>
 </ul>
 
-<h2>Indiaâ€™s Actions, Schemes and Strategy (Exam Important)</h2>
+<h2>India’s Actions, Schemes and Strategy (Exam Important)</h2>
 <p>India played a balanced and strategic role during the conflict. The government focused on citizen safety, energy security, and economic stability.</p>
 <ul>
 <li>Operation-level evacuation planning (similar to Operation Ganga model)</li>
@@ -109,7 +109,7 @@ ai_summary: "Current Affairs 25 Mar to 1 Apr 2026 War Updates and India's Action
 
 <h2>War Impact on India (Very Important for Exams)</h2>
 <ul>
-<li>Increase in crude oil prices â†’ inflation risk</li>
+<li>Increase in crude oil prices ? inflation risk</li>
 <li>Pressure on Indian rupee and stock markets</li>
 <li>Impact on trade routes (Hormuz Strait)</li>
 <li>Risk to Indian workers in Middle East</li>
@@ -126,4 +126,4 @@ ai_summary: "Current Affairs 25 Mar to 1 Apr 2026 War Updates and India's Action
 </ul>
 
 <h2>Conclusion</h2>
-<p>The period from 25 March to 1 April 2026 reflects a complex multi-front war with global economic and political impact. For competitive exams, understanding locations, strategies, and Indiaâ€™s response is extremely important.</p>
+<p>The period from 25 March to 1 April 2026 reflects a complex multi-front war with global economic and political impact. For competitive exams, understanding locations, strategies, and India’s response is extremely important.</p>

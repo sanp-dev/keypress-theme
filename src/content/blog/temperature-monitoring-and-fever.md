@@ -1,4 +1,4 @@
-Ôªø---
+---
 title: "Temperature Monitoring and Fever Management: Basic Information for Medical Students"
 description: "Fever, an elevation of body temperature beyond the normal range, is a common clinical sign indicating an underlying pathology."
 pubDate: "2026-06-21T00:18:03.870Z"
@@ -24,35 +24,35 @@ ai_summary: "Fever, an elevation of body temperature beyond the normal range, is
 <thead>
 <tr>
 <th>Measurement Site</th>
-<th>Temperature Range (¬∞C)</th>
-<th>Temperature Range (¬∞F)</th>
+<th>Temperature Range (∞C)</th>
+<th>Temperature Range (∞F)</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>Oral</td>
-<td>36.5 ‚Äì 37.5</td>
-<td>97.7 ‚Äì 99.5</td>
+<td>36.5 ñ 37.5</td>
+<td>97.7 ñ 99.5</td>
 </tr>
 <tr>
 <td>Rectal</td>
-<td>37.0 ‚Äì 38.1</td>
-<td>98.6 ‚Äì 100.6</td>
+<td>37.0 ñ 38.1</td>
+<td>98.6 ñ 100.6</td>
 </tr>
 <tr>
 <td>Axillary</td>
-<td>35.9 ‚Äì 36.7</td>
-<td>96.6 ‚Äì 98.1</td>
+<td>35.9 ñ 36.7</td>
+<td>96.6 ñ 98.1</td>
 </tr>
 <tr>
 <td>Tympanic (Ear)</td>
-<td>36.5 ‚Äì 37.5</td>
-<td>97.7 ‚Äì 99.5</td>
+<td>36.5 ñ 37.5</td>
+<td>97.7 ñ 99.5</td>
 </tr>
 <tr>
 <td>Temporal (Forehead)</td>
-<td>36.3 ‚Äì 37.5</td>
-<td>97.3 ‚Äì 99.5</td>
+<td>36.3 ñ 37.5</td>
+<td>97.3 ñ 99.5</td>
 </tr>
 </tbody>
   </table></div>
@@ -69,10 +69,10 @@ ai_summary: "Fever, an elevation of body temperature beyond the normal range, is
 <h3>2. Methods of Temperature Monitoring</h3>
 <p><b>2.1 Clinical Methods</b></p>
 <ul>
-  <li><b>Mercury Thermometers</b> (Oral, Rectal, Axillary) ‚Äì Accurate but less used due to toxicity concerns.</li>
-  <li><b>Digital Thermometers</b> (Oral, Rectal, Axillary) ‚Äì Quick and safe.</li>
-  <li><b>Infrared Thermometers</b> (Tympanic, Temporal) ‚Äì Contactless and fast but less accurate in some conditions.</li>
-  <li><b>Disposable Strips</b> ‚Äì Less accurate, used for screening.</li>
+  <li><b>Mercury Thermometers</b> (Oral, Rectal, Axillary) ñ Accurate but less used due to toxicity concerns.</li>
+  <li><b>Digital Thermometers</b> (Oral, Rectal, Axillary) ñ Quick and safe.</li>
+  <li><b>Infrared Thermometers</b> (Tympanic, Temporal) ñ Contactless and fast but less accurate in some conditions.</li>
+  <li><b>Disposable Strips</b> ñ Less accurate, used for screening.</li>
 </ul>
 
 <p><b>2.2 Continuous Temperature Monitoring</b></p>
@@ -83,7 +83,7 @@ ai_summary: "Fever, an elevation of body temperature beyond the normal range, is
 
 <h2>3. Fever</h2>
 <h3>3.1 Definition of Fever</h3>
-<p>Fever is defined as a rise in body temperature above 38.0¬∞C (100.4¬∞F) due to an elevated hypothalamic set point, commonly in response to infection or inflammation.</p>
+<p>Fever is defined as a rise in body temperature above 38.0∞C (100.4∞F) due to an elevated hypothalamic set point, commonly in response to infection or inflammation.</p>
 
 <h3>3.2 Types of Fever Patterns</h3>
 <p><b>Continuous (Sustained) Fever:</b></p>
@@ -117,7 +117,7 @@ ai_summary: "Fever, an elevation of body temperature beyond the normal range, is
 <p><b>Pel-Ebstein Fever:</b></p>
 <ul>
   <li>Alternating periods of fever and afebrile phases.</li>
-  <li>Example: Hodgkin‚Äôs lymphoma.</li>
+  <li>Example: Hodgkinís lymphoma.</li>
 </ul>
 
 <h3>3.3 Causes of Fever</h3>
@@ -140,12 +140,12 @@ ai_summary: "Fever, an elevation of body temperature beyond the normal range, is
 <p><b>Pyrogens (Fever-Inducing Substances):</b></p>
 <ul>
   <li><b>Exogenous Pyrogens: </b>Bacterial toxins, viruses, fungi.</li>
-  <li><b>Endogenous Pyrogens:</b> IL-1, IL-6, TNF-Œ±, Prostaglandins.</li>
+  <li><b>Endogenous Pyrogens:</b> IL-1, IL-6, TNF-a, Prostaglandins.</li>
 </ul>
 
 <p><b>Hypothalamic Set Point Elevation</b></p>
 <ul>
-  <li>Pyrogens stimulate the hypothalamus to increase the body‚Äôs temperature set point.</li>
+  <li>Pyrogens stimulate the hypothalamus to increase the bodyís temperature set point.</li>
   <li>This leads to vasoconstriction, shivering, and behavioral changes to conserve heat.</li>
 </ul>
 
@@ -173,9 +173,9 @@ ai_summary: "Fever, an elevation of body temperature beyond the normal range, is
 </ul>
 <hr />
 <ul>
-  <li><b>Urinalysis</b> ‚Äì UTI detection.</li>
-  <li><b>Chest X-ray</b> ‚Äì Pneumonia or TB suspicion.</li>
-  <li><b>Serology &amp; PCR</b> ‚Äì For viral infections (Dengue, COVID-19).</li>
+  <li><b>Urinalysis</b> ñ UTI detection.</li>
+  <li><b>Chest X-ray</b> ñ Pneumonia or TB suspicion.</li>
+  <li><b>Serology &amp; PCR</b> ñ For viral infections (Dengue, COVID-19).</li>
 </ul>
 
 <h3>5.3 Management of Fever</h3>
@@ -186,8 +186,8 @@ ai_summary: "Fever, an elevation of body temperature beyond the normal range, is
 
 
 <ul>
-  <li><b>Paracetamol (Acetaminophen)</b> ‚Äì First-line drug.</li>
-  <li><b>NSAIDs (Ibuprofen)</b> ‚Äì Used if additional anti-inflammatory effect needed.</li>
+  <li><b>Paracetamol (Acetaminophen)</b> ñ First-line drug.</li>
+  <li><b>NSAIDs (Ibuprofen)</b> ñ Used if additional anti-inflammatory effect needed.</li>
 </ul>
 
 <p><b>Specific Treatment:</b></p>
@@ -198,12 +198,12 @@ ai_summary: "Fever, an elevation of body temperature beyond the normal range, is
 </ul>
 
 <h3>5.4 Fever in Special Populations</h3>
-<p><b>Neonates &amp; Infants: </b>Fever above 38¬∞C requires immediate evaluation due to risk of serious infections.</p>
+<p><b>Neonates &amp; Infants: </b>Fever above 38∞C requires immediate evaluation due to risk of serious infections.</p>
 <p><b>Elderly &amp; Immunocompromised Patients:</b> Fever may be blunted or absent despite severe infections.</p>
 
 <h2>6. Complications of Fever</h2>
 <ul>
-  <li><b>Hyperpyrexia:</b> Extreme fever (&gt;41¬∞C or 105.8¬∞F) ‚Üí Can cause brain damage.</li>
+  <li><b>Hyperpyrexia:</b> Extreme fever (&gt;41∞C or 105.8∞F) ? Can cause brain damage.</li>
   <li><b>FEBRILE SEIZURES</b>: Common in children &lt;5 years.</li>
   <li><b>Dehydration</b> &amp; Electrolyte Imbalance.</li>
   <li><b>Septic Shock: </b>Due to overwhelming infection.</li>
@@ -222,26 +222,26 @@ ai_summary: "Fever, an elevation of body temperature beyond the normal range, is
 <li><strong>Rest:</strong> Get enough sleep and avoid strenuous activities to help the body recover.</li>
 <li><strong>Cooling Measures:</strong> Use a cool, damp cloth on the forehead, take lukewarm baths, or wear light clothing to reduce body temperature.</li>
 <li><strong>Medication:</strong> Take paracetamol or ibuprofen as per the recommended dosage to bring down fever (avoid aspirin in children).</li>
-<li><strong>Monitor Symptoms:</strong> If fever persists for more than 3 days, exceeds 103¬∞F (39.4¬∞C), or is accompanied by severe symptoms, seek medical attention.</li>
+<li><strong>Monitor Symptoms:</strong> If fever persists for more than 3 days, exceeds 103∞F (39.4∞C), or is accompanied by severe symptoms, seek medical attention.</li>
   </ol>
 </div>
 
 <h3>7. Differential Diagnosis of Fever of Unknown Origin (FUO)</h3>
-<p>FUO is defined as fever &gt;38.3¬∞C lasting &gt;3 weeks without a clear cause despite investigations.</p>
+<p>FUO is defined as fever &gt;38.3∞C lasting &gt;3 weeks without a clear cause despite investigations.</p>
 <p><b>Common Causes:</b></p>
 <ul>
-  <li><b>Infections</b> ‚Äì Tuberculosis, Abscesses.</li>
-  <li><b>Neoplasms</b> ‚Äì Lymphomas, Leukemia.</li>
-  <li><b>Autoimmune Disorders</b> ‚Äì Rheumatoid Arthritis, SLE.</li>
-  <li><b>Miscellaneous</b> ‚Äì Drug fever, Endocrine disorders (Hyperthyroidism).</li>
+  <li><b>Infections</b> ñ Tuberculosis, Abscesses.</li>
+  <li><b>Neoplasms</b> ñ Lymphomas, Leukemia.</li>
+  <li><b>Autoimmune Disorders</b> ñ Rheumatoid Arthritis, SLE.</li>
+  <li><b>Miscellaneous</b> ñ Drug fever, Endocrine disorders (Hyperthyroidism).</li>
 </ul>
 
 <h2>8. Preventive Measures</h2>
 <ul>
-  <li><b>Vaccination</b> ‚Äì Influenza, COVID-19, Typhoid, etc.</li>
-  <li><b>Hygiene Practices</b> ‚Äì Handwashing, sanitation.</li>
-  <li><b>Vector Control</b> ‚Äì Prevent mosquito-borne diseases (Malaria, Dengue).</li>
-  <li><b>Health Education</b> ‚Äì Awareness on fever management and complications.</li>
+  <li><b>Vaccination</b> ñ Influenza, COVID-19, Typhoid, etc.</li>
+  <li><b>Hygiene Practices</b> ñ Handwashing, sanitation.</li>
+  <li><b>Vector Control</b> ñ Prevent mosquito-borne diseases (Malaria, Dengue).</li>
+  <li><b>Health Education</b> ñ Awareness on fever management and complications.</li>
 </ul>
 
 <h2>Vitamins for Fever</h2>
@@ -286,7 +286,7 @@ ai_summary: "Fever, an elevation of body temperature beyond the normal range, is
 <p>Temperature monitoring and fever assessment are critical for diagnosing and managing various diseases. Understanding fever patterns, pathophysiology, and proper management strategies is essential for medical students preparing for exams and future clinical practice.</p>
 
 <style>
-/* QD Responsive Table √¢‚Ç¨‚Äù Self-Contained */
+/* QD Responsive Table ‚Äî Self-Contained */
 .qd-table-wrap {
   margin: 1.5rem 0;
   overflow-x: auto;

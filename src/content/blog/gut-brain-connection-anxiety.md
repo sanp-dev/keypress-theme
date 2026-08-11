@@ -5,8 +5,8 @@ pubDate: 2026-08-09T04:30:37.782Z
 category: "Health"
 image: "https://demo-cdn.quicdecode.com/gut-brain-axis-how-your-gut-esmta.webp"
 image_caption: ""
-author: "Sushil"
-authorSlug: "sushil-assistant-one"
+author: "Writer One Name"
+authorSlug: "writer-one"
 tags: ["Gut Health", "Gut-brain axis", "gut microbiome", "second brain", "gut-brain communication", "stress management"]
 ai_summary: ""
 ---

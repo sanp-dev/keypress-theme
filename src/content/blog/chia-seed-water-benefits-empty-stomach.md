@@ -5,8 +5,8 @@ pubDate: 2026-07-27T08:38:37.718Z
 category: "Health"
 image: "https://demo-cdn.quicdecode.com/5-amazing-benefits-of-chia-seed-ayjla.webp"
 image_caption: ""
-author: "Sushil"
-authorSlug: "sushil-assistant-one"
+author: "Writer One Name"
+authorSlug: "writer-one"
 tags: ["chia seed water benefits", "morning chia water"]
 ai_summary: ""
 ---

@@ -5,8 +5,8 @@ pubDate: 2026-08-08T06:27:22.068Z
 category: "Health"
 image: "https://demo-cdn.quicdecode.com/why-your-gut-controls-your-mood-9mplm.webp"
 image_caption: ""
-author: "Sushil"
-authorSlug: "sushil-assistant-one"
+author: "Writer One Name"
+authorSlug: "writer-one"
 tags: ["gut-brain axis", "gut-brain connection", "gut health and mood", "gut health tips"]
 ai_summary: ""
 ---
