@@ -6,10 +6,13 @@ A modern, fully functional web publishing platform built with Astro and Cloudfla
 
 ## Live Demo & Resources
 
-- **🌐 Blog Live Demo**: [![Blog Live](https://img.shields.io/badge/🌐_Blog_Demo-demo--blog.quicdecode.com-34a853?style=for-the-badge)](https://demo-blog.quicdecode.com)
-- **🖥️ CMS Dashboard Live Demo**: [![Dashboard Live](https://img.shields.io/badge/🖥_Dashboard_Demo-demo--cms.quicdecode.com-1a73e8?style=for-the-badge)](https://demo-cms.quicdecode.com)
-  - *Demo Login*: Email: `admin@example.com` | Password: `Admin@1234`
-- **📦 Official CMS Repository**: [demo-cms-quicdecode](https://github.com/sanp-dev/demo-cms-quicdecode) (The self-hosted management dashboard for this blog template)
+[![Blog Demo](https://img.shields.io/badge/🌐_Blog_Live_Demo-demo--blog.quicdecode.com-2ea44f?style=for-the-badge)](https://demo-blog.quicdecode.com)
+[![CMS Dashboard](https://img.shields.io/badge/🖥️_CMS_Dashboard_Demo-demo--cms.quicdecode.com-1a73e8?style=for-the-badge)](https://demo-cms.quicdecode.com)
+[![CMS Repository](https://img.shields.io/badge/📦_CMS_GitHub_Repository-demo--cms--quicdecode-24292e?style=for-the-badge)](https://github.com/sanp-dev/demo-cms-quicdecode)
+
+> **Demo Login Credentials for CMS Dashboard:**
+> - **Email:** `admin@example.com`
+> - **Password:** `Admin@1234`
 
 ## Author & Developer
 
