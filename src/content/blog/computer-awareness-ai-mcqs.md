@@ -1,32 +1,24 @@
 ﻿---
-title: "50 Essential Eye Anatomy and Optometry MCQs for Exams"
-description: "Practice 50 essential multiple-choice questions on eye anatomy, visual pathways, and clinical optometry. Perfect for students and exam prep!"
-pubDate: "2026-07-10T23:12:37.894Z"
+title: "Top 30+ Computer Awareness and AI MCQs | Exam 2026"
+description: "Practice the most important Computer Knowledge and Artificial Intelligence MCQs for upcoming competitive exams. Includes accurate answers and details."
+pubDate: "2026-07-14T12:28:25.263Z"
 category: "Quiz"
-image: "https://demo-cdn.quicdecode.com/122f2396-optometry-eye-anatomy-mcqs.webp"
+image: "https://demo-cdn.quicdecode.com/271fbeef-computer-awareness-ai-mcqs-hindi.webp"
 image_caption: ""
 author: "SANDHATA"
 authorSlug: "sandhata"
-tags: ["optometry"]
-ai_summary: "Practice 50 essential multiple-choice questions on eye anatomy, visual pathways, and clinical optometry. Perfect for students and exam prep!"
+tags: ["computer"]
+ai_summary: "Practice the most important Computer Knowledge and Artificial Intelligence MCQs for upcoming competitive exams. Includes accurate answers and details."
 ---
 
-<h2>Eye Anatomy Essential Quiz</h2>
-<p>Welcome to this comprehensive quiz designed specifically for optometry students, medical professionals, and anyone preparing for healthcare and government recruitment exams. Understanding the intricate details of eye anatomy, visual pathways, and optical principles is crucial for both clinical practice and academic success.</p>
+<p>In almost every modern competitive exam, the Computer Awareness section plays a crucial role in securing a high merit rank. With the rapid advancement of technology, examiners are now shifting their focus from basic computer fundamentals to modern concepts like Artificial Intelligence (AI), Big Data, and Cloud Computing.</p>
 
-<p style="padding:12px;background:#f8fafc;border-left:4px solid #1a73e8;border-radius:4px;font-weight:600;margin:16px 0;">Also Read: <a href="/post/50-best-mcqs-on-optometry-topics/">Medieval India History MCQs for Competitive Exams: Part 1 (Hindi and English)</a></p>
-
-
-
-<p>This carefully curated collection of multiple-choice questions covers fundamental topics ranging from visual acuity and lens properties to extraocular muscles and retinal layers.</p>
-
-<p style="padding:12px;background:#f8fafc;border-left:4px solid #1a73e8;border-radius:4px;font-weight:600;margin:16px 0;">Also Read: <a href="/post/50-most-computer-mcqs-for-competitive-exam-part-1/">Modern Indian History MCQs Part 2: Top 50 Questions (Bilingual)</a></p>
+<p style="padding:12px;background:#f8fafc;border-left:4px solid #1a73e8;border-radius:4px;font-weight:600;margin:16px 0;">Also Read: <a href="/post/50-best-mcqs-on-optometry-topics/">MP ESB Optometry Solved Questions 2025 (Part 1): Important MCQs for AIIMS, RRB and UPSSSC</a></p>
 
 
 
-
-<p>Whether you are revising for an upcoming medical entrance exam, preparing for a paramedical test, or simply looking to brush up on your clinical ophthalmology basics, these 50 essential MCQs will help you assess your knowledge. Each question is accompanied by a clear explanation to ensure you not only test your memory but also strengthen your core concepts. Let's dive in and test your expertise!</p>
-
+<p>To help you boost your preparation, we have compiled a high-yield list of the most important Computer and AI MCQs. Each question below comes with a detailed explanation to not only test your knowledge but also clear your fundamental concepts.</p><p> Whether you are preparing for state police exams, banking, or SSC, practicing these questions will give you a solid edge. Let's dive into the quiz!</p>
+<h2>Computer Quizzes [MCQs]</h2>
 <!--more-->
 
 <div class="qd-quiz-wrap">
@@ -36,1001 +28,630 @@ ai_summary: "Practice 50 essential multiple-choice questions on eye anatomy, vis
 <div class="qd-progress-bar" id="qd-progressBar"></div></div>
 <hr />
 <div class="qd-question" id="qd-question1">
-<b>1.</b> What is the measurement of central vision ?
+<b>1.</b> How much budget has been allocated by the government for the 'IndiaAI Mission'?
+</div>
+<div class="qd-option" data-correct="false" data-question="qd-question1">
+₹ 5,000 Crore
 </div>
 <div class="qd-option" data-correct="true" data-question="qd-question1">
-Visual acuity
+₹ 10,300 Crore
 </div>
 <div class="qd-option" data-correct="false" data-question="qd-question1">
-Visual field
+₹ 15,000 Crore
 </div>
 <div class="qd-option" data-correct="false" data-question="qd-question1">
-Visual pathway
-</div>
-<div class="qd-option" data-correct="false" data-question="qd-question1">
-All of above
+₹ 20,000 Crore
 </div>
 <div class="qd-exp" data-question="qd-question1">
-EXPLANATION: Visual acuity is the measurement of central vision only.
+EXPLANATION: The government has allocated a budget of over Rs 10,300 crore for the 'India AI Mission', which aims to promote research, startup financing and skill development in the field of AI.
 </div>
 <hr>
-
 <div class="qd-question" id="qd-question2">
-<b>2.</b> Which of the following represents normal vision ?
-</div>
-<div class="qd-option" data-correct="false" data-question="qd-question2">
-6/60 or 20/200
+<b>2.</b> According to the Stanford AI Index 2024, what is India's global rank in AI skill penetration?
 </div>
 <div class="qd-option" data-correct="true" data-question="qd-question2">
-6/6 or 20/20
+First
 </div>
 <div class="qd-option" data-correct="false" data-question="qd-question2">
-6/9 or 20/30
+Second
 </div>
 <div class="qd-option" data-correct="false" data-question="qd-question2">
-6/36 or 20/1000
+Third
+</div>
+<div class="qd-option" data-correct="false" data-question="qd-question2">
+Fourth
 </div>
 <div class="qd-exp" data-question="qd-question2">
-EXPLANATION: 6/6 or 20/20 is represents normal vision.
+AI skill penetration की वैश्विक रैंकिंग में पहले स्थान पर है, जो इसे तकनीकी क्षमता में अग्रणी बनाता है।
 </div>
 <hr>
-
 <div class="qd-question" id="qd-question3">
-<b>3.</b> What distance should the patient be from the Snellen's chart/box to check visual acuity ?
+<b>3.</b> What is the main objective of the 'Bhashini Platform' developed by the Government of India?
 </div>
 <div class="qd-option" data-correct="false" data-question="qd-question3">
-3 meters
-</div>
-<div class="qd-option" data-correct="false" data-question="qd-question3">
-1 meters
+Ensuring cyber security
 </div>
 <div class="qd-option" data-correct="true" data-question="qd-question3">
-6 meters
+Providing AI-powered language technology solutions for 22 Indian languages
 </div>
 <div class="qd-option" data-correct="false" data-question="qd-question3">
-4 meters
+Manufacturing defense equipment
+</div>
+<div class="qd-option" data-correct="false" data-question="qd-question3">
+Promoting digital currency
 </div>
 <div class="qd-exp" data-question="qd-question3">
-EXPLANATION: 6 meters distance should the patient be from the mirror to check visual acuity.
+Bhashini Platform डिजिटल समावेशन को बढ़ावा देने के लिए विकसित किया गया है, जो 22 भारतीय भाषाओं के लिए AI-संचालित भाषा प्रौद्योगिकी समाधान और अनुवाद की सुविधा प्रदान करता है।
 </div>
 <hr>
-
 <div class="qd-question" id="qd-question4">
-<b>4.</b> What is full form of "NLP" ?
+<b>4.</b> What is 'AIRAWAT' which has been established in India?
 </div>
 <div class="qd-option" data-correct="false" data-question="qd-question4">
-No Lens Power
-</div>
-<div class="qd-option" data-correct="false" data-question="qd-question4">
-No Light Projections
+A new operating system
 </div>
 <div class="qd-option" data-correct="true" data-question="qd-question4">
-No Light Perception
+India's top AI supercomputer
 </div>
 <div class="qd-option" data-correct="false" data-question="qd-question4">
-No Limit Perception
+A spacecraft
+</div>
+<div class="qd-option" data-correct="false" data-question="qd-question4">
+Anti-virus software
 </div>
 <div class="qd-exp" data-question="qd-question4">
-EXPLANATION: No Light Perception is full form of "NLP".
+AIRAWAT भारत में स्थापित दुनिया के शीर्ष AI सुपरकंप्यूटरों में से एक है, जो अनुसंधान और नवाचार को बढ़ावा देने के लिए कार्य करता है।
 </div>
 <hr>
-
 <div class="qd-question" id="qd-question5">
-<b>5.</b> Which of the following is a property of a convex lens ?
+<b>5.</b> What is the use of 'Hadoop' in the field of big data processing?
 </div>
 <div class="qd-option" data-correct="false" data-question="qd-question5">
-+ Power, Magnification
-</div>
-<div class="qd-option" data-correct="false" data-question="qd-question5">
-Uses in Hypermetropia and Presbyopia
-</div>
-<div class="qd-option" data-correct="false" data-question="qd-question5">
-Aganist/Opposite direction motion
+It is a web browser
 </div>
 <div class="qd-option" data-correct="true" data-question="qd-question5">
-All of these
+It is an open-source tool that stores and processes large data sets in a distributed manner
+</div>
+<div class="qd-option" data-correct="false" data-question="qd-question5">
+It is an operating system
+</div>
+<div class="qd-option" data-correct="false" data-question="qd-question5">
+It is a computer hardware
 </div>
 <div class="qd-exp" data-question="qd-question5">
-EXPLANATION: All of these properties are a convex lens.
+Hadoop बिग डेटा के लिए एक बहुत प्रसिद्ध ओपन-सोर्स टूल है जो कई कंप्यूटरों (क्लस्टर) के बीच डेटा को स्टोर और प्रोसेस करने में मदद करता है।
 </div>
 <hr>
-
 <div class="qd-question" id="qd-question6">
-<b>6.</b> Which of the following is a property of a concave lens ?
+<b>6.</b> Which of the given options is not a main type of 'Big Data'?
 </div>
 <div class="qd-option" data-correct="false" data-question="qd-question6">
-- Power, Minification
+Structured
 </div>
 <div class="qd-option" data-correct="false" data-question="qd-question6">
-Uses for Myopia correction
+Unstructured
 </div>
 <div class="qd-option" data-correct="false" data-question="qd-question6">
-With/Same direction motion
+Semi-structured
 </div>
 <div class="qd-option" data-correct="true" data-question="qd-question6">
-All of these
+Hyper-structured
 </div>
 <div class="qd-exp" data-question="qd-question6">
-EXPLANATION: All of these properties are a concave lens.
+EXPLANATION: Big data is mainly of three types: structured, unstructured, and semi-structured. Hyper-structured is not his type.
 </div>
 <hr>
-
 <div class="qd-question" id="qd-question7">
-<b>7.</b> What is full form of "PR" ?
-</div>
-<div class="qd-option" data-correct="false" data-question="qd-question7">
-Power of refraction 
+<b>7.</b> What is the full form of 'ENIAC' in computer terminology?
 </div>
 <div class="qd-option" data-correct="true" data-question="qd-question7">
-Projection of rays
+Electronic Numerical Integrator & Computer
 </div>
 <div class="qd-option" data-correct="false" data-question="qd-question7">
-Power of retinoscope
+Electrical Numeric Integrated Computer
 </div>
 <div class="qd-option" data-correct="false" data-question="qd-question7">
-Perception of rays
+Electronic Network Information and Communication
+</div>
+<div class="qd-option" data-correct="false" data-question="qd-question7">
+Engineering Numerical Internet Access Code
 </div>
 <div class="qd-exp" data-question="qd-question7">
-EXPLANATION: Projection of rays is full form of "NLP".
+EXPLANATION: The full form of ENIAC is 'Electronic Numerical Integrator & Computer'.
 </div>
 <hr>
-
 <div class="qd-question" id="qd-question8">
-<b>8.</b> Why is a cylindrical lens used ?
+<b>8.</b> Which shortcut key is used to open the 'Help' window in Microsoft Word?
 </div>
 <div class="qd-option" data-correct="false" data-question="qd-question8">
-Correction for Presbyopia
+F2 (F2)
 </div>
 <div class="qd-option" data-correct="false" data-question="qd-question8">
-Correction for Myopia
+F5 (F5)
 </div>
 <div class="qd-option" data-correct="true" data-question="qd-question8">
-Correction for Astigmatism
+F1 (F1)
 </div>
 <div class="qd-option" data-correct="false" data-question="qd-question8">
-Correction for Hypermetropia
+F12 (F12)
 </div>
 <div class="qd-exp" data-question="qd-question8">
-EXPLANATION: The cylindrical lens used to correction for Astigmatism.
+EXPLANATION: The fastest way to open the Help window in Microsoft Word is to press the F1 key.
 </div>
 <hr>
-
 <div class="qd-question" id="qd-question9">
-<b>9.</b> Where does the visual pathway begin ?
+<b>9.</b> What type of software is 'Oracle'?
 </div>
 <div class="qd-option" data-correct="false" data-question="qd-question9">
-Optic nerve
+Word processor
 </div>
 <div class="qd-option" data-correct="true" data-question="qd-question9">
-Retina
+Database software 
 </div>
 <div class="qd-option" data-correct="false" data-question="qd-question9">
-Optic disc
+Spreadsheet software
 </div>
 <div class="qd-option" data-correct="false" data-question="qd-question9">
-Crystalline Lens
+Presentation software‌
 </div>
 <div class="qd-exp" data-question="qd-question9">
-EXPLANATION: The visual pathway is begin from Retina and end into cortex of occipital lobe.
+Oracle एक लोकप्रिय और शक्तिशाली डाटाबेस सॉफ्टवेयर है।
 </div>
 <hr>
-
 <div class="qd-question" id="qd-question10">
-<b>10.</b> Which of the following is a property of the optic nerve ?
-</div>
-<div class="qd-option" data-correct="false" data-question="qd-question10">
-Sensory, No regenerate capacity.
-</div>
-<div class="qd-option" data-correct="false" data-question="qd-question10">
-Not covered by neurilema.
-</div>
-<div class="qd-option" data-correct="false" data-question="qd-question10">
-Length = 47-50 mm, Diameter =2-10 µm
+<b>10.</b> What is the full form of 'CAD' in computer terminology?
 </div>
 <div class="qd-option" data-correct="true" data-question="qd-question10">
-All of these
+Computer Aided Design
+</div>
+<div class="qd-option" data-correct="false" data-question="qd-question10">
+Computer Application Data
+</div>
+<div class="qd-option" data-correct="false" data-question="qd-question10">
+Central Algorithm Design
+</div>
+<div class="qd-option" data-correct="false" data-question="qd-question10">
+Core Access Device
 </div>
 <div class="qd-exp" data-question="qd-question10">
-EXPLANATION: All of these are property of the optic nerve.
+EXPLANATION: The full form of CAD is 'Computer Aided Design', which is used in designing and drafting works.
 </div>
 <hr>
-
 <div class="qd-question" id="qd-question11">
-<b>11.</b> Which of the following is not a property of the optic chiasma ?
-</div>
-<div class="qd-option" data-correct="false" data-question="qd-question11">
-Cross site of both optic nerves
-</div>
-<div class="qd-option" data-correct="false" data-question="qd-question11">
-Flattened structure
-</div>
-<div class="qd-option" data-correct="false" data-question="qd-question11">
-Lies above tuberculum
+<b>11.</b> What is the full form of 'MICR'?
 </div>
 <div class="qd-option" data-correct="true" data-question="qd-question11">
-Ovel structure
+Magnetic Ink Character Reader
+</div>
+<div class="qd-option" data-correct="false" data-question="qd-question11">
+Maximum Internet Connectivity Rate 
+</div>
+<div class="qd-option" data-correct="false" data-question="qd-question11">
+Memory Information Control Register 
+</div>
+<div class="qd-option" data-correct="false" data-question="qd-question11">
+Micro Integrated Circuit Read
 </div>
 <div class="qd-exp" data-question="qd-question11">
-EXPLANATION: Optic chiasma has flattened structure (12 mm Horizontal and 8 mm anterio-posteriorly).
+EXPLANATION: The full form of MICR is 'Magnetic Ink Character Reader'.
 </div>
 <hr>
-
 <div class="qd-question" id="qd-question12">
-<b>12.</b> How many structure found in visual pathway ?
+<b>12.</b> Which technology is commonly used to identify and separate unwanted messages (Spam emails) in email?
 </div>
 <div class="qd-option" data-correct="false" data-question="qd-question12">
-5
-</div>
-<div class="qd-option" data-correct="false" data-question="qd-question12">
-6
+Blockchain
 </div>
 <div class="qd-option" data-correct="true" data-question="qd-question12">
-7
+Machine Learning
 </div>
 <div class="qd-option" data-correct="false" data-question="qd-question12">
-8
+3D Printing
+</div>
+<div class="qd-option" data-correct="false" data-question="qd-question12">
+Virtual Reality
 </div>
 <div class="qd-exp" data-question="qd-question12">
-EXPLANATION: Number of 7 structures found in visual pathway. (Retina, Optic nerve, Optic chiasma, Optic tracts, Lateral geniculate body, Optic radiation, Visual cortex)
+Machine Learning का एक प्रमुख उदाहरण है।
 </div>
 <hr>
-
 <div class="qd-question" id="qd-question13">
-<b>13.</b> Ophthalmic artery is a branch of which of these arteries ?
+<b>13.</b> What is the type of machine learning in which the machine is trained with 'Labeled Data' called?
 </div>
 <div class="qd-option" data-correct="false" data-question="qd-question13">
-Episcleral artery
+Unsupervised Learning
+</div>
+<div class="qd-option" data-correct="false" data-question="qd-question13">
+Reinforcement Learning
 </div>
 <div class="qd-option" data-correct="true" data-question="qd-question13">
-Internal carotid artery
+Supervised Learning
 </div>
 <div class="qd-option" data-correct="false" data-question="qd-question13">
-External carotid artery
-</div>
-<div class="qd-option" data-correct="false" data-question="qd-question13">
-Axillary artery
+Deep Learning
 </div>
 <div class="qd-exp" data-question="qd-question13">
-EXPLANATION: Ophthalmic artery is a branch of internal carotid artery.
+Supervised Learning में मशीन को पहले से ही लेबल किए गए सही डेटा (जैसे बिल्ली की सही तस्वीर) का उपयोग करके सिखाया जाता है।
 </div>
 <hr>
-
 <div class="qd-question" id="qd-question14">
-<b>14.</b> Which of the following artery is not a part of ocular group artery?
-</div>
-<div class="qd-option" data-correct="false" data-question="qd-question14">
-Posterior ciliary artery
-</div>
-<div class="qd-option" data-correct="false" data-question="qd-question14">
-Anterior ciliary artery
+<b>14.</b> What is 'Natural Language Processing' abbreviated as in English in the context of AI and Machine Learning?
 </div>
 <div class="qd-option" data-correct="true" data-question="qd-question14">
-Lacrimal artery
+NLP - Natural Language Processing (NLP)
 </div>
 <div class="qd-option" data-correct="false" data-question="qd-question14">
-Central retinal artery
+NLC - Natural Language Control (NLC)
+</div>
+<div class="qd-option" data-correct="false" data-question="qd-question14">
+NLP - Neural Learning Program (NLP)
+</div>
+<div class="qd-option" data-correct="false" data-question="qd-question14">
+NLL - Natural Language Learning (NLL)
 </div>
 <div class="qd-exp" data-question="qd-question14">
-EXPLANATION: Lacrimal artery is the part of orbital group artery.
+Natural Language Processing कहा जाता है।
 </div>
 <hr>
-
 <div class="qd-question" id="qd-question15">
-<b>15.</b> Which of the following are function of the aqueous humour ?
-</div>
-<div class="qd-option" data-correct="false" data-question="qd-question15">
-Maintains IOP of eyeball
-</div>
-<div class="qd-option" data-correct="false" data-question="qd-question15">
-Nourishment to cornea and lens
-</div>
-<div class="qd-option" data-correct="false" data-question="qd-question15">
-Maintains optical transparency
+<b>15.</b> What is the full form of 'PROM' in the context of computer memory?
 </div>
 <div class="qd-option" data-correct="true" data-question="qd-question15">
-All of these
+Programmable Read Only Memory 
+</div>
+<div class="qd-option" data-correct="false" data-question="qd-question15">
+Primary Random Operating Memory 
+</div>
+<div class="qd-option" data-correct="false" data-question="qd-question15">
+Processed Read Only Module
+</div>
+<div class="qd-option" data-correct="false" data-question="qd-question15">
+Personal Read Only Memory
 </div>
 <div class="qd-exp" data-question="qd-question15">
-EXPLANATION: All of these are functions of the aqueous humour.
+EXPLANATION: The full form of PROM is 'Programmable Read Only Memory'.
 </div>
 <hr>
-
 <div class="qd-question" id="qd-question16">
-<b>16.</b> Which of the following are the membrane of the vitreous humour ?
+<b>16.</b> For which generation of computers is the microprocessor used as a switching device?
 </div>
 <div class="qd-option" data-correct="false" data-question="qd-question16">
-Anterior hyaloid membrain
+First generation
 </div>
 <div class="qd-option" data-correct="false" data-question="qd-question16">
-Posterior hyaloid membrain
+Second generation
+</div>
+<div class="qd-option" data-correct="false" data-question="qd-question16">
+Third generation
 </div>
 <div class="qd-option" data-correct="true" data-question="qd-question16">
-Both
-</div>
-<div class="qd-option" data-correct="false" data-question="qd-question16">
-None of these
+Fourth generation
 </div>
 <div class="qd-exp" data-question="qd-question16">
-EXPLANATION: Anterior hyaloid membrain and Posterior hyaloid membrain are the membrane of the vitreous humour.
+Microprocessor का उपयोग मुख्य रूप से चौथी पीढ़ी (Fourth Generation) के कंप्यूटरों में स्विचिंग डिवाइस और मुख्य घटक के रूप में किया गया था।
 </div>
 <hr>
-
 <div class="qd-question" id="qd-question17">
-<b>17.</b> Which of the following is the composition of the vitreous ?
+<b>17.</b> In a computer, where do all deleted files go? फाइलें कहाँ जाती हैं?)
 </div>
 <div class="qd-option" data-correct="false" data-question="qd-question17">
-99% Water
-</div>
-<div class="qd-option" data-correct="false" data-question="qd-question17">
-Collagen fibrils, Salts
-</div>
-<div class="qd-option" data-correct="false" data-question="qd-question17">
-Proteins and Hyaluronic acid
+Desktop
 </div>
 <div class="qd-option" data-correct="true" data-question="qd-question17">
-All of these
+Recycle Bin
+</div>
+<div class="qd-option" data-correct="false" data-question="qd-question17">
+My Computer 
+</div>
+<div class="qd-option" data-correct="false" data-question="qd-question17">
+Control Panel
 </div>
 <div class="qd-exp" data-question="qd-question17">
-EXPLANATION: All of these are composition of the vitreous.
+Recycle Bin में स्टोर हो जाती हैं, जहाँ से उन्हें बाद में रिस्टोर या स्थायी रूप से डिलीट किया जा सकता है।
 </div>
 <hr>
-
 <div class="qd-question" id="qd-question18">
-<b>18.</b> Which of the following is the function of the vitreous humour?
+<b>18.</b> What is the process of inserting data from a data source into the main document in a word-processing application called?
 </div>
 <div class="qd-option" data-correct="false" data-question="qd-question18">
-Shock absorber, Protect retina
+Data accumulation
 </div>
 <div class="qd-option" data-correct="false" data-question="qd-question18">
-Maintain optical transparency
-</div>
-<div class="qd-option" data-correct="false" data-question="qd-question18">
-Storage for metabolites
+Data integration
 </div>
 <div class="qd-option" data-correct="true" data-question="qd-question18">
-All of these
+Mail merge
+</div>
+<div class="qd-option" data-correct="false" data-question="qd-question18">
+Data circulation
 </div>
 <div class="qd-exp" data-question="qd-question18">
-EXPLANATION: All of these are functions of the vitreous humour.
+Mail Merge एक ऐसी सुविधा जिसके द्वारा एक ही पत्र या दस्तावेज़ में डेटाबेस (डेटा स्रोत) से नाम और पते जोड़कर कई लोगों को भेजा जा सकता है।
 </div>
 <hr>
-
 <div class="qd-question" id="qd-question19">
-<b>19.</b> Which of the following structure is not a part of lens ?
+<b>19.</b> In a spreadsheet, page orientation is changed from _________.
 </div>
 <div class="qd-option" data-correct="false" data-question="qd-question19">
-Lens capsule
+Format dialog box
 </div>
 <div class="qd-option" data-correct="false" data-question="qd-question19">
-Anterior epithelium
+Print dialog box 
+</div>
+<div class="qd-option" data-correct="false" data-question="qd-question19">
+Paper dialog box 
 </div>
 <div class="qd-option" data-correct="true" data-question="qd-question19">
-Posterior epithelium
-</div>
-<div class="qd-option" data-correct="false" data-question="qd-question19">
-Lens fibres
+Page setup dialog box
 </div>
 <div class="qd-exp" data-question="qd-question19">
-EXPLANATION: Posterior epithelium is not present in lens.
+EXPLANATION: The 'Page Setup Dialog Box' is used to change the orientation of a page in a spreadsheet.
 </div>
 <hr>
-
 <div class="qd-question" id="qd-question20">
-<b>20.</b> Which of the following is correct regarding the thickness of the lens capsule ?
+<b>20.</b> What is the purpose of enabling a password on a PC?
 </div>
 <div class="qd-option" data-correct="false" data-question="qd-question20">
-Thickest at pre-equator = 14 µm
-</div>
-<div class="qd-option" data-correct="false" data-question="qd-question20">
-At anterior pole = 10 µm
-</div>
-<div class="qd-option" data-correct="false" data-question="qd-question20">
-Thinnest at posterior pole = 3 µm
+To print PC data
 </div>
 <div class="qd-option" data-correct="true" data-question="qd-question20">
-All of these
+To provide an extra level of security
+</div>
+<div class="qd-option" data-correct="false" data-question="qd-question20">
+To reduce the applications used
+</div>
+<div class="qd-option" data-correct="false" data-question="qd-question20">
+To strengthen data signal
 </div>
 <div class="qd-exp" data-question="qd-question20">
-EXPLANATION: All of these are correct.
+unauthorized access को रोकना और सिस्टम को सुरक्षा का एक अतिरिक्त स्तर प्रदान करना है।
 </div>
 <hr>
-
 <div class="qd-question" id="qd-question21">
-<b>21.</b> Which of the following is involved in the composition of the lens capsule ?
+<b>21.</b> Oracle is ___________ .
 </div>
 <div class="qd-option" data-correct="false" data-question="qd-question21">
-Type Ⅳ collagen fibres
+An Operating System
 </div>
 <div class="qd-option" data-correct="false" data-question="qd-question21">
-Sulphated Glycoaminoglycans
+Word Processor Software
 </div>
 <div class="qd-option" data-correct="true" data-question="qd-question21">
-Both
+Database Software
 </div>
 <div class="qd-option" data-correct="false" data-question="qd-question21">
-None of these
+None of the options is correct
 </div>
 <div class="qd-exp" data-question="qd-question21">
-EXPLANATION: Type Ⅳ collagen fibres and sulphated Glycoaminoglycans are the composition of the lens capsule.
+Oracle एक अत्यधिक लोकप्रिय और शक्तिशाली रिलेशनल डाटाबेस मैनेजमेंट सिस्टम (RDBMS) या डाटाबेस सॉफ्टवेयर है।
 </div>
 <hr>
-
 <div class="qd-question" id="qd-question22">
-<b>22.</b> Which statement is correct regarding the anterior epithelium of the lens ?
+<b>22.</b> Usually, how many keys (buttons) are there on an alphanumeric keyboard of a standard laptop?
 </div>
 <div class="qd-option" data-correct="false" data-question="qd-question22">
-A-cells made of cuboidal cells
+80 keys
 </div>
 <div class="qd-option" data-correct="false" data-question="qd-question22">
-E-cells made of columnar cells
-</div>
-<div class="qd-option" data-correct="false" data-question="qd-question22">
-E-cells has Mitosis Capability
+84 keys
 </div>
 <div class="qd-option" data-correct="true" data-question="qd-question22">
-All of these
+110 keys
+</div>
+<div class="qd-option" data-correct="false" data-question="qd-question22">
+112 keys 
 </div>
 <div class="qd-exp" data-question="qd-question22">
-EXPLANATION: All of these statement are correct.
+EXPLANATION: A standard laptop keyboard has 110 keys.
 </div>
 <hr>
-
 <div class="qd-question" id="qd-question23">
-<b>23.</b> Suspensory ligaments of lens is called ?
+<b>23.</b> How is font size determined in Microsoft Office?
 </div>
 <div class="qd-option" data-correct="false" data-question="qd-question23">
-Zonules
+Centimeter
 </div>
 <div class="qd-option" data-correct="false" data-question="qd-question23">
-Zonules of zinn
+Inch
 </div>
 <div class="qd-option" data-correct="false" data-question="qd-question23">
-Ciliary zonules
+Pixel
 </div>
 <div class="qd-option" data-correct="true" data-question="qd-question23">
-All of these
+Point
 </div>
 <div class="qd-exp" data-question="qd-question23">
-EXPLANATION: All of these are called suspensory ligaments of lens.
+EXPLANATION: The size of text or fonts in Microsoft Word and other Office applications is measured in 'points'.
 </div>
 <hr>
-
 <div class="qd-question" id="qd-question24">
-<b>24.</b> The primary function of superior rectus muscle is ?
+<b>24.</b> Which of the following statements accurately describes application software?
+</div>
+<div class="qd-option" data-correct="false" data-question="qd-question24">
+Application software is used only by system software developers.
+</div>
+<div class="qd-option" data-correct="false" data-question="qd-question24">
+Application software refers to the operating system that interacts with the computer.
 </div>
 <div class="qd-option" data-correct="true" data-question="qd-question24">
-Elevation
+Application software is designed to perform specific tasks or functions to meet user needs.
 </div>
 <div class="qd-option" data-correct="false" data-question="qd-question24">
-Depression
-</div>
-<div class="qd-option" data-correct="false" data-question="qd-question24">
-Abduction
-</div>
-<div class="qd-option" data-correct="false" data-question="qd-question24">
-Extorsion
+Application software is responsible for the management and control of computer hardware components.
 </div>
 <div class="qd-exp" data-question="qd-question24">
-EXPLANATION: The primary function of superior rectus is elevation.
+EXPLANATION: Application software is created to complete a specific task of the user.
 </div>
 <hr>
-
 <div class="qd-question" id="qd-question25">
-<b>25.</b> The primary function of superior oblique muscle is ?
+<b>25.</b> Which of the following is an example of Multi-factor Authentication for PC security?
 </div>
 <div class="qd-option" data-correct="false" data-question="qd-question25">
-Elevation
+OS security
+</div>
+<div class="qd-option" data-correct="false" data-question="qd-question25">
+Antivirus software
+</div>
+<div class="qd-option" data-correct="false" data-question="qd-question25">
+Firewall security
 </div>
 <div class="qd-option" data-correct="true" data-question="qd-question25">
-Intorsion
-</div>
-<div class="qd-option" data-correct="false" data-question="qd-question25">
-Abduction
-</div>
-<div class="qd-option" data-correct="false" data-question="qd-question25">
-Extorsion
+Fingerprint scan
 </div>
 <div class="qd-exp" data-question="qd-question25">
-EXPLANATION: The primary function of superior oblique muscle is intorsion.
+EXPLANATION: Multi-factor authentication uses more than one method to verify a user's identity. Fingerprint scanning with passwords is a great example of this.
 </div>
 <hr>
-
 <div class="qd-question" id="qd-question26">
-<b>26.</b> The primary function of Inferior oblique muscle is ?
-</div>
-<div class="qd-option" data-correct="false" data-question="qd-question26">
-Elevation
-</div>
-<div class="qd-option" data-correct="false" data-question="qd-question26">
-Intorsion
-</div>
-<div class="qd-option" data-correct="false" data-question="qd-question26">
-Abduction
+<b>26.</b> Which of these is not an input device?
 </div>
 <div class="qd-option" data-correct="true" data-question="qd-question26">
-Extorsion
+Microprocessor
+</div>
+<div class="qd-option" data-correct="false" data-question="qd-question26">
+Mouse
+</div>
+<div class="qd-option" data-correct="false" data-question="qd-question26">
+Keyboard
+</div>
+<div class="qd-option" data-correct="false" data-question="qd-question26">
+Joystick
 </div>
 <div class="qd-exp" data-question="qd-question26">
-EXPLANATION: The primary function of Inferior oblique muscle is extorsion.
+EXPLANATION: Mouse, keyboard and joystick are all three input devices through which instructions are given to the computer, while microprocessor is a processing device.
 </div>
 <hr>
-
 <div class="qd-question" id="qd-question27">
-<b>27.</b> The primary function of Inferior rectus muscle is ?
+<b>27.</b> Which of these is not an example of an input computer device?
 </div>
 <div class="qd-option" data-correct="false" data-question="qd-question27">
-Elevation
+Mouse
 </div>
 <div class="qd-option" data-correct="false" data-question="qd-question27">
-Intorsion
-</div>
-<div class="qd-option" data-correct="false" data-question="qd-question27">
-Abduction
+Scanner
 </div>
 <div class="qd-option" data-correct="true" data-question="qd-question27">
-Depression
+Speaker
+</div>
+<div class="qd-option" data-correct="false" data-question="qd-question27">
+Digital camera
 </div>
 <div class="qd-exp" data-question="qd-question27">
-EXPLANATION: The primary function of Inferior rectus muscle is depression.
+Speaker एक आउटपुट डिवाइस है जिसका उपयोग कंप्यूटर से ध्वनि (Audio) सुनने के लिए किया जाता है। बाकी सभी इनपुट डिवाइस हैं।
 </div>
 <hr>
-
 <div class="qd-question" id="qd-question28">
-<b>28.</b> The primary function of medial rectus muscle is ?
+<b>28.</b> Which of the following pairs is not correct? I. Touchpad - Locator device II. Microphone - Output device III. Monitor - Output device
+</div>
+<div class="qd-option" data-correct="false" data-question="qd-question28">
+I and II
+</div>
+<div class="qd-option" data-correct="false" data-question="qd-question28">
+I and III
 </div>
 <div class="qd-option" data-correct="true" data-question="qd-question28">
-Adduction
+Only II
 </div>
 <div class="qd-option" data-correct="false" data-question="qd-question28">
-Intorsion
-</div>
-<div class="qd-option" data-correct="false" data-question="qd-question28">
-Abduction
-</div>
-<div class="qd-option" data-correct="false" data-question="qd-question28">
-Depression
+All of the above
 </div>
 <div class="qd-exp" data-question="qd-question28">
-EXPLANATION: The primary function of medial rectus muscle is adduction.
+Microphone एक इनपुट डिवाइस है जिसका उपयोग ध्वनि को रिकॉर्ड करने या कंप्यूटर में भेजने के लिए किया जाता है। इसलिए युग्म II गलत है।
 </div>
 <hr>
-
 <div class="qd-question" id="qd-question29">
-<b>29.</b> The primary function of Lateral rectus muscle is ?
+<b>29.</b> Which of the following is an operating system?
 </div>
 <div class="qd-option" data-correct="false" data-question="qd-question29">
-Adduction
+.NET
 </div>
 <div class="qd-option" data-correct="false" data-question="qd-question29">
-Intorsion
+Java
+</div>
+<div class="qd-option" data-correct="false" data-question="qd-question29">
+Maya
 </div>
 <div class="qd-option" data-correct="true" data-question="qd-question29">
-Abduction
-</div>
-<div class="qd-option" data-correct="false" data-question="qd-question29">
-Depression
+Unix
 </div>
 <div class="qd-exp" data-question="qd-question29">
-EXPLANATION: The primary function of Lateral rectus muscle is abduction.
+Unix एक लोकप्रिय और मल्टी-यूजर ऑपरेटिंग सिस्टम है। जावा और डॉटनेट प्रोग्रामिंग प्लेटफॉर्म हैं और माया एक एनिमेशन सॉफ्टवेयर है।
 </div>
 <hr>
-
 <div class="qd-question" id="qd-question30">
-<b>30.</b> When some muscles having the same action/function in the eye, they called as ?
+<b>30.</b> Which of the following is used to view web pages?
 </div>
 <div class="qd-option" data-correct="false" data-question="qd-question30">
-Antagonist muscles
+Website
+</div>
+<div class="qd-option" data-correct="false" data-question="qd-question30">
+Host
+</div>
+<div class="qd-option" data-correct="false" data-question="qd-question30">
+Network
 </div>
 <div class="qd-option" data-correct="true" data-question="qd-question30">
-Synergists muscle
-</div>
-<div class="qd-option" data-correct="false" data-question="qd-question30">
-Both
-</div>
-<div class="qd-option" data-correct="false" data-question="qd-question30">
-None of these
+Browser
 </div>
 <div class="qd-exp" data-question="qd-question30">
-EXPLANATION: When some muscles having the same primary action, they called as synergists muscle. Example: Superior rectus and Inferior oblique
+EXPLANATION: Web browsers are used to search and view web pages on the Internet.
 </div>
 <hr>
-
 <div class="qd-question" id="qd-question31">
-<b>31.</b> When some muscles having the opposite action/function in the eye, they called as ?
+<b>31.</b> Which of these is not an Operating System?
 </div>
 <div class="qd-option" data-correct="true" data-question="qd-question31">
-Antagonist muscles
+SQL
 </div>
 <div class="qd-option" data-correct="false" data-question="qd-question31">
-Synergists muscle
+Mac OS
 </div>
 <div class="qd-option" data-correct="false" data-question="qd-question31">
-Both
+Linux
 </div>
 <div class="qd-option" data-correct="false" data-question="qd-question31">
-None of these
+Unix
 </div>
 <div class="qd-exp" data-question="qd-question31">
-EXPLANATION: When some muscles having the opposite action/function in the eye, they called as Antagonist muscles. Example: SR vs IR, MR vs LR, SO vs IO
+EXPLANATION: SQL (Structured Query Language) is a language used to manage and modify databases, it is not an operating system.
 </div>
 <hr>
-
 <div class="qd-question" id="qd-question32">
-<b>32.</b> Number of extraocular muscles is ?
+<b>32.</b> By what name is the database used by Microsoft Windows to store configuration information known?
 </div>
 <div class="qd-option" data-correct="false" data-question="qd-question32">
-9
+Cache
+</div>
+<div class="qd-option" data-correct="false" data-question="qd-question32">
+Cookie
+</div>
+<div class="qd-option" data-correct="false" data-question="qd-question32">
+Record
 </div>
 <div class="qd-option" data-correct="true" data-question="qd-question32">
-6
-</div>
-<div class="qd-option" data-correct="false" data-question="qd-question32">
-7
-</div>
-<div class="qd-option" data-correct="false" data-question="qd-question32">
-5
+Registry
 </div>
 <div class="qd-exp" data-question="qd-question32">
-EXPLANATION: Number of 6 extraocular muscles moves to eyeball.
+Windows Registry विंडोज ऑपरेटिंग सिस्टम में एक डेटाबेस है जो हार्डवेयर, सॉफ्टवेयर और यूज़र प्रेफरेंस से जुड़ी सभी कॉन्फ़िगरेशन सेटिंग्स को सुरक्षित रखता है।
 </div>
 <hr>
-
 <div class="qd-question" id="qd-question33">
-<b>33.</b> The four rectus muscles originate from ?
+<b>33.</b> In a Local Area Network (LAN), which of the following is most commonly used to ensure that data packets are efficiently forwarded to the correct device based on its MAC address?
+</div>
+<div class="qd-option" data-correct="false" data-question="qd-question33">
+Router
 </div>
 <div class="qd-option" data-correct="true" data-question="qd-question33">
-Annules of zinn (Tendinous ring)
+Switch
 </div>
 <div class="qd-option" data-correct="false" data-question="qd-question33">
-Limbus
+Hub
 </div>
 <div class="qd-option" data-correct="false" data-question="qd-question33">
-Ora serrata
-</div>
-<div class="qd-option" data-correct="false" data-question="qd-question33">
-Choroid
+Bridge
 </div>
 <div class="qd-exp" data-question="qd-question33">
-EXPLANATION: The four rectus muscles originate from annules of zinn (Common tendinous ring).
-</div>
-<hr>
-
-<div class="qd-question" id="qd-question34">
-<b>34.</b> The CN Ⅲ (Oculomotor) not provoided motor supply to the ?
-</div>
-<div class="qd-option" data-correct="false" data-question="qd-question34">
-Superior rectus and Inferior rectus
-</div>
-<div class="qd-option" data-correct="false" data-question="qd-question34">
-Medial rectus
-</div>
-<div class="qd-option" data-correct="true" data-question="qd-question34">
-Lateral rectus
-</div>
-<div class="qd-option" data-correct="false" data-question="qd-question34">
-Inferior oblique
-</div>
-<div class="qd-exp" data-question="qd-question34">
-EXPLANATION: The CN Ⅵ (Abducens) provoided motor supply to the Lateral rectus.
-</div>
-<hr>
-
-<div class="qd-question" id="qd-question35">
-<b>35.</b> The CN Ⅳ (Trochlear) provoided motor supply to the ?
-</div>
-<div class="qd-option" data-correct="true" data-question="qd-question35">
-Superior oblique muscle
-</div>
-<div class="qd-option" data-correct="false" data-question="qd-question35">
-Medial rectus muscle
-</div>
-<div class="qd-option" data-correct="false" data-question="qd-question35">
-Lateral rectus muscle
-</div>
-<div class="qd-option" data-correct="false" data-question="qd-question35">
-Inferior oblique muscle
-</div>
-<div class="qd-exp" data-question="qd-question35">
-EXPLANATION: The CN Ⅳ (Trochlear) provoided motor supply to the superior oblique muscle.
-</div>
-<hr>
-
-<div class="qd-question" id="qd-question36">
-<b>36.</b> Process, in which the eye changes optical power to maintain make a clear image on retina, is called as ?
-</div>
-<div class="qd-option" data-correct="false" data-question="qd-question36">
-Visual acuity
-</div>
-<div class="qd-option" data-correct="true" data-question="qd-question36">
-Accommodation
-</div>
-<div class="qd-option" data-correct="false" data-question="qd-question36">
-Visual field
-</div>
-<div class="qd-option" data-correct="false" data-question="qd-question36">
-Myopia
-</div>
-<div class="qd-exp" data-question="qd-question36">
-EXPLANATION: Process, in which the eye changes optical power to maintain make a clear image on retina, is called as "accommodation".
-</div>
-<hr>
-
-<div class="qd-question" id="qd-question37">
-<b>37.</b> Which of the following is correct about near point ?
-</div>
-<div class="qd-option" data-correct="false" data-question="qd-question37">
-Being about 7 cm at age of 10 y 
-</div>
-<div class="qd-option" data-correct="false" data-question="qd-question37">
-Being about 25 cm at age of 40 y
-</div>
-<div class="qd-option" data-correct="false" data-question="qd-question37">
-Being about 33 cm at above 45 y
-</div>
-<div class="qd-option" data-correct="true" data-question="qd-question37">
-All of these
-</div>
-<div class="qd-exp" data-question="qd-question37">
-EXPLANATION: All of these statement is correct.
-</div>
-<hr>
-
-<div class="qd-question" id="qd-question38">
-<b>38.</b> Which of the following is a anomalies of accommodation ?
-</div>
-<div class="qd-option" data-correct="false" data-question="qd-question38">
-Accommodation's Insufficiency
-</div>
-<div class="qd-option" data-correct="false" data-question="qd-question38">
-Accommodation's Paralysis
-</div>
-<div class="qd-option" data-correct="false" data-question="qd-question38">
-Accommodation's spasm, Presbyopia
-</div>
-<div class="qd-option" data-correct="true" data-question="qd-question38">
-All of these
-</div>
-<div class="qd-exp" data-question="qd-question38">
-EXPLANATION: All of these are anomalies of accommodation.
-</div>
-<hr>
-
-<div class="qd-question" id="qd-question39">
-<b>39.</b> Which of the following nerve is responsible for visual field ?
-</div>
-<div class="qd-option" data-correct="false" data-question="qd-question39">
-Ophthalmic nerve
-</div>
-<div class="qd-option" data-correct="true" data-question="qd-question39">
-Optic Nerve
-</div>
-<div class="qd-option" data-correct="false" data-question="qd-question39">
-Oculomotor nerve
-</div>
-<div class="qd-option" data-correct="false" data-question="qd-question39">
-Facial nerve
-</div>
-<div class="qd-exp" data-question="qd-question39">
-EXPLANATION: The optic Nerve is responsible for visual field.
-</div>
-<hr>
-
-<div class="qd-question" id="qd-question40">
-<b>40.</b> The oculomotor nerve provides motor innervation to the ?
-</div>
-<div class="qd-option" data-correct="false" data-question="qd-question40">
-Levator palpebrae superioris muscle
-</div>
-<div class="qd-option" data-correct="false" data-question="qd-question40">
-Ciliary muscles (Parasympathetic)
-</div>
-<div class="qd-option" data-correct="false" data-question="qd-question40">
-Iris sphincter (Parasympathetic)
-</div>
-<div class="qd-option" data-correct="true" data-question="qd-question40">
-All of these
-</div>
-<div class="qd-exp" data-question="qd-question40">
-EXPLANATION: All of these muscles and SR, IR, MR, IO muscles is innervated by oculomotor nerve.
-</div>
-<hr>
-
-<div class="qd-question" id="qd-question41">
-<b>41.</b> The facial nerve provides motor innervation to the ?
-</div>
-<div class="qd-option" data-correct="false" data-question="qd-question41">
-Lacrimation and corneal sites
-</div>
-<div class="qd-option" data-correct="false" data-question="qd-question41">
-Orbicularis oculi muscles
-</div>
-<div class="qd-option" data-correct="true" data-question="qd-question41">
-Both
-</div>
-<div class="qd-option" data-correct="false" data-question="qd-question41">
-None of these
-</div>
-<div class="qd-exp" data-question="qd-question41">
-EXPLANATION: The facial nerve provides motor innervation to the orbicularis oculi muscles, lacrimation and corneal surface sites.
-</div>
-<hr>
-
-<div class="qd-question" id="qd-question42">
-<b>42.</b> Which nerve is innervated to lacrimal glands ?
-</div>
-<div class="qd-option" data-correct="false" data-question="qd-question42">
-Ophthalmic nerve
-</div>
-<div class="qd-option" data-correct="false" data-question="qd-question42">
-Optic Nerve
-</div>
-<div class="qd-option" data-correct="true" data-question="qd-question42">
-Lacrimal nerve
-</div>
-<div class="qd-option" data-correct="false" data-question="qd-question42">
-Facial nerve
-</div>
-<div class="qd-exp" data-question="qd-question42">
-EXPLANATION: The Lacrimal nerve, which originated from long ciliary nerves of  nasociliary of ophthalmic of trigeminal nerve innervated to lacrimal glands.
-</div>
-<hr>
-
-<div class="qd-question" id="qd-question43">
-<b>43.</b> Which nerve is innervated to the conjunctiva ?
-</div>
-<div class="qd-option" data-correct="false" data-question="qd-question43">
-Supratrochelar nerve
-</div>
-<div class="qd-option" data-correct="false" data-question="qd-question43">
-Infratrochelar nerve
-</div>
-<div class="qd-option" data-correct="false" data-question="qd-question43">
-Supraorbital nerve
-</div>
-<div class="qd-option" data-correct="true" data-question="qd-question43">
-All of these
-</div>
-<div class="qd-exp" data-question="qd-question43">
-EXPLANATION: All of these are originated from long ciliary nerves of  nasociliary of ophthalmic of trigeminal nerve; innervated to conjunctiva.
-</div>
-<hr>
-
-<div class="qd-question" id="qd-question44">
-<b>44.</b> Which of the following statement is correct about visual field ?
-</div>
-<div class="qd-option" data-correct="false" data-question="qd-question44">
-Approximately 90° at temporal side
-</div>
-<div class="qd-option" data-correct="false" data-question="qd-question44">
-Approximately 60° at nasal side
-</div>
-<div class="qd-option" data-correct="false" data-question="qd-question44">
-Approximately 50° at above side
-</div>
-<div class="qd-option" data-correct="true" data-question="qd-question44">
-All of these
-</div>
-<div class="qd-exp" data-question="qd-question44">
-EXPLANATION: All of these options are correct.
-</div>
-<hr>
-
-<div class="qd-question" id="qd-question45">
-<b>45.</b> Vsual field divided into ?
-</div>
-<div class="qd-option" data-correct="true" data-question="qd-question45">
-Two fields
-</div>
-<div class="qd-option" data-correct="false" data-question="qd-question45">
-Four fields
-</div>
-<div class="qd-option" data-correct="false" data-question="qd-question45">
-Three fields
-</div>
-<div class="qd-option" data-correct="false" data-question="qd-question45">
-None of these
-</div>
-<div class="qd-exp" data-question="qd-question45">
-EXPLANATION: Vsual field divided into 2 fields. (Central= From the fixation point to a circle 30° away, Peripheral= Beyond 30° to outer.) 
-</div>
-<hr>
-<div class="qd-question" id="qd-question46">
-<b>46.</b> Visual field loss in ?
-</div>
-<div class="qd-option" data-correct="false" data-question="qd-question46">
-Multiple sclerosis
-</div>
-<div class="qd-option" data-correct="false" data-question="qd-question46">
-Glaucoma, Lesions in retina
-</div>
-<div class="qd-option" data-correct="false" data-question="qd-question46">
-Hyperthyroidism, Lesions in visual pathway
-</div>
-<div class="qd-option" data-correct="true" data-question="qd-question46">
-All of these
-</div>
-<div class="qd-exp" data-question="qd-question46">
-EXPLANATION: All of these pathological conditions affected to the visual field.
-</div>
-<hr>
-
-<div class="qd-question" id="qd-question47">
-<b>47.</b> Which of the following mathod used to test for visual field ?
-</div>
-<div class="qd-option" data-correct="false" data-question="qd-question47">
-Goneoscopy
-</div>
-<div class="qd-option" data-correct="true" data-question="qd-question47">
-Perimrtry
-</div>
-<div class="qd-option" data-correct="false" data-question="qd-question47">
-Tonometry
-</div>
-<div class="qd-option" data-correct="false" data-question="qd-question47">
-Retinoscopy
-</div>
-<div class="qd-exp" data-question="qd-question47">
-EXPLANATION: Perimrtry used to test for visual field.
-</div>
-<hr>
-
-<div class="qd-question" id="qd-question48">
-<b>48.</b> Checking near visual acuity, distance between patient eye from jaeger's chart should be ?
-</div>
-<div class="qd-option" data-correct="false" data-question="qd-question48">
-200 cm
-</div>
-<div class="qd-option" data-correct="false" data-question="qd-question48">
-20 cm
-</div>
-<div class="qd-option" data-correct="true" data-question="qd-question48">
-35 cm
-</div>
-<div class="qd-option" data-correct="false" data-question="qd-question48">
-6 m
-</div>
-<div class="qd-exp" data-question="qd-question48">
-EXPLANATION: Checking near visual acuity, distance between patient eye from jaegers chart should be 35 cm.
-</div>
-<hr>
-
-<div class="qd-question" id="qd-question49">
-<b>49.</b> Which of the following layers is not found in choroid ?
-</div>
-<div class="qd-option" data-correct="false" data-question="qd-question49">
-Haller (external) and Sattler (internal)
-</div>
-<div class="qd-option" data-correct="false" data-question="qd-question49">
-Choriocapillaris layer
-</div>
-<div class="qd-option" data-correct="false" data-question="qd-question49">
-Bruch's membrane
-</div>
-<div class="qd-option" data-correct="true" data-question="qd-question49">
-Anterior epithelial layer
-</div>
-<div class="qd-exp" data-question="qd-question49">
-EXPLANATION: Anterior epithelial layer is found in Iris.
-</div>
-<hr>
-
-<div class="qd-question" id="qd-question50">
-<b>50.</b> Which of the following are included in the fundus of the retina ?
-</div>
-<div class="qd-option" data-correct="false" data-question="qd-question50">
-Macula lutea
-</div>
-<div class="qd-option" data-correct="false" data-question="qd-question50">
-Optic disc
-</div>
-<div class="qd-option" data-correct="false" data-question="qd-question50">
-Fovea centralis
-</div>
-<div class="qd-option" data-correct="true" data-question="qd-question50">
-All of these
-</div>
-<div class="qd-exp" data-question="qd-question50">
-EXPLANATION: The macula, fovea and optic disc are collectively called the fundus of the retina.
+Switch OSI मॉडल की लेयर-2 पर काम करता है और यह डिवाइस के MAC (Media Access Control) एड्रेस का उपयोग करके डेटा पैकेट को सीधे सही गंतव्य डिवाइस तक भेजता है।
 </div>
 <hr>
 <!--Reset Button-->

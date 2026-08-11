@@ -37,102 +37,102 @@ ai_summary: "​Boost your exam prep with these top 50 highly repeated Computer 
 <div class="qd-progress-bar" id="qd-progressBar"></div></div>
 <hr />
 <div class="qd-question" id="qd-question1">
-<b>1.</b> Who is known as the father of modern computer? (आधुनिक कम्प्यूटर का जन्मदाता किसे कहा जाता है?)
+<b>1.</b> Who is known as the father of modern computer?
 </div>
 <div class="qd-option" data-correct="false" data-question="qd-question1">
-ब्लेज पास्कल (Blaise Pascal)
+Blaise Pascal
 </div>
 <div class="qd-option" data-correct="false" data-question="qd-question1">
-जॉन वॉन न्यूमन (John Von Neumann)
+John Von Neumann
 </div>
 <div class="qd-option" data-correct="true" data-question="qd-question1">
-चार्ल्स बैबेज (Charles Babbage)
+Charles Babbage
 </div>
 <div class="qd-option" data-correct="false" data-question="qd-question1">
-हर्मन होलेरिथ (Herman Hollerith)
+Herman Hollerith
 </div>
 <div class="qd-exp" data-question="qd-question1">
-EXPLANATION: 1833 ई. में ब्रिटिश वैज्ञानिक चार्ल्स बैबेज ने एनालिटिकल इंजन का आविष्कार किया था। इस योगदान के लिए उन्हें आधुनिक कम्प्यूटर का जन्मदाता कहा जाता है।
+EXPLANATION: In 1833 AD, British scientist Charles Babbage invented the Analytical Engine. For this contribution he is called the father of modern computer.
 </div>
 <hr>
 <div class="qd-question" id="qd-question2">
-<b>2.</b> Who gets the credit for writing the first computer program? (सबसे पहले कम्प्यूटर प्रोग्रामिंग तैयार करने का श्रेय किसे जाता है?)
+<b>2.</b> Who gets the credit for writing the first computer program?
 </div>
 <div class="qd-option" data-correct="true" data-question="qd-question2">
-अगस्टा एडा लवलेस (Augusta Ada Lovelace)
+Augusta Ada Lovelace
 </div>
 <div class="qd-option" data-correct="false" data-question="qd-question2">
-चार्ल्स बैबेज (Charles Babbage)
+Charles Babbage
 </div>
 <div class="qd-option" data-correct="false" data-question="qd-question2">
-जोसेफ मैरी जैक्वार्ड (Joseph-Mary Jacquard)
+Joseph-Mary Jacquard
 </div>
 <div class="qd-option" data-correct="false" data-question="qd-question2">
-जॉन मॉशले (John Mauchly)
+John Mauchly
 </div>
 <div class="qd-exp" data-question="qd-question2">
-EXPLANATION: चार्ल्स बैबेज की शिष्या अगस्टा एडा लवलेस को सबसे पहले कम्प्यूटर प्रोग्रामिंग तैयार करने का श्रेय जाता है।
+EXPLANATION: Augusta Ada Lovelace, a disciple of Charles Babbage, is credited with inventing the first computer programming.
 </div>
 <hr>
 <div class="qd-question" id="qd-question3">
-<b>3.</b> Which of the following was the world's first automatic electro-mechanical computing device? (विश्व की पहली स्वचालित इलेक्ट्रो-मैकेनिकल कैलकुलेटर डिवाइस कौन-सी थी?)
+<b>3.</b> Which of the following was the world's first automatic electro-mechanical computing device?
 </div>
 <div class="qd-option" data-correct="false" data-question="qd-question3">
-एबेकस (Abacus)
+Abacus
 </div>
 <div class="qd-option" data-correct="true" data-question="qd-question3">
-मार्क-I (Mark-I)
+Mark-I
 </div>
 <div class="qd-option" data-correct="false" data-question="qd-question3">
-पास्कलाइन (Pascaline)
+Pascaline
 </div>
 <div class="qd-option" data-correct="false" data-question="qd-question3">
-यूनीवैक (UNIVAC)
+UNIVAC
 </div>
 <div class="qd-exp" data-question="qd-question3">
-EXPLANATION: हॉवर्ड आईकन द्वारा निर्मित मार्क-I (Mark-I) विश्व की पहली स्वचालित इलेक्ट्रो-मैकेनिकल कैलकुलेटर डिवाइस थी, जिसमें डाटा स्टोर करने के लिए मैग्नेटिक ड्रम का प्रयोग किया गया था।
+Mark-I विश्व की पहली स्वचालित इलेक्ट्रो-मैकेनिकल कैलकुलेटर डिवाइस थी, जिसमें डाटा स्टोर करने के लिए मैग्नेटिक ड्रम का प्रयोग किया गया था।
 </div>
 <hr>
 <div class="qd-question" id="qd-question4">
-<b>4.</b> Which switching device was used in first-generation computers? (पहली पीढ़ी के कम्प्यूटरों में किस स्विचिंग युक्ति का प्रयोग किया गया था?)
+<b>4.</b> Which switching device was used in first-generation computers?
 </div>
 <div class="qd-option" data-correct="true" data-question="qd-question4">
-वैक्यूम ट्यूब (Vacuum tubes)
+Vacuum tubes
 </div>
 <div class="qd-option" data-correct="false" data-question="qd-question4">
-ट्रांजिस्टर (Transistors)
+Transistors
 </div>
 <div class="qd-option" data-correct="false" data-question="qd-question4">
-इन्टीग्रेटेड सर्किट (Integrated Circuits)
+Integrated Circuits
 </div>
 <div class="qd-option" data-correct="false" data-question="qd-question4">
-माइक्रोप्रोसेसर (Microprocessor)
+Microprocessor
 </div>
 <div class="qd-exp" data-question="qd-question4">
-EXPLANATION: पहली पीढ़ी (1945-56) के कम्प्यूटरों जैसे ENIAC, EDVAC आदि में स्विचिंग युक्ति के रूप में वैक्यूम ट्यूब (Vacuum tubes) का इस्तेमाल किया गया था।
+1945-56 के कम्प्यूटरों जैसे ENIAC, EDVAC आदि में स्विचिंग युक्ति के रूप में वैक्यूम ट्यूब (Vacuum tubes) का इस्तेमाल किया गया था।
 </div>
 <hr>
 <div class="qd-question" id="qd-question5">
-<b>5.</b> Transistors were introduced in which generation of computers? (ट्रांजिस्टर का उपयोग कम्प्यूटर की किस पीढ़ी में शुरू हुआ?)
+<b>5.</b> Transistors were introduced in which generation of computers?
 </div>
 <div class="qd-option" data-correct="false" data-question="qd-question5">
-पहली पीढ़ी (First Generation)
+First Generation
 </div>
 <div class="qd-option" data-correct="true" data-question="qd-question5">
-दूसरी पीढ़ी (Second Generation)
+Second Generation
 </div>
 <div class="qd-option" data-correct="false" data-question="qd-question5">
-तीसरी पीढ़ी (Third Generation)
+Third Generation
 </div>
 <div class="qd-option" data-correct="false" data-question="qd-question5">
-चौथी पीढ़ी (Fourth Generation)
+Fourth Generation
 </div>
 <div class="qd-exp" data-question="qd-question5">
-EXPLANATION: दूसरी पीढ़ी (1956-1964) के कम्प्यूटरों में वैक्यूम ट्यूब की जगह ट्रांजिस्टर (Transistors) का प्रयोग किया जाने लगा, जिससे उनका आकार छोटा हो गया।
+1956-1964 के कम्प्यूटरों में वैक्यूम ट्यूब की जगह ट्रांजिस्टर (Transistors) का प्रयोग किया जाने लगा, जिससे उनका आकार छोटा हो गया।
 </div>
 <hr>
 <div class="qd-question" id="qd-question6">
-<b>6.</b> The world's first digital computer was? (विश्व का पहला डिजिटल कम्प्यूटर कौन-सा था?)
+<b>6.</b> The world's first digital computer was?
 </div>
 <div class="qd-option" data-correct="false" data-question="qd-question6">
 EDVAC
@@ -147,106 +147,106 @@ ENIAC
 UNIVAC
 </div>
 <div class="qd-exp" data-question="qd-question6">
-EXPLANATION: एनीएक (ENIAC - Electronic Numerical Integrator and Calculator) विश्व का पहला डिजिटल कम्प्यूटर था।
+ENIAC - Electronic Numerical Integrator and Calculator विश्व का पहला डिजिटल कम्प्यूटर था।
 </div>
 <hr>
 <div class="qd-question" id="qd-question7">
-<b>7.</b> Who invented the ENIAC computer? (ENIAC कम्प्यूटर का आविष्कार किसने किया था?)
+<b>7.</b> Who invented the ENIAC computer?
 </div>
 <div class="qd-option" data-correct="false" data-question="qd-question7">
-चार्ल्स बैबेज और हॉवर्ड ऐकिन (Charles Babbage  and  Howard Aiken)
+Charles Babbage  and  Howard Aiken
 </div>
 <div class="qd-option" data-correct="true" data-question="qd-question7">
-जे. प्रेस्पर एकर्ट और जॉन मॉशले (J. Presper Eckert  and  John Mauchly)
+J. Presper Eckert  and  John Mauchly
 </div>
 <div class="qd-option" data-correct="false" data-question="qd-question7">
-जॉन वॉन न्यूमन (John Von Neumann)
+John Von Neumann
 </div>
 <div class="qd-option" data-correct="false" data-question="qd-question7">
-ब्लेज पास्कल (Blaise Pascal)
+Blaise Pascal
 </div>
 <div class="qd-exp" data-question="qd-question7">
-EXPLANATION: ENIAC का आविष्कार 1946 में जे. प्रेस्पर एकर्ट और जॉन मॉशले द्वारा किया गया था।
+EXPLANATION: ENIAC was invented in 1946 by J. It was done by Presper Eckert and John Moschley.
 </div>
 <hr>
 <div class="qd-question" id="qd-question8">
-<b>8.</b> Which of the following is an example of an Analog Computer? (निम्नलिखित में से कौन-सा एनालॉग कम्प्यूटर का एक उदाहरण है?)
+<b>8.</b> Which of the following is an example of an Analog Computer?
 </div>
 <div class="qd-option" data-correct="true" data-question="qd-question8">
-स्पीडोमीटर (Speedometer)
+Speedometer
 </div>
 <div class="qd-option" data-correct="false" data-question="qd-question8">
-डेस्कटॉप (Desktop)
+Desktop
 </div>
 <div class="qd-option" data-correct="false" data-question="qd-question8">
-लैपटॉप (Laptop)
+Laptop
 </div>
 <div class="qd-option" data-correct="false" data-question="qd-question8">
-स्मार्टफोन (Smartphone)
+Smartphone
 </div>
 <div class="qd-exp" data-question="qd-question8">
-EXPLANATION: एनालॉग कम्प्यूटर का प्रयोग भौतिक मात्राओं (Pressure, Temperature आदि) को प्रस्तुत करने के लिए किया जाता है। स्पीडोमीटर और रिक्टर स्केल इसके उदाहरण हैं।
+EXPLANATION: Analog computers are used to represent physical quantities. Speedometer and Richter scale are examples.
 </div>
 <hr>
 <div class="qd-question" id="qd-question9">
-<b>9.</b> Fifth generation computers are based on? (पाँचवीं पीढ़ी के कम्प्यूटर किस तकनीक पर आधारित हैं?)
+<b>9.</b> Fifth generation computers are based on?
 </div>
 <div class="qd-option" data-correct="false" data-question="qd-question9">
-ट्रांजिस्टर (Transistors)
+Transistors
 </div>
 <div class="qd-option" data-correct="false" data-question="qd-question9">
-इन्टीग्रेटेड सर्किट (IC)
+IC
 </div>
 <div class="qd-option" data-correct="true" data-question="qd-question9">
-आर्टिफीशियल इंटेलिजेंस (Artificial Intelligence)
+Artificial Intelligence
 </div>
 <div class="qd-option" data-correct="false" data-question="qd-question9">
-वैक्यूम ट्यूब (Vacuum Tubes)
+Vacuum Tubes
 </div>
 <div class="qd-exp" data-question="qd-question9">
-EXPLANATION: पाँचवीं पीढ़ी के कम्प्यूटर (1980 से वर्तमान) ULSI माइक्रोप्रोसेसर और आर्टिफीशियल इंटेलिजेंस (Artificial Intelligence - AI) पर आधारित हैं।
+EXPLANATION: Fifth generation computers are based on ULSI microprocessor and Artificial Intelligence (AI).
 </div>
 <hr>
 <div class="qd-question" id="qd-question10">
-<b>10.</b> Which of the following machines used punch cards for reading data? (डेटा पढ़ने के लिए पंच कार्डों का प्रयोग किस मशीन में किया गया था?)
+<b>10.</b> Which of the following machines used punch cards for reading data?
 </div>
 <div class="qd-option" data-correct="false" data-question="qd-question10">
-पासकलाइन (Pascaline)
+Pascaline
 </div>
 <div class="qd-option" data-correct="false" data-question="qd-question10">
-डिफरेंस इंजन (Difference Engine)
+Difference Engine
 </div>
 <div class="qd-option" data-correct="true" data-question="qd-question10">
-टेबुलेटिंग मशीन (Tabulating Machine)
+Tabulating Machine
 </div>
 <div class="qd-option" data-correct="false" data-question="qd-question10">
-स्लाइड रूल (Slide Rule)
+Slide Rule
 </div>
 <div class="qd-exp" data-question="qd-question10">
-EXPLANATION: हर्मन होलेरिथ द्वारा बनाई गई टेबुलेटिंग मशीन में डेटा पढ़ने के लिए पंच कार्डों का प्रयोग किया गया था, जिसका उपयोग 1890 की जनगणना में हुआ।
+EXPLANATION: Punch cards were used to read data in a tabulating machine created by Herman Hollerith, which was used in the 1890 census.
 </div>
 <hr>
 <div class="qd-question" id="qd-question11">
-<b>11.</b> Integrated Circuits (IC) were used in which generation of computers? (इन्टीग्रेटेड सर्किट (IC) का प्रयोग किस पीढ़ी के कम्प्यूटरों में किया गया?)
+<b>11.</b> Integrated Circuits (IC) were used in which generation of computers? In which generation of computers was it used?)
 </div>
 <div class="qd-option" data-correct="false" data-question="qd-question11">
-पहली पीढ़ी (First Generation)
+First Generation
 </div>
 <div class="qd-option" data-correct="false" data-question="qd-question11">
-दूसरी पीढ़ी (Second Generation)
+Second Generation
 </div>
 <div class="qd-option" data-correct="true" data-question="qd-question11">
-तीसरी पीढ़ी (Third Generation)
+Third Generation
 </div>
 <div class="qd-option" data-correct="false" data-question="qd-question11">
-चौथी पीढ़ी (Fourth Generation)
+Fourth Generation
 </div>
 <div class="qd-exp" data-question="qd-question11">
-EXPLANATION: तीसरी पीढ़ी (1965-71) के कम्प्यूटरों में ट्रांजिस्टर के स्थान पर इन्टीग्रेटेड सर्किट (IC) का प्रयोग शुरू हुआ।
+1965-71 के कम्प्यूटरों में ट्रांजिस्टर के स्थान पर इन्टीग्रेटेड सर्किट (IC) का प्रयोग शुरू हुआ।
 </div>
 <hr>
 <div class="qd-question" id="qd-question12">
-<b>12.</b> What is the full form of UNIVAC? (UNIVAC का पूर्ण रूप क्या है?)
+<b>12.</b> What is the full form of UNIVAC?
 </div>
 <div class="qd-option" data-correct="false" data-question="qd-question12">
 Universal Automatic Calculator
@@ -261,87 +261,87 @@ Unique Automatic Computer
 United Automatic Computer
 </div>
 <div class="qd-exp" data-question="qd-question12">
-EXPLANATION: UNIVAC का फुल फॉर्म Universal Automatic Computer है। यह वाणिज्यिक उद्देश्य के लिए प्रयोग में लाया गया पहला सामान्य उद्देश्य वाला कम्प्यूटर था।
+EXPLANATION: The full form of UNIVAC is Universal Automatic Computer. It was the first general purpose computer used for commercial purposes.
 </div>
 <hr>
 <div class="qd-question" id="qd-question13">
-<b>13.</b> Who is credited with bringing the second revolution in computers by using the stored program concept? (कम्प्यूटर के क्षेत्र में स्टोर्ड प्रोग्राम का इस्तेमाल कर द्वितीय क्रांति लाने का श्रेय किसे जाता है?)
+<b>13.</b> Who is credited with bringing the second revolution in computers by using the stored program concept?
 </div>
 <div class="qd-option" data-correct="true" data-question="qd-question13">
-जॉन वॉन न्यूमन (John Von Neumann)
+John Von Neumann
 </div>
 <div class="qd-option" data-correct="false" data-question="qd-question13">
-चार्ल्स बैबेज (Charles Babbage)
+Charles Babbage
 </div>
 <div class="qd-option" data-correct="false" data-question="qd-question13">
-ब्लेज पास्कल (Blaise Pascal)
+Blaise Pascal
 </div>
 <div class="qd-option" data-correct="false" data-question="qd-question13">
-जे. प्रेस्पर एकर्ट (J. Presper Eckert)
+J. Presper Eckert
 </div>
 <div class="qd-exp" data-question="qd-question13">
-EXPLANATION: जॉन वॉन न्यूमन को कम्प्यूटर के क्षेत्र में द्वितीय क्रांति लाने का श्रेय जाता है क्योंकि उन्होंने द्विआधारी पद्धति और स्टोर्ड प्रोग्राम (Stored Program) का इस्तेमाल शुरू किया था।
+Stored Program का इस्तेमाल शुरू किया था।
 </div>
 <hr>
 <div class="qd-question" id="qd-question14">
-<b>14.</b> Which machine combined the features of both analog and digital computers? (वह कम्प्यूटर जो एनालॉग और डिजिटल दोनों की विशेषताओं को सम्मिलित करके बनाए गए हैं, क्या कहलाते हैं?)
+<b>14.</b> Which machine combined the features of both analog and digital computers?
 </div>
 <div class="qd-option" data-correct="false" data-question="qd-question14">
-माइक्रो कम्प्यूटर (Micro Computer)
+Micro Computer
 </div>
 <div class="qd-option" data-correct="false" data-question="qd-question14">
-मेनफ्रेम कम्प्यूटर (Mainframe Computer)
+Mainframe Computer
 </div>
 <div class="qd-option" data-correct="true" data-question="qd-question14">
-हाइब्रिड कम्प्यूटर (Hybrid Computer)
+Hybrid Computer
 </div>
 <div class="qd-option" data-correct="false" data-question="qd-question14">
-सुपर कम्प्यूटर (Super Computer)
+Super Computer
 </div>
 <div class="qd-exp" data-question="qd-question14">
-EXPLANATION: हाइब्रिड कम्प्यूटर (Hybrid Computer) एनालॉग और डिजिटल दोनों तरह के कम्प्यूटरों की विशेषताओं को मिलाकर बनाए जाते हैं।
+Hybrid Computer एनालॉग और डिजिटल दोनों तरह के कम्प्यूटरों की विशेषताओं को मिलाकर बनाए जाते हैं।
 </div>
 <hr>
 <div class="qd-question" id="qd-question15">
-<b>15.</b> What language was used in First Generation computers? (पहली पीढ़ी के कम्प्यूटरों में किस भाषा का प्रयोग किया जाता था?)
+<b>15.</b> What language was used in First Generation computers?
 </div>
 <div class="qd-option" data-correct="false" data-question="qd-question15">
-असेंबली भाषा (Assembly Language)
+Assembly Language
 </div>
 <div class="qd-option" data-correct="false" data-question="qd-question15">
-हाई-लेवल भाषा (High Level Language)
+High Level Language
 </div>
 <div class="qd-option" data-correct="true" data-question="qd-question15">
-मशीनी भाषा (Machine Language)
+Machine Language
 </div>
 <div class="qd-option" data-correct="false" data-question="qd-question15">
-कोबोल (COBOL)
+COBOL
 </div>
 <div class="qd-exp" data-question="qd-question15">
-EXPLANATION: पहली पीढ़ी (1945-56) के कम्प्यूटरों में प्रोग्रामिंग के लिए 'मशीनी भाषा (Machine Language)' का उपयोग किया जाता था।
+1945-56 के कम्प्यूटरों में प्रोग्रामिंग के लिए 'मशीनी भाषा (Machine Language)' का उपयोग किया जाता था।
 </div>
 <hr>
 <div class="qd-question" id="qd-question16">
-<b>16.</b> Desktop, laptop, and tablet are examples of which type of computer? (डेस्कटॉप, लैपटॉप और टैबलेट किस प्रकार के कम्प्यूटर के उदाहरण हैं?)
+<b>16.</b> Desktop, laptop, and tablet are examples of which type of computer?
 </div>
 <div class="qd-option" data-correct="false" data-question="qd-question16">
-मिनी कम्प्यूटर (Mini Computer)
+Mini Computer
 </div>
 <div class="qd-option" data-correct="false" data-question="qd-question16">
-मेनफ्रेम कम्प्यूटर (Mainframe Computer)
+Mainframe Computer
 </div>
 <div class="qd-option" data-correct="true" data-question="qd-question16">
-माइक्रो कम्प्यूटर (Micro Computer)
+Micro Computer
 </div>
 <div class="qd-option" data-correct="false" data-question="qd-question16">
-सुपर कम्प्यूटर (Super Computer)
+Super Computer
 </div>
 <div class="qd-exp" data-question="qd-question16">
-EXPLANATION: आकार के आधार पर डेस्कटॉप, लैपटॉप, पीसी (PC) और टैबलेट 'माइक्रो कम्प्यूटर (Micro Computer)' की श्रेणी में आते हैं जिनमें माइक्रोप्रोसेसर का उपयोग होता है।
+PC और टैबलेट 'माइक्रो कम्प्यूटर (Micro Computer)' की श्रेणी में आते हैं जिनमें माइक्रोप्रोसेसर का उपयोग होता है।
 </div>
 <hr>
 <div class="qd-question" id="qd-question17">
-<b>17.</b> The speed of supercomputers is measured in? (सुपर कम्प्यूटर की गति को किसमें मापा जाता है?)
+<b>17.</b> The speed of supercomputers is measured in?
 </div>
 <div class="qd-option" data-correct="false" data-question="qd-question17">
 Hz (Hertz)
@@ -356,182 +356,182 @@ PFLOPS (Peta Floating Point Operations Per Second)
 MIPS (Million Instructions Per Second)
 </div>
 <div class="qd-exp" data-question="qd-question17">
-EXPLANATION: सुपर कम्प्यूटर की प्रोसेसिंग स्पीड को क्वाड्रिलियन फ्लोटिंग ऑपरेशंस प्रति सेकंड या PFLOPS (Peta Floating Point Operations Per Second) में मापा जाता है।
+Peta Floating Point Operations Per Second में मापा जाता है।
 </div>
 <hr>
 <div class="qd-question" id="qd-question18">
-<b>18.</b> What is Abacus? (एबेकस क्या है?)
+<b>18.</b> What is Abacus?
 </div>
 <div class="qd-option" data-correct="false" data-question="qd-question18">
-पहली मैकेनिकल बुनाई मशीन
+first mechanical knitting machine
 </div>
 <div class="qd-option" data-correct="true" data-question="qd-question18">
-लकड़ी के फ्रेम में लगी क्षैतिज तारों वाला गणना यंत्र
+wooden frame calculating machine
 </div>
 <div class="qd-option" data-correct="false" data-question="qd-question18">
-एक हाई-लेवल प्रोग्रामिंग भाषा
+a high-level programming language
 </div>
 <div class="qd-option" data-correct="false" data-question="qd-question18">
-पहला इलेक्ट्रॉनिक कम्प्यूटर
+first electronic computer
 </div>
 <div class="qd-exp" data-question="qd-question18">
-EXPLANATION: एबेकस (Abacus) चीन में 600 B.C. में विकसित एक प्राचीन गणना यंत्र है जिसमें लकड़ी के फ्रेम में लगी क्षैतिज तारों और मोतियों द्वारा गणना की जाती थी।
+Abacus चीन में 600 B.C. में विकसित एक प्राचीन गणना यंत्र है जिसमें लकड़ी के फ्रेम में लगी क्षैतिज तारों और मोतियों द्वारा गणना की जाती थी।
 </div>
 <hr>
 <div class="qd-question" id="qd-question19">
-<b>19.</b> Which operating system was mainly used in the First Generation computers? (पहली पीढ़ी के कम्प्यूटरों में मुख्य रूप से कौन-सा ऑपरेटिंग सिस्टम उपयोग होता था?)
+<b>19.</b> Which operating system was mainly used in the First Generation computers?
 </div>
 <div class="qd-option" data-correct="false" data-question="qd-question19">
-टाइम शेयरिंग (Time Sharing)
+Time Sharing
 </div>
 <div class="qd-option" data-correct="false" data-question="qd-question19">
-डिस्ट्रीब्यूटेड ओएस (Distributed OS)
+Distributed OS
 </div>
 <div class="qd-option" data-correct="true" data-question="qd-question19">
-बैच ऑपरेटिंग सिस्टम (Batch Operating System)
+Batch Operating System
 </div>
 <div class="qd-option" data-correct="false" data-question="qd-question19">
-रियल टाइम ओएस (Real Time OS)
+Real Time OS
 </div>
 <div class="qd-exp" data-question="qd-question19">
-EXPLANATION: पहली पीढ़ी के कम्प्यूटरों (जैसे ENIAC, EDVAC) में 'बैच ऑपरेटिंग सिस्टम (Batch Operating System)' का उपयोग किया जाता था।
+EXPLANATION: 'Batch Operating System' was used in the first generation computers.
 </div>
 <hr>
 <div class="qd-question" id="qd-question20">
-<b>20.</b> What is the main functional purpose of Jacquard's Loom invented in 1801? (1801 में आविष्कृत जैक्वार्ड्स लूम का मुख्य कार्य क्या था?)
+<b>20.</b> What is the main functional purpose of Jacquard's Loom invented in 1801?
 </div>
 <div class="qd-option" data-correct="true" data-question="qd-question20">
-यह पहली मैकेनिकल बुनाई मशीन थी जिसका उपयोग टेक्सटाइल प्रक्रिया में होता था
+It was the first mechanical weaving machine used in the textile process.
 </div>
 <div class="qd-option" data-correct="false" data-question="qd-question20">
-यह दशमलव के 20 स्थानों तक गणनाओं के लिए प्रयुक्त होती थी
+It was used for calculations up to 20 decimal places.
 </div>
 <div class="qd-option" data-correct="false" data-question="qd-question20">
-यह लघुगणक (Logarithm) गणनाओं के लिए प्रयोग होती थी
+Logarithm गणनाओं के लिए प्रयोग होती थी
 </div>
 <div class="qd-option" data-correct="false" data-question="qd-question20">
-यह पहली स्वचालित इलेक्ट्रॉनिक डिवाइस थी
+It was the first automated electronic device
 </div>
 <div class="qd-exp" data-question="qd-question20">
-EXPLANATION: जोसेफ-मैरी जैक्वार्ड द्वारा 1801 में बनाया गया जैक्वार्ड्स लूम (Jacquard's Loom) पहली मैकेनिकल बुनाई मशीन थी, जिसका उपयोग टेक्सटाइल प्रक्रिया में किया जाता था।
+Jacquard's Loom पहली मैकेनिकल बुनाई मशीन थी, जिसका उपयोग टेक्सटाइल प्रक्रिया में किया जाता था।
 </div>
 <hr>
 <div class="qd-question" id="qd-question21">
-<b>21.</b> भारत में सेंटर फॉर डवलपमेंट ऑफ एडवांस्ड कम्प्यूटिंग (C-DAC) द्वारा विकसित पहला गीगा स्केल सुपर कम्प्यूटर कौन-सा है?
+C-DAC द्वारा विकसित पहला गीगा स्केल सुपर कम्प्यूटर कौन-सा है?
 </div>
 <div class="qd-option" data-correct="false" data-question="qd-question21">
-परम-10000
+param-10000
 </div>
 <div class="qd-option" data-correct="true" data-question="qd-question21">
-परम-8000
+ultimate-8000
 </div>
 <div class="qd-option" data-correct="false" data-question="qd-question21">
-तियान्हे-2 (Tianhe-2)
+Tianhe-2
 </div>
 <div class="qd-option" data-correct="false" data-question="qd-question21">
-डीप ब्लू (Deep Blue)
+Deep Blue
 </div>
 <div class="qd-exp" data-question="qd-question21">
-EXPLANATION: भारत का पहला गीगा स्केल सुपर कम्प्यूटर परम-8000 है, जिसका विकास भारत में सेंटर फॉर डवलपमेंट ऑफ एडवांस्ड कम्प्यूटिंग (C-DAC) ने किया था।
+C-DAC ने किया था।
 </div>
 <hr>
 <div class="qd-question" id="qd-question22">
-<b>22.</b> कम्प्यूटर माउस का आविष्कार किसने किया था?
+<b>22.</b> Who invented the computer mouse?
 </div>
 <div class="qd-option" data-correct="false" data-question="qd-question22">
-चार्ल्स बैबेज
+Charles Babbage
 </div>
 <div class="qd-option" data-correct="false" data-question="qd-question22">
-जॉन वॉन न्यूमन
+John von Neumann
 </div>
 <div class="qd-option" data-correct="true" data-question="qd-question22">
-डगलस एंजेलवर्ट (Douglas Engelbart)
+Douglas Engelbart
 </div>
 <div class="qd-option" data-correct="false" data-question="qd-question22">
-जॉर्ज स्टिबिट्ज
+George Stibitz
 </div>
 <div class="qd-exp" data-question="qd-question22">
-EXPLANATION: विश्व प्रसिद्ध कम्प्यूटर माउस का आविष्कार डगलस एंजेलवर्ट (Douglas Engelbart) ने किया था।
+Douglas Engelbart ने किया था।
 </div>
 <hr>
 <div class="qd-question" id="qd-question23">
-<b>23.</b> शतरंज के विश्व चैंपियन ग्रैंड मास्टर गैरी कास्पोरोव को पराजित करने वाला सुपर कम्प्यूटर कौन-सा था?
+<b>23.</b> Which was the supercomputer that defeated chess world champion Grand Master Garry Kasparov?
 </div>
 <div class="qd-option" data-correct="false" data-question="qd-question23">
-परम-8000
+ultimate-8000
 </div>
 <div class="qd-option" data-correct="true" data-question="qd-question23">
-डीप ब्लू (Deep Blue)
+Deep Blue
 </div>
 <div class="qd-option" data-correct="false" data-question="qd-question23">
-कोमोडोर VIC/20
+Commodore VIC/20
 </div>
 <div class="qd-option" data-correct="false" data-question="qd-question23">
-तियान्हे-2
+Tianhe-2
 </div>
 <div class="qd-exp" data-question="qd-question23">
-EXPLANATION: डीप ब्लू (Deep Blue) कम्प्यूटर एक सेकंड में शतरंज की 20 करोड़ चाल सोच सकता है। इसी कम्प्यूटर ने रूस के विश्व चैंपियन गैरी कास्पोरोव को पराजित किया था।
+Deep Blue कम्प्यूटर एक सेकंड में शतरंज की 20 करोड़ चाल सोच सकता है। इसी कम्प्यूटर ने रूस के विश्व चैंपियन गैरी कास्पोरोव को पराजित किया था।
 </div>
 <hr>
 <div class="qd-question" id="qd-question24">
-<b>24.</b> क्वांटम कम्प्यूटर में अत्यधिक त्वरित गणनाओं के लिए बिट (Bit) के स्थान पर किसका प्रयोग किया जाता है?
+Bit के स्थान पर किसका प्रयोग किया जाता है?
 </div>
 <div class="qd-option" data-correct="true" data-question="qd-question24">
-क्यूबिट (Qubit)
+Qubit
 </div>
 <div class="qd-option" data-correct="false" data-question="qd-question24">
-निबल (Nibble)
+Nibble
 </div>
 <div class="qd-option" data-correct="false" data-question="qd-question24">
-बाइट (Byte)
+Byte
 </div>
 <div class="qd-option" data-correct="false" data-question="qd-question24">
-पिक्सेल (Pixel)
+Pixel
 </div>
 <div class="qd-exp" data-question="qd-question24">
-EXPLANATION: क्वांटम कम्प्यूटर में अत्यधिक त्वरित और अरबों गणनाओं को एक साथ करने के लिए बिट (Bit) के स्थान पर क्यूबिट (Qubit) का प्रयोग किया जाता है, जो बाइनरी संख्या 0 और 1 का अध्यारोपण है।
+Bit के स्थान पर क्यूबिट (Qubit) का प्रयोग किया जाता है, जो बाइनरी संख्या 0 और 1 का अध्यारोपण है।
 </div>
 <hr>
 <div class="qd-question" id="qd-question25">
-<b>25.</b> हार्डवेयर और सॉफ्टवेयर के बीच सेतु (Bridge) का कार्य कौन करता है?
+Bridge का कार्य कौन करता है?
 </div>
 <div class="qd-option" data-correct="false" data-question="qd-question25">
-मदरबोर्ड (Motherboard)
+Motherboard
 </div>
 <div class="qd-option" data-correct="true" data-question="qd-question25">
-ऑपरेटिंग सिस्टम (Operating System)
+Operating System
 </div>
 <div class="qd-option" data-correct="false" data-question="qd-question25">
-एप्लीकेशन सॉफ्टवेयर (Application Software)
+Application Software
 </div>
 <div class="qd-option" data-correct="false" data-question="qd-question25">
-की-बोर्ड (Keyboard)
+Keyboard
 </div>
 <div class="qd-exp" data-question="qd-question25">
-EXPLANATION: ऑपरेटिंग सिस्टम (Operating System) सिस्टम सॉफ्टवेयर का एक समूह है जो हार्डवेयर और सॉफ्टवेयर के बीच सेतु का कार्य करता है। डौस (DOS), यूनिक्स (UNIX) और विंडोज (Windows) इसके प्रमुख उदाहरण हैं।
+Operating System सिस्टम सॉफ्टवेयर का एक समूह है जो हार्डवेयर और सॉफ्टवेयर के बीच सेतु का कार्य करता है। डौस (DOS), यूनिक्स (UNIX) और विंडोज (Windows) इसके प्रमुख उदाहरण हैं।
 </div>
 <hr>
 <div class="qd-question" id="qd-question26">
-<b>26.</b> आमतौर पर एक सीपीयू (CPU) के मुख्य तीन घटक कौन-से होते हैं?
+CPU के मुख्य तीन घटक कौन-से होते हैं?
 </div>
 <div class="qd-option" data-correct="true" data-question="qd-question26">
-ALU, CU, और मेमोरी यूनिट
+ALU, CU, and Memory Unit
 </div>
 <div class="qd-option" data-correct="false" data-question="qd-question26">
-ALU, माउस, और की-बोर्ड
+ALU, Mouse, and Keyboard
 </div>
 <div class="qd-option" data-correct="false" data-question="qd-question26">
-मदरबोर्ड, मॉनिटर, और प्रिंटर
+Motherboard, Monitor, and Printer
 </div>
 <div class="qd-option" data-correct="false" data-question="qd-question26">
-रैम, रोम, और हार्ड डिस्क
+RAM, ROM, and Hard Disk
 </div>
 <div class="qd-exp" data-question="qd-question26">
-EXPLANATION: आमतौर पर, एक सीपीयू (CPU) में तीन मुख्य घटक होते हैं - अर्थमैटिक लॉजिक यूनिट (ALU), कन्ट्रोल यूनिट (CU) और भण्डारण इकाई या मेमोरी यूनिट (Storage Unit/MU)।
+CPU में तीन मुख्य घटक होते हैं - अर्थमैटिक लॉजिक यूनिट (ALU), कन्ट्रोल यूनिट (CU) और भण्डारण इकाई या मेमोरी यूनिट (Storage Unit/MU)।
 </div>
 <hr>
 <div class="qd-question" id="qd-question27">
-<b>27.</b> एक सामान्य की-बोर्ड (Keyboard) पर कुल कितनी कुंजियाँ (Keys) होती हैं?
+Keyboard पर कुल कितनी कुंजियाँ (Keys) होती हैं?
 </div>
 <div class="qd-option" data-correct="false" data-question="qd-question27">
 100
@@ -546,125 +546,125 @@ EXPLANATION: आमतौर पर, एक सीपीयू (CPU) में �
 108
 </div>
 <div class="qd-exp" data-question="qd-question27">
-EXPLANATION: एक सामान्य की-बोर्ड (Keyboard) पर कुल 104 कीज़ (Keys) होती हैं।
+Keyboard पर कुल 104 कीज़ (Keys) होती हैं।
 </div>
 <hr>
 <div class="qd-question" id="qd-question28">
-<b>28.</b> की-बोर्ड पर सबसे ऊपर मौजूद F1 से F12 तक की कुंजियों को क्या कहा जाता है?
+<b>28.</b> What are the keys from F1 to F12 present at the top of the keyboard called?
 </div>
 <div class="qd-option" data-correct="false" data-question="qd-question28">
-अल्फान्यूमेरिक कुंजियाँ (Alphanumeric Keys)
+Alphanumeric Keys
 </div>
 <div class="qd-option" data-correct="true" data-question="qd-question28">
-फंक्शन की (Function Keys)
+Function Keys
 </div>
 <div class="qd-option" data-correct="false" data-question="qd-question28">
-मॉडिफायर कुंजियाँ (Modifier Keys)
+Modifier Keys
 </div>
 <div class="qd-option" data-correct="false" data-question="qd-question28">
-न्यूमेरिक की-पैड (Numeric Keypad)
+Numeric Keypad
 </div>
 <div class="qd-exp" data-question="qd-question28">
-EXPLANATION: की-बोर्ड पर सबसे ऊपर मौजूद F1 से F12 तक की 12 कुंजियों को 'फंक्शन की (Function Keys)' कहा जाता है, जो शॉर्ट-कट के रूप में प्रयोग करने में सहायक होती हैं।
+Function Keys ' कहा जाता है, जो शॉर्ट-कट के रूप में प्रयोग करने में सहायक होती हैं।
 </div>
 <hr>
 <div class="qd-question" id="qd-question29">
-<b>29.</b> की-बोर्ड में SHIFT, ALT, और CTRL कुंजियों को किस नाम से जाना जाता है?
+<b>29.</b> By what name are the SHIFT, ALT, and CTRL keys known in the keyboard?
 </div>
 <div class="qd-option" data-correct="true" data-question="qd-question29">
-मॉडिफायर कुंजियाँ (Modifier Keys)
+Modifier Keys
 </div>
 <div class="qd-option" data-correct="false" data-question="qd-question29">
-कर्सर कुंजियाँ (Cursor Keys)
+Cursor Keys
 </div>
 <div class="qd-option" data-correct="false" data-question="qd-question29">
-विशिष्ट उद्देशीय कुंजियाँ (Special Purpose Keys)
+Special Purpose Keys
 </div>
 <div class="qd-option" data-correct="false" data-question="qd-question29">
-फंक्शन की (Function Keys)
+Function Keys
 </div>
 <div class="qd-exp" data-question="qd-question29">
-EXPLANATION: SHIFT, ALT, और CTRL कुंजियों को 'मॉडिफायर कुंजियाँ (Modifier Keys)' कहा जाता है। इनका प्रयोग अकेले न होकर किसी अन्य कुंजी के साथ इनपुट को बदलने के लिए होता है।
+Modifier Keys ' कहा जाता है। इनका प्रयोग अकेले न होकर किसी अन्य कुंजी के साथ इनपुट को बदलने के लिए होता है।
 </div>
 <hr>
 <div class="qd-question" id="qd-question30">
-<b>30.</b> कम्प्यूटर गेम्स खेलने के लिए मुख्य रूप से किस इनपुट डिवाइस का उपयोग किया जाता है?
+<b>30.</b>Which input device is mainly used to play computer games?
 </div>
 <div class="qd-option" data-correct="false" data-question="qd-question30">
-लाइट पेन (Light Pen)
+Light Pen
 </div>
 <div class="qd-option" data-correct="true" data-question="qd-question30">
-जॉयस्टिक (Joystick)
+Joystick
 </div>
 <div class="qd-option" data-correct="false" data-question="qd-question30">
-स्कैनर (Scanner)
+Scanner
 </div>
 <div class="qd-option" data-correct="false" data-question="qd-question30">
-माइक्रोफोन (Microphone)
+Microphone
 </div>
 <div class="qd-exp" data-question="qd-question30">
-EXPLANATION: जॉयस्टिक (Joystick) एक इनपुट डिवाइस है जिसका प्रयोग मुख्य रूप से कम्प्यूटर गेम्स खेलने के लिए किया जाता है।
+Joystick एक इनपुट डिवाइस है जिसका प्रयोग मुख्य रूप से कम्प्यूटर गेम्स खेलने के लिए किया जाता है।
 </div>
 <hr>
 <div class="qd-question" id="qd-question31">
-<b>31.</b> MICR का प्रयोग मुख्य रूप से कहाँ और किस लिए होता है?
+<b>31.</b> Where and for what is MICR mainly used?
 </div>
 <div class="qd-option" data-correct="false" data-question="qd-question31">
-दुकानों में प्रोडक्ट का बिल बनाने के लिए
+To make product bill in shops
 </div>
 <div class="qd-option" data-correct="true" data-question="qd-question31">
-बैंक के चेक पर अंकित विशेष बार कोड को पढ़ने के लिए
+To read the special bar code printed on a bank cheque.
 </div>
 <div class="qd-option" data-correct="false" data-question="qd-question31">
-फोटो और वीडियो अपलोड करने के लिए
+To upload photos and videos
 </div>
 <div class="qd-option" data-correct="false" data-question="qd-question31">
-टाइप किए गए टेक्स्ट को स्कैन करने के लिए
+To scan typed text
 </div>
 <div class="qd-exp" data-question="qd-question31">
-EXPLANATION: MICR (Magnetic Ink Character Recognition) का प्रयोग मुख्य रूप से बैंक के चेक पर अंकित विशेष बार कोड को पढ़ने के लिए होता है।
+EXPLANATION: MICR (Magnetic Ink Character Recognition) is mainly used to read the special bar code printed on bank cheques.
 </div>
 <hr>
 <div class="qd-question" id="qd-question32">
-<b>32.</b> मॉनीटर (Monitor) को अन्य किस नाम से भी जाना जाता है?
+Monitor को अन्य किस नाम से भी जाना जाता है?
 </div>
 <div class="qd-option" data-correct="true" data-question="qd-question32">
-वी.डी.यू. (VDU)
+VDU
 </div>
 <div class="qd-option" data-correct="false" data-question="qd-question32">
-ओ.सी.आर. (OCR)
+OCR
 </div>
 <div class="qd-option" data-correct="false" data-question="qd-question32">
-ओ.एम.आर. (OMR)
+OMR
 </div>
 <div class="qd-option" data-correct="false" data-question="qd-question32">
-सी.पी.यू. (CPU)
+CPU
 </div>
 <div class="qd-exp" data-question="qd-question32">
-EXPLANATION: मॉनीटर कम्प्यूटर की सबसे महत्वपूर्ण आउटपुट डिवाइस है, जिसे 'विजुअल डिस्प्ले यूनिट (VDU)' भी कहते हैं।
+VDU ' भी कहते हैं।
 </div>
 <hr>
 <div class="qd-question" id="qd-question33">
-<b>33.</b> डॉट मैट्रिक्स (Dot Matrix) और डेज़ी व्हील (Daisy Wheel) किस प्रकार के प्रिंटर के उदाहरण हैं?
+Dot Matrix और डेज़ी व्हील (Daisy Wheel) किस प्रकार के प्रिंटर के उदाहरण हैं?
 </div>
 <div class="qd-option" data-correct="false" data-question="qd-question33">
-नॉन-इम्पैक्ट प्रिंटर (Non-Impact Printer)
+Non-Impact Printer
 </div>
 <div class="qd-option" data-correct="true" data-question="qd-question33">
-इम्पैक्ट प्रिंटर (Impact Printer)
+Impact Printer
 </div>
 <div class="qd-option" data-correct="false" data-question="qd-question33">
-थर्मल प्रिंटर (Thermal Printer)
+Thermal Printer
 </div>
 <div class="qd-option" data-correct="false" data-question="qd-question33">
-लेज़र प्रिंटर (Laser Printer)
+Laser Printer
 </div>
 <div class="qd-exp" data-question="qd-question33">
-EXPLANATION: डॉट मैट्रिक्स प्रिंटर (Dot Matrix Printer) और डेज़ी व्हील प्रिंटर (Daisy Wheel Printer) इम्पैक्ट प्रिंटर (Impact Printer) के उदाहरण हैं, जो टाइपराइटर की तरह पेपर पर प्रहार करके प्रिंट करते हैं।
+Dot Matrix Printer और डेज़ी व्हील प्रिंटर (Daisy Wheel Printer) इम्पैक्ट प्रिंटर (Impact Printer) के उदाहरण हैं, जो टाइपराइटर की तरह पेपर पर प्रहार करके प्रिंट करते हैं।
 </div>
 <hr>
 <div class="qd-question" id="qd-question34">
-<b>34.</b> वह कौन-सी मेमोरी है जिसे डेटा बनाए रखने के लिए बार-बार 'रिफ्रेश' करने की आवश्यकता नहीं होती है?
+<b>34.</b> Which memory does not require frequent 'refresh' to retain data?
 </div>
 <div class="qd-option" data-correct="false" data-question="qd-question34">
 DRAM
@@ -679,11 +679,11 @@ ROM
 EEPROM
 </div>
 <div class="qd-exp" data-question="qd-question34">
-EXPLANATION: SRAM (Static Random Access Memory) में डेटा को बनाए रखने के लिए बार-बार 'रिफ्रेश' करने की आवश्यकता नहीं होती है। इसे 'स्टैटिक' कहा जाता है और यह DRAM से अधिक तेज होती है।
+EXPLANATION: To maintain data in SRAM (Static Random Access Memory) there is no need to repeatedly 'refresh' it. This is called 'static' and is faster than DRAM.
 </div>
 <hr>
 <div class="qd-question" id="qd-question35">
-<b>35.</b> किस मेमोरी को 'डायनामिक' कहा जाता है क्योंकि इसमें कैपेसिटर के डिस्चार्ज होने के कारण डेटा को बरकरार रखने के लिए निरंतर 'रिफ्रेश' की आवश्यकता होती है?
+<b>35.</b> Which memory is called 'dynamic' because it requires constant 'refresh' to retain data due to discharge of capacitors?
 </div>
 <div class="qd-option" data-correct="false" data-question="qd-question35">
 SRAM
@@ -698,30 +698,30 @@ DRAM
 EPROM
 </div>
 <div class="qd-exp" data-question="qd-question35">
-EXPLANATION: DRAM (Dynamic Random Access Memory) में डेटा स्टोर करने वाले कैपेसिटर धीरे-धीरे ऊर्जा का निर्वहन करते हैं, इसलिए इसमें डेटा को बरकरार रखने के लिए निरंतर 'रिफ्रेश' करने की आवश्यकता होती है।
+EXPLANATION: The capacitors that store data in DRAM (Dynamic Random Access Memory) discharge energy slowly, so it requires a constant 'refresh' to retain the data.
 </div>
 <hr>
 <div class="qd-question" id="qd-question36">
-<b>36.</b> कम्प्यूटर को स्टार्ट करने वाला मूल प्रोग्राम 'BIOS' (Basic Input/Output System) सामान्यतः कहाँ संगृहीत होता है?
+Basic Input/Output System सामान्यतः कहाँ संगृहीत होता है?
 </div>
 <div class="qd-option" data-correct="true" data-question="qd-question36">
-ROM में
+in ROM
 </div>
 <div class="qd-option" data-correct="false" data-question="qd-question36">
-RAM में
+in RAM
 </div>
 <div class="qd-option" data-correct="false" data-question="qd-question36">
-हार्ड डिस्क में
+in hard disk
 </div>
 <div class="qd-option" data-correct="false" data-question="qd-question36">
-फ्लॉपी डिस्क में
+in floppy disk
 </div>
 <div class="qd-exp" data-question="qd-question36">
-EXPLANATION: BIOS (Basic Input/Output System) वह प्रोग्राम है जो कम्प्यूटर को चालू करने (बूटिंग) के लिए ऑपरेटिंग सिस्टम को मेमोरी में लोड करता है। यह ROM (Read Only Memory) में स्थित होता है।
+EXPLANATION: BIOS (Basic Input/Output System) is the program that loads the operating system into memory to turn on the computer. It is located in ROM (Read Only Memory).
 </div>
 <hr>
 <div class="qd-question" id="qd-question37">
-<b>37.</b> उस रोम (ROM) को क्या कहा जाता है जिसके प्रोग्राम को मशीन से निकाले बिना इलेक्ट्रॉनिक तरीके (सॉफ्टवेयर का उपयोग करके) से मिटाया और अपडेट किया जा सकता है?
+ROM को क्या कहा जाता है जिसके प्रोग्राम को मशीन से निकाले बिना इलेक्ट्रॉनिक तरीके (सॉफ्टवेयर का उपयोग करके) से मिटाया और अपडेट किया जा सकता है?
 </div>
 <div class="qd-option" data-correct="false" data-question="qd-question37">
 PROM
@@ -736,49 +736,49 @@ EEPROM
 BIOS
 </div>
 <div class="qd-exp" data-question="qd-question37">
-EXPLANATION: ई ई पी रोम (EEPROM - Electronic Erasable Programmable Read Only Memory) एक उन्नत वर्जन है जिसमें डेटा को मिटाने के लिए मशीन से बाहर निकालने की आवश्यकता नहीं होती, बल्कि सॉफ्टवेयर और इलेक्ट्रॉनिक विधि का उपयोग करके प्रोग्रामिंग की जाती है।
+EEPROM - Electronic Erasable Programmable Read Only Memory एक उन्नत वर्जन है जिसमें डेटा को मिटाने के लिए मशीन से बाहर निकालने की आवश्यकता नहीं होती, बल्कि सॉफ्टवेयर और इलेक्ट्रॉनिक विधि का उपयोग करके प्रोग्रामिंग की जाती है।
 </div>
 <hr>
 <div class="qd-question" id="qd-question38">
-<b>38.</b> द्वितीयक मेमोरी (Secondary Memory) को अन्य किन नामों से जाना जाता है?
+Secondary Memory को अन्य किन नामों से जाना जाता है?
 </div>
 <div class="qd-option" data-correct="false" data-question="qd-question38">
-सहायक मेमोरी (Auxiliary Memory)
+Auxiliary Memory
 </div>
 <div class="qd-option" data-correct="false" data-question="qd-question38">
-बैकिंग स्टोरेज (Backing Storage)
+Backing Storage
 </div>
 <div class="qd-option" data-correct="false" data-question="qd-question38">
-एक्सटर्नल स्टोरेज (External Storage)
+External Storage
 </div>
 <div class="qd-option" data-correct="true" data-question="qd-question38">
-उपरोक्त सभी
+all of the above
 </div>
 <div class="qd-exp" data-question="qd-question38">
-EXPLANATION: द्वितीयक मेमोरी (Secondary Memory) को 'सहायक मेमोरी' (Auxiliary Memory) के रूप में भी जाना जाता है और इसे 'बैकिंग स्टोरेज डिवाइस' या 'एक्सटर्नल स्टोरेज डिवाइस' भी कहा जाता है।
+Secondary Memory को 'सहायक मेमोरी' (Auxiliary Memory) के रूप में भी जाना जाता है और इसे 'बैकिंग स्टोरेज डिवाइस' या 'एक्सटर्नल स्टोरेज डिवाइस' भी कहा जाता है।
 </div>
 <hr>
 <div class="qd-question" id="qd-question39">
-<b>39.</b> सीडी (CD), डीवीडी (DVD) और ब्लू-रे डिस्क किस प्रकार की स्टोरेज डिवाइस के अंतर्गत आते हैं?
+CD , डीवीडी (DVD) और ब्लू-रे डिस्क किस प्रकार की स्टोरेज डिवाइस के अंतर्गत आते हैं?
 </div>
 <div class="qd-option" data-correct="false" data-question="qd-question39">
-मैग्नेटिक टेप (Magnetic Tape)
+Magnetic Tape
 </div>
 <div class="qd-option" data-correct="true" data-question="qd-question39">
-ऑप्टिकल डिस्क ड्राइव (Optical Disk Drive)
+Optical Disk Drive
 </div>
 <div class="qd-option" data-correct="false" data-question="qd-question39">
-फ्लॉपी डिस्क (Floppy Disk)
+Floppy Disk
 </div>
 <div class="qd-option" data-correct="false" data-question="qd-question39">
-हार्ड डिस्क (Hard Disk)
+Hard Disk
 </div>
 <div class="qd-exp" data-question="qd-question39">
-EXPLANATION: कॉम्पैक्ट डिस्क (CD), डिजिटल वर्सटाइल डिस्क (DVD), और ब्लू-रे डिस्क (Blu-ray Disc) सभी ऑप्टिकल डिस्क ड्राइव (Optical Disk Drive - ODD) के प्रकार हैं, जिनमें लेज़र लाइट की मदद से डेटा पढ़ा और लिखा जाता है।
+CD , डिजिटल वर्सटाइल डिस्क (DVD), और ब्लू-रे डिस्क (Blu-ray Disc) सभी ऑप्टिकल डिस्क ड्राइव (Optical Disk Drive - ODD) के प्रकार हैं, जिनमें लेज़र लाइट की मदद से डेटा पढ़ा और लिखा जाता है।
 </div>
 <hr>
 <div class="qd-question" id="qd-question40">
-<b>40.</b> एक ब्लू-रे डिस्क (Blu-ray Disc) की सिंगल-लेयर डिस्क पर भण्डारण क्षमता कितनी होती है?
+Blu-ray Disc की सिंगल-लेयर डिस्क पर भण्डारण क्षमता कितनी होती है?
 </div>
 <div class="qd-option" data-correct="false" data-question="qd-question40">
 750 MB
@@ -793,106 +793,106 @@ EXPLANATION: कॉम्पैक्ट डिस्क (CD), डिजिट�
 50 GB
 </div>
 <div class="qd-exp" data-question="qd-question40">
-EXPLANATION: ब्लू-रे डिस्क (Blue ray Disc) की भण्डारण क्षमता सिंगल-लेयर डिस्क पर 25 GB और ड्यूल-लेयर डिस्क पर 50 GB तक होती है।
+Blue ray Disc की भण्डारण क्षमता सिंगल-लेयर डिस्क पर 25 GB और ड्यूल-लेयर डिस्क पर 50 GB तक होती है।
 </div>
 <hr>
 <div class="qd-question" id="qd-question41">
-<b>41.</b> 1 निबल (Nibble) कितने बिट्स के बराबर होता है?
+Nibble कितने बिट्स के बराबर होता है?
 </div>
 <div class="qd-option" data-correct="false" data-question="qd-question41">
-2 बिट्स
+2 bits
 </div>
 <div class="qd-option" data-correct="true" data-question="qd-question41">
-4 बिट्स
+4 bits
 </div>
 <div class="qd-option" data-correct="false" data-question="qd-question41">
-8 बिट्स
+8 bits
 </div>
 <div class="qd-option" data-correct="false" data-question="qd-question41">
-16 बिट्स
+16 bits
 </div>
 <div class="qd-exp" data-question="qd-question41">
-EXPLANATION: मेमोरी की इकाइयों में 1 निबल (Nibble) 4 बिट्स (Bits) के बराबर होता है, जबकि 1 बाइट में 8 बिट्स होते हैं।
+Nibble 4 बिट्स (Bits) के बराबर होता है, जबकि 1 बाइट में 8 बिट्स होते हैं।
 </div>
 <hr>
 <div class="qd-question" id="qd-question42">
-<b>42.</b> एक कम्प्यूटर में सबसे तेज प्रकार की मेमोरी कौन-सी मानी जाती है जो सीधे प्रोसेसर का हिस्सा होती है?
+<b>42.</b> What is considered to be the fastest type of memory in a computer that is directly part of the processor?
 </div>
 <div class="qd-option" data-correct="false" data-question="qd-question42">
-रैम (RAM)
+RAM
 </div>
 <div class="qd-option" data-correct="false" data-question="qd-question42">
-रोम (ROM)
+ROM
 </div>
 <div class="qd-option" data-correct="true" data-question="qd-question42">
-रजिस्टर (Register)
+Register
 </div>
 <div class="qd-option" data-correct="false" data-question="qd-question42">
-हार्ड डिस्क (Hard Disk)
+Hard Disk
 </div>
 <div class="qd-exp" data-question="qd-question42">
-EXPLANATION: रजिस्टर (Register) एक कम्प्यूटर में सबसे तेज मेमोरी है। यह प्रोसेसर का एक हिस्सा है जिसका उपयोग कम्प्यूटर इंस्ट्रक्शन को होल्ड करने या डेटा के गणितीय ऑपरेशन करने के लिए किया जाता है।
+Register एक कम्प्यूटर में सबसे तेज मेमोरी है। यह प्रोसेसर का एक हिस्सा है जिसका उपयोग कम्प्यूटर इंस्ट्रक्शन को होल्ड करने या डेटा के गणितीय ऑपरेशन करने के लिए किया जाता है।
 </div>
 <hr>
 <div class="qd-question" id="qd-question43">
-<b>43.</b> सीपीयू (CPU) और मुख्य मेमोरी के बीच डेटा को तेजी से पहुँचाने के लिए किस मेमोरी का उपयोग किया जाता है?
+CPU और मुख्य मेमोरी के बीच डेटा को तेजी से पहुँचाने के लिए किस मेमोरी का उपयोग किया जाता है?
 </div>
 <div class="qd-option" data-correct="true" data-question="qd-question43">
-कैश मेमोरी (Cache Memory)
+Cache Memory
 </div>
 <div class="qd-option" data-correct="false" data-question="qd-question43">
-सेकेंडरी मेमोरी (Secondary Memory)
+Secondary Memory
 </div>
 <div class="qd-option" data-correct="false" data-question="qd-question43">
-वर्चुअल मेमोरी (Virtual Memory)
+Virtual Memory
 </div>
 <div class="qd-option" data-correct="false" data-question="qd-question43">
-फ्लैश मेमोरी (Flash Memory)
+Flash Memory
 </div>
 <div class="qd-exp" data-question="qd-question43">
-EXPLANATION: कैश मेमोरी (Cache Memory) एक बहुत तेज मेमोरी है जिसे कम्प्यूटर की सेंट्रल प्रोसेसिंग यूनिट (CPU) में स्थापित किया गया है। सीपीयू कैश मेमोरी का उपयोग उन निर्देशों को संगृहीत करने के लिए करता है जिन तक उसे बार-बार पहुँचना होता है।
+Cache Memory एक बहुत तेज मेमोरी है जिसे कम्प्यूटर की सेंट्रल प्रोसेसिंग यूनिट (CPU) में स्थापित किया गया है। सीपीयू कैश मेमोरी का उपयोग उन निर्देशों को संगृहीत करने के लिए करता है जिन तक उसे बार-बार पहुँचना होता है।
 </div>
 <hr>
 <div class="qd-question" id="qd-question44">
-<b>44.</b> भारत का 'सिलिकॉन सिटी' (Silicon City) किसे कहा जाता है?
+Silicon City किसे कहा जाता है?
 </div>
 <div class="qd-option" data-correct="false" data-question="qd-question44">
-हैदराबाद
+Hyderabad
 </div>
 <div class="qd-option" data-correct="false" data-question="qd-question44">
-पुणे
+Pune
 </div>
 <div class="qd-option" data-correct="true" data-question="qd-question44">
-बंगलुरु (Bengaluru)
+Bengaluru
 </div>
 <div class="qd-option" data-correct="false" data-question="qd-question44">
-चेन्नई
+Chennai
 </div>
 <div class="qd-exp" data-question="qd-question44">
-EXPLANATION: भारत में बंगलुरु (Bengaluru) को भारत का सिलिकॉन सिटी या सिलिकॉन वैली कहा जाता है।
+Bengaluru को भारत का सिलिकॉन सिटी या सिलिकॉन वैली कहा जाता है।
 </div>
 <hr>
 <div class="qd-question" id="qd-question45">
-<b>45.</b> कम्प्यूटर में इस्तेमाल होने वाली 'इंटीग्रेटेड चिप' (IC) का आविष्कार किसने किया था?
+IC का आविष्कार किसने किया था?
 </div>
 <div class="qd-option" data-correct="true" data-question="qd-question45">
-जे. एस. किल्बी (J.S. Kilby)
+J.S. Kilby
 </div>
 <div class="qd-option" data-correct="false" data-question="qd-question45">
-चार्ल्स बैबेज (Charles Babbage)
+Charles Babbage
 </div>
 <div class="qd-option" data-correct="false" data-question="qd-question45">
-टिम बर्नर्स ली (Tim Berners-Lee)
+Tim Berners-Lee
 </div>
 <div class="qd-option" data-correct="false" data-question="qd-question45">
-डगलस एंजेलवर्ट (Douglas Engelbart)
+Douglas Engelbart
 </div>
 <div class="qd-exp" data-question="qd-question45">
-EXPLANATION: कम्प्यूटर में प्रयुक्त होने वाली इंटीग्रेटेड चिप (IC) का आविष्कार जे. एस. किल्बी (J.S. Kilby) ने किया था।
+IC का आविष्कार जे. एस. किल्बी (J.S. Kilby) ने किया था।
 </div>
 <hr>
 <div class="qd-question" id="qd-question46">
-<b>46.</b> सर्वप्रथम उच्च स्तरीय कम्प्यूटर प्रोग्रामिंग भाषा FORTRAN का पूर्ण रूप क्या है?
+<b>46.</b> First of all, what is the full form of high level computer programming language FORTRAN?
 </div>
 <div class="qd-option" data-correct="false" data-question="qd-question46">
 Forward Translation
@@ -907,11 +907,11 @@ Formal Transaction
 Foreign Translation
 </div>
 <div class="qd-exp" data-question="qd-question46">
-EXPLANATION: फोरट्रॉन (FORTRAN) का पूरा नाम "Formula Translation" है। यह विश्व की सर्वप्रथम उच्च स्तरीय कम्प्यूटर प्रोग्रामिंग भाषा है, जिसका विकास जे. डब्ल्यू. बेकस द्वारा किया गया था।
+FORTRAN का पूरा नाम "Formula Translation" है। यह विश्व की सर्वप्रथम उच्च स्तरीय कम्प्यूटर प्रोग्रामिंग भाषा है, जिसका विकास जे. डब्ल्यू. बेकस द्वारा किया गया था।
 </div>
 <hr>
 <div class="qd-question" id="qd-question47">
-<b>47.</b> व्यापारिक या वाणिज्यिक आँकड़ों के संसाधन के लिए मुख्य रूप से किस भाषा का प्रयोग किया जाता है?
+<b>47.</b>Which language is mainly used for processing business or commercial data?
 </div>
 <div class="qd-option" data-correct="false" data-question="qd-question47">
 FORTRAN
@@ -926,64 +926,64 @@ COBOL
 LOGO
 </div>
 <div class="qd-exp" data-question="qd-question47">
-EXPLANATION: कोबोल (COBOL - Common Business Oriented Language) का प्रयोग मुख्य रूप से सरकारी या वाणिज्यिक दफ्तरों में व्यावसायिक आँकड़ों के संसाधन में किया जाता है।
+COBOL - Common Business Oriented Language का प्रयोग मुख्य रूप से सरकारी या वाणिज्यिक दफ्तरों में व्यावसायिक आँकड़ों के संसाधन में किया जाता है।
 </div>
 <hr>
 <div class="qd-question" id="qd-question48">
-<b>48.</b> कौन-सी कम्प्यूटर भाषा केवल 0 और 1 के समूहों से बनी होती है जिसे कम्प्यूटर सीधे समझ सकता है?
+<b>48.</b> Which computer language is made up of only groups of 0 and 1 that the computer can understand directly?
 </div>
 <div class="qd-option" data-correct="true" data-question="qd-question48">
-मशीनी भाषा (Machine Language)
+Machine Language
 </div>
 <div class="qd-option" data-correct="false" data-question="qd-question48">
-असेंबली भाषा (Assembly Language)
+Assembly Language
 </div>
 <div class="qd-option" data-correct="false" data-question="qd-question48">
-उच्च स्तरीय भाषा (High Level Language)
+High Level Language
 </div>
 <div class="qd-option" data-correct="false" data-question="qd-question48">
-सोर्स कोड (Source Code)
+Source Code
 </div>
 <div class="qd-exp" data-question="qd-question48">
-EXPLANATION: मशीनी भाषा (Machine Language) सिर्फ 1 व 0 के समूहों से बनी होती है और इसे कम्प्यूटर सीधे समझ सकता है।
+Machine Language सिर्फ 1 व 0 के समूहों से बनी होती है और इसे कम्प्यूटर सीधे समझ सकता है।
 </div>
 <hr>
 <div class="qd-question" id="qd-question49">
-<b>49.</b> सबसे लोकप्रिय कामकाज की उच्च स्तरीय प्रोग्रामिंग भाषा 'C' का आविष्कार किसने किया था?
+<b>49.</b> Who invented the most popular functional high level programming language 'C'?
 </div>
 <div class="qd-option" data-correct="false" data-question="qd-question49">
-जे. डब्ल्यू. बेकस (J.W. Backus)
+J.W. Backus
 </div>
 <div class="qd-option" data-correct="false" data-question="qd-question49">
-ग्रेस हॉपर (Grace Hopper)
+Grace Hopper
 </div>
 <div class="qd-option" data-correct="true" data-question="qd-question49">
-डेनिस रिची (Dennis Ritchie)
+Dennis Ritchie
 </div>
 <div class="qd-option" data-correct="false" data-question="qd-question49">
-जॉन केमेनी (John Kemeny)
+John Kemeny
 </div>
 <div class="qd-exp" data-question="qd-question49">
-EXPLANATION: 'C' भाषा का आविष्कार 1972 ई. में एटी एंड टी बेल्स (AT and T Bells) ने किया था, जिसमें डेनिस रिची (Dennis Ritchie) का मुख्य योगदान था।
+AT and T Bells ने किया था, जिसमें डेनिस रिची (Dennis Ritchie) का मुख्य योगदान था।
 </div>
 <hr>
 <div class="qd-question" id="qd-question50">
-<b>50.</b> कम्प्यूटर के संदर्भ में "कम्प्यूटर वायरस" (Computer Virus) क्या है?
+Computer Virus क्या है?
 </div>
 <div class="qd-option" data-correct="false" data-question="qd-question50">
-एक प्रकार का हार्डवेयर
+type of hardware
 </div>
 <div class="qd-option" data-correct="true" data-question="qd-question50">
-एक प्रकार का इलेक्ट्रॉनिक कोड जो गलत सूचनाएँ देता है
+A type of electronic code that gives false information
 </div>
 <div class="qd-option" data-correct="false" data-question="qd-question50">
-एक प्रकार की मेमोरी
+a type of memory
 </div>
 <div class="qd-option" data-correct="false" data-question="qd-question50">
-एक प्रकार का नेटवर्क प्रोटोकॉल
+a type of network protocol
 </div>
 <div class="qd-exp" data-question="qd-question50">
-EXPLANATION: कम्प्यूटर वायरस एक प्रकार का इलेक्ट्रॉनिक कोड (प्रोग्राम) है जो कम्प्यूटर में स्थित सूचनाओं और मेमोरीज को नष्ट करता है या गलत सूचना प्राप्त कराता है।
+EXPLANATION: Computer virus is a type of electronic code that destroys the information and memories located in the computer or provides wrong information.
 </div>
 
 <!--Reset Button-->

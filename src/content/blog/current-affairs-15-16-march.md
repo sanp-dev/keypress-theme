@@ -246,27 +246,27 @@ ai_summary: "Current Affairs 15–16 March 2026: India and World Updates"
 <hr />
 
 <div class="qd-question" id="qd-question1">
-<b>1.</b> Which international sea route became a major concern due to the Iran–Israel conflict in March 2026? (मार्च 2026 में ईरान–इजरायल संघर्ष के कारण कौन सा अंतरराष्ट्रीय समुद्री मार्ग चर्चा में रहा?)
+<b>1.</b> Which international sea route became a major concern due to the Iran–Israel conflict in March 2026?
 </div>
 <div class="qd-option" data-correct="false" data-question="qd-question1">
-Strait of Malacca (मलक्का जलडमरूमध्य)
+Strait of Malacca
 </div>
 <div class="qd-option" data-correct="true" data-question="qd-question1">
-Strait of Hormuz (हॉर्मुज़ जलडमरूमध्य)
+Strait of Hormuz
 </div>
 <div class="qd-option" data-correct="false" data-question="qd-question1">
-Panama Canal (पनामा नहर)
+Panama Canal
 </div>
 <div class="qd-option" data-correct="false" data-question="qd-question1">
-Suez Canal (स्वेज नहर)
+Suez Canal
 </div>
 <div class="qd-exp" data-question="qd-question1">
-EXPLANATION: Strait of Hormuz दुनिया के सबसे महत्वपूर्ण तेल मार्गों में से एक है, जहाँ से लगभग 20% वैश्विक तेल व्यापार गुजरता है।
+EXPLANATION: The Strait of Hormuz is one of the world's most important oil routes, with approximately 20% of global oil trade passing through it.
 </div>
 <hr>
 
 <div class="qd-question" id="qd-question2">
-<b>2.</b> Which international day is observed on 15 March every year? (हर वर्ष 15 मार्च को कौन सा अंतरराष्ट्रीय दिवस मनाया जाता है?)
+<b>2.</b> Which international day is observed on 15 March every year?
 </div>
 <div class="qd-option" data-correct="false" data-question="qd-question2">
 World Water Day
@@ -281,12 +281,12 @@ International Peace Day
 World Health Day
 </div>
 <div class="qd-exp" data-question="qd-question2">
-EXPLANATION: संयुक्त राष्ट्र द्वारा 15 मार्च को International Day to Combat Islamophobia घोषित किया गया है।
+EXPLANATION: March 15 has been declared International Day to Combat Islamophobia by the United Nations.
 </div>
 <hr>
 
 <div class="qd-question" id="qd-question3">
-<b>3.</b> The 98th Academy Awards (Oscars 2026) ceremony was held in which city? (98वें ऑस्कर पुरस्कार 2026 का आयोजन किस शहर में हुआ?)
+<b>3.</b> The 98th Academy Awards (Oscars 2026) ceremony was held in which city?
 </div>
 <div class="qd-option" data-correct="false" data-question="qd-question3">
 New York
@@ -301,12 +301,12 @@ London
 Toronto
 </div>
 <div class="qd-exp" data-question="qd-question3">
-EXPLANATION: 98th Academy Awards का आयोजन Los Angeles के Dolby Theatre में किया गया।
+EXPLANATION: The 98th Academy Awards were held at the Dolby Theater in Los Angeles.
 </div>
 <hr>
 
 <div class="qd-question" id="qd-question4">
-<b>4.</b> Which organization announced emergency aid for regions affected by the Middle East conflict? (मध्य पूर्व संघर्ष से प्रभावित क्षेत्रों के लिए आपात सहायता किस संगठन ने घोषित की?)
+<b>4.</b> Which organization announced emergency aid for regions affected by the Middle East conflict?
 </div>
 <div class="qd-option" data-correct="false" data-question="qd-question4">
 UNICEF
@@ -321,12 +321,12 @@ World Bank
 UNESCO
 </div>
 <div class="qd-exp" data-question="qd-question4">
-EXPLANATION: World Health Organization (WHO) ने मध्य पूर्व संघर्ष प्रभावित क्षेत्रों के लिए आपात सहायता घोषित की।
+EXPLANATION: The World Health Organization (WHO) declared emergency aid for Middle East conflict-affected areas.
 </div>
 <hr>
 
 <div class="qd-question" id="qd-question5">
-<b>5.</b> Progressive Punjab Investors Summit 2026 was held in which state? (Progressive Punjab Investors Summit 2026 किस राज्य में आयोजित हुआ?)
+<b>5.</b> Progressive Punjab Investors Summit 2026 was held in which state?
 </div>
 <div class="qd-option" data-correct="true" data-question="qd-question5">
 Punjab
@@ -341,12 +341,12 @@ Gujarat
 Rajasthan
 </div>
 <div class="qd-exp" data-question="qd-question5">
-EXPLANATION: Progressive Punjab Investors Summit 2026 पंजाब में आयोजित किया गया।
+EXPLANATION: Progressive Punjab Investors Summit 2026 was held in Punjab.
 </div>
 <hr>
 
 <div class="qd-question" id="qd-question6">
-<b>6.</b> Which Hindu fast was observed on 16 March 2026? (16 मार्च 2026 को कौन सा हिन्दू व्रत मनाया गया?)
+<b>6.</b> Which Hindu fast was observed on 16 March 2026?
 </div>
 <div class="qd-option" data-correct="false" data-question="qd-question6">
 Ekadashi Vrat
@@ -361,12 +361,12 @@ Karva Chauth
 Navratri
 </div>
 <div class="qd-exp" data-question="qd-question6">
-EXPLANATION: Som Pradosh Vrat भगवान शिव को समर्पित एक महत्वपूर्ण व्रत है।
+EXPLANATION: Som Pradosh Vrat is an important fast dedicated to Lord Shiva.
 </div>
 <hr>
 
 <div class="qd-question" id="qd-question7">
-<b>7.</b> Which country is involved in the conflict with Israel in March 2026? (मार्च 2026 में इजरायल के साथ संघर्ष में कौन सा देश शामिल है?)
+<b>7.</b> Which country is involved in the conflict with Israel in March 2026?
 </div>
 <div class="qd-option" data-correct="false" data-question="qd-question7">
 Iraq
@@ -381,12 +381,12 @@ Syria
 Turkey
 </div>
 <div class="qd-exp" data-question="qd-question7">
-EXPLANATION: मार्च 2026 में Iran और Israel के बीच सैन्य तनाव और हमले बढ़ गए।
+EXPLANATION: Military tensions and attacks between Iran and Israel escalated in March 2026.
 </div>
 <hr>
 
 <div class="qd-question" id="qd-question8">
-<b>8.</b> Around what percentage of global oil passes through the Strait of Hormuz? (हॉर्मुज़ जलडमरूमध्य से लगभग कितने प्रतिशत वैश्विक तेल गुजरता है?)
+<b>8.</b> Around what percentage of global oil passes through the Strait of Hormuz?
 </div>
 <div class="qd-option" data-correct="false" data-question="qd-question8">
 5%
@@ -401,12 +401,12 @@ EXPLANATION: मार्च 2026 में Iran और Israel के बीच 
 40%
 </div>
 <div class="qd-exp" data-question="qd-question8">
-EXPLANATION: दुनिया का लगभग 20% तेल व्यापार Strait of Hormuz से होकर गुजरता है।
+EXPLANATION: About 20% of the world's oil trade passes through the Strait of Hormuz.
 </div>
 <hr>
 
 <div class="qd-question" id="qd-question9">
-<b>9.</b> How many BRICS countries are there? (BRICS समूह में कितने देश हैं?)
+<b>9.</b> How many BRICS countries are there?
 </div>
 <div class="qd-option" data-correct="false" data-question="qd-question9">
 4
@@ -421,12 +421,12 @@ EXPLANATION: दुनिया का लगभग 20% तेल व्या�
 7
 </div>
 <div class="qd-exp" data-question="qd-question9">
-EXPLANATION: BRICS में Brazil, Russia, India, China और South Africa शामिल हैं।
+EXPLANATION: BRICS includes Brazil, Russia, India, China and South Africa.
 </div>
 <hr>
 
 <div class="qd-question" id="qd-question10">
-<b>10.</b> Rising oil prices mainly affect which sector of India the most? (तेल की कीमत बढ़ने से भारत का कौन सा क्षेत्र सबसे अधिक प्रभावित होता है?)
+<b>10.</b> Rising oil prices mainly affect which sector of India the most?
 </div>
 <div class="qd-option" data-correct="false" data-question="qd-question10">
 Agriculture
@@ -441,7 +441,7 @@ Tourism
 Education
 </div>
 <div class="qd-exp" data-question="qd-question10">
-EXPLANATION: भारत तेल का बड़ा आयातक है, इसलिए तेल की कीमत बढ़ने से import bill और अर्थव्यवस्था पर दबाव पड़ता है।
+EXPLANATION: India is a big importer of oil, hence increasing oil prices put pressure on the import bill and the economy.
 </div>
 <hr>
 <!--Reset Button-->

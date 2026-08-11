@@ -76,7 +76,7 @@ ai_summary: "Daily Current Affairs 25 February 2026 for Competitive Exam"
 <div class="qd-progress-bar" id="qd-progressBar"></div></div>
 <hr />
 <div class="qd-question" id="qd-question1">
-<b>1.</b> Prime Minister Narendra Modi began his two-day State Visit to which country on 25 February 2026? (प्रधानमंत्री नरेंद्र मोदी 25 फरवरी 2026 को किस देश की दो दिवसीय राजकीय यात्रा पर गए?)
+<b>1.</b> Prime Minister Narendra Modi began his two-day State Visit to which country on 25 February 2026?
 </div>
 <div class="qd-option" data-correct="true" data-question="qd-question1">
 Israel
@@ -96,7 +96,7 @@ EXPLANATION: Prime Minister Narendra Modi began his two-day State Visit to Israe
 <hr>
 
 <div class="qd-question" id="qd-question2">
-<b>2.</b> The Union Cabinet approved the renaming of Kerala to what new official name? (केंद्र सरकार ने केरल का नया आधिकारिक नाम क्या स्वीकृत किया?)
+<b>2.</b> The Union Cabinet approved the renaming of Kerala to what new official name?
 </div>
 <div class="qd-option" data-correct="true" data-question="qd-question2">
 Keralam
@@ -116,7 +116,7 @@ EXPLANATION: The Union Cabinet approved renaming Kerala as "Keralam" to reflect 
 <hr>
 
 <div class="qd-question" id="qd-question3">
-<b>3.</b> Under which Article of the Indian Constitution can the name of a state be changed? (भारतीय संविधान के किस अनुच्छेद के तहत राज्य का नाम बदला जा सकता है?)
+<b>3.</b> Under which Article of the Indian Constitution can the name of a state be changed?
 </div>
 <div class="qd-option" data-correct="true" data-question="qd-question3">
 Article 3
@@ -136,7 +136,7 @@ EXPLANATION: Article 3 of the Indian Constitution empowers Parliament to form ne
 <hr>
 
 <div class="qd-question" id="qd-question4">
-<b>4.</b> What is the total sanctioned cost for the Civil Enclave project at Srinagar International Airport? (श्रीनगर अंतरराष्ट्रीय हवाई अड्डे के सिविल एन्क्लेव प्रोजेक्ट के लिए स्वीकृत राशि कितनी है?)
+<b>4.</b> What is the total sanctioned cost for the Civil Enclave project at Srinagar International Airport?
 </div>
 <div class="qd-option" data-correct="true" data-question="qd-question4">
 ₹1,677 crore
@@ -156,7 +156,7 @@ EXPLANATION: The Cabinet Committee on Economic Affairs sanctioned ₹1,677 crore
 <hr>
 
 <div class="qd-question" id="qd-question5">
-<b>5.</b> The nationwide HPV vaccination drive announced by the Government aims to prevent which disease? (सरकार द्वारा घोषित एचपीवी टीकाकरण अभियान किस बीमारी की रोकथाम के लिए है?)
+<b>5.</b> The nationwide HPV vaccination drive announced by the Government aims to prevent which disease?
 </div>
 <div class="qd-option" data-correct="true" data-question="qd-question5">
 Cervical Cancer
@@ -176,7 +176,7 @@ EXPLANATION: The nationwide HPV vaccination campaign aims to prevent cervical ca
 <hr>
 
 <div class="qd-question" id="qd-question6">
-<b>6.</b> In which state did the air ambulance crash occur on 25 February 2026? (25 फरवरी 2026 को एयर एम्बुलेंस दुर्घटना किस राज्य में हुई?)
+<b>6.</b> In which state did the air ambulance crash occur on 25 February 2026?
 </div>
 <div class="qd-option" data-correct="true" data-question="qd-question6">
 Jharkhand
@@ -196,7 +196,7 @@ EXPLANATION: An air ambulance crashed in the forest area of Chatra district in J
 <hr>
 
 <div class="qd-question" id="qd-question7">
-<b>7.</b> The 19th All-India Police Shooting Championship was held in which city? (19वीं अखिल भारतीय पुलिस शूटिंग चैंपियनशिप किस शहर में आयोजित हुई?)
+<b>7.</b> The 19th All-India Police Shooting Championship was held in which city?
 </div>
 <div class="qd-option" data-correct="true" data-question="qd-question7">
 Indore
@@ -216,7 +216,7 @@ EXPLANATION: The 19th All-India Police Shooting Championship commenced at Reoti 
 <hr>
 
 <div class="qd-question" id="qd-question8">
-<b>8.</b> Delhi announced its first International Film Festival (IFFD) to be held at which venue? (दिल्ली का पहला अंतरराष्ट्रीय फिल्म महोत्सव किस स्थान पर आयोजित होगा?)
+<b>8.</b> Delhi announced its first International Film Festival (IFFD) to be held at which venue?
 </div>
 <div class="qd-option" data-correct="true" data-question="qd-question8">
 Bharat Mandapam
@@ -236,7 +236,7 @@ EXPLANATION: Delhi’s first International Film Festival Delhi (IFFD) is schedul
 <hr>
 
 <div class="qd-question" id="qd-question9">
-<b>9.</b> The proposed Honour Killing and Related Offences Bill, 2026 was introduced by which state? (ऑनर किलिंग एवं संबंधित अपराध विधेयक 2026 किस राज्य द्वारा प्रस्तावित किया गया?)
+<b>9.</b> The proposed Honour Killing and Related Offences Bill, 2026 was introduced by which state?
 </div>
 <div class="qd-option" data-correct="true" data-question="qd-question9">
 Karnataka
