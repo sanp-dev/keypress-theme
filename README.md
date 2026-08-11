@@ -4,9 +4,12 @@
 
 A modern, fully functional web publishing platform built with Astro and Cloudflare Pages, designed for fast, scalable, and customizable websites.
 
-## Live Demo
+## Live Demo & Resources
 
-[![Live Demo](https://img.shields.io/badge/🌐_Live_Demo-demo--blog.quicdecode.com-1a73e8?style=for-the-badge)](https://demo-blog.quicdecode.com)
+- **🌐 Blog Live Demo**: [![Blog Live](https://img.shields.io/badge/🌐_Blog_Demo-demo--blog.quicdecode.com-34a853?style=for-the-badge)](https://demo-blog.quicdecode.com)
+- **🖥️ CMS Dashboard Live Demo**: [![Dashboard Live](https://img.shields.io/badge/🖥_Dashboard_Demo-demo--cms.quicdecode.com-1a73e8?style=for-the-badge)](https://demo-cms.quicdecode.com)
+  - *Demo Login*: Email: `admin@example.com` | Password: `Admin@1234`
+- **📦 Official CMS Repository**: [demo-cms-quicdecode](https://github.com/sanp-dev/demo-cms-quicdecode) (The self-hosted management dashboard for this blog template)
 
 ## Author & Developer
 
