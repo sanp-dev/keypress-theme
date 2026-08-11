@@ -1,5 +1,5 @@
 import type { ImageMetadata } from 'astro';
-import defaultAvatar from '../assets/authors/default.png';
+import defaultAvatar from '../assets/authors/default.webp';
 import sandhataAvatar from '../assets/authors/sandhata.webp';
 import sushilAvatar from '../assets/authors/sushil-assistant.webp';
 import mandhataAvatar from '../assets/authors/mandhata-assistant.webp';
