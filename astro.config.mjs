@@ -102,8 +102,6 @@ function popularPostsPlugin() {
 }
 
 
-import { passthroughImageService } from 'astro/config';
-
 export default defineConfig({
   site: SITE_CONFIG.domain,
   build: {
@@ -124,7 +122,6 @@ export default defineConfig({
   },
 
   image: {
-    service: passthroughImageService(),
     remotePatterns: [
       // Allow images from site's own domain
       ...(siteHostname ? [{

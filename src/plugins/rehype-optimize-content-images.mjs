@@ -1,4 +1,9 @@
+import { SITE_CONFIG } from '../config/site.ts';
+
 export function rehypeOptimizeContentImages() {
+  const cdnDomain = (SITE_CONFIG.cdnDomain || 'https://demo-cdn.quicdecode.com').replace(/\/$/, '');
+  const domainHost = cdnDomain.replace(/^https?:\/\//, '');
+
   return (tree) => {
     function walk(node) {
       if (node.children) {
@@ -12,23 +17,23 @@ export function rehypeOptimizeContentImages() {
             
             if (isImd && !child.properties?.__optimized) {
               const src = child.properties.src;
-              if (src && src.includes('images.readshayari.in')) {
+              if (src && (src.includes(domainHost) || src.includes('thesmartadvice.com') || src.includes('quicdecode.com'))) {
                 // Clean the URL if it already has cdn-cgi path
-                const cleanPattern = /(https?:\/\/images\.readshayari\.in)\/cdn-cgi\/image\/[^\/]+\/(.+)/;
+                const cleanPattern = /(https?:\/\/[^\/]+)\/cdn-cgi\/image\/[^\/]+\/(.+)/;
                 let cleanUrl = src;
                 const match = src.match(cleanPattern);
                 if (match) {
                   cleanUrl = `${match[1]}/${match[2]}`;
                 }
 
-                const path = cleanUrl.replace(/^https?:\/\/images\.readshayari\.in\//, '');
-                const baseUrl = 'https://images.readshayari.in';
+                const pathKey = cleanUrl.replace(/^https?:\/\/[^\/]+\//, '');
+                const baseUrl = cdnDomain;
 
-                const desktop1x = `${baseUrl}/cdn-cgi/image/format=auto,width=320,quality=75/${path}`;
-                const desktop2x = `${baseUrl}/cdn-cgi/image/format=auto,width=640,quality=75/${path}`;
-                const mobile1x = `${baseUrl}/cdn-cgi/image/format=auto,width=480,quality=75/${path}`;
-                const mobile2x = `${baseUrl}/cdn-cgi/image/format=auto,width=960,quality=75/${path}`;
-                const fallback = `${baseUrl}/cdn-cgi/image/format=auto,width=640,quality=75/${path}`;
+                const desktop1x = `${baseUrl}/cdn-cgi/image/format=auto,width=320,quality=75/${pathKey}`;
+                const desktop2x = `${baseUrl}/cdn-cgi/image/format=auto,width=640,quality=75/${pathKey}`;
+                const mobile1x = `${baseUrl}/cdn-cgi/image/format=auto,width=480,quality=75/${pathKey}`;
+                const mobile2x = `${baseUrl}/cdn-cgi/image/format=auto,width=960,quality=75/${pathKey}`;
+                const fallback = `${baseUrl}/cdn-cgi/image/format=auto,width=640,quality=75/${pathKey}`;
 
                 // Mark as optimized
                 child.properties.__optimized = true;
