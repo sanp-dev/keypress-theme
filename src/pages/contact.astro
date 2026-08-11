@@ -10,11 +10,13 @@ const siteKey = SITE_CONFIG.turnstileSiteKey || "";
 ---
 
 <BaseLayout title={pageTitle} description={pageDescription}>
-  <!-- Load Cloudflare Turnstile Captcha Script -->
-  <script
-    src="https://challenges.cloudflare.com/turnstile/v0/api.js"
-    async
-    defer></script>
+  <!-- Load Cloudflare Turnstile Captcha Script conditionally -->
+  {siteKey && (
+    <script
+      src="https://challenges.cloudflare.com/turnstile/v0/api.js"
+      async
+      defer></script>
+  )}
 
   <main
     class="w-full font-[Arial,sans-serif] text-[#3c4043] antialiased bg-gray-50/50"
@@ -300,14 +302,16 @@ const siteKey = SITE_CONFIG.turnstileSiteKey || "";
             </div>
 
             <!-- Cloudflare Turnstile Captcha -->
-            <div class="flex justify-center md:justify-start pt-2">
-              <div
-                class="cf-turnstile animate-fade-in"
-                data-sitekey={siteKey}
-                data-theme="light"
-              >
+            {siteKey && (
+              <div class="flex justify-center md:justify-start pt-2">
+                <div
+                  class="cf-turnstile animate-fade-in"
+                  data-sitekey={siteKey}
+                  data-theme="light"
+                >
+                </div>
               </div>
-            </div>
+            )}
 
             <!-- Submit Button -->
             <div class="pt-2">

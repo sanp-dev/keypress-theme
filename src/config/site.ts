@@ -51,7 +51,7 @@ export const SITE_CONFIG: SiteConfig = {
   showAdPlaceholders: true,                           // Set to false to hide ad placeholder boxes when googleAdsenseId is empty
 
   // ─── Cloudflare Turnstile Integration ──────────────────────────────────────
-  turnstileSiteKey: "",        // Cloudflare Turnstile Site Key (leave "" for demo/unconfigured)
+  turnstileSiteKey: import.meta.env.PUBLIC_TURNSTILE_SITE_KEY || "",        // Cloudflare Turnstile Site Key (leave "" for demo/unconfigured)
 
   // ─── Web Stories Configuration ─────────────────────────────────────────────
   enableWebStories: true,                             // Set to false to completely disable Web Stories routes & header link
