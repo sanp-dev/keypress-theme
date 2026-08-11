@@ -17,7 +17,7 @@ export function rehypeOptimizeContentImages() {
             
             if (isImd && !child.properties?.__optimized) {
               const src = child.properties.src;
-              if (src && (src.includes(domainHost) || src.includes('thesmartadvice.com') || src.includes('quicdecode.com'))) {
+              if (src && (src.includes(domainHost) || src.includes('quicdecode.com'))) {
                 // Clean the URL if it already has cdn-cgi path
                 const cleanPattern = /(https?:\/\/[^\/]+)\/cdn-cgi\/image\/[^\/]+\/(.+)/;
                 let cleanUrl = src;
