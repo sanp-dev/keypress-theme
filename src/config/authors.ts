@@ -13,21 +13,21 @@ export interface AuthorProfile {
 }
 
 export const AUTHOR_REGISTRY: Record<string, AuthorProfile> = {
-  'adminsp2015@demo-blog.quicdecode.com': {
+  'admin@demo-blog.quicdecode.com': {
     name: 'Sandhata',
     slug: 'sandhata',
     avatarUrl: sandhataAvatar,
     bio: 'Founder and Lead Writer.',
     role: 'Editor-in-Chief',
   },
-  'assist1su6870@demo-blog.quicdecode.com': {
+  'writer1@demo-blog.quicdecode.com': {
     name: 'Sushil',
     slug: 'sushil-assistant-one',
     avatarUrl: sushilAvatar,
     bio: 'Assistant Writer',
     role: 'Staff Writer',
   },
-  'assist2ma4848@demo-blog.quicdecode.com': {
+  'writer2@demo-blog.quicdecode.com': {
     name: 'Mandhata',
     slug: 'mandhata-assistant',
     avatarUrl: mandhataAvatar,

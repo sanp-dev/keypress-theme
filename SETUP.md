@@ -63,7 +63,7 @@ export const SITE_CONFIG: SiteConfig = {
   logoTextSuffix: "DEMO BLOG",
 
   socials: {
-    github: "https://github.com/SandhataPrajapati",
+    github: "https://github.com/sanp-dev",
   }
 };
 ```
@@ -81,33 +81,35 @@ cp .env.example .env
 Available keys:
 - `PUBLIC_GA_ID`: Google Analytics measurement ID (e.g. `G-XXXXXXXXXX`).
 - `PUBLIC_CLARITY_ID`: Microsoft Clarity project ID.
-- `LICENSE_KEY`: Optional license key string for evaluation mode.
+- `GA4_PROPERTY_ID`, `GA4_CLIENT_EMAIL`, `GA4_PRIVATE_KEY`: GA4 Data API credentials for popular posts feature (Optional).
+- `R2_ACCOUNT_ID`, `R2_ACCESS_KEY_ID`, `R2_SECRET_ACCESS_KEY`: Cloudflare R2 bucket credentials for media assets (Optional).
+- `FIREBASE_SECRET`, `FIREBASE_URL`, `GEMINI_API_KEY`: Push notifications & AI services (Optional).
+
+> **Note on Licensing**: This project is 100% open-source under the MIT License. There are no license enforcement scripts, activation keys, or paywalls required.
 
 ---
 
 ## 4. Cloudflare D1 Database & KV Setup
 
-The platform uses Cloudflare bindings configured in `wrangler.toml`:
+This platform is optimized for Cloudflare Pages and utilizes two edge bindings:
+1. **`DB`** (Cloudflare D1 Database): Used for storing newsletter email subscriptions.
+2. **`POST_VIEWS`** (Cloudflare KV Namespace): Used for real-time article view counting and tracking.
 
-```toml
-name = "demo-blog"
-compatibility_date = "2026-08-10"
+### Setting Bindings in Cloudflare Pages Dashboard
 
-# D1 Database for Email Subscriptions
-[[d1_databases]]
-binding = "DB"
-database_name = "demo-blog-db"
-database_id = "f460a0e9-0dc4-418a-89c3-70abd57b2070"
+1. Navigate to **Cloudflare Dashboard** → **Workers & Pages** → Select your Pages Project.
+2. Go to **Settings** → **Functions** → **D1 Database Bindings**:
+   - Click **Add binding**.
+   - **Variable name**: `DB`
+   - **D1 Database**: Select your created D1 database (e.g., `demo-blog-db`).
+3. Under **KV Namespace Bindings**:
+   - Click **Add binding**.
+   - **Variable name**: `POST_VIEWS`
+   - **KV namespace**: Select your created KV namespace.
 
-# KV Namespace for Page View Tracking & Popular Posts
-[[kv_namespaces]]
-binding = "POST_VIEWS"
-id = "2c815d1dfe2a4228b0271204db3d43d5"
-```
+### Creating D1 & KV via Cloudflare CLI (Wrangler)
 
-### Creating D1 & KV via Wrangler CLI
-
-If deploying a new instance:
+If you are setting up new databases via command line:
 
 ```bash
 # Create D1 database for email subscribers
@@ -117,7 +119,7 @@ npx wrangler d1 create my-blog-db
 npx wrangler kv namespace create MY_BLOG_KV
 ```
 
-Paste the generated IDs into your `wrangler.toml` file.
+After creation, attach them to your Cloudflare Pages project settings as shown above.
 
 ---
 
@@ -167,8 +169,9 @@ Push notification UI component (`src/components/PushNotification.astro`) and Ser
 Configure AdSense in `src/config/site.ts`:
 
 ```typescript
-googleAdsenseId: "ca-pub-0000000000000000",
-adsenseLazyLoad: false,
+googleAdsenseId: "",         // Set your client ID (e.g. ca-pub-0000000000000000) or leave ""
+adsenseLazyLoad: false,     // Set true to lazy-load AdSense
+showAdPlaceholders: true,   // Set to false to hide ad placeholder boxes when googleAdsenseId is empty
 ```
 
 Use the reusable `<AdSense />` component in layout templates:
@@ -180,3 +183,28 @@ import AdSense from "../components/AdSense.astro";
 
 <AdSense slot="1234567890" format="auto" responsive="true" />
 ```
+
+---
+
+## 9. Web Stories Architecture & Working Mechanism
+
+The platform includes full support for AMP & interactive Web Stories located under `src/pages/webstories/`.
+
+### Working Mechanism
+- **Data Source**: At build-time, pages fetch story items from `public/webstories/story-list.json` or external endpoints.
+- **Fallback Engine**: If no JSON feed is available, built-in fallback stories ensure pages build cleanly without error.
+- **Categorization**: Web stories are dynamically grouped by category slug (`/webstories/[category]/`).
+
+### Disabling Web Stories Completely (`enableWebStories`)
+
+If your website does not use Web Stories, you can disable them cleanly from `src/config/site.ts`:
+
+```typescript
+enableWebStories: false, // Set to false to disable Web Stories completely
+```
+
+When set to `false`:
+1. **Header Navigation**: The `"WEBSTORIES"` link is automatically hidden from the main navigation header menu.
+2. **Build-Time Skipping**: Astro skips generating `/webstories/` HTML files and returns 0 paths in `getStaticPaths()`. No unused Web Stories code or pages are built.
+3. **XML Sitemap Exclusion**: `/webstories/` URLs are automatically excluded from `sitemap-index.xml.js`.
+4. **404 Guard**: Direct access to `/webstories/` routes redirects automatically to 404.

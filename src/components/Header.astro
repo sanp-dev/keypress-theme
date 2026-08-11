@@ -22,7 +22,7 @@ const menuItems: MenuItem[] = [
   { label: "EDUCATION", href: "/category/education/" },
   { label: "QUIZZES", href: "/category/quiz/" },
   { label: "CURRENT AFFAIRS", href: "/category/current-affairs/" },
-  { label: "WEBSTORIES", href: "/webstories/" },
+  ...(SITE_CONFIG.enableWebStories !== false ? [{ label: "WEBSTORIES", href: "/webstories/" }] : []),
   {
     label: "MORE",
     children: [

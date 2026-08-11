@@ -34,7 +34,8 @@ export async function GET(context) {
     'privacy-policy/',
     'terms-and-conditions/',
     'disclaimer/',
-    'sitemap/'
+    'sitemap/',
+    ...(SITE_CONFIG.enableWebStories !== false ? ['webstories/'] : [])
   ];
 
   // 2. Categories

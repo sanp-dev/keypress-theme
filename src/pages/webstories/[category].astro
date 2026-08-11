@@ -4,6 +4,9 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
 import { SITE_CONFIG } from "../../config/site";
 
 export async function getStaticPaths() {
+  if (SITE_CONFIG.enableWebStories === false) {
+    return [];
+  }
   let stories = [];
   try {
     console.log("Fetching stories at build-time for categories...");

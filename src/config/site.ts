@@ -18,6 +18,8 @@ export interface SiteConfig {
   logoTextSuffix: string;
   googleAdsenseId?: string; // Optional Google AdSense client ID (e.g. ca-pub-XXXXXXXXXXXXXXXX)
   adsenseLazyLoad?: boolean; // If true, AdSense script loads on first user interaction (or 300ms fallback)
+  showAdPlaceholders?: boolean; // If true, displays demo ad placeholders when googleAdsenseId is empty
+  enableWebStories?: boolean; // Set to false to completely disable Web Stories navigation, routes & builds
   showCookieConsent: boolean; // Control whether custom cookie consent banner is included in the build
   socials: {
     instagram?: string;
@@ -45,6 +47,10 @@ export const SITE_CONFIG: SiteConfig = {
   // ─── Google AdSense Integration ───────────────────────────────────────────
   googleAdsenseId: "",         // Google AdSense client ID (placeholder)
   adsenseLazyLoad: false,                             // Set true to lazy-load AdSense
+  showAdPlaceholders: true,                           // Set to false to hide ad placeholder boxes when googleAdsenseId is empty
+
+  // ─── Web Stories Configuration ─────────────────────────────────────────────
+  enableWebStories: true,                             // Set to false to completely disable Web Stories routes & header link
 
   // ─── Cookie Consent Configuration ─────────────────────────────────────────
   showCookieConsent: false,                           // Set to false to completely exclude the custom cookie banner from the build
@@ -58,13 +64,13 @@ export const SITE_CONFIG: SiteConfig = {
 
   // ─── Social Media Links ───────────────────────────────────────────────────
   socials: {
-    youtube: "",
-    instagram: "",
-    twitter: "",
-    facebook: "",
-    linkedin: "",
-    telegram: "",
-    github: "https://github.com/SandhataPrajapati",
+    youtube: "#",
+    instagram: "#",
+    twitter: "#",
+    facebook: "#",
+    linkedin: "#",
+    telegram: "#",
+    github: "https://github.com/sanp-dev",
   }
 };
 

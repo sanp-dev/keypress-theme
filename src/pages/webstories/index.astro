@@ -3,6 +3,10 @@
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import { SITE_CONFIG } from "../../config/site";
 
+if (SITE_CONFIG.enableWebStories === false) {
+  return Astro.redirect("/404");
+}
+
 const pageTitle = `Web Stories - ${SITE_CONFIG.name}`;
 const pageDescription = `Explore interactive, visual, and mobile-friendly Web Stories on Love, Quotes, Shayari, Attitude, Life, and Scriptural Wisdom from ${SITE_CONFIG.name}.`;
 const pageUrl = new URL("/webstories/", SITE_CONFIG.domain).href;

@@ -27,34 +27,37 @@ const {
 } = Astro.props;
 
 const adsenseId = SITE_CONFIG.googleAdsenseId;
+const showPlaceholders = SITE_CONFIG.showAdPlaceholders ?? true;
 const placeholderId = `ads-ph-${slot}-${Math.floor(Math.random() * 100000)}`;
 ---
 
-{adsenseId && (
+{adsenseId ? (
   <div class={`ad-container ${className}`}>
     {desktopOnly ? (
-      <div id={placeholderId}></div>
-      <script is:inline define:vars={{ placeholderId, adsenseId, slot, style, format, responsive }}>
-        (function() {
-          if (window.innerWidth >= 1280) {
-            var container = document.getElementById(placeholderId);
-            if (container) {
-              var ins = document.createElement('ins');
-              ins.className = 'adsbygoogle';
-              ins.style.cssText = style;
-              ins.setAttribute('data-ad-client', adsenseId);
-              ins.setAttribute('data-ad-slot', slot);
-              ins.setAttribute('data-ad-format', format);
-              ins.setAttribute('data-full-width-responsive', responsive);
-              container.appendChild(ins);
-              
-              requestAnimationFrame(function() {
-                try { (window.adsbygoogle = window.adsbygoogle || []).push({}); } catch (e) {}
-              });
+      <>
+        <div id={placeholderId}></div>
+        <script is:inline define:vars={{ placeholderId, adsenseId, slot, style, format, responsive }}>
+          (function() {
+            if (window.innerWidth >= 1280) {
+              var container = document.getElementById(placeholderId);
+              if (container) {
+                var ins = document.createElement('ins');
+                ins.className = 'adsbygoogle';
+                ins.style.cssText = style;
+                ins.setAttribute('data-ad-client', adsenseId);
+                ins.setAttribute('data-ad-slot', slot);
+                ins.setAttribute('data-ad-format', format);
+                ins.setAttribute('data-full-width-responsive', responsive);
+                container.appendChild(ins);
+                
+                requestAnimationFrame(function() {
+                  try { (window.adsbygoogle = window.adsbygoogle || []).push({}); } catch (e) {}
+                });
+              }
             }
-          }
-        })();
-      </script>
+          })();
+        </script>
+      </>
     ) : (
       <ins class="adsbygoogle"
            style={style}
@@ -71,4 +74,16 @@ const placeholderId = `ads-ph-${slot}-${Math.floor(Math.random() * 100000)}`;
       </script>
     )}
   </div>
-)}
+) : showPlaceholders ? (
+  <div class={`ad-placeholder-demo my-4 p-4 rounded-xl border border-dashed border-slate-300 dark:border-slate-700 bg-slate-50/70 dark:bg-slate-900/50 text-center transition-all ${className}`}>
+    <div class="flex items-center justify-center gap-2 text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">
+      <svg class="w-4 h-4 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path>
+      </svg>
+      <span>Advertisement Space ({format})</span>
+    </div>
+    <p class="text-[11px] text-slate-400 dark:text-slate-500 mt-1">
+      Configure <code class="px-1.5 py-0.5 rounded bg-slate-200/60 dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-mono text-[10px]">googleAdsenseId</code> in <code class="px-1.5 py-0.5 rounded bg-slate-200/60 dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-mono text-[10px]">src/config/site.ts</code>
+    </p>
+  </div>
+) : null}

@@ -4,9 +4,9 @@
 
 A modern, fully functional web publishing platform built with Astro and Cloudflare Pages, designed for fast, scalable, and customizable websites.
 
-## Live Demo button
+## Live Demo
 
-🌐 https://demo-blog.quicdecode.com
+[![Live Demo](https://img.shields.io/badge/🌐_Live_Demo-demo--blog.quicdecode.com-1a73e8?style=for-the-badge)](https://demo-blog.quicdecode.com)
 
 ## Author & Developer
 
@@ -22,7 +22,7 @@ Created and maintained by **Sandhata Prajapati**, an independent web developer f
 - **Dynamic Load More Pagination**: Smooth client-side pagination loading stories dynamically without full page reloads.
 - **Built-in Sitemaps & RSS Feeds**: Automatic XML sitemaps (`/sitemap-posts.xml`), visual sitemap (`/sitemap/`), and RSS feed (`/rss.xml`).
 - **Flexible Branding & Color Systems**: Customize website name, domain, multi-color logo letters, and social media handles from a single configuration file (`src/config/site.ts`).
-- **Google AdSense Ready**: High-performance AdSense integration with optional lazy-loading to keep PageSpeed scores at 100/100.
+- **Google AdSense Ready**: High-performance AdSense integration with optional lazy-loading and configurable demo placeholders toggle (`showAdPlaceholders`).
 - **PWA & Push Notification Ready**: Offline support with Service Worker and Firebase Web Push notification component.
 
 ---
@@ -44,8 +44,7 @@ D:\DEMO-BLOG-QUICDECODE\
 │   └── styles/              # Global CSS styles
 ├── .env.example             # Template environment variables
 ├── astro.config.mjs         # Astro framework configuration
-├── package.json             # Project metadata & dependencies
-└── wrangler.toml            # Cloudflare D1 & KV bindings configuration
+└── package.json             # Project metadata & dependencies
 ```
 
 ---
@@ -57,7 +56,7 @@ D:\DEMO-BLOG-QUICDECODE\
 Requires Node.js (version 22.12.0 or higher):
 
 ```bash
-git clone https://github.com/SandhataPrajapati/demo-blog.git
+git clone https://github.com/sanp-dev/demo-blog.git
 cd demo-blog
 npm install
 ```
@@ -73,6 +72,9 @@ export const SITE_CONFIG: SiteConfig = {
   contactEmail: "contact@quicdecode.com",
   title: "DEMO BLOG - Modern Web Publishing Platform",
   description: "A modern, fully functional web publishing platform built with Astro and Cloudflare Pages...",
+  googleAdsenseId: "",
+  showAdPlaceholders: true, // Toggle demo ad placeholders (true/false)
+  enableWebStories: true,   // Toggle Web Stories feature (true/false)
   // Customize logo letters and social handles below...
 };
 ```
@@ -115,9 +117,9 @@ This template is optimized for Cloudflare Pages with D1 Database & KV Namespace:
    - Select your repository.
    - Set Build Command: `npm run build`
    - Set Build Output Directory: `dist`
-3. **Configure Cloudflare Bindings** (`wrangler.toml`):
-   - **D1 Database**: Set binding `DB` for email subscriptions.
-   - **KV Namespace**: Set binding `POST_VIEWS` for page view tracking.
+3. **Configure Cloudflare Bindings** (in Dashboard → Settings → Functions):
+   - **D1 Database Binding**: Set variable name `DB` linked to your D1 database (for email subscriptions).
+   - **KV Namespace Binding**: Set variable name `POST_VIEWS` linked to your KV namespace (for page view tracking).
 
 ---
 
