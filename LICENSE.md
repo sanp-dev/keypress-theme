@@ -48,3 +48,7 @@ This software is provided for use at the user's own risk. The author makes no wa
 ## Contact
 
 For commercial licensing, redistribution, white-label use, or other permissions not granted by this license, please contact the copyright holder.
+
+---
+
+This project is licensed under a [Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License](https://creativecommons.org/licenses/by-nc-sa/4.0/).
