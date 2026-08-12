@@ -120,17 +120,27 @@ export async function onRequestPost({ request, env }) {
     const forwardResponse = await fetch(googleScriptUrl, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ name, email, subject, message })
+      body: JSON.stringify({ name, email, subject, message }),
+      redirect: "follow"
     });
 
-    const forwardResult = await forwardResponse.json();
-    if (forwardResult.status === "success") {
+    // Google Apps Script may return plain text or redirect — parse safely
+    const rawText = await forwardResponse.text();
+    let forwardResult = {};
+    try {
+      forwardResult = JSON.parse(rawText);
+    } catch (_) {
+      // Not JSON — treat any 2xx HTTP status as success
+      forwardResult = { status: forwardResponse.ok ? "success" : "error" };
+    }
+
+    if (forwardResponse.ok && forwardResult.status !== "error") {
       return new Response(JSON.stringify({ success: "Thank you! Your message has been sent successfully." }), {
         status: 200,
         headers: { "Content-Type": "application/json" }
       });
     } else {
-      throw new Error(forwardResult.message || "Failed to deliver email through script.");
+      throw new Error(forwardResult.message || "Message delivery failed.");
     }
 
   } catch (error) {
