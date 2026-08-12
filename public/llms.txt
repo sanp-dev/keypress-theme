@@ -1,4 +1,4 @@
-# DEMO BLOG - Modern Web Publishing Platform
+# Keypress Theme — Modern Web Publishing Platform
 
 > A modern, fully functional web publishing platform built with Astro and Cloudflare Pages.
 

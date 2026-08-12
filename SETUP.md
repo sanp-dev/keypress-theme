@@ -1,6 +1,6 @@
-# DEMO BLOG — Developer & Architecture Setup Guide
+# Keypress Theme — Developer & Architecture Setup Guide
 
-This guide details the technical configuration, Cloudflare D1 & KV bindings, Edge functions setup, and customization for the **DEMO BLOG** platform template.
+This guide details the technical configuration, Cloudflare D1 & KV bindings, Edge functions setup, and customization for the **Keypress Theme** platform template.
 
 ---
 
@@ -45,22 +45,22 @@ Customize website branding, domain, logo, and social handles in `src/config/site
 
 ```typescript
 export const SITE_CONFIG: SiteConfig = {
-  name: "DEMO BLOG - Modern Web Publishing Platform",
+  name: "Keypress Theme — Modern Web Publishing Platform",
   domain: "https://demo-blog.quicdecode.com",               // Canonical domain
   cdnDomain: "https://demo-cdn.quicdecode.com",            // CDN subdomain for images
   contactEmail: "contact@quicdecode.com",                 // Shown on legal & contact pages
 
-  title: "DEMO BLOG - Modern Web Publishing Platform",
+  title: "Keypress Theme — Modern Web Publishing Platform",
   description: "A modern, fully functional web publishing platform built with Astro and Cloudflare Pages...",
   defaultOgImage: "/default-og-image.jpg",
   themeColor: "#1a73e8",
 
   // Multi-color logo letters (Google-inspired)
   logoLetters: [
-    { char: "Q", color: "text-[#1a73e8]" },
-    { char: "D", color: "text-[#d93025]" },
+    { char: "K", color: "text-[#1a73e8]" },
+    { char: "P", color: "text-[#d93025]" },
   ],
-  logoTextSuffix: "DEMO BLOG",
+  logoTextSuffix: "Keypress",
 
   socials: {
     github: "https://github.com/sanp-dev",
@@ -85,7 +85,7 @@ Available keys:
 - `R2_ACCOUNT_ID`, `R2_ACCESS_KEY_ID`, `R2_SECRET_ACCESS_KEY`: Cloudflare R2 bucket credentials for media assets (Optional).
 - `FIREBASE_SECRET`, `FIREBASE_URL`, `GEMINI_API_KEY`: Push notifications & AI services (Optional).
 
-> **Note on Licensing**: This project is 100% open-source under the MIT License. There are no license enforcement scripts, activation keys, or paywalls required.
+> **Note on Licensing**: This project is released under the Project Source-Available License. You are free to use, modify, and deploy it for your own website.
 
 ---
 
@@ -101,7 +101,7 @@ This platform is optimized for Cloudflare Pages and utilizes two edge bindings:
 2. Go to **Settings** → **Functions** → **D1 Database Bindings**:
    - Click **Add binding**.
    - **Variable name**: `DB`
-   - **D1 Database**: Select your created D1 database (e.g., `demo-blog-db`).
+   - **D1 Database**: Select your created D1 database (e.g., `my-blog-db`).
 3. Under **KV Namespace Bindings**:
    - Click **Add binding**.
    - **Variable name**: `POST_VIEWS`

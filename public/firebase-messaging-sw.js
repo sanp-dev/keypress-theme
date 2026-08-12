@@ -3,10 +3,10 @@ importScripts('https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js
 importScripts('https://www.gstatic.com/firebasejs/10.12.2/firebase-messaging-compat.js');
 
 const firebaseConfig = {
-  apiKey: "AIzaSyDUMMYKEYFORPUBLICDEMOBlogTemplate1234",
-  authDomain: "demo-blog-push.firebaseapp.com",
-  projectId: "demo-blog-push",
-  storageBucket: "demo-blog-push.appspot.com",
+  apiKey: "AIzaSyDUMMYKEYFORPUBLICKeypressThemeTemplate1234",
+  authDomain: "keypress-theme-push.firebaseapp.com",
+  projectId: "keypress-theme-push",
+  storageBucket: "keypress-theme-push.appspot.com",
   messagingSenderId: "000000000000",
   appId: "1:000000000000:web:0000000000000000000000"
 };
@@ -28,7 +28,7 @@ try {
         icon: payload.data?.icon || payload.notification?.icon || '/icon.png',
         image: payload.data?.image || payload.notification?.image,
         badge: '/badge.png',
-        tag: 'qd-push',
+        tag: 'kp-push',
         renotify: true,
         actions: pushActions,
         data: {
@@ -56,7 +56,7 @@ if (workbox) {
   workbox.routing.registerRoute(
     ({ request }) => request.mode === 'navigate',
     new workbox.strategies.NetworkFirst({
-      cacheName: 'qd-pages-' + CURRENT_CACHE_VERSION,
+      cacheName: 'kp-pages-' + CURRENT_CACHE_VERSION,
       networkTimeoutSeconds: 3,
       plugins: [
         new workbox.expiration.ExpirationPlugin({
@@ -74,7 +74,7 @@ if (workbox) {
       return url.host.includes(baseDomain);
     },
     new workbox.strategies.CacheFirst({
-      cacheName: 'qd-images-' + CURRENT_CACHE_VERSION,
+      cacheName: 'kp-images-' + CURRENT_CACHE_VERSION,
       plugins: [
         new workbox.expiration.ExpirationPlugin({
           maxEntries: 50,
@@ -95,7 +95,7 @@ if (workbox) {
       return isStaticAsset && isAllowedDomain;
     },
     new workbox.strategies.StaleWhileRevalidate({
-      cacheName: 'qd-static-' + CURRENT_CACHE_VERSION,
+      cacheName: 'kp-static-' + CURRENT_CACHE_VERSION,
       plugins: [
         new workbox.expiration.ExpirationPlugin({
           maxEntries: 20,
@@ -123,7 +123,7 @@ if (workbox) {
         return Promise.all(
           cacheNames.map((name) => {
             const isOldLegacyCache = name === 'images-cache' || name === 'static-resources' || name === 'pages-cache';
-            const isOurOldVersionedCache = name.startsWith('qd-') && !name.endsWith(CURRENT_CACHE_VERSION);
+            const isOurOldVersionedCache = name.startsWith('kp-') && !name.endsWith(CURRENT_CACHE_VERSION);
             if (isOldLegacyCache || isOurOldVersionedCache) {
               return caches.delete(name);
             }

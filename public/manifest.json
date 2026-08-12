@@ -1,6 +1,6 @@
 {
-  "name": "DEMO BLOG",
-  "short_name": "DEMO BLOG",
+  "name": "Keypress Theme",
+  "short_name": "Keypress",
   "description": "A modern, fully functional web publishing platform built with Astro and Cloudflare Pages, designed for fast, scalable, and customizable websites.",
   "lang": "en-US",
   "display": "standalone",

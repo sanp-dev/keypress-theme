@@ -35,12 +35,12 @@ export interface SiteConfig {
 
 export const SITE_CONFIG: SiteConfig = {
   // ─── Basic Site Info ──────────────────────────────────────────────────────
-  name: "DEMO BLOG - Modern Web Publishing Platform",
+  name: "Keypress Theme — Modern Web Publishing Platform",
   domain: "https://demo-blog.quicdecode.com",               // Production domain
   cdnDomain: "https://demo-cdn.quicdecode.com",            // External CDN domain for images
   contactEmail: "contact@quicdecode.com",                 // Shown on legal pages, contact page, and footer
 
-  title: "DEMO BLOG - Modern Web Publishing Platform",
+  title: "Keypress Theme — Modern Web Publishing Platform",
   description: "A modern, fully functional web publishing platform built with Astro and Cloudflare Pages, designed for fast, scalable, and customizable websites.",
   defaultOgImage: "/default-og-image.jpg",            // Default social sharing image
   themeColor: "#1a73e8",                              // PWA / browser theme color
@@ -59,12 +59,12 @@ export const SITE_CONFIG: SiteConfig = {
   // ─── Cookie Consent Configuration ─────────────────────────────────────────
   showCookieConsent: false,                           // Set to false to completely exclude the custom cookie banner from the build
 
-  // ─── Branding: Logo Letters ───────────────────────────────────────────────
+  // ─── Branding: Logo Letters ───────────────────────────────────────────────────────────
   logoLetters: [
-    { char: "Q", color: "text-[#1a73e8]" },
-    { char: "D", color: "text-[#d93025]" },
+    { char: "K", color: "text-[#1a73e8]" },
+    { char: "P", color: "text-[#d93025]" },
   ],
-  logoTextSuffix: "DEMO BLOG",
+  logoTextSuffix: "Keypress",
 
   // ─── Social Media Links ───────────────────────────────────────────────────
   socials: {
@@ -79,14 +79,14 @@ export const SITE_CONFIG: SiteConfig = {
 };
 
 export const ADS_SLOTS = {
-  // ─── Responsive Auto Slots ──────────────────────────────────────────────
-  horizontal: "1234567890", // QD HORIZONTAL AD   → Home top / Post top / Category
-  square: "1234567891", // QD SQUARE AD        → Home bottom / Post bottom
-  vertical: "1234567892", // QD VERTICAL AD      → Post Left Sidebar (160×600)
-  vertical2: "1234567893", // QD VERTICAL AD 2    → Post Right Sidebar (160×600)
+  // ─── Responsive Auto Slots ────────────────────────────────────────────────────────
+  horizontal: "1234567890", // KP HORIZONTAL AD   → Home top / Post top / Category
+  square: "1234567891", // KP SQUARE AD        → Home bottom / Post bottom
+  vertical: "1234567892", // KP VERTICAL AD      → Post Left Sidebar (160×600)
+  vertical2: "1234567893", // KP VERTICAL AD 2    → Post Right Sidebar (160×600)
 
-  // ─── Specialised Slots ───────────────────────────────────────────────────
-  top: "1234567894", // qd-top              → Fixed 728×90 Leaderboard (reserved)
-  inArticle1: "1234567895", // QD IN-ARTICLE #1    → In-article fluid (after 3rd para)
-  inArticle2: "1234567896", // QD IN-ARTICLE #2    → In-article fluid (after 8th para)
+  // ─── Specialised Slots ───────────────────────────────────────────────────────────
+  top: "1234567894", // kp-top              → Fixed 728×90 Leaderboard (reserved)
+  inArticle1: "1234567895", // KP IN-ARTICLE #1    → In-article fluid (after 3rd para)
+  inArticle2: "1234567896", // KP IN-ARTICLE #2    → In-article fluid (after 8th para)
 };

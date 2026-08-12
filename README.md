@@ -1,14 +1,14 @@
-# DEMO BLOG - Modern Web Publishing Platform
+# Keypress Theme — Astro + Cloudflare Blog Theme
 
 ## About
 
-A modern, fully functional web publishing platform built with Astro and Cloudflare Pages, designed for fast, scalable, and customizable websites.
+A modern, fully functional web publishing platform built with Astro and Cloudflare Pages, designed for fast, scalable, and customizable websites. Inspired by Google's keyword-driven design philosophy.
 
 ## Live Demo & Resources
 
 [![Blog Demo](https://img.shields.io/badge/🌐_Blog_Live_Demo-demo--blog.quicdecode.com-2ea44f?style=for-the-badge)](https://demo-blog.quicdecode.com)
 [![CMS Dashboard](https://img.shields.io/badge/🖥️_CMS_Dashboard_Demo-demo--cms.quicdecode.com-1a73e8?style=for-the-badge)](https://demo-cms.quicdecode.com)
-[![CMS Repository](https://img.shields.io/badge/📦_CMS_GitHub_Repository-demo--cms--quicdecode-24292e?style=for-the-badge)](https://github.com/sanp-dev/demo-cms-quicdecode)
+[![CMS Repository](https://img.shields.io/badge/📦_CMS_GitHub_Repository-keypress--cms-24292e?style=for-the-badge)](https://github.com/sanp-dev/keypress-cms)
 
 > **Demo Login Credentials for CMS Dashboard:**
 > - **Email:** `admin@example.com`
@@ -36,7 +36,7 @@ Created and maintained by **Sandhata Prajapati**, an independent web developer f
 ## 📂 Project Structure
 
 ```text
-D:\DEMO-BLOG-QUICDECODE\
+keypress-theme/
 ├── functions/               # Cloudflare Pages Edge Functions
 │   ├── api/                 # API endpoints (subscribe, contact, track-view)
 │   └── _middleware.js       # Cloudflare Pages Edge Middleware (410 Gone, routing)
@@ -62,8 +62,8 @@ D:\DEMO-BLOG-QUICDECODE\
 Requires Node.js (version 22.12.0 or higher):
 
 ```bash
-git clone https://github.com/sanp-dev/demo-blog.git
-cd demo-blog
+git clone https://github.com/sanp-dev/keypress-theme.git
+cd keypress-theme
 npm install
 ```
 
@@ -73,10 +73,10 @@ Open `src/config/site.ts` and update `SITE_CONFIG`:
 
 ```typescript
 export const SITE_CONFIG: SiteConfig = {
-  name: "DEMO BLOG - Modern Web Publishing Platform",
+  name: "Keypress Theme — Modern Web Publishing Platform",
   domain: "https://demo-blog.quicdecode.com",
-  contactEmail: "contact@quicdecode.com",
-  title: "DEMO BLOG - Modern Web Publishing Platform",
+  contactEmail: "contact@yourdomain.com",
+  title: "Keypress Theme — Modern Web Publishing Platform",
   description: "A modern, fully functional web publishing platform built with Astro and Cloudflare Pages...",
   googleAdsenseId: "",
   showAdPlaceholders: true, // Toggle demo ad placeholders (true/false)
