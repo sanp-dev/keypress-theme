@@ -1,6 +1,6 @@
 ---
-title: "Current Affairs Updates (1–10 April 2026) – 25 Key Points with Dates"
-description: "Current affairs updates and news recap for competitive exams. Current Affairs Updates (1–10 April 2026) – 25 Key Points with Dates"
+title: "Current Affairs Updates (1-10 April 2026) - 25 Key Points with Dates"
+description: "Current affairs updates and news recap for competitive exams. Current Affairs Updates (1-10 April 2026) - 25 Key Points with Dates"
 pubDate: "2026-03-05T16:45:09.677Z"
 category: "Current-affairs"
 image: "https://demo-cdn.quicdecode.com/57f3ac84-1-10-april-2026-current-affairs.webp"
@@ -8,7 +8,7 @@ image_caption: ""
 author: "SANDHATA"
 authorSlug: "sandhata"
 tags: []
-ai_summary: "Current Affairs Updates (1–10 April 2026) – 25 Key Points with Dates"
+ai_summary: "Current Affairs Updates (1-10 April 2026) - 25 Key Points with Dates"
 ---
 <p>This expanded and highly detailed current affairs update incorporates the exact dates of major events from 1 April to 10 April 2026. Knowing the precise dates is crucial for serious government exam aspirants as objective questions frequently test chronological awareness. Review these 25 carefully vetted points to analyze deeper and prepare effectively.</p>
 
@@ -51,7 +51,7 @@ ai_summary: "Current Affairs Updates (1–10 April 2026) – 25 Key Points with Date
 <ul>
   <li><strong>20. Artemis 2 Mission Milestone (April 2):</strong> NASA's Artemis 2 mission successfully completed a critical lunar flyby test maneuver, marking a major step for crewed missions.</li>
   <li><strong>21. India's GDP Projections (April 4):</strong> The Asian Development Bank (ADB) released its outlook report, projecting a robust 6.8% GDP growth rate for India for FY 2026-27.</li>
-  <li><strong>22. RBI Monetary Policy (April 5):</strong> The Reserve Bank of India’s Monetary Policy Committee (MPC) concluded its bi-monthly meeting, maintaining the repo rate unchanged to anchor retail inflation.</li>
+  <li><strong>22. RBI Monetary Policy (April 5):</strong> The Reserve Bank of India-s Monetary Policy Committee (MPC) concluded its bi-monthly meeting, maintaining the repo rate unchanged to anchor retail inflation.</li>
 </ul>
 
 <h2>Important Days and Environmental Updates</h2>

@@ -19,12 +19,12 @@ ai_summary: "Daily Current Affairs (Feb 2-3, 2026): New Ramsar Sites, Budget and
 <h3>2. Environment: India Adds Two New Ramsar Sites</h3>
 <p>Ahead of World Wetlands Day (February 2), the Union Environment Ministry announced the addition of two new wetlands to the list of Ramsar sites of international importance. The new sites are the <strong>Patna Bird Sanctuary</strong> in Etah district, Uttar Pradesh, and the <strong>Chhari-Dhand Wetland Reserve</strong> in the Kutch district of Gujarat. This inclusion highlights India's continued focus on conserving biodiversity and critical marshland ecosystems.</p>
 
-<p style="padding:12px;background:#f8fafc;border-left:4px solid #1a73e8;border-radius:4px;font-weight:600;margin:16px 0;">Also Read: <a href="/post/current-affairs-10-14-march/">Top Current Affairs 3–6 March 2026: India and World Updates with MCQs</a></p>
+<p style="padding:12px;background:#f8fafc;border-left:4px solid #1a73e8;border-radius:4px;font-weight:600;margin:16px 0;">Also Read: <a href="/post/current-affairs-10-14-march/">Top Current Affairs 3-6 March 2026: India and World Updates with MCQs</a></p>
 
 
 
 <h3>3. Economy: Launch of 'Biopharma SHAKTI' Scheme</h3>
-<p>Following the Union Budget presentation, the government has launched the ‘Biopharma SHAKTI’ mission with a massive outlay of ?10,000 crore. The scheme aims to position India as a global hub for the manufacturing of biologics and biosimilars. It focuses on upgrading the National Institutes of Pharmaceutical Education and Research (NIPERs) and establishing new clinical trial infrastructure to reduce import dependence in the high-value pharma sector.</p>
+<p>Following the Union Budget presentation, the government has launched the -Biopharma SHAKTI- mission with a massive outlay of ?10,000 crore. The scheme aims to position India as a global hub for the manufacturing of biologics and biosimilars. It focuses on upgrading the National Institutes of Pharmaceutical Education and Research (NIPERs) and establishing new clinical trial infrastructure to reduce import dependence in the high-value pharma sector.</p>
 
 <h3>4. Awards: Dalai Lama and Bad Bunny Win at 2026 Grammys</h3>
 <p>The 68th Grammy Awards saw historic wins, with Tibetan spiritual leader, the <strong>Dalai Lama</strong>, winning the 'Best Audio Book, Narration, and Storytelling Recording' award. In the music categories, Puerto Rican artist <strong>Bad Bunny</strong> clinched the prestigious 'Album of the Year' award, marking a significant moment for Latin music on the global stage. Additionally, the track "Golden" became the first-ever K-Pop song to win a Grammy, securing the 'Best Song Written for Visual Media' title.</p>

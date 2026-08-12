@@ -10,15 +10,15 @@ authorSlug: "sandhata"
 tags: []
 ai_summary: "Daily Current Affairs 25 February 2026 for Competitive Exam"
 ---
-<h2>Daily Current Affairs – 25 February 2026</h2>
+<h2>Daily Current Affairs - 25 February 2026</h2>
 
-<h3>1. PM Narendra Modi’s State Visit to Israel Begins</h3>
+<h3>1. PM Narendra Modi-s State Visit to Israel Begins</h3>
 <p>Prime Minister Narendra Modi left India on 25 February 2026 for a two-day state visit to Israel. The visit focuses on strengthening cooperation in technology, defence, innovation, and strategic partnerships between the two nations.</p>
 
-<h3>2. Union Cabinet Approves Renaming of Kerala to ‘Keralam’</h3>
-<p>The Union Cabinet cleared the proposal to rename Kerala as “Keralam,” aligning the official English name with Malayalam usage. The constitutional procedure under Article 3 will follow before the change becomes official.</p>
+<h3>2. Union Cabinet Approves Renaming of Kerala to -Keralam-</h3>
+<p>The Union Cabinet cleared the proposal to rename Kerala as -Keralam,- aligning the official English name with Malayalam usage. The constitutional procedure under Article 3 will follow before the change becomes official.</p>
 
-<p style="padding:12px;background:#f8fafc;border-left:4px solid #1a73e8;border-radius:4px;font-weight:600;margin:16px 0;">Also Read: <a href="/post/current-affairs-10-14-march/">Top Current Affairs 3–6 March 2026: India and World Updates with MCQs</a></p>
+<p style="padding:12px;background:#f8fafc;border-left:4px solid #1a73e8;border-radius:4px;font-weight:600;margin:16px 0;">Also Read: <a href="/post/current-affairs-10-14-march/">Top Current Affairs 3-6 March 2026: India and World Updates with MCQs</a></p>
 
 
 
@@ -33,7 +33,7 @@ ai_summary: "Daily Current Affairs 25 February 2026 for Competitive Exam"
 
 
 <h3>5. Air Ambulance Crash in Jharkhand</h3>
-<p>An air ambulance crashed in Jharkhand’s Chatra forest, resulting in the death of all passengers and crew members on board. Authorities have initiated an investigation into the cause of the crash.</p>
+<p>An air ambulance crashed in Jharkhand-s Chatra forest, resulting in the death of all passengers and crew members on board. Authorities have initiated an investigation into the cause of the crash.</p>
 
 <h3>6. NCERT Textbook Debate on Judiciary Corruption</h3>
 <p>The inclusion of references to corruption at various levels of the judiciary in a Class 8 NCERT Social Science textbook sparked public and political debate.</p>
@@ -49,7 +49,7 @@ ai_summary: "Daily Current Affairs 25 February 2026 for Competitive Exam"
 <p>The 19th All-India Police Shooting Championship commenced at Reoti Ranges in Indore, with participation from state and central police teams across India.</p>
 
 <h3>9. Delhi to Host First International Film Festival (IFFD)</h3>
-<p>Delhi announced it will host its first International Film Festival Delhi (IFFD) from 25–31 March at Bharat Mandapam, aiming to promote global cinema and cultural exchange.</p>
+<p>Delhi announced it will host its first International Film Festival Delhi (IFFD) from 25-31 March at Bharat Mandapam, aiming to promote global cinema and cultural exchange.</p>
 
 <h3>10. Karnataka Honour Killing Bill 2026 Sparks Debate</h3>
 <p>The proposed Karnataka Honour Killing and Related Offences Bill, 2026 triggered political and social discussions regarding its provisions and implications.</p>
@@ -59,11 +59,11 @@ ai_summary: "Daily Current Affairs 25 February 2026 for Competitive Exam"
 
 <h3>Exam Quick Revision Points</h3>
 <ul>
-<li>PM Modi Israel Visit – International Relations</li>
-<li>Keralam Renaming – Article 3 of the Constitution</li>
-<li>HPV Vaccination Drive – Public Health Initiative</li>
-<li>Srinagar Airport Project – Infrastructure Development</li>
-<li>Karnataka Honour Killing Bill – Social Justice and Law</li>
+<li>PM Modi Israel Visit - International Relations</li>
+<li>Keralam Renaming - Article 3 of the Constitution</li>
+<li>HPV Vaccination Drive - Public Health Initiative</li>
+<li>Srinagar Airport Project - Infrastructure Development</li>
+<li>Karnataka Honour Killing Bill - Social Justice and Law</li>
 </ul>
 
 <!--more-->
@@ -231,7 +231,7 @@ Siri Fort Auditorium
 Vigyan Bhawan
 </div>
 <div class="qd-exp" data-question="qd-question8">
-EXPLANATION: Delhi’s first International Film Festival Delhi (IFFD) is scheduled to be held at Bharat Mandapam from 25–31 March 2026.
+EXPLANATION: Delhi-s first International Film Festival Delhi (IFFD) is scheduled to be held at Bharat Mandapam from 25-31 March 2026.
 </div>
 <hr>
 
