@@ -991,7 +991,7 @@ if (hasFaqs) {
     }
   </style>
 
-  <script is:inline>
+  <script is:inline define:vars={{ adsenseId: SITE_CONFIG.googleAdsenseId }}>
     // Robust copy-to-clipboard utility
     function copyTextToClipboard(text, callback) {
       if (navigator.clipboard && navigator.clipboard.writeText) {
@@ -1345,7 +1345,7 @@ if (hasFaqs) {
         const elements = article.querySelectorAll(':scope > p, :scope > h2, :scope > .qd-quiz-wrap');
         
         // Slot 1: Insert after 3rd paragraph/heading
-        if (elements.length >= 3 && !article.querySelector('.ins-inarticle-ad-1')) {
+        if (adsenseId && elements.length >= 3 && !article.querySelector('.ins-inarticle-ad-1')) {
           const target1 = elements[2];
           const adWrapper1 = document.createElement('div');
           adWrapper1.className = 'ins-inarticle-ad-1 my-8 text-center overflow-hidden';
@@ -1354,7 +1354,7 @@ if (hasFaqs) {
                  style="display:block; text-align:center;"
                  data-ad-layout="in-article"
                  data-ad-format="fluid"
-                 data-ad-client="ca-pub-7247235328568345"
+                 data-ad-client="${adsenseId}"
                  data-ad-slot="7358005986"></ins>
           `;
           target1.parentNode.insertBefore(adWrapper1, target1.nextSibling);
@@ -1364,7 +1364,7 @@ if (hasFaqs) {
         }
 
         // Slot 2: Insert after 8th paragraph/heading (for longer articles)
-        if (elements.length >= 8 && !article.querySelector('.ins-inarticle-ad-2')) {
+        if (adsenseId && elements.length >= 8 && !article.querySelector('.ins-inarticle-ad-2')) {
           const target2 = elements[7];
           const adWrapper2 = document.createElement('div');
           adWrapper2.className = 'ins-inarticle-ad-2 my-8 text-center overflow-hidden';
@@ -1373,7 +1373,7 @@ if (hasFaqs) {
                  style="display:block; text-align:center;"
                  data-ad-layout="in-article"
                  data-ad-format="fluid"
-                 data-ad-client="ca-pub-7247235328568345"
+                 data-ad-client="${adsenseId}"
                  data-ad-slot="8678826515"></ins>
           `;
           target2.parentNode.insertBefore(adWrapper2, target2.nextSibling);
@@ -1454,4 +1454,4 @@ if (hasFaqs) {
 
     scheduleTrack();
   })();
-</script>
+</script>

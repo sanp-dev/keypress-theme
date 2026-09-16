@@ -3,15 +3,15 @@
 import { getCollection } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import PostCard from '../../components/PostCard.astro';
-import { Image, getImage } from 'astro:assets';
+import { Image } from 'astro:assets';
 import { cleanImageUrl } from '../../utils/image';
 import { SITE_CONFIG } from '../../config/site';
+import { POSTS_PER_PAGE } from '../../utils/posts-api';
 
 export async function getStaticPaths() {
   const allPosts = await getCollection('blog');
   
   const primaryTags = allPosts.map(post => post.data.tags?.[0]).filter(Boolean) as string[];
-  
   const uniqueTags = [...new Set(primaryTags)];
 
   return uniqueTags.map((tag) => {
@@ -30,50 +30,22 @@ export async function getStaticPaths() {
 
 const { tagName, posts } = Astro.props;
 
-// Convert "sad-shayari" to "Sad Shayari"
 const formattedTagName = tagName
   .split('-')
-  .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+  .map((word: string) => word.charAt(0).toUpperCase() + word.slice(1))
   .join(' ');
 
 const heroPost = posts[0];
 const remainingPosts = posts.slice(1);
 
-const heroDate = heroPost ? heroPost.data.pubDate.toLocaleDateString('en-US', { month: 'short', day: '2-digit', year: 'numeric' }) : '';
+const heroDate = heroPost
+  ? heroPost.data.pubDate.toLocaleDateString('en-US', { month: 'short', day: '2-digit', year: 'numeric' })
+  : '';
 
-const POSTS_PER_PAGE = 6;
+// ── Build-time: only SSG page 1 as HTML ──────────────────────────────────────
 const initialPosts = remainingPosts.slice(0, POSTS_PER_PAGE);
-
-const clientPosts = await Promise.all(remainingPosts.map(async (post) => {
-  let image1x = '';
-  let image2x = '';
-  
-  if (post.data.image) {
-    const cleaned = cleanImageUrl(post.data.image);
-    try {
-      const opt1x = await getImage({ src: cleaned, width: 120, height: 78, quality: 75, format: 'webp' });
-      const opt2x = await getImage({ src: cleaned, width: 240, height: 156, quality: 75, format: 'webp' });
-      image1x = opt1x.src;
-      image2x = opt2x.src;
-    } catch (err) {
-      console.error(`Failed to optimize clientPost image for post ${post.id}:`, err);
-      image1x = post.data.image;
-      image2x = post.data.image;
-    }
-  }
-
-  return {
-    id: post.id,
-    data: {
-      title: post.data.title,
-      description: post.data.description || "",
-      category: post.data.category,
-      pubDate: post.data.pubDate,
-      image1x,
-      image2x,
-    },
-  };
-}));
+const hasMorePages = remainingPosts.length > POSTS_PER_PAGE;
+const tagSlug = Astro.params.tag;
 
 const cleanedHeroImage = heroPost ? cleanImageUrl(heroPost.data.image) : '';
 ---
@@ -167,9 +139,14 @@ const cleanedHeroImage = heroPost ? cleanImageUrl(heroPost.data.image) : '';
           })}
         </div>
 
-        {remainingPosts.length > POSTS_PER_PAGE && (
+        {hasMorePages && (
           <div class="flex justify-center mt-16 mb-16">
-            <button id="loadMoreBtn" class="px-8 py-3 border border-[#dadce0] rounded-full text-[14px] text-[#1a73e8] font-medium hover:bg-[#f8f9fa] transition-colors" style="font-family: 'Google Sans', Arial, sans-serif;">
+            <button
+              id="loadMoreBtn"
+              class="px-8 py-3 border border-[#dadce0] rounded-full text-[14px] text-[#1a73e8] font-medium hover:bg-[#f8f9fa] transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+              style="font-family: 'Google Sans', Arial, sans-serif;"
+              aria-label="Load more stories"
+            >
               Load more stories
             </button>
           </div>
@@ -179,71 +156,95 @@ const cleanedHeroImage = heroPost ? cleanImageUrl(heroPost.data.image) : '';
 
   </main>
 
-  <script define:vars={{ remainingPosts: clientPosts, POSTS_PER_PAGE }}>
-    let currentPage = 1;
-    const postsContainer = document.getElementById('postsContainer');
-    const loadMoreBtn = document.getElementById('loadMoreBtn');
+  <script define:vars={{ tagSlug }}>
+    // ── Label "Load More" — fetch-based static JSON approach ─────────────────
+    // Pre-generated at build time: /api/posts/label/{tag}/{page}.json
+    (function () {
+      const container = document.getElementById('postsContainer');
+      const btn = document.getElementById('loadMoreBtn');
+      if (!btn || !container) return;
 
-    if (loadMoreBtn) {
-      loadMoreBtn.addEventListener('click', function() {
-        const startIndex = currentPage * POSTS_PER_PAGE;
-        const endIndex = startIndex + POSTS_PER_PAGE;
-        const postsToAdd = remainingPosts.slice(startIndex, endIndex);
+      let nextPage = 2;
+      let loading = false;
 
-        postsToAdd.forEach(post => {
-          const dateObj = new Date(post.data.pubDate);
-          const formattedDate = dateObj.toLocaleDateString('en-US', { 
-            month: 'short', 
-            day: '2-digit' 
-          }).toUpperCase();
+      function renderPost(post) {
+        const dateObj = new Date(post.pubDate);
+        const formattedDate = dateObj
+          .toLocaleDateString('en-US', { month: 'short', day: '2-digit' })
+          .toUpperCase();
 
-          const imageHtml = post.data.image1x ? `
-            <div class="feed-image-wrap">
-              <img
-                src="${post.data.image1x}"
-                srcset="${post.data.image1x} 1x, ${post.data.image2x} 2x"
-                alt="${post.data.title}"
-                class="feed-image"
-                loading="lazy"
-              />
-            </div>
-          ` : '';
+        const imageHtml = post.image1x
+          ? `<div class="feed-image-wrap">
+               <img
+                 src="${post.image1x}"
+                 srcset="${post.image1x} 1x, ${post.image2x} 2x"
+                 alt="${post.title.replace(/"/g, '&quot;')}"
+                 class="feed-image"
+                 loading="lazy"
+                 decoding="async"
+               />
+             </div>`
+          : '';
 
-          let descText = post.data.description || '';
-          if (descText.length > 145) {
-            descText = descText.substring(0, 142) + '...';
+        let descText = post.description || '';
+        if (descText.length > 145) descText = descText.substring(0, 142) + '…';
+        const descHtml = descText
+          ? `<p class="feed-description">${descText}</p>`
+          : '';
+
+        return `<a href="/post/${post.id}/" class="feed-article group cursor-pointer text-inherit no-underline block">
+          <div class="flex items-center">
+            <span class="text-[#5f6368] text-[12px] font-medium tracking-[0.5px] uppercase">${formattedDate}</span>
+            <span class="text-[#5f6368] mx-2 text-[16px] leading-none">·</span>
+            <span class="text-[#1a73e8] text-[12px] font-medium tracking-[0.5px] uppercase">${post.category}</span>
+          </div>
+          <div class="feed-content">
+            ${imageHtml}
+            <h2 class="feed-title font-normal font-['Google_Sans',Arial,sans-serif] group-hover:underline decoration-[1.5px] underline-offset-[3px]">
+              ${post.title}
+            </h2>
+            ${descHtml}
+          </div>
+        </a>`;
+      }
+
+      btn.addEventListener('click', async function () {
+        if (loading) return;
+        loading = true;
+        btn.disabled = true;
+        btn.textContent = 'Loading…';
+
+        try {
+          const res = await fetch(`/api/posts/label/${tagSlug}/${nextPage}.json`);
+          if (!res.ok) throw new Error(`HTTP ${res.status}`);
+
+          const data = await res.json();
+          const fragment = document.createDocumentFragment();
+
+          for (const post of data.posts) {
+            const div = document.createElement('div');
+            div.innerHTML = renderPost(post).trim();
+            const el = div.firstElementChild;
+            if (el) fragment.appendChild(el);
           }
-          const descriptionHtml = descText
-            ? `<p class="feed-description">${descText}</p>`
-            : '';
 
-          const html = `
-            <a href="/post/${post.id}/" class="feed-article group cursor-pointer text-inherit no-underline block">
-              <div class="flex items-center">
-                <span class="text-[#5f6368] text-[12px] font-medium tracking-[0.5px] uppercase">${formattedDate}</span>
-                <span class="text-[#5f6368] mx-2 text-[16px] leading-none">·</span>
-                <span class="text-[#1a73e8] text-[12px] font-medium tracking-[0.5px] uppercase">${post.data.category}</span>
-              </div>
-              <div class="feed-content">
-                ${imageHtml}
-                <h2 class="feed-title font-normal font-['Google_Sans',Arial,sans-serif] group-hover:underline decoration-[1.5px] underline-offset-[3px]">
-                  ${post.data.title}
-                </h2>
-                ${descriptionHtml}
-              </div>
-            </a>
-          `;
-          postsContainer.insertAdjacentHTML('beforeend', html);
-        });
+          container.appendChild(fragment);
+          nextPage++;
 
-        currentPage++;
-
-        // Hide button if all posts are loaded
-        if (endIndex >= remainingPosts.length) {
-          loadMoreBtn.style.display = 'none';
+          if (!data.hasMore) {
+            btn.style.display = 'none';
+          } else {
+            btn.textContent = 'Load more stories';
+          }
+        } catch (err) {
+          console.error('[load-more] Label fetch failed:', err);
+          btn.textContent = 'Retry';
+        } finally {
+          loading = false;
+          btn.disabled = false;
         }
       });
-    }
+    })();
   </script>
 
 </BaseLayout>

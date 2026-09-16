@@ -6,6 +6,7 @@ import { AUTHOR_REGISTRY, DEFAULT_AUTHOR } from "../../config/authors";
 import { Image } from "astro:assets";
 import { cleanImageUrl } from "../../utils/image";
 import { SITE_CONFIG } from "../../config/site";
+import { POSTS_PER_PAGE } from "../../utils/posts-api";
 
 // Slug → AuthorProfile reverse lookup (registry email-keyed)
 const profilesBySlug = Object.fromEntries(
@@ -53,6 +54,11 @@ export async function getStaticPaths() {
 const { authorName, posts } = Astro.props;
 const totalStories = posts.length;
 const profile = profilesBySlug[Astro.params.name as string] ?? DEFAULT_AUTHOR;
+const authorSlug = Astro.params.name as string;
+
+// ── Build-time: only render first page of articles as HTML ────────────────
+const initialPosts = posts.slice(0, POSTS_PER_PAGE);
+const hasMorePages = posts.length > POSTS_PER_PAGE;
 ---
 
 <BaseLayout
@@ -359,6 +365,10 @@ const profile = profilesBySlug[Astro.params.name as string] ?? DEFAULT_AUTHOR;
     .load-btn:hover {
       background: #f8f9fa;
     }
+    .load-btn:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
 
     /* Responsive */
     @media (max-width: 600px) {
@@ -483,83 +493,144 @@ const profile = profilesBySlug[Astro.params.name as string] ?? DEFAULT_AUTHOR;
         <span class="af">{totalStories} stories</span>
       </div>
 
-      {
-        posts.map((post) => {
-          const postDate = post.data.pubDate.toLocaleDateString("en-US", {
-            month: "short",
-            day: "2-digit",
-          });
-          return (
-            <a href={`/post/${post.id}/`} class="art-row">
-              <div class="art-thumb">
-                {post.data.image && (
-                  <Image
-                    src={cleanImageUrl(post.data.image)}
-                    alt={post.data.title}
-                    width={176}
-                    height={118}
-                    widths={[96, 176, 192, 352]}
-                    sizes="(max-width: 600px) 96px, 176px"
-                    loading="lazy"
-                    quality={75}
-                  />
-                )}
-              </div>
-              <div class="art-body">
-                <div class="art-meta">
-                  <span class="af art-cat">{post.data.category}</span>
-                  <span class="art-dot">·</span>
-                  <span class="af art-meta-txt">{postDate}</span>
-                  <span class="art-dot">·</span>
-                  <span class="af art-meta-txt">3 min read</span>
+      <!-- Initial page rendered as static HTML -->
+      <div id="articlesContainer">
+        {
+          initialPosts.map((post) => {
+            const postDate = post.data.pubDate.toLocaleDateString("en-US", {
+              month: "short",
+              day: "2-digit",
+            });
+            const cleanedImg = cleanImageUrl(post.data.image);
+            return (
+              <a href={`/post/${post.id}/`} class="art-row">
+                <div class="art-thumb">
+                  {post.data.image && (
+                    <Image
+                      src={cleanedImg}
+                      alt={post.data.title}
+                      width={176}
+                      height={118}
+                      widths={[96, 176, 192, 352]}
+                      sizes="(max-width: 600px) 96px, 176px"
+                      loading="lazy"
+                      quality={75}
+                    />
+                  )}
                 </div>
-                <h3 class="af art-title">{post.data.title}</h3>
-                <p class="af art-excerpt">{post.data.description}</p>
-              </div>
-            </a>
-          );
-        })
-      }
+                <div class="art-body">
+                  <div class="art-meta">
+                    <span class="af art-cat">{post.data.category}</span>
+                    <span class="art-dot">·</span>
+                    <span class="af art-meta-txt">{postDate}</span>
+                    <span class="art-dot">·</span>
+                    <span class="af art-meta-txt">3 min read</span>
+                  </div>
+                  <h3 class="af art-title">{post.data.title}</h3>
+                  <p class="af art-excerpt">{post.data.description}</p>
+                </div>
+              </a>
+            );
+          })
+        }
+      </div>
 
-      <button class="af load-btn">Load more stories</button>
+      {
+        hasMorePages && (
+          <button class="af load-btn" id="loadMoreBtn" aria-label="Load more articles">
+            Load more stories
+          </button>
+        )
+      }
     </div>
   </main>
 
-  <script>
-    const loadBtn = document.querySelector(".load-btn");
-    if (loadBtn) {
-      const posts = Array.from(
-        document.querySelectorAll(".art-row"),
-      ) as HTMLElement[];
-      const limit = 3;
-      let visibleCount = limit;
+  <script define:vars={{ authorSlug }}>
+    // ── Author "Load More" — fetch-based static JSON approach ────────────────
+    // Pre-generated at build time: /api/posts/author/{slug}/{page}.json
+    (function () {
+      const container = document.getElementById('articlesContainer');
+      const btn = document.getElementById('loadMoreBtn');
+      if (!btn || !container) return;
 
-      posts.forEach((post, index) => {
-        if (index >= limit) {
-          post.style.display = "none";
-        }
-      });
+      let nextPage = 2;
+      let loading = false;
 
-      if (posts.length <= limit) {
-        (loadBtn as HTMLElement).style.display = "none";
+      function renderArticle(post) {
+        const dateObj = new Date(post.pubDate);
+        const postDate = dateObj.toLocaleDateString('en-US', {
+          month: 'short',
+          day: '2-digit',
+        });
+
+        const thumbHtml = post.image1x
+          ? `<div class="art-thumb">
+               <img
+                 src="${post.image1x}"
+                 srcset="${post.image1x} 1x, ${post.image2x} 2x"
+                 alt="${post.title.replace(/"/g, '&quot;')}"
+                 loading="lazy"
+                 decoding="async"
+                 style="width:100%;height:100%;object-fit:cover;display:block;"
+               />
+             </div>`
+          : `<div class="art-thumb"></div>`;
+
+        let excerpt = post.description || '';
+        if (excerpt.length > 160) excerpt = excerpt.substring(0, 157) + '…';
+
+        return `<a href="/post/${post.id}/" class="art-row">
+          ${thumbHtml}
+          <div class="art-body">
+            <div class="art-meta">
+              <span class="af art-cat">${post.category}</span>
+              <span class="art-dot">·</span>
+              <span class="af art-meta-txt">${postDate}</span>
+              <span class="art-dot">·</span>
+              <span class="af art-meta-txt">3 min read</span>
+            </div>
+            <h3 class="af art-title">${post.title}</h3>
+            <p class="af art-excerpt">${excerpt}</p>
+          </div>
+        </a>`;
       }
 
-      loadBtn.addEventListener("click", () => {
-        let shownThisTurn = 0;
-        for (let i = visibleCount; i < posts.length; i++) {
-          if (shownThisTurn < limit) {
-            posts[i].style.display = "flex";
-            shownThisTurn++;
-          } else {
-            break;
-          }
-        }
-        visibleCount += shownThisTurn;
+      btn.addEventListener('click', async function () {
+        if (loading) return;
+        loading = true;
+        btn.disabled = true;
+        btn.textContent = 'Loading…';
 
-        if (visibleCount >= posts.length) {
-          (loadBtn as HTMLElement).style.display = "none";
+        try {
+          const res = await fetch(`/api/posts/author/${authorSlug}/${nextPage}.json`);
+          if (!res.ok) throw new Error(`HTTP ${res.status}`);
+
+          const data = await res.json();
+          const fragment = document.createDocumentFragment();
+
+          for (const post of data.posts) {
+            const div = document.createElement('div');
+            div.innerHTML = renderArticle(post).trim();
+            const el = div.firstElementChild;
+            if (el) fragment.appendChild(el);
+          }
+
+          container.appendChild(fragment);
+          nextPage++;
+
+          if (!data.hasMore) {
+            btn.style.display = 'none';
+          } else {
+            btn.textContent = 'Load more stories';
+          }
+        } catch (err) {
+          console.error('[load-more] Author fetch failed:', err);
+          btn.textContent = 'Retry';
+        } finally {
+          loading = false;
+          btn.disabled = false;
         }
       });
-    }
+    })();
   </script>
 </BaseLayout>

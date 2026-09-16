@@ -15,7 +15,7 @@ import invalidImages from './invalid-images.json';
  * Output: "https://cdn.example.com/my-image.jpg"
  */
 export function cleanImageUrl(url: string | undefined | null): string {
-  if (!url) return '';
+  if (!url) return '/default-og-image.jpg';
 
   // If the image URL is verified as offline or invalid, fallback to default local image
   if (invalidImages.includes(url)) {
