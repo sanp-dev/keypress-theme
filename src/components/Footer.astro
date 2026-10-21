@@ -1,5 +1,6 @@
 ---
 import { SITE_CONFIG } from "../config/site";
+import TranslatorWidget from "./TranslatorWidget.astro";
 
 // All icons are monochrome currentColor - color is controlled via CSS
 const socialLinks = [
@@ -71,28 +72,37 @@ const globalLinks = [
 
 <footer class="bg-[#f8f9fa] border-t border-gray-200 mt-16">
   <div class="max-w-[1280px] mx-auto px-6 lg:px-8 py-8">
-    <!-- ── Upper: Follow Us + Social Icons ── -->
-    <div
-      class="flex flex-col md:flex-row items-start md:items-center border-b border-gray-200 pb-7 mb-7 gap-4"
-    >
-      <span class="ft-follow-label">Follow Us</span>
+    <!-- ── Upper: Follow Us + Social Icons + Mobile/Tablet Language Selector ── -->
+    <div class="border-b border-gray-200 pb-7 mb-7">
+      <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 w-full">
+        <div class="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-6 w-full">
+          <span class="ft-follow-label">Follow Us</span>
 
-      <ul class="flex flex-wrap gap-6 mt-1 md:mt-0 items-center">
-        {
-          socialLinks.map((link) => (
-            <li>
-              <a
-                href={link.url}
-                aria-label={link.name}
-                title={link.name}
-                class="social-icon-btn"
-              >
-                <Fragment set:html={link.svg} />
-              </a>
-            </li>
-          ))
-        }
-      </ul>
+          <div class="flex items-center justify-between sm:justify-start gap-6 w-full sm:w-auto">
+            <ul class="flex flex-wrap gap-6 items-center m-0 p-0 list-none">
+              {
+                socialLinks.map((link) => (
+                  <li>
+                    <a
+                      href={link.url}
+                      aria-label={link.name}
+                      title={link.name}
+                      class="social-icon-btn"
+                    >
+                      <Fragment set:html={link.svg} />
+                    </a>
+                  </li>
+                ))
+              }
+            </ul>
+
+            <!-- Mobile & Tablet Language Selector (To the right of the social bar) -->
+            <div class="flex lg:hidden items-center shrink-0 ml-auto sm:ml-8">
+              <TranslatorWidget placement="footer" />
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
 
     <!-- ── Lower: Logo + Links + Copyright ── -->

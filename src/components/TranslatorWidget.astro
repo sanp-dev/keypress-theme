@@ -1,0 +1,589 @@
+---
+// src/components/TranslatorWidget.astro
+// Modern, CWV-Friendly Google Search Central style Translator Widget
+// Supports Header (Desktop) and Footer (Mobile/Tablet) with 6px border-radius popup & smooth mobile touch delegation
+
+export interface Props {
+  placement?: "header" | "footer";
+  class?: string;
+}
+
+const { placement = "header", class: className = "" } = Astro.props;
+
+const languages = [
+  // 1. Original (Default state for bilingual / native posts)
+  { code: 'original', name: 'Original', nativeName: 'Original', flag: 'globe' },
+
+  // 2. English (Explicit option to translate bilingual posts fully into English)
+  { code: 'en', name: 'English', nativeName: 'English', flag: 'gb' },
+  
+  // 3. Indian Languages
+  { code: 'hi', name: 'Hindi', nativeName: 'हिन्दी', flag: 'in' },
+  { code: 'bn', name: 'Bengali', nativeName: 'বাংলা', flag: 'in' },
+  { code: 'mr', name: 'Marathi', nativeName: 'मराठी', flag: 'in' },
+  { code: 'te', name: 'Telugu', nativeName: 'తెలుగు', flag: 'in' },
+  { code: 'ta', name: 'Tamil', nativeName: 'தமிழ்', flag: 'in' },
+  { code: 'gu', name: 'Gujarati', nativeName: 'ગુજરાતી', flag: 'in' },
+  { code: 'kn', name: 'Kannada', nativeName: 'ಕನ್ನಡ', flag: 'in' },
+  { code: 'pa', name: 'Punjabi', nativeName: 'ਪੰਜਾਬੀ', flag: 'in' },
+  { code: 'ml', name: 'Malayalam', nativeName: 'മലയാളം', flag: 'in' },
+
+  // 4. Popular Global Languages
+  { code: 'es', name: 'Spanish', nativeName: 'Español', flag: 'es' },
+  { code: 'fr', name: 'French', nativeName: 'Français', flag: 'fr' },
+  { code: 'de', name: 'German', nativeName: 'Deutsch', flag: 'de' },
+  { code: 'ar', name: 'Arabic', nativeName: 'العربية', flag: 'sa' },
+  { code: 'ja', name: 'Japanese', nativeName: '日本語', flag: 'jp' },
+  { code: 'ru', name: 'Russian', nativeName: 'Русский', flag: 'ru' },
+];
+---
+
+{placement === "header" && (
+  <>
+    <div id="google_translate_element" aria-hidden="true" class="hidden notranslate" translate="no"></div>
+
+    <!-- SVG Icon Templates (Rendered once in DOM) -->
+    <template id="tpl-flag-globe">
+      <svg viewBox="0 0 24 24" class="w-4 h-4 text-[#4e4039] shrink-0 pointer-events-none" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <circle cx="12" cy="12" r="10"></circle>
+        <line x1="2" y1="12" x2="22" y2="12"></line>
+        <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+      </svg>
+    </template>
+
+    <template id="tpl-flag-gb">
+      <svg viewBox="0 0 60 40" class="w-5 h-3.5 rounded-[2px] border border-gray-200 shadow-xs shrink-0 overflow-hidden pointer-events-none" aria-hidden="true">
+        <clipPath id="uk-flag-clip-t"><rect width="60" height="40" rx="2"/></clipPath>
+        <g clip-path="url(#uk-flag-clip-t)">
+          <path fill="#012169" d="M0 0h60v40H0z"/>
+          <path fill="#FFF" d="m0 0 60 40m0-40L0 40" stroke="#FFF" stroke-width="8"/>
+          <path fill="#C8102E" d="m0 0 60 40m0-40L0 40" stroke="#C8102E" stroke-width="4.8"/>
+          <path fill="#FFF" d="M30 0v40M0 20h60" stroke="#FFF" stroke-width="12"/>
+          <path fill="#C8102E" d="M30 0v40M0 20h60" stroke="#C8102E" stroke-width="7.2"/>
+        </g>
+      </svg>
+    </template>
+
+    <template id="tpl-flag-in">
+      <svg viewBox="0 0 60 40" class="w-5 h-3.5 rounded-[2px] border border-gray-200 shadow-xs shrink-0 overflow-hidden pointer-events-none" aria-hidden="true">
+        <rect width="60" height="13.33" fill="#FF9933"/>
+        <rect y="13.33" width="60" height="13.33" fill="#FFFFFF"/>
+        <rect y="26.66" width="60" height="13.34" fill="#138808"/>
+        <circle cx="30" cy="20" r="4.5" fill="none" stroke="#000088" stroke-width="0.8"/>
+        <circle cx="30" cy="20" r="1.1" fill="#000088"/>
+      </svg>
+    </template>
+
+    <template id="tpl-flag-es">
+      <svg viewBox="0 0 60 40" class="w-5 h-3.5 rounded-[2px] border border-gray-200 shadow-xs shrink-0 overflow-hidden pointer-events-none" aria-hidden="true">
+        <rect width="60" height="10" fill="#AA151B"/>
+        <rect y="10" width="60" height="20" fill="#F1BF00"/>
+        <rect y="30" width="60" height="10" fill="#AA151B"/>
+      </svg>
+    </template>
+
+    <template id="tpl-flag-fr">
+      <svg viewBox="0 0 60 40" class="w-5 h-3.5 rounded-[2px] border border-gray-200 shadow-xs shrink-0 overflow-hidden pointer-events-none" aria-hidden="true">
+        <rect width="20" height="40" fill="#002395"/>
+        <rect x="20" width="20" height="40" fill="#FFFFFF"/>
+        <rect x="40" width="20" height="40" fill="#ED2939"/>
+      </svg>
+    </template>
+
+    <template id="tpl-flag-de">
+      <svg viewBox="0 0 60 40" class="w-5 h-3.5 rounded-[2px] border border-gray-200 shadow-xs shrink-0 overflow-hidden pointer-events-none" aria-hidden="true">
+        <rect width="60" height="13.33" fill="#000000"/>
+        <rect y="13.33" width="60" height="13.33" fill="#DD0000"/>
+        <rect y="26.66" width="60" height="13.34" fill="#FFCE00"/>
+      </svg>
+    </template>
+
+    <template id="tpl-flag-sa">
+      <svg viewBox="0 0 60 40" class="w-5 h-3.5 rounded-[2px] border border-gray-200 shadow-xs shrink-0 overflow-hidden pointer-events-none" aria-hidden="true">
+        <rect width="60" height="40" fill="#006C35"/>
+        <path d="M18 24h24v2H18z" fill="#FFF"/>
+      </svg>
+    </template>
+
+    <template id="tpl-flag-jp">
+      <svg viewBox="0 0 60 40" class="w-5 h-3.5 rounded-[2px] border border-gray-200 shadow-xs shrink-0 overflow-hidden pointer-events-none" aria-hidden="true">
+        <rect width="60" height="40" fill="#FFFFFF"/>
+        <circle cx="30" cy="20" r="10" fill="#BC002D"/>
+      </svg>
+    </template>
+
+    <template id="tpl-flag-ru">
+      <svg viewBox="0 0 60 40" class="w-5 h-3.5 rounded-[2px] border border-gray-200 shadow-xs shrink-0 overflow-hidden pointer-events-none" aria-hidden="true">
+        <rect width="60" height="13.33" fill="#FFFFFF"/>
+        <rect y="13.33" width="60" height="13.33" fill="#0039A6"/>
+        <rect y="26.66" width="60" height="13.34" fill="#D52B1E"/>
+      </svg>
+    </template>
+  </>
+)}
+
+<!-- Modern Embedded Translator Widget (Google Search Central Style) -->
+<div
+  data-translator-widget
+  data-placement={placement}
+  class={`relative inline-block notranslate ${className}`}
+  translate="no"
+  aria-label="Language Selector"
+>
+  <!-- Trigger Button -->
+  <button
+    type="button"
+    aria-expanded="false"
+    aria-haspopup="listbox"
+    class="translator-btn flex items-center gap-2 h-[34px] sm:h-[36px] px-2.5 sm:px-3 rounded-[3px] bg-white hover:bg-[#f8f9fa] active:bg-[#f1f3f4] text-[#202124] border border-[#dadce0] shadow-2xs hover:shadow-xs transition-all duration-150 cursor-pointer select-none outline-none focus-visible:ring-2 focus-visible:ring-[#1a73e8] active:scale-[0.98] font-['Google_Sans',Arial,sans-serif]"
+    style="touch-action: manipulation; -webkit-tap-highlight-color: transparent;"
+  >
+    <!-- Flag / Globe Icon -->
+    <span class="active-flag-icon inline-flex items-center justify-center shrink-0 pointer-events-none">
+      <svg viewBox="0 0 24 24" class="w-4 h-4 text-[#4e4039] shrink-0" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <circle cx="12" cy="12" r="10"></circle>
+        <line x1="2" y1="12" x2="22" y2="12"></line>
+        <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+      </svg>
+    </span>
+
+    <!-- Active Language Label -->
+    <span class="active-lang-text text-[12.5px] sm:text-[13px] font-medium text-[#202124] tracking-normal pointer-events-none">
+      Original
+    </span>
+
+    <!-- Chevron Down Icon -->
+    <svg
+      class="translator-chevron w-3.5 h-3.5 text-[#5f6368] transition-transform duration-200 pointer-events-none"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="2.2"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      aria-hidden="true"
+    >
+      <polyline points="6 9 12 15 18 9"></polyline>
+    </svg>
+  </button>
+
+  <!-- Dropdown Menu (Popup: Border Radius 6px, Direction-aware, High Z-Index) -->
+  <div
+    role="listbox"
+    aria-label="Available Languages"
+    class={`translator-menu hidden absolute ${
+      placement === "header"
+        ? "top-full mt-1.5 right-0 origin-top-right"
+        : "bottom-full mb-1.5 right-0 origin-bottom-right"
+    } w-auto min-w-[150px] max-w-[180px] bg-white border border-[#dadce0] rounded-[6px] shadow-xl shadow-black/15 overflow-hidden transition-all duration-150 z-[999]`}
+  >
+    <!-- Scrollable Language List -->
+    <div class="max-h-[260px] overflow-y-auto p-1.5 space-y-0.5 custom-scrollbar">
+      {languages.map((lang) => (
+        <button
+          type="button"
+          role="option"
+          data-lang-code={lang.code}
+          data-lang-name={lang.name}
+          data-lang-native={lang.nativeName}
+          data-lang-flag={lang.flag}
+          class="lang-option w-full flex items-center justify-between gap-2 px-2.5 py-1.5 rounded-[4px] text-left text-[#202124] hover:bg-[#f1f3f4] active:bg-[#e8eaed] transition-colors cursor-pointer group"
+          style="touch-action: manipulation; -webkit-tap-highlight-color: transparent;"
+        >
+          <div class="flex items-center gap-2 min-w-0 pointer-events-none">
+            <span class="flag-icon-slot inline-flex shrink-0"></span>
+            <span class="text-[13px] font-medium leading-normal truncate">
+              {lang.nativeName}
+            </span>
+          </div>
+          <svg class="check-icon w-3.5 h-3.5 text-[#1a73e8] opacity-0 group-[.selected]:opacity-100 shrink-0 pointer-events-none" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="20 6 9 17 4 12"></polyline>
+          </svg>
+        </button>
+      ))}
+    </div>
+  </div>
+</div>
+
+<!-- Core Web Vitals Shield Styles -->
+<style is:global>
+  /* 1. Prevent CLS: Lock body to top 0px and static positioning */
+  body {
+    top: 0px !important;
+    position: static !important;
+  }
+
+  /* 2. Hide Google default iframe banner, top bars & balloons */
+  .goog-te-banner-frame,
+  .VIpgJd-ZVi9od-ORHb-OEVmcd,
+  .VIpgJd-ZVi9od-aZ2wEe-wOHMyf,
+  .VIpgJd-ZVi9od-aZ2wEe-OiiCO,
+  #goog-gt-tt,
+  .goog-te-balloon-frame {
+    display: none !important;
+    visibility: hidden !important;
+    height: 0 !important;
+    width: 0 !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
+  }
+
+  /* 3. Disable hover highlights injected by Google Translate */
+  .goog-text-highlight {
+    background-color: transparent !important;
+    box-shadow: none !important;
+  }
+
+  /* 4. Hide raw Google translate widget container */
+  #google_translate_element {
+    display: none !important;
+  }
+
+  /* Custom Slim Light Scrollbar */
+  .custom-scrollbar::-webkit-scrollbar {
+    width: 6px;
+  }
+  .custom-scrollbar::-webkit-scrollbar-track {
+    background: #f8f9fa;
+  }
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    background: #dadce0;
+    border-radius: 6px;
+  }
+  .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: #bdc1c6;
+  }
+</style>
+
+<!-- Hybrid Translation Script (Event Delegation for 100% Touch/Click Reliability) -->
+<script is:inline>
+  (function () {
+    if (window.__TRANSLATOR_DELEGATED__) return;
+    window.__TRANSLATOR_DELEGATED__ = true;
+
+    const WIDGET_STATE = {
+      currentLang: 'original',
+      scriptLoaded: false
+    };
+
+    function getAllWidgets() {
+      return document.querySelectorAll('[data-translator-widget]');
+    }
+
+    // Helper: Clone Icon/Flag SVG from template
+    function getFlagSvg(flagCode) {
+      const tpl = document.getElementById('tpl-flag-' + flagCode);
+      if (tpl && tpl.content && tpl.content.firstElementChild) {
+        return tpl.content.firstElementChild.cloneNode(true);
+      }
+      return null;
+    }
+
+    // Populate flag slots inside options for all widget instances
+    function populateFlagSlots() {
+      getAllWidgets().forEach(widget => {
+        const options = widget.querySelectorAll('.lang-option');
+        options.forEach(opt => {
+          const flagCode = opt.getAttribute('data-lang-flag');
+          const slot = opt.querySelector('.flag-icon-slot');
+          if (slot && flagCode && !slot.hasChildNodes()) {
+            const svg = getFlagSvg(flagCode);
+            if (svg) slot.appendChild(svg);
+          }
+        });
+      });
+    }
+
+    // Read active language from googtrans cookie
+    function getSavedLanguage() {
+      const match = document.cookie.match(/(?:^|;\s*)googtrans=\/(?:auto|[^/]+)\/([^;]+)/);
+      if (match && match[1]) {
+        return match[1];
+      }
+      return 'original';
+    }
+
+    // Synchronize UI across all widget instances (Header & Footer)
+    function updateAllWidgetsUI(langCode) {
+      getAllWidgets().forEach(widget => {
+        const activeText = widget.querySelector('.active-lang-text');
+        const activeFlag = widget.querySelector('.active-flag-icon');
+        const options = widget.querySelectorAll('.lang-option');
+
+        let matchedOption = null;
+        options.forEach(opt => {
+          const code = opt.getAttribute('data-lang-code');
+          if (code === langCode) {
+            opt.classList.add('selected', 'bg-[#e8f0fe]', 'text-[#1a73e8]', 'font-semibold');
+            matchedOption = opt;
+          } else {
+            opt.classList.remove('selected', 'bg-[#e8f0fe]', 'text-[#1a73e8]', 'font-semibold');
+          }
+        });
+
+        if (matchedOption) {
+          const nativeName = matchedOption.getAttribute('data-lang-native');
+          const flagCode = matchedOption.getAttribute('data-lang-flag');
+          if (activeText) activeText.textContent = nativeName;
+          if (activeFlag && flagCode) {
+            const svg = getFlagSvg(flagCode);
+            if (svg) {
+              activeFlag.innerHTML = '';
+              activeFlag.appendChild(svg);
+            }
+          }
+        }
+      });
+      WIDGET_STATE.currentLang = langCode;
+    }
+
+    // Close all open dropdown menus
+    function closeAllMenus() {
+      getAllWidgets().forEach(w => {
+        const m = w.querySelector('.translator-menu');
+        const c = w.querySelector('.translator-chevron');
+        const b = w.querySelector('.translator-btn');
+        if (m) m.classList.add('hidden');
+        if (c) c.classList.remove('rotate-180');
+        if (b) b.setAttribute('aria-expanded', 'false');
+      });
+    }
+
+    // Google Translate Initialization
+    window.googleTranslateElementInit = function () {
+      new window.google.translate.TranslateElement({
+        pageLanguage: 'auto',
+        autoDisplay: false
+      }, 'google_translate_element');
+    };
+
+    function lazyLoadGoogleTranslate(callback) {
+      if (window.google && window.google.translate) {
+        if (callback) callback();
+        return;
+      }
+      if (WIDGET_STATE.scriptLoaded) {
+        if (callback) {
+          const poll = setInterval(() => {
+            if (window.google && window.google.translate) {
+              clearInterval(poll);
+              callback();
+            }
+          }, 100);
+        }
+        return;
+      }
+
+      WIDGET_STATE.scriptLoaded = true;
+      const script = document.createElement('script');
+      script.src = 'https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit';
+      script.async = true;
+      script.defer = true;
+      script.onload = () => {
+        if (callback) callback();
+      };
+      document.body.appendChild(script);
+    }
+
+    // Browser Native AI Translation Check (Experimental window.ai.translator)
+    async function tryNativeAiTranslation(targetLang) {
+      try {
+        if (window.ai && window.ai.translator) {
+          const availability = await window.ai.translator.availability({
+            sourceLanguage: 'auto',
+            targetLanguage: targetLang
+          });
+          if (availability === 'readily') {
+            const translator = await window.ai.translator.create({
+              sourceLanguage: 'auto',
+              targetLanguage: targetLang
+            });
+            const walker = document.createTreeWalker(
+              document.body,
+              NodeFilter.SHOW_TEXT,
+              {
+                acceptNode: (node) => {
+                  const parent = node.parentElement;
+                  if (!parent) return NodeFilter.FILTER_REJECT;
+                  const tag = parent.tagName.toLowerCase();
+                  if (tag === 'script' || tag === 'style' || tag === 'noscript' || 
+                      parent.closest('[data-translator-widget]') || 
+                      parent.closest('.ad-container') ||
+                      parent.closest('.notranslate') || 
+                      parent.closest('[translate="no"]')) {
+                    return NodeFilter.FILTER_REJECT;
+                  }
+                  if (node.textContent.trim().length > 1) {
+                    return NodeFilter.FILTER_ACCEPT;
+                  }
+                  return NodeFilter.FILTER_SKIP;
+                }
+              }
+            );
+
+            let node;
+            const nodesToTranslate = [];
+            while ((node = walker.nextNode())) {
+              nodesToTranslate.push(node);
+            }
+
+            for (const textNode of nodesToTranslate) {
+              try {
+                const translated = await translator.translate(textNode.textContent);
+                if (translated) textNode.textContent = translated;
+              } catch (_) {}
+            }
+            return true;
+          }
+        }
+      } catch (err) {
+        console.debug('Native AI translator fallback to Google Translate');
+      }
+      return false;
+    }
+
+    function restoreToOriginal() {
+      const domain = location.hostname;
+      const paths = ['/', location.pathname];
+      const domainParts = domain.split('.');
+      const domainsToClear = ['', domain];
+      if (domainParts.length > 1) {
+        domainsToClear.push('.' + domain);
+        domainsToClear.push('.' + domainParts.slice(-2).join('.'));
+      }
+
+      domainsToClear.forEach(d => {
+        paths.forEach(p => {
+          document.cookie = 'googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=' + p + (d ? '; domain=' + d : '') + ';';
+          document.cookie = 'googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; max-age=0; path=' + p + (d ? '; domain=' + d : '') + ';';
+        });
+      });
+
+      location.reload();
+    }
+
+    async function setLanguage(langCode) {
+      if (langCode === WIDGET_STATE.currentLang) {
+        closeAllMenus();
+        return;
+      }
+
+      if (langCode === 'original') {
+        closeAllMenus();
+        restoreToOriginal();
+        return;
+      }
+
+      updateAllWidgetsUI(langCode);
+      closeAllMenus();
+
+      const nativeSuccess = await tryNativeAiTranslation(langCode);
+      if (nativeSuccess) return;
+
+      const domain = location.hostname;
+      const cookieValue = '/auto/' + langCode;
+      document.cookie = 'googtrans=' + cookieValue + '; path=/;';
+      document.cookie = 'googtrans=' + cookieValue + '; path=/; domain=' + domain;
+      const parts = domain.split('.');
+      if (parts.length > 1) {
+        document.cookie = 'googtrans=' + cookieValue + '; path=/; domain=.' + parts.slice(-2).join('.');
+      }
+
+      lazyLoadGoogleTranslate(() => {
+        let attempts = 0;
+        const checkCombo = setInterval(() => {
+          const combo = document.querySelector('.goog-te-combo');
+          if (combo) {
+            clearInterval(checkCombo);
+            combo.value = langCode;
+            combo.dispatchEvent(new Event('change'));
+          } else if (++attempts > 25) {
+            clearInterval(checkCombo);
+            location.reload();
+          }
+        }, 100);
+      });
+    }
+
+    // ── Global Document Event Delegation (100% Reliable for Mobile Touch & Desktop Click) ──
+    document.addEventListener('click', (e) => {
+      // 1. If user clicked/tapped a translator trigger button
+      const btn = e.target.closest('.translator-btn');
+      if (btn) {
+        e.stopPropagation();
+        e.preventDefault();
+        const widget = btn.closest('[data-translator-widget]');
+        if (widget) {
+          const menu = widget.querySelector('.translator-menu');
+          const chevron = widget.querySelector('.translator-chevron');
+          const isCurrentlyOpen = menu && !menu.classList.contains('hidden');
+          closeAllMenus();
+          if (!isCurrentlyOpen && menu) {
+            menu.classList.remove('hidden');
+            if (chevron) chevron.classList.add('rotate-180');
+            btn.setAttribute('aria-expanded', 'true');
+            lazyLoadGoogleTranslate();
+          }
+        }
+        return;
+      }
+
+      // 2. If user clicked/tapped a language option
+      const opt = e.target.closest('.lang-option');
+      if (opt) {
+        e.stopPropagation();
+        e.preventDefault();
+        const code = opt.getAttribute('data-lang-code');
+        if (code) setLanguage(code);
+        return;
+      }
+
+      // 3. Tapped outside any widget -> Close all menus
+      const insideAnyWidget = e.target.closest('[data-translator-widget]');
+      if (!insideAnyWidget) {
+        closeAllMenus();
+      }
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        closeAllMenus();
+      }
+    });
+
+    // Touch pre-warm
+    document.addEventListener('touchstart', (e) => {
+      if (e.target && e.target.closest && e.target.closest('.translator-btn')) {
+        lazyLoadGoogleTranslate();
+      }
+    }, { capture: true, passive: true });
+
+    // Setup function to initialize flags and state once DOM is complete
+    function initTranslator() {
+      populateFlagSlots();
+      const savedLang = getSavedLanguage();
+      if (savedLang && savedLang !== 'original') {
+        updateAllWidgetsUI(savedLang);
+        if ('requestIdleCallback' in window) {
+          requestIdleCallback(() => lazyLoadGoogleTranslate(() => {
+            const combo = document.querySelector('.goog-te-combo');
+            if (combo && combo.value !== savedLang) {
+              combo.value = savedLang;
+              combo.dispatchEvent(new Event('change'));
+            }
+          }));
+        } else {
+          setTimeout(() => lazyLoadGoogleTranslate(), 600);
+        }
+      } else {
+        updateAllWidgetsUI('original');
+      }
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initTranslator);
+    } else {
+      initTranslator();
+    }
+  })();
+</script>
