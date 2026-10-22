@@ -1,5 +1,5 @@
 ---
-title: "आंत-मस्तिष्क अक्ष: आपकी आंतें चिंता और मनोदशा को कैसे प्रभावित करती हैं"
+title: "The gut-brain axis: How your intestines affect anxiety and mood"
 description: "Explore how the gut-brain connection works, how microbes affect anxiety and mood, and get evidence-based diet tips to support your mind and gut naturally..."
 pubDate: 2026-08-09T04:30:37.782Z
 category: "Health"
@@ -17,7 +17,7 @@ Your digestive tract and your brain are constantly exchanging signals every seco
 
 ## What Is the Gut-Brain Connection?
 
-### आंत और मस्तिष्क लगातार संवाद में रहते हैं।
+### Your gut and brain are in constant communication.
 
 Your brain does not operate in isolation. It relies on real-time updates from every organ system, and few organs send as many signals to the brain as the digestive tract. Whether you are hungry, full, stressed, or relaxed, your gut sends continuous biochemical messages straight to your central nervous system. In return, your central nervous system sends commands back down to regulate digestion, gut motility, and enzyme secretion.
 
@@ -35,7 +35,7 @@ The term **gut-brain axis** refers to the complex, bidirectional communication n
 
 ### Why Scientists Call the Gut the “Second Brain”
 
-आंत की असाधारण तंत्रिका संबंधी जटिलता के कारण शोधकर्ता इसे अक्सर "दूसरा मस्तिष्क" कहते हैं। अन्य परिधीय अंगों के विपरीत, आंत जटिल प्रतिवर्त क्रियाएं कर सकती है, चिकनी मांसपेशियों के संकुचन का समन्वय कर सकती है और मस्तिष्क से पूरी तरह स्वतंत्र रूप से पाचन प्रक्रियाओं का प्रबंधन कर सकती है। यदि मस्तिष्क और आंत के बीच तंत्रिका संबंध टूट भी जाए, तो भी पाचन तंत्र भोजन को बिना किसी रुकावट के पचाता रहता है और उसे आगे बढ़ाता रहता है।
+Researchers often refer to the gut as the "second brain" due to its extraordinary neural complexity. Unlike other peripheral organs, the gut can perform complex reflexes, coordinate smooth muscle contractions, and manage digestive processes entirely independently of the brain. Even if the neural connection between the brain and gut were severed, the digestive system would continue to process and move food without interruption.
 
 <p style="padding:12px;border-radius:4px;font-weight:700;margin:15px 0;">Also Read: <a href="/post/can-spectacles-be-removed/">How to Stop Overthinking: 7 Effective Strategies That Work Fast</a></p>
 

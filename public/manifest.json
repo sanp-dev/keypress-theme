@@ -47,46 +47,42 @@
   "prefer_related_applications": false,
   "shortcuts": [
     {
-      "name": "Health",
-      "url": "/category/health/",
+      "name": "Tech News",
+      "url": "/category/tech-news/",
       "icons": [
         {
-          "name": "Tech News",
-          "url": "/category/tech-news/",
-          "icons": [
-            {
-              "src": "/tech-news.png",
-              "type": "image/png",
-              "sizes": "192x192"
-            }
-          ]
-        },
-        {
-          "name": "Generative AI",
-          "url": "/category/generative-ai/",
-          "icons": [
-            {
-              "src": "/generative-ai.png",
-              "type": "image/png",
-              "sizes": "192x192"
-            }
-          ]
-        },
-        {
-          "name": "Android Tips",
-          "url": "/category/android/",
-          "icons": [
-            {
-              "src": "/android.png",
-              "type": "image/png",
-              "sizes": "192x192"
-            }
-          ]
+          "src": "/tech-news.png",
+          "type": "image/png",
+          "sizes": "192x192"
         }
-      ],
-      "categories": [
-        "news",
-        "education",
-        "health"
+      ]
+    },
+    {
+      "name": "Generative AI",
+      "url": "/category/generative-ai/",
+      "icons": [
+        {
+          "src": "/generative-ai.png",
+          "type": "image/png",
+          "sizes": "192x192"
+        }
+      ]
+    },
+    {
+      "name": "Android Tips",
+      "url": "/category/android/",
+      "icons": [
+        {
+          "src": "/android.png",
+          "type": "image/png",
+          "sizes": "192x192"
+        }
       ]
     }
+  ],
+  "categories": [
+    "news",
+    "education",
+    "health"
+  ]
+}
