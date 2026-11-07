@@ -81,6 +81,11 @@ cp .env.example .env
 Available keys:
 - `PUBLIC_GA_ID`: Google Analytics measurement ID (e.g. `G-XXXXXXXXXX`).
 - `PUBLIC_CLARITY_ID`: Microsoft Clarity project ID.
+- `PUBLIC_GOOGLE_ADSENSE_ID`: Optional Google AdSense client ID (or configured in `site.ts`).
+- `PUBLIC_TURNSTILE_SITE_KEY`: Cloudflare Turnstile public site key for bot verification.
+- `TURNSTILE_SECRET_KEY`: Cloudflare Turnstile server-side secret key.
+- `CONTACT_FORM_WEBHOOK_URL`: Webhook URL (e.g. Google Apps Script) for contact submissions.
+- `CUSTOM_USER_AGENT`: Custom User-Agent header string for internal/external fetch requests.
 - `GA4_PROPERTY_ID`, `GA4_CLIENT_EMAIL`, `GA4_PRIVATE_KEY`: GA4 Data API credentials for popular posts feature (Optional).
 - `R2_ACCOUNT_ID`, `R2_ACCESS_KEY_ID`, `R2_SECRET_ACCESS_KEY`: Cloudflare R2 bucket credentials for media assets (Optional).
 - `FIREBASE_SECRET`, `FIREBASE_URL`, `GEMINI_API_KEY`: Push notifications & AI services (Optional).
