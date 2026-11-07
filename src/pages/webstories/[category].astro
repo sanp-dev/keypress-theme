@@ -11,10 +11,11 @@ export async function getStaticPaths() {
   try {
     console.log("Fetching stories at build-time for categories...");
     const jsonUrl = `${SITE_CONFIG.domain}/webstories/story-list.json`;
+    const userAgent = import.meta.env.CUSTOM_USER_AGENT || "Mozilla/5.0 (compatible; KeypressBot/1.0)";
     const jsonResponse = await fetch(jsonUrl, {
       headers: {
         "Accept": "application/json",
-        "User-Agent": "qd-Dashboard/1.0"
+        "User-Agent": userAgent
       }
     });
 

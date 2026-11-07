@@ -46,7 +46,7 @@ export const SITE_CONFIG: SiteConfig = {
   themeColor: "#1a73e8",                              // PWA / browser theme color
 
   // ─── Google AdSense Integration ───────────────────────────────────────────
-  googleAdsenseId: "",         // Google AdSense client ID (placeholder)
+  googleAdsenseId: import.meta.env.PUBLIC_GOOGLE_ADSENSE_ID || "",         // Google AdSense client ID (placeholder or via PUBLIC_GOOGLE_ADSENSE_ID env)
   adsenseLazyLoad: false,                             // Set true to lazy-load AdSense
   showAdPlaceholders: true,                           // Set to false to hide ad placeholder boxes when googleAdsenseId is empty
 
